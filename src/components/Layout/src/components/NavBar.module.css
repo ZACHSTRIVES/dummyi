@@ -1,0 +1,17 @@
+.navItems {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.hamburgerIcon {
+    display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+    .navItems {
+        display: none;
+    }
+    .hamburgerIcon {
+        display: block !important;
+    }
+}
