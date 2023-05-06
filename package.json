@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@douyinfe/semi-next": "^2.34.0",
-    "@douyinfe/semi-ui": "^2.34.0",
+    "@douyinfe/semi-ui": "^2.34.1",
     "@semi-bot/semi-theme-mockdatanz": "^1.0.0",
     "@types/node": "18.16.3",
     "@types/react": "18.2.5",
