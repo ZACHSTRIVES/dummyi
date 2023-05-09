@@ -6,6 +6,11 @@ const semi = require('@douyinfe/semi-next').default({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = semi({
+    i18n: {
+        locales: ['zh', 'en'],
+        defaultLocale: 'en',
+        localeDetection: false,
+    },
     transpilePackages: ['@douyinfe/semi-ui', '@douyinfe/semi-icons', '@douyinfe/semi-illustrations'],
     webpack(config) {
         config.plugins.push(
