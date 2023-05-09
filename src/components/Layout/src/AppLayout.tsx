@@ -10,7 +10,7 @@ export type LayoutProps = {
 export const AppLayout: React.FC<LayoutProps> = ({children}) => {
     const {Header} = Layout;
     return (
-        <Layout style={{border: '1px solid var(--semi-color-border)'}}>
+        <Layout>
             <Header style={{backgroundColor: 'var(--semi-color-bg-1)'}}>
                 <NavBar/>
             </Header>
