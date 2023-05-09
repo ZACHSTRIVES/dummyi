@@ -10,6 +10,7 @@ import {LocaleSwitchButton} from "@/components/Layout/src/components/LocaleSwitc
 import {navBarRoutes} from "@/routes";
 import {useIntl} from "@/locale";
 import {useRouter} from "next/router";
+import {OnSelectData} from "@douyinfe/semi-ui/lib/es/table/ColumnFilter";
 
 export type NavBarProps = {}
 
@@ -31,9 +32,12 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
         links?.classList.toggle('active');
     };
 
-    async function onSelectItem(item) {
+    const onSelectItem = async (item) => {
         await push(item.itemKey);
         setSelectedKeys(item.selectedKeys);
+        if (isMenuOpen) {
+            handleMenuClick();
+        }
     }
 
     return (
