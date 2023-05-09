@@ -1,17 +1,59 @@
-.navItems {
-    display: flex;
-    flex-wrap: nowrap;
-}
-
 .hamburgerIcon {
     display: none !important;
 }
 
 @media screen and (max-width: 768px) {
-    .navItems {
-        display: none;
-    }
     .hamburgerIcon {
         display: block !important;
+        margin-left: auto !important;
+    }
+
+    .navBar {
+        height: fit-content !important;
+        min-height: 60px !important;
+        align-items: center;
+    }
+
+    .navBar :global(.semi-navigation-list-wrapper) {
+        display: none !important;
+    }
+
+    .navBar :global(.semi-navigation-header-list-outer) {
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
+
+    .navBar :global(ul.semi-navigation-list) {
+        flex-direction: column !important;
+    }
+
+    .navBar :global(.semi-navigation-inner) {
+        flex-direction: column !important;
+    }
+
+    .navBar :global(.semi-navigation-list-wrapper.active) {
+        display: flex !important;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .navBar :global(.semi-navigation-header) {
+        width: 100% !important;
+        height: 60px !important;
+        margin-right: 0 !important;
+    }
+
+    .navBar :global(.semi-navigation-footer) {
+        display: none !important;
+    }
+
+    .navBar :global(.semi-navigation-list) {
+        width: 100% !important;
+    }
+
+    .navItems {
+        width: 100% !important;
+        justify-content: center !important;
+        margin-right: 0 !important;
     }
 }
