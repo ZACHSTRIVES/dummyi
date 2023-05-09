@@ -1,12 +1,15 @@
 import React, {FunctionComponent} from "react";
 import {Layout} from "@douyinfe/semi-ui";
 import {IconTerminal} from "@douyinfe/semi-icons";
-
+import {Typography} from '@douyinfe/semi-ui';
+import {IconGithubLogo} from '@douyinfe/semi-icons';
 
 export type FooterProps = {}
 
 export const Footer: FunctionComponent<FooterProps> = () => {
     const {Footer} = Layout;
+    const {Text} = Typography;
+
     return (
         <Footer
             style={{
@@ -26,9 +29,15 @@ export const Footer: FunctionComponent<FooterProps> = () => {
                     <IconTerminal size="large" style={{marginRight: '8px'}}/>
                     <span>Mockdata.co.nz </span>
                 </span>
+
             <span>
-                    <span style={{marginRight: '24px'}}>GitHub</span>
-                    <span>About</span>
+                    <Text link={{href: 'https://github.com/ZACHSTRIVES/mockdata.co.nz'}} style={{marginRight: '24px'}}
+                          underline>
+                        Github
+                    </Text>
+                    <Text link={{href: '/about'}} underline>
+                        About
+                    </Text>
                 </span>
         </Footer>
     )

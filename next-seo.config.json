@@ -1,0 +1,38 @@
+{
+  "title": "",
+  "defaultTitle": "Mockdata.co.nz",
+  "titleTemplate": "%s - mockdata.co.nz",
+  "noindex": false,
+  "nofollow": false,
+  "robotsProps": {},
+  "description": "",
+  "canonical": "",
+  "mobileAlternate": {
+    "media": "",
+    "href": ""
+  },
+  "languageAlternates": [],
+  "additionalMetaTags": [
+    {
+      "name": "keywords",
+      "content": ""
+    },
+    {
+      "name": "viewport",
+      "content": "initial-scale=1.0, width=device-width"
+    },
+    {
+      "name": "author",
+      "content": "Zach Wang, Thong Teav"
+    }
+  ],
+  "additionalLinkTags": [],
+  "twitter": {
+    "cardType": "",
+    "site": "",
+    "handle": ""
+  },
+  "facebook": {
+    "appId": ""
+  }
+}
