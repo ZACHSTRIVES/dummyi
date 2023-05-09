@@ -1,5 +1,9 @@
 @import '~@semi-bot/semi-theme-mockdatanz/semi.min.css';
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
 }
