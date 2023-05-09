@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@douyinfe/semi-next": "^2.34.0",
+    "@douyinfe/semi-next": "^2.34.2",
     "@reduxjs/toolkit": "^1.9.5",
     "@douyinfe/semi-ui": "^2.34.2",
     "@semi-bot/semi-theme-mockdatanz": "^1.0.0",
