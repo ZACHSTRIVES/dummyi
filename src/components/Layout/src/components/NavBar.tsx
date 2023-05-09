@@ -6,6 +6,7 @@ import {ColorModeSwitchButton} from "@/components/Layout/src/components/ColorMod
 import {ColorMode} from "@/constents/enums";
 import {useSelector} from "react-redux";
 import {Store} from "@/types/system";
+import {LocaleSwitchButton} from "@/components/Layout/src/components/LocaleSwitchButton";
 
 export type NavBarProps = {}
 
@@ -47,6 +48,7 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
 
                 <Nav.Footer>
                     <ColorModeSwitchButton/>
+                    <LocaleSwitchButton/>
                 </Nav.Footer>
 
             </Nav>
