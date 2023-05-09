@@ -10,14 +10,14 @@ export type LayoutProps = {
 export const AppLayout: React.FC<LayoutProps> = ({children}) => {
     const {Header} = Layout;
     return (
-        <Layout>
-            <Header style={{backgroundColor: 'var(--semi-color-bg-1)'}}>
+        <Layout className="h-screen">
+            <Header className="sticky top-0 z-1" style={{backgroundColor: 'var(--semi-color-bg-1)'}}>
                 <NavBar/>
             </Header>
-            <Content>
+            <Content className="grow overflow-auto">
                 {children}
             </Content>
-            <Footer/>
+            <Footer className="sticky bottom-0 z-1"/>
         </Layout>
     )
 }
