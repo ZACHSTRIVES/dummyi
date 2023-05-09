@@ -6,6 +6,10 @@ import {ColorModeSwitchButton} from "@/components/Layout/src/components/ColorMod
 import {ColorMode} from "@/constents/enums";
 import {useSelector} from "react-redux";
 import {Store} from "@/types/system";
+import {LocaleSwitchButton} from "@/components/Layout/src/components/LocaleSwitchButton";
+import {navBarRoutes} from "@/routes";
+import {useIntl} from "@/locale";
+import {useRouter} from "next/router";
 
 export type NavBarProps = {}
 
@@ -13,6 +17,13 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
 
     const colorMode: ColorMode = useSelector((state: Store) => state.settings.colorMode);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [defaultSelectedKeys, setSelectedKeys] = useState([]);
+    const intl = useIntl();
+    const {pathname, push} = useRouter();
+
+    React.useEffect(() => {
+        setSelectedKeys([pathname]);
+    }, [pathname]);
 
     const handleMenuClick = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -20,13 +31,18 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
         links?.classList.toggle('active');
     };
 
+    async function onSelectItem(item) {
+        await push(item.itemKey);
+        setSelectedKeys(item.selectedKeys);
+    }
+
     return (
         <div>
             <Nav
                 mode="horizontal"
                 className={styles.navBar}
-                defaultSelectedKeys={["Home"]}
-                onSelect={(key) => console.log(key)}
+                defaultSelectedKeys={defaultSelectedKeys}
+                onSelect={(key) => onSelectItem(key)}
             >
                 <Nav.Header
                     logo={<IconTerminal
@@ -37,16 +53,26 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                         className={styles.hamburgerIcon}
                         onClick={handleMenuClick}
                         theme="borderless"
-                        icon={<IconMenu size="large" style={{color: colorMode === ColorMode.DARK ? 'gray' : "black"}} />}
+                        icon={<IconMenu size="large" style={{color: colorMode === ColorMode.DARK ? 'gray' : "black"}}/>}
                     />
                 </Nav.Header>
 
-                <Nav.Item className={styles.navItems} itemKey="Home" text="Home"/>
-                <Nav.Item className={styles.navItems} itemKey="Live" text="Generator"/>
-                <Nav.Item className={styles.navItems} itemKey="Setting" text="About"/>
+                {
+                    navBarRoutes.map((route, index) => {
+                        return (
+                            <Nav.Item
+                                key={route.path}
+                                className={styles.navItems}
+                                itemKey={route.path}
+                                text={intl.formatMessage({id: route.localeId})}
+                            />
+                        )
+                    })
+                }
 
                 <Nav.Footer>
                     <ColorModeSwitchButton/>
+                    <LocaleSwitchButton/>
                 </Nav.Footer>
 
             </Nav>
