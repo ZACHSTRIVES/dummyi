@@ -20,7 +20,7 @@ export const Content: FunctionComponent<ContentProps> = ({children, className}) 
                 style={{
                     borderRadius: '10px',
                     border: '1px solid var(--semi-color-border)',
-                    height: '376px',
+                    height: '100%',
                     padding: '32px',
                 }}
             >
