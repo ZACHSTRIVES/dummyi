@@ -6,6 +6,7 @@ import type {IntlFormatters} from 'react-intl';
 export interface RouteType {
     id: string;
     path: string;
+    localeId: string;
 }
 
 

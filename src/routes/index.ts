@@ -2,15 +2,18 @@ import {RouteType} from "@/types/system";
 
 export const navBarRoutes: RouteType[] = [
     {
-        id: 'Home',
+        id: 'home',
         path: '/',
+        localeId: 'nav.item.home',
     },
     {
-        id: 'Generator',
+        id: 'generator',
         path: '/generator',
+        localeId: 'nav.item.generator',
     },
     {
-        id: 'About',
+        id: 'about',
         path: '/about',
+        localeId: 'nav.item.about',
     }
 ]
