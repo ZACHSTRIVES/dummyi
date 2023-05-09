@@ -1,14 +1,29 @@
 import {ColorMode} from "@/constents/enums";
+import enTranslations from "@/locales/en.json";
+import type {IntlFormatters} from 'react-intl';
 
-export interface Action  {
+// routes
+export interface RouteType {
+    id: string;
+    path: string;
+    localeId: string;
+}
+
+
+// states
+export interface Action {
     type: string;
     payload?: any;
 }
 
-export interface Store  {
+export interface Store {
     settings: SettingsReducerState;
 }
 
-export interface SettingsReducerState  {
+export interface SettingsReducerState {
     colorMode: ColorMode;
 }
+
+// locales
+export type IntlMessageKeys = keyof typeof enTranslations;
+export type FormatMessageArgs = Parameters<IntlFormatters['formatMessage']>;

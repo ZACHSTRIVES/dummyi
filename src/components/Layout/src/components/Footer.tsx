@@ -4,14 +4,17 @@ import {IconTerminal} from "@douyinfe/semi-icons";
 import {Typography} from '@douyinfe/semi-ui';
 import {IconGithubLogo} from '@douyinfe/semi-icons';
 
-export type FooterProps = {}
+export type FooterProps = {
+    className?: string;
+}
 
-export const Footer: FunctionComponent<FooterProps> = () => {
+export const Footer: FunctionComponent<FooterProps> = ({className}) => {
     const {Footer} = Layout;
     const {Text} = Typography;
 
     return (
         <Footer
+            className={className}
             style={{
                 display: 'flex',
                 justifyContent: 'space-between',
