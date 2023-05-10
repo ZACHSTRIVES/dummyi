@@ -36,7 +36,7 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitcherProps> = () => 
         >
             <Button
                 theme="borderless"
-                icon={<IconLanguage size="large"/>}
+                icon={<IconLanguage size="extra-large"/>}
                 style={{
                     color: 'var(--semi-color-text-2)',
                 }}

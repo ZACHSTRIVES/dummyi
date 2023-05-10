@@ -1,5 +1,7 @@
 {
   "nav.item.home": "Home",
-  "nav.item.generator": "Generator",
-  "nav.item.about": "About"
+  "nav.item.workspace": "Workspace",
+  "nav.item.about": "About",
+  "nav.button.switchToDarkMode": "Switch to dark mode",
+  "nav.button.switchToLightMode": "Switch to light mode"
 }

@@ -1,5 +1,5 @@
 import {Button, Nav} from "@douyinfe/semi-ui";
-import {IconMenu, IconTerminal, IconClose} from "@douyinfe/semi-icons";
+import {IconMenu, IconTerminal, IconClose, IconGithubLogo} from "@douyinfe/semi-icons";
 import React, {FunctionComponent, useState} from "react";
 import styles from './NavBar.module.css';
 import {ColorModeSwitchButton} from "@/components/Layout/src/components/ColorModeSwitchButton";
@@ -10,6 +10,7 @@ import {LocaleSwitchButton} from "@/components/Layout/src/components/LocaleSwitc
 import {navBarRoutes} from "@/routes";
 import {useIntl} from "@/locale";
 import {useRouter} from "next/router";
+import {GithubButton} from "@/components/Layout/src/components/GithubButton";
 
 
 export type NavBarProps = {}
@@ -62,7 +63,7 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                                 <IconClose size="large"
                                            style={{color: colorMode === ColorMode.DARK ? 'gray' : "black"}}/> :
                                 <IconMenu size="large"
-                                           style={{color: colorMode === ColorMode.DARK ? 'gray' : "black"}}/>
+                                          style={{color: colorMode === ColorMode.DARK ? 'gray' : "black"}}/>
                         }
                     />
                 </Nav.Header>
@@ -81,6 +82,7 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                 }
 
                 <Nav.Footer>
+                    <GithubButton/>
                     <ColorModeSwitchButton/>
                     <LocaleSwitchButton/>
                 </Nav.Footer>

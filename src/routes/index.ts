@@ -7,9 +7,9 @@ export const navBarRoutes: RouteType[] = [
         localeId: 'nav.item.home',
     },
     {
-        id: 'generator',
-        path: '/generator',
-        localeId: 'nav.item.generator',
+        id: 'workspace',
+        path: '/workspace',
+        localeId: 'nav.item.workspace',
     },
     {
         id: 'about',
