@@ -3,5 +3,7 @@
   "nav.item.workspace": "Workspace",
   "nav.item.about": "About",
   "nav.button.switchToDarkMode": "Switch to dark mode",
-  "nav.button.switchToLightMode": "Switch to light mode"
+  "nav.button.switchToLightMode": "Switch to light mode",
+  "nav.button.language": "Language",
+  "nav.language.select": "Select language"
 }
