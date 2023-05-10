@@ -1,5 +1,5 @@
 import {Button, Nav} from "@douyinfe/semi-ui";
-import {IconMenu, IconTerminal} from "@douyinfe/semi-icons";
+import {IconMenu, IconTerminal, IconClose} from "@douyinfe/semi-icons";
 import React, {FunctionComponent, useState} from "react";
 import styles from './NavBar.module.css';
 import {ColorModeSwitchButton} from "@/components/Layout/src/components/ColorModeSwitchButton";
@@ -10,6 +10,7 @@ import {LocaleSwitchButton} from "@/components/Layout/src/components/LocaleSwitc
 import {navBarRoutes} from "@/routes";
 import {useIntl} from "@/locale";
 import {useRouter} from "next/router";
+
 
 export type NavBarProps = {}
 
@@ -31,9 +32,12 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
         links?.classList.toggle('active');
     };
 
-    async function onSelectItem(item) {
+    const onSelectItem = async (item) => {
         await push(item.itemKey);
         setSelectedKeys(item.selectedKeys);
+        if (isMenuOpen) {
+            handleMenuClick();
+        }
     }
 
     return (
@@ -53,7 +57,13 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                         className={styles.hamburgerIcon}
                         onClick={handleMenuClick}
                         theme="borderless"
-                        icon={<IconMenu size="large" style={{color: colorMode === ColorMode.DARK ? 'gray' : "black"}}/>}
+                        icon={
+                            isMenuOpen ?
+                                <IconClose size="large"
+                                           style={{color: colorMode === ColorMode.DARK ? 'gray' : "black"}}/> :
+                                <IconMenu size="large"
+                                           style={{color: colorMode === ColorMode.DARK ? 'gray' : "black"}}/>
+                        }
                     />
                 </Nav.Header>
 
