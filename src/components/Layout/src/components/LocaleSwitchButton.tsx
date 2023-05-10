@@ -55,13 +55,14 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitcherProps> = () => 
                    icon={<IconLanguage size={'extra-large'}/>}
                    footer={null}
                    size={'small'}
+                   onCancel={() => setIsModalVisible(false)}
                    title={intl.formatMessage({id: 'nav.language.select'})}>
 
                 <div style={{marginBottom: '20px'}}>
-                    <RadioGroup type='card' value={locale} direction='vertical' name="lang-radio-group">
+                    <RadioGroup type='pureCard' value={locale} direction='vertical' name="lang-radio-group">
                         {Object.entries(localeMap).map(([key, value]) => (
                             <Radio key={key} value={key}
-                                   style={{width: 280, height: 50}} onChange={handleLocaleChange}>
+                                   style={{width: 280, height: 50, borderRadius:'12px'}} onChange={handleLocaleChange}>
                                 {value.icon} {value.name}
                             </Radio>
                         ))}
