@@ -1,5 +1,5 @@
-import {Button, Nav} from "@douyinfe/semi-ui";
-import {IconMenu, IconTerminal, IconClose, IconGithubLogo} from "@douyinfe/semi-icons";
+import {Nav} from "@douyinfe/semi-ui";
+import {IconTerminal} from "@douyinfe/semi-icons";
 import React, {FunctionComponent, useState} from "react";
 import styles from './NavBar.module.css';
 import {ColorModeSwitchButton} from "@/components/Layout/src/components/ColorModeSwitchButton";
