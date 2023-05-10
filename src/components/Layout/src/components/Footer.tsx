@@ -2,7 +2,7 @@ import React, {FunctionComponent} from "react";
 import {Layout} from "@douyinfe/semi-ui";
 import {IconTerminal} from "@douyinfe/semi-icons";
 import {Typography} from '@douyinfe/semi-ui';
-import {IconGithubLogo} from '@douyinfe/semi-icons';
+
 
 export type FooterProps = {
     className?: string;
@@ -41,7 +41,7 @@ export const Footer: FunctionComponent<FooterProps> = ({className}) => {
                     <Text link={{href: '/about'}} underline>
                         About
                     </Text>
-                </span>
+            </span>
         </Footer>
     )
 }

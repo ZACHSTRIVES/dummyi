@@ -3,5 +3,7 @@
   "nav.item.workspace": "工作台",
   "nav.item.about": "关于",
   "nav.button.switchToDarkMode": "切换到暗色模式",
-  "nav.button.switchToLightMode": "切换到亮色模式"
+  "nav.button.switchToLightMode": "切换到亮色模式",
+  "nav.button.language": "语言",
+  "nav.language.select": "选择语言"
 }
