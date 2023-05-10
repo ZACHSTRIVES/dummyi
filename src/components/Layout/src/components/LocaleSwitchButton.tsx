@@ -1,49 +1,75 @@
+import React, {FunctionComponent} from 'react';
 import {IconLanguage} from '@douyinfe/semi-icons';
-import {Button, Dropdown} from '@douyinfe/semi-ui';
+import {Button, Modal, Radio, RadioGroup, Tooltip} from '@douyinfe/semi-ui';
 import {useRouter} from 'next/router';
-import {FunctionComponent} from 'react';
 import {Locales} from '@/constents/enums';
+import {useIntl} from "@/locale";
 
 const localeMap = {
-    [Locales.EN]:{
+    [Locales.EN]: {
         name: 'English',
         icon: '🇬🇧',
-        shortcuts:'EN'
+        shortcuts: 'EN'
     },
-    [Locales.ZH]:{
+    [Locales.ZH]: {
         name: '中文',
         icon: '🇨🇳',
-        shortcuts:'中文'
+        shortcuts: '中文'
     }
 }
 
 export type LocaleSwitcherProps = {};
 
 export const LocaleSwitchButton: FunctionComponent<LocaleSwitcherProps> = () => {
+    const intl = useIntl();
     const {locale, push, asPath} = useRouter();
+    const [isModalVisible, setIsModalVisible] = React.useState(false);
+    const [isSettingLocale, setIsSettingLocale] = React.useState(false);
+
+    // actions
+    const handleLocaleChange = async (e) => {
+        if (isSettingLocale) return;
+        setIsSettingLocale(true);
+        push(asPath, asPath, {locale: e.target.value}).then(() => {
+            setIsSettingLocale(false);
+            setIsModalVisible(false);
+        });
+    }
 
     return (
-        <Dropdown
-            render={
-                <Dropdown.Menu>
-                    {Object.entries(localeMap).map(([key, value]) => (
-                        <Dropdown.Item key={key} onClick={() => push(asPath, '', {locale: key})}>
-                            {value.icon} {value.name}
-                        </Dropdown.Item>
-                    ))}
-                </Dropdown.Menu>
-            }
-        >
-            <Button
-                theme="borderless"
-                icon={<IconLanguage size="large"/>}
-                style={{
-                    color: 'var(--semi-color-text-2)',
-                }}
-            >
-                {localeMap[locale].shortcuts}
-            </Button>
-        </Dropdown>
+        <>
+            <Tooltip content={intl.formatMessage({id: 'nav.language.select'})}>
+                <Button
+                    theme="borderless"
+                    icon={<IconLanguage size="extra-large"/>}
+                    style={{
+                        color: 'var(--semi-color-text-2)',
+                    }}
+                    onClick={() => setIsModalVisible(true)}
+                >
+                    {localeMap[locale].shortcuts}
+                </Button>
+            </Tooltip>
 
+            <Modal visible={isModalVisible}
+                   icon={<IconLanguage size={'extra-large'}/>}
+                   footer={null}
+                   size={'small'}
+                   onCancel={() => setIsModalVisible(false)}
+                   title={intl.formatMessage({id: 'nav.language.select'})}>
+
+                <div style={{marginBottom: '20px'}}>
+                    <RadioGroup type='pureCard' value={locale} direction='vertical' name="lang-radio-group">
+                        {Object.entries(localeMap).map(([key, value]) => (
+                            <Radio key={key} value={key}
+                                   style={{width: 280, height: 50, borderRadius:'12px'}} onChange={handleLocaleChange}>
+                                {value.icon} {value.name}
+                            </Radio>
+                        ))}
+                    </RadioGroup>
+                </div>
+
+            </Modal>
+        </>
     );
 };
