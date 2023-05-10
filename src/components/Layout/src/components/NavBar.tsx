@@ -11,7 +11,7 @@ import {navBarRoutes} from "@/routes";
 import {useIntl} from "@/locale";
 import {useRouter} from "next/router";
 import {GithubButton} from "@/components/Layout/src/components/GithubButton";
-
+import Hamburger from 'hamburger-react'
 
 export type NavBarProps = {}
 
@@ -47,25 +47,19 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                 mode="horizontal"
                 className={styles.navBar}
                 defaultSelectedKeys={defaultSelectedKeys}
-                onSelect={(key) => onSelectItem(key)}
-            >
+                onSelect={(key) => onSelectItem(key)}>
+
                 <Nav.Header
                     logo={<IconTerminal
                         style={{fontSize: 36, color: colorMode === ColorMode.DARK ? 'white' : "black"}}/>}
-                    text={"Mockdata.co.nz"}
-                >
-                    <Button
-                        className={styles.hamburgerIcon}
-                        onClick={handleMenuClick}
-                        theme="borderless"
-                        icon={
-                            isMenuOpen ?
-                                <IconClose size="large"
-                                           style={{color: colorMode === ColorMode.DARK ? 'gray' : "black"}}/> :
-                                <IconMenu size="large"
-                                          style={{color: colorMode === ColorMode.DARK ? 'gray' : "black"}}/>
-                        }
-                    />
+                    text={"Mockdata.co.nz"}>
+
+                    <div className={styles.hamburgerIcon}>
+                        <Hamburger toggled={isMenuOpen}
+                                   toggle={handleMenuClick}
+                                   color={colorMode === ColorMode.DARK ? 'white' : "black"}
+                                   size={22} duration={0.6}/>
+                    </div>
                 </Nav.Header>
 
                 {
