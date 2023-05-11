@@ -1,9 +1,53 @@
 @import '~@semi-bot/semi-theme-mockdatanz/semi.min.css';
+@import 'react-reflex/styles.css';
 
-//@tailwind base;
-//@tailwind components;
-@tailwind utilities;
 
 body {
   margin: 0;
+  height: 100vh;
 }
+
+.flex{
+  display: flex;
+} 
+
+.items-center  {
+  align-items: center;
+}j
+
+.justify-center {
+  justify-content: center;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.sticky {
+  position: sticky;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.top-0 {
+  top: 0;
+}
+
+.bottom-0 {
+  bottom: 0;
+}
+
+.z-1 {
+  z-index: 1;
+}
+
