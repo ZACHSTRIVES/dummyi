@@ -31,6 +31,9 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
         setIsMenuOpen(!isMenuOpen);
         const links = document.querySelector('.semi-navigation-list-wrapper');
         links?.classList.toggle('active');
+
+        const footerIcons = document.querySelector('.semi-navigation-footer');
+        footerIcons?.classList.toggle('active');
     };
 
     const onSelectItem = async (item) => {
