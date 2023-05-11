@@ -17,7 +17,7 @@ export type NavBarProps = {}
 
 export const NavBar: FunctionComponent<NavBarProps> = () => {
 
-    const colorMode: ColorMode = useSelector((state: Store) => state.settings.colorMode);
+    const colorMode: ColorMode = useSelector((state: Store) => state.app.colorMode);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [defaultSelectedKeys, setSelectedKeys] = useState([]);
     const intl = useIntl();

@@ -17,11 +17,15 @@ export interface Action {
 }
 
 export interface Store {
-    settings: SettingsReducerState;
+    app: AppReducerState;
 }
 
-export interface SettingsReducerState {
+export interface AppReducerState {
     colorMode: ColorMode;
+}
+
+export interface ExportReducerState {
+    numberOfExportRows: number;
 }
 
 // locales

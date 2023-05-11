@@ -1,9 +1,10 @@
 import React from "react";
+import {Toolbar} from "@/components/Toolbar";
 
 export default function Workspace() {
-  return (
-    <div>
-      <h1>Workspace</h1>
-    </div>
-  );
+    return (
+        <div>
+            <Toolbar/>
+        </div>
+    );
 }

@@ -4,7 +4,7 @@ import {FunctionComponent, useEffect} from 'react';
 import {ColorMode} from "@/constents/enums";
 import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
-import {doSetColorMode} from "@/actions/settingActions";
+import {doSetColorMode} from "@/reducers/app/appActions";
 import {useIntl} from "@/locale";
 
 export const ColorModeSwitchButton: FunctionComponent = () => {
@@ -13,7 +13,7 @@ export const ColorModeSwitchButton: FunctionComponent = () => {
     const intl = useIntl();
 
     // stores
-    const colorMode: ColorMode = useSelector((state: Store) => state.settings.colorMode);
+    const colorMode: ColorMode = useSelector((state: Store) => state.app.colorMode);
 
     const updateThemeToBody = (mode: ColorMode) => {
         const {body} = document;

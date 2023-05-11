@@ -5,5 +5,7 @@
   "nav.button.switchToDarkMode": "Switch to dark mode",
   "nav.button.switchToLightMode": "Switch to light mode",
   "nav.button.language": "Language",
-  "nav.language.select": "Select language"
+  "nav.language.select": "Select language",
+  "toolbar.numOfRowInput.suffix": "Rows",
+  "toolbar.generateButton.text": "Generate"
 }
