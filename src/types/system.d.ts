@@ -9,7 +9,6 @@ export interface RouteType {
     localeId: string;
 }
 
-
 // states
 export interface Action {
     type: string;
@@ -18,13 +17,14 @@ export interface Action {
 
 export interface Store {
     app: AppReducerState;
+    exporter: ExporterReducerState;
 }
 
 export interface AppReducerState {
     colorMode: ColorMode;
 }
 
-export interface ExportReducerState {
+export interface ExporterReducerState {
     numberOfExportRows: number;
 }
 

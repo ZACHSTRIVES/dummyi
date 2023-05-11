@@ -44,7 +44,7 @@ export const ColorModeSwitchButton: FunctionComponent = () => {
                 icon={colorMode === ColorMode.DARK ? <IconSun size="extra-large"/> : <IconMoon size="extra-large"/>}
                 style={{
                     color: 'var(--semi-color-text-2)',
-                    marginRight:'6px'
+                    marginRight: '6px'
                 }}
                 onClick={handleSwitchColorMode}
             />

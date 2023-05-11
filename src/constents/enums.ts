@@ -3,6 +3,11 @@ export enum ColorMode {
     LIGHT = "light",
 }
 
+export enum PanelsDirection {
+    ROW = "row",
+    COLUMN = "column"
+}
+
 export enum Locales {
     EN = "en",
     ZH = "zh"
@@ -19,5 +24,8 @@ export enum ExportType {
     // CSHARP = "csharp",
     // JAVA = "java",
 }
+
+
+
 
 

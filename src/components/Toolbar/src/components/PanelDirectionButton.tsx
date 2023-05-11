@@ -7,6 +7,6 @@ export type PanelDirectionButtonProps = {}
 
 export const PanelDirectionButton: React.FC<PanelDirectionButtonProps> = () => {
     return (
-        <Button  theme={"borderless"} icon={<IconSidebar size={'large'}/>} />
+        <Button theme={"borderless"} type='tertiary' icon={<IconSidebar size={'large'}/>}/>
     )
 }

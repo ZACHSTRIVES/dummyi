@@ -3,9 +3,11 @@ import {Store, Action} from "@/types/system";
 
 // reducers
 import app from "@/reducers/app/appReducer";
+import exporter from "@/reducers/exporter/exportReducer";
 
 const rootReducer = combineReducers({
-    app
+    app,
+    exporter
 });
 
 
