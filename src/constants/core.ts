@@ -1,4 +1,4 @@
-import { PanelsOrientation} from "@/constents/enums";
+import { PanelsOrientation} from "@/constants/enums";
 
 // exporter
 export const DEFAULT_NUMBER_EXPORT_ROWS = 100;

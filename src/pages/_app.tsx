@@ -17,7 +17,7 @@ import {PersistGate} from 'redux-persist/integration/react'
 
 // i18n
 import {translations} from "@/locale";
-import {Locales} from "@/constents/enums";
+import {Locales} from "@/constants/enums";
 import {IntlProvider} from "react-intl";
 import { Analytics } from '@vercel/analytics/react';
 

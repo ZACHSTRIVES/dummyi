@@ -4,7 +4,7 @@ import {IconSidebar} from "@douyinfe/semi-icons";
 import {useIntl} from "@/locale";
 import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
-import {PanelsOrientation} from "@/constents/enums";
+import {PanelsOrientation} from "@/constants/enums";
 import {doSetPanelsOrientation} from "@/reducers/workspace/workspaceActions";
 
 

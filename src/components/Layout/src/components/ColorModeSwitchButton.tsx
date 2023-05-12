@@ -1,7 +1,7 @@
 import {IconMoon, IconSun} from '@douyinfe/semi-icons';
 import {Button, Tooltip} from '@douyinfe/semi-ui';
 import {FunctionComponent, useEffect} from 'react';
-import {ColorMode} from "@/constents/enums";
+import {ColorMode} from "@/constants/enums";
 import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
 import {doSetColorMode} from "@/reducers/app/appActions";
