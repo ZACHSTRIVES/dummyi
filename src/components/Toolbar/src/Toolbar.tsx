@@ -9,14 +9,18 @@ import {EmptyPageButton} from "@/components/Toolbar/src/components/EmptyPageButt
 import {ImportSchemaButton} from "@/components/Toolbar/src/components/ImportSchemaButton";
 import {ExportSchemaButton} from "@/components/Toolbar/src/components/ExportSchemaButton";
 import {ComponentSize} from "@/constents/enums";
+import {ConfirmationModal} from "@/components/Modals";
+import {useIntl} from "@/locale";
 
 
 export type ToolbarProps = {}
 
 export const Toolbar: React.FC<ToolbarProps> = () => {
+    const intl = useIntl();
     const containerRef = useRef<HTMLDivElement>(null);
     const [showMoreButton, setShowMoreButton] = React.useState(false);
     const [componentsSize, setComponentsSize] = React.useState(ComponentSize.LARGE);
+    const [isEmptyPageConfirmationModalOpen, setIsEmptyPageConfirmationModalOpen] = React.useState(false);
 
     useEffect(() => {
         const resizeObserver = new ResizeObserver((entries) => {
@@ -44,6 +48,10 @@ export const Toolbar: React.FC<ToolbarProps> = () => {
         };
     }, [containerRef]);
 
+    function handleEmptyPage() {
+        // TODO: empty page
+    }
+
     return (
         <div ref={containerRef} className={Styles.toolbar}>
             <Row type={'flex'} justify={'space-between'}>
@@ -59,8 +67,10 @@ export const Toolbar: React.FC<ToolbarProps> = () => {
                                     <>
                                         <ImportSchemaButton/>
                                         <ExportSchemaButton/>
-                                        <EmptyPageButton/>
-                                        <PanelsOrientationButton/>
+                                        <EmptyPageButton onClick={() => {
+                                            setIsEmptyPageConfirmationModalOpen(true)
+                                        }}/>
+                                        {window.innerWidth < 700 ? null : <PanelsOrientationButton/>}
                                     </>
                                 }>
                                 <Button theme={"borderless"} type='tertiary'
@@ -69,7 +79,9 @@ export const Toolbar: React.FC<ToolbarProps> = () => {
                             <div>
                                 <ImportSchemaButton/>
                                 <ExportSchemaButton/>
-                                <EmptyPageButton/>
+                                <EmptyPageButton onClick={() => {
+                                    setIsEmptyPageConfirmationModalOpen(true)
+                                }}/>
                                 <PanelsOrientationButton/>
                             </div>}
                     </Row>
@@ -80,6 +92,15 @@ export const Toolbar: React.FC<ToolbarProps> = () => {
                     <GenerateButton size={componentsSize}/>
                 </Col>
             </Row>
+
+            <ConfirmationModal
+                isOpen={isEmptyPageConfirmationModalOpen}
+                onClose={() => setIsEmptyPageConfirmationModalOpen(false)}
+                title={intl.formatMessage({id: 'toolbar.emptyPageButton.confirmation.title'})}
+                content={intl.formatMessage({id: 'toolbar.emptyPageButton.confirmation.text'})}
+                onConfirm={handleEmptyPage}
+            />
+
         </div>
     )
 }
