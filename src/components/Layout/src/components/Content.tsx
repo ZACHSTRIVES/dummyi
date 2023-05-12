@@ -16,9 +16,7 @@ export const Content: FunctionComponent<ContentProps> = ({children, className}) 
                 backgroundColor: 'var(--semi-color-bg-0)',
             }}
         >
-
                 {children}
-
         </Content>
     )
 }
