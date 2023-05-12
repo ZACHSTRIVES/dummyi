@@ -14,43 +14,39 @@
         align-items: center;
     }
 
-    .navBar :global(.semi-navigation-list-wrapper) {
-        display: none !important;
-    }
-
-    .navBar :global(.semi-navigation-header-list-outer) {
-        flex-direction: column !important;
-        justify-content: center !important;
-    }
-
-    .navBar :global(ul.semi-navigation-list) {
-        flex-direction: column !important;
-    }
-
-    .navBar :global(.semi-navigation-inner) {
-        flex-direction: column !important;
-    }
-
-    .navBar :global(.semi-navigation-list-wrapper.active) {
-        display: flex !important;
-        width: 100%;
-        justify-content: center;
-    }
-
     .navBar :global(.semi-navigation-header) {
         width: 100% !important;
         height: 60px !important;
         margin-right: 0 !important;
     }
 
-    .navBar :global(.semi-navigation-footer) {
-        display: none !important;
+    .navBar :global(.semi-navigation-header-list-outer),
+    .navBar :global(ul.semi-navigation-list),
+    .navBar :global(.semi-navigation-inner) {
+        flex-direction: column !important;
     }
 
-    .navBar :global(.semi-navigation-footer.active) {
-        display: flex !important;
+    .navBar :global(.semi-navigation-header-list-outer) {
+        justify-content: center !important;
+    }
+
+    .navBar :global(.semi-navigation-list-wrapper),
+    .navBar :global(.semi-navigation-footer) {        
+        transition: max-height 0.1s ease-in;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
         justify-content: center;
-        padding: 8px 0;
+    }
+
+    .navBar :global(.semi-navigation-list-wrapper.active),
+    .navBar :global(.semi-navigation-footer.active) {
+        transition: max-height 0.5s ease-in-out;
+        display: flex !important;
+        width: 100%;
+        justify-content: center;
+        opacity: 1;
+        max-height: 800px;
     }
 
     .navBar :global(.semi-navigation-list) {
@@ -63,8 +59,17 @@
         margin-right: 0 !important;
     }
 
+    .navBar :global(.semi-navigation-footer) {
+        padding: 0;    
+        transition: padding 0.1s ease-in;
+    }
+
+    .navBar :global(.semi-navigation-footer.active) {
+        display: flex !important;
+        padding: 8px 0;
+    }
+
     .navBar :global(.semi-button-content-right) {
         display: none;
     }
 }
-
