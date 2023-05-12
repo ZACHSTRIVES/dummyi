@@ -1,11 +1,18 @@
-import React, {useEffect, useState} from "react";
-import {ReflexContainer, ReflexSplitter, ReflexElement} from 'react-reflex';
-import styles from './index.module.css';
+import React, {useEffect} from "react";
+import {ReflexContainer, ReflexElement, ReflexSplitter} from 'react-reflex';
+import styles from './workspace.module.css';
 import {InputPanel} from "@/components/InputPanel";
 import {PreviewPanel} from "@/components/PreviewPanel";
+import {useDispatch, useSelector} from "react-redux";
+import {Store} from "@/types/system";
+import {PanelsOrientation} from "@/constents/enums";
+import {doSetPanelsOrientation} from "@/reducers/workspace/workspaceActions";
 
 export default function Workspace() {
-    const [orientation, setOrientation] = useState(getOrientation());
+    const dispatch = useDispatch();
+
+    // store
+    const panelsDirection = useSelector((state: Store) => state.workspace.panelsOrientation);
 
     useEffect(() => {
         function handleResize() {
@@ -14,24 +21,27 @@ export default function Workspace() {
         }
 
         window.addEventListener("resize", handleResize);
-
         return () => {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
 
-    function getOrientation(): "horizontal" | "vertical" {
+    function setOrientation(orientation: PanelsOrientation) {
+        dispatch(doSetPanelsOrientation(orientation));
+    }
 
-        return window.innerWidth < window.innerHeight ? "horizontal" : "vertical";
+    function getOrientation(): PanelsOrientation {
+        return window.innerWidth < window.innerHeight ?
+            PanelsOrientation.HORIZONTAL : PanelsOrientation.VERTICAL;
     }
 
     return (
-        <ReflexContainer orientation={orientation}>
+        <ReflexContainer orientation={panelsDirection}>
             <ReflexElement>
                 <InputPanel/>
             </ReflexElement>
 
-            <ReflexSplitter className={`${styles.splitter} ${orientation}`}/>
+            <ReflexSplitter className={`${styles.splitter} ${panelsDirection}`}/>
 
             <ReflexElement>
                 <PreviewPanel/>

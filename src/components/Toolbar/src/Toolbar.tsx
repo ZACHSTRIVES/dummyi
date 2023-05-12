@@ -4,11 +4,10 @@ import Styles from './Toolbar.module.css';
 import {IconMore} from "@douyinfe/semi-icons";
 import {NumbOfRowInput} from "@/components/Toolbar/src/components/NumOfRowInput";
 import {GenerateButton} from "@/components/Toolbar/src/components/GenerateButton";
-import {PanelDirectionButton} from "@/components/Toolbar/src/components/PanelDirectionButton";
+import {PanelsOrientationButton} from "@/components/Toolbar/src/components/PanelsOrientationButton";
 import {EmptyPageButton} from "@/components/Toolbar/src/components/EmptyPageButton";
 import {ImportSchemaButton} from "@/components/Toolbar/src/components/ImportSchemaButton";
 import {ExportSchemaButton} from "@/components/Toolbar/src/components/ExportSchemaButton";
-
 
 
 export type ToolbarProps = {}
@@ -26,13 +25,13 @@ export const Toolbar: React.FC<ToolbarProps> = () => {
                         <Popover
                             trigger="click"
                             content={
-                            <>
-                                <ImportSchemaButton/>
-                                <ExportSchemaButton/>
-                                <EmptyPageButton/>
-                                <PanelDirectionButton/>
-                            </>
-                        }>
+                                <>
+                                    <ImportSchemaButton/>
+                                    <ExportSchemaButton/>
+                                    <EmptyPageButton/>
+                                    <PanelsOrientationButton/>
+                                </>
+                            }>
                             <Button className={Styles.moreButton} theme={"borderless"} type='tertiary'
                                     icon={<IconMore size={'large'}/>}/>
                         </Popover>
@@ -41,17 +40,15 @@ export const Toolbar: React.FC<ToolbarProps> = () => {
                             <ImportSchemaButton/>
                             <ExportSchemaButton/>
                             <EmptyPageButton/>
-                            <PanelDirectionButton/>
+                            <PanelsOrientationButton/>
                         </div>
 
                     </Row>
                 </Col>
 
                 <Col>
-
                     <NumbOfRowInput/>
                     <GenerateButton/>
-
                 </Col>
             </Row>
         </div>

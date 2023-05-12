@@ -1,11 +1,13 @@
+import {PanelsOrientationButton} from "@/components/Toolbar/src/components/PanelsOrientationButton";
+
 export enum ColorMode {
     DARK = "dark",
     LIGHT = "light",
 }
 
-export enum PanelsDirection {
-    ROW = "row",
-    COLUMN = "column"
+export enum PanelsOrientation {
+    HORIZONTAL = "horizontal",
+    VERTICAL = "vertical",
 }
 
 export enum Locales {
