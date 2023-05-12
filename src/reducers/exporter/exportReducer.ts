@@ -1,5 +1,5 @@
 import {Action, ExporterReducerState} from "@/types/system";
-import {SET_COLOR_MODE, SET_NUMBER_OF_EXPORT_ROWS} from "@/constents/actions";
+import {SET_NUMBER_OF_EXPORT_ROWS} from "@/constents/actions";
 import {DEFAULT_NUMBER_EXPORT_ROWS} from "@/constents/core";
 
 export const initStates:ExporterReducerState = {

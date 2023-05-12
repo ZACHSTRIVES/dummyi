@@ -1,5 +1,4 @@
 import {SET_NUMBER_OF_EXPORT_ROWS} from "@/constents/actions";
-import {ColorMode} from "@/constents/enums";
 
 
 // set number of exporter rows

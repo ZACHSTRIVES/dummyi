@@ -36,8 +36,8 @@ export const ColorModeSwitchButton: FunctionComponent = () => {
 
     return (
         <Tooltip content={colorMode === ColorMode.DARK ?
-            intl.formatMessage({id: "nav.button.switchToLightMode"}) :
-            intl.formatMessage({id: "nav.button.switchToDarkMode"})}
+            intl.formatMessage({id: "nav.colorModeSwitchButton.switchToLightMode.text"}) :
+            intl.formatMessage({id: "nav.colorModeSwitchButton.switchToDarkMode.text"})}
         >
             <Button
                 theme="borderless"

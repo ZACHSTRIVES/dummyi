@@ -9,3 +9,20 @@
     width: 120px;
     border-radius: var(--semi-border-radius-large);
 }
+
+.moreButton{
+    display: none !important;
+}
+
+.toolbarItem{
+    display: block !important;
+}
+
+@media screen and (max-width: 768px) {
+    .moreButton{
+        display: block !important;
+    }
+    .toolbarItem{
+        display: none !important;
+    }
+}

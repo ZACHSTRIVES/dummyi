@@ -2,10 +2,17 @@
   "nav.item.home": "Home",
   "nav.item.workspace": "Workspace",
   "nav.item.about": "About",
-  "nav.button.switchToDarkMode": "Switch to dark mode",
-  "nav.button.switchToLightMode": "Switch to light mode",
-  "nav.button.language": "Language",
-  "nav.language.select": "Select language",
+  "nav.colorModeSwitchButton.switchToDarkMode.text": "Switch to dark mode",
+  "nav.colorModeSwitchButton.switchToLightMode.text": "Switch to light mode",
+  "nav.languageSwitchButton.tooltip": "Language",
+  "nav.languageSwitchModal.title": "Select language",
   "toolbar.numOfRowInput.suffix": "Rows",
-  "toolbar.generateButton.text": "Generate"
+  "toolbar.generateButton.text": "Generate",
+  "toolbar.panelDirectionButton.tooltip.switchToColumn": "Switch panels to column",
+  "toolbar.panelDirectionButton.tooltip.switchToRow": "Switch panels to row",
+  "toolbar.emptyPageButton.tooltip": "Empty workplace",
+  "toolbar.emptyPageButton.confirmation.title": "Empty workplace",
+  "toolbar.emptyPageButton.confirmation.text": "Are you sure you want to empty the workplace? All the workplace configurations you have set up will be lost.",
+  "toolbar.exportSchemaButton.tooltip": "Export schema",
+  "toolbar.importSchemaButton.tooltip": "Import schema"
 }

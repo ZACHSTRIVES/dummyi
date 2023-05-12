@@ -4,6 +4,7 @@ import {useIntl} from "@/locale";
 import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
 import {doSetNumberOfExportRows} from "@/reducers/exporter/exportActions";
+import {MAX_NUMBER_EXPORT_ROWS, MIN_NUMBER_EXPORT_ROWS} from "@/constents/core";
 
 export type NumbOfRowInputProps = {}
 
@@ -21,7 +22,8 @@ export const NumbOfRowInput: React.FC<NumbOfRowInputProps> = () => {
 
     return (
         <InputNumber
-            min={1} max={100}
+            min={MIN_NUMBER_EXPORT_ROWS}
+            max={MAX_NUMBER_EXPORT_ROWS}
             value={numOfExportRows}
             onChange={handleInputNumberChange}
             suffix={intl.formatMessage({id: 'toolbar.numOfRowInput.suffix'})}

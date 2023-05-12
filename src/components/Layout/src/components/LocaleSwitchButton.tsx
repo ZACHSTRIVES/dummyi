@@ -38,7 +38,7 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitcherProps> = () => 
 
     return (
         <>
-            <Tooltip content={intl.formatMessage({id: 'nav.language.select'})}>
+            <Tooltip content={intl.formatMessage({id: 'nav.languageSwitchModal.title'})}>
                 <Button
                     theme="borderless"
                     icon={<IconLanguage size="extra-large"/>}
@@ -56,7 +56,7 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitcherProps> = () => 
                    footer={null}
                    size={'small'}
                    onCancel={() => setIsModalVisible(false)}
-                   title={intl.formatMessage({id: 'nav.language.select'})}>
+                   title={intl.formatMessage({id: 'nav.languageSwitchModal.title'})}>
 
                 <div style={{marginBottom: '20px'}}>
                     <RadioGroup type='pureCard' value={locale} direction='vertical' name="lang-radio-group">
