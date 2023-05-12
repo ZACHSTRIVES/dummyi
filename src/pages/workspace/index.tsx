@@ -31,19 +31,19 @@ export default function Workspace() {
     }
 
     function getOrientation(): PanelsOrientation {
-        return window.innerWidth < window.innerHeight ?
+        return window.innerWidth < 750?
             PanelsOrientation.HORIZONTAL : PanelsOrientation.VERTICAL;
     }
 
     return (
         <ReflexContainer orientation={panelsDirection}>
-            <ReflexElement>
+            <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 200 : 375} className={styles.leftReflexElement}>
                 <InputPanel/>
             </ReflexElement>
 
             <ReflexSplitter className={`${styles.splitter} ${panelsDirection}`}/>
 
-            <ReflexElement>
+            <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 100 : 400}>
                 <PreviewPanel/>
             </ReflexElement>
         </ReflexContainer>
