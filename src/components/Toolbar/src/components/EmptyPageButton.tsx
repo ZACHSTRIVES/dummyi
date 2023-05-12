@@ -16,7 +16,6 @@ export const EmptyPageButton: React.FC<EmptyPageButtonProps> = () => {
         // TODO: empty page
     }
 
-
     return (
         <>
             <Tooltip

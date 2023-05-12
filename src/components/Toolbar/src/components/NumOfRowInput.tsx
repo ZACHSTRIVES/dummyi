@@ -5,10 +5,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
 import {doSetNumberOfExportRows} from "@/reducers/exporter/exportActions";
 import {MAX_NUMBER_EXPORT_ROWS, MIN_NUMBER_EXPORT_ROWS} from "@/constents/core";
+import {ComponentSize} from "@/constents/enums";
 
-export type NumbOfRowInputProps = {}
+export type NumbOfRowInputProps = {
+    size: ComponentSize
+}
 
-export const NumbOfRowInput: React.FC<NumbOfRowInputProps> = () => {
+export const NumbOfRowInput: React.FC<NumbOfRowInputProps> = ({...props}) => {
+    const {size} = props;
     const intl = useIntl();
     const dispatch = useDispatch();
 
@@ -26,9 +30,14 @@ export const NumbOfRowInput: React.FC<NumbOfRowInputProps> = () => {
             max={MAX_NUMBER_EXPORT_ROWS}
             value={numOfExportRows}
             onChange={handleInputNumberChange}
-            suffix={intl.formatMessage({id: 'toolbar.numOfRowInput.suffix'})}
+            suffix={size === 'large' ? intl.formatMessage({id: 'toolbar.numOfRowInput.suffix'}) : null}
             defaultValue={1}
-            style={{width: '125px', marginRight: '9px'}}/>
+            placeholder={size === 'small' ? intl.formatMessage({id: 'toolbar.numOfRowInput.suffix'}) : null}
+            style={{
+                width: size === 'large' ?
+                    '120px' : '80px', marginRight: '9px'
+            }}
+        />
     )
 }
 
