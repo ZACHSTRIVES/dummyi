@@ -2,10 +2,14 @@ import {combineReducers} from "redux";
 import {Store, Action} from "@/types/system";
 
 // reducers
-import settings from "./settings";
+import app from "@/reducers/app/appReducer";
+import exporter from "@/reducers/exporter/exportReducer";
+import workspace from "@/reducers/workspace/workspaceReducer";
 
 const rootReducer = combineReducers({
-    settings
+    app,
+    exporter,
+    workspace,
 });
 
 

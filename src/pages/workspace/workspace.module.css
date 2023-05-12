@@ -1,0 +1,27 @@
+.splitter {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.splitter::before {
+    content: '';
+    position: absolute;    
+    background-color: #999;
+    border-radius: 25px;
+    width: 36px;
+    height: 6px;
+    margin-bottom: 16px;
+}
+
+.splitter:global(.vertical)::before
+{
+    width: 6px;
+    height: 36px;    
+    margin-right: 16px;
+}
+
+.leftReflexElement{
+    min-width: 375px;
+}

@@ -1,4 +1,4 @@
-import {Nav} from "@douyinfe/semi-ui";
+import {Divider, Nav} from "@douyinfe/semi-ui";
 import {IconTerminal} from "@douyinfe/semi-icons";
 import React, {FunctionComponent, useState} from "react";
 import styles from './NavBar.module.css';
@@ -17,7 +17,7 @@ export type NavBarProps = {}
 
 export const NavBar: FunctionComponent<NavBarProps> = () => {
 
-    const colorMode: ColorMode = useSelector((state: Store) => state.settings.colorMode);
+    const colorMode: ColorMode = useSelector((state: Store) => state.app.colorMode);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [defaultSelectedKeys, setSelectedKeys] = useState([]);
     const intl = useIntl();
@@ -31,6 +31,9 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
         setIsMenuOpen(!isMenuOpen);
         const links = document.querySelector('.semi-navigation-list-wrapper');
         links?.classList.toggle('active');
+
+        const footerIcons = document.querySelector('.semi-navigation-footer');
+        footerIcons?.classList.toggle('active');
     };
 
     const onSelectItem = async (item) => {
@@ -75,10 +78,11 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                     })
                 }
 
+
                 <Nav.Footer>
-                    <GithubButton/>
-                    <ColorModeSwitchButton/>
-                    <LocaleSwitchButton/>
+                    <GithubButton size={isMenuOpen ? "large" : 'extra-large'}/>
+                    <ColorModeSwitchButton size={isMenuOpen ? "large" : 'extra-large'}/>
+                    <LocaleSwitchButton size={isMenuOpen ? "large" : 'extra-large'}/>
                 </Nav.Footer>
 
             </Nav>

@@ -18,9 +18,11 @@ const localeMap = {
     }
 }
 
-export type LocaleSwitcherProps = {};
+export type LocaleSwitchButtonProps = {
+    size: 'large' | 'extra-large'
+};
 
-export const LocaleSwitchButton: FunctionComponent<LocaleSwitcherProps> = () => {
+export const LocaleSwitchButton: FunctionComponent<LocaleSwitchButtonProps> = ({...props}) => {
     const intl = useIntl();
     const {locale, push, asPath} = useRouter();
     const [isModalVisible, setIsModalVisible] = React.useState(false);
@@ -38,10 +40,10 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitcherProps> = () => 
 
     return (
         <>
-            <Tooltip content={intl.formatMessage({id: 'nav.language.select'})}>
+            <Tooltip content={intl.formatMessage({id: 'nav.languageSwitchModal.title'})}>
                 <Button
                     theme="borderless"
-                    icon={<IconLanguage size="extra-large"/>}
+                    icon={<IconLanguage size={props.size}/>}
                     style={{
                         color: 'var(--semi-color-text-2)',
                     }}
@@ -56,13 +58,13 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitcherProps> = () => 
                    footer={null}
                    size={'small'}
                    onCancel={() => setIsModalVisible(false)}
-                   title={intl.formatMessage({id: 'nav.language.select'})}>
+                   title={intl.formatMessage({id: 'nav.languageSwitchModal.title'})}>
 
                 <div style={{marginBottom: '20px'}}>
                     <RadioGroup type='pureCard' value={locale} direction='vertical' name="lang-radio-group">
                         {Object.entries(localeMap).map(([key, value]) => (
                             <Radio key={key} value={key}
-                                   style={{width: 280, height: 50, borderRadius:'12px'}} onChange={handleLocaleChange}>
+                                   style={{width: 280, height: 50, borderRadius: '12px'}} onChange={handleLocaleChange}>
                                 {value.icon} {value.name}
                             </Radio>
                         ))}
