@@ -37,6 +37,6 @@
   },
   "devDependencies": {
     "mini-css-extract-plugin": "^2.7.5",
-    "webpack": "^5.82.0"
+    "webpack": "^5.82.1"
   }
 }
