@@ -1,6 +1,6 @@
 import React from "react";
 import {Button} from "@douyinfe/semi-ui";
-import {IconSave} from "@douyinfe/semi-icons";
+import {IconPlayCircle } from "@douyinfe/semi-icons";
 import Styles from "@/components/Toolbar/src/Toolbar.module.css";
 import {useIntl} from "@/locale";
 import {ComponentSize} from "@/constents/enums";
@@ -16,11 +16,11 @@ export const GenerateButton: React.FC<GenerateButtonProps> = ({...props}) => {
     return (
         <Button
             loading={false}
-            icon={<IconSave/>}
+            icon={<IconPlayCircle />}
             className={Styles.generateButton}
-            style={{width: size === 'large' ? '100px' : null}}
+            style={{width: size === 'large' ? '100px' : '50px'}}
             theme={'solid'}>
-            {intl.formatMessage({id: 'toolbar.generateButton.text'})}
+            {size === 'large' ? intl.formatMessage({id: 'toolbar.generateButton.text'}) :null }
         </Button>
     )
 }

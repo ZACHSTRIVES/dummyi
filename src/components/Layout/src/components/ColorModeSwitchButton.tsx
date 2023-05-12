@@ -7,7 +7,11 @@ import {Store} from "@/types/system";
 import {doSetColorMode} from "@/reducers/app/appActions";
 import {useIntl} from "@/locale";
 
-export const ColorModeSwitchButton: FunctionComponent = () => {
+export type ColorModeSwitchButtonProps = {
+    size: 'large' | 'extra-large'
+}
+
+export const ColorModeSwitchButton: FunctionComponent<ColorModeSwitchButtonProps> = ({...props}) => {
 
     const dispatch = useDispatch();
     const intl = useIntl();
@@ -41,7 +45,9 @@ export const ColorModeSwitchButton: FunctionComponent = () => {
         >
             <Button
                 theme="borderless"
-                icon={colorMode === ColorMode.DARK ? <IconSun size="extra-large"/> : <IconMoon size="extra-large"/>}
+                icon={colorMode === ColorMode.DARK ?
+                    <IconSun size={props.size}/> :
+                    <IconMoon size={props.size}/>}
                 style={{
                     color: 'var(--semi-color-text-2)',
                     marginRight: '6px'
