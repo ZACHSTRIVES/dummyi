@@ -2,8 +2,17 @@
   "nav.item.home": "首页",
   "nav.item.workspace": "工作台",
   "nav.item.about": "关于",
-  "nav.button.switchToDarkMode": "切换到暗色模式",
-  "nav.button.switchToLightMode": "切换到亮色模式",
-  "nav.button.language": "语言",
-  "nav.language.select": "选择语言"
+  "nav.colorModeSwitchButton.switchToDarkMode.text": "切换到暗色模式",
+  "nav.colorModeSwitchButton.switchToLightMode.text": "切换到亮色模式",
+  "nav.languageSwitchButton.tooltip": "语言",
+  "nav.languageSwitchModal.title": "选择语言",
+  "toolbar.numOfRowInput.suffix": "行",
+  "toolbar.generateButton.text": "生成",
+  "toolbar.panelDirectionButton.tooltip.switchToColumn": "切换面板为横向",
+  "toolbar.panelDirectionButton.tooltip.switchToRow": "切换面板为竖向",
+  "toolbar.emptyPageButton.tooltip": "清空工作台",
+  "toolbar.emptyPageButton.confirmation.title": "清空工作台",
+  "toolbar.emptyPageButton.confirmation.text": "确定要清空工作台吗？所有的工作台配置将会被清空。",
+  "toolbar.exportSchemaButton.tooltip": "导出模板",
+  "toolbar.importSchemaButton.tooltip": "导入模板"
 }

@@ -1,0 +1,28 @@
+.toolbar{
+    border: 1px solid var(--semi-color-border);
+    border-radius: var(--semi-border-radius-large);
+    padding: 12px;
+    background-color: var(--semi-color-nav-bg);
+}
+
+.generateButton{
+    width: 120px;
+    border-radius: var(--semi-border-radius-large);
+}
+
+.moreButton{
+    display: none !important;
+}
+
+.toolbarItem{
+    display: block !important;
+}
+
+@media screen and (max-width: 768px) {
+    .moreButton{
+        display: block !important;
+    }
+    .toolbarItem{
+        display: none !important;
+    }
+}

@@ -4,7 +4,7 @@ import {FunctionComponent, useEffect} from 'react';
 import {ColorMode} from "@/constents/enums";
 import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
-import {doSetColorMode} from "@/actions/settingActions";
+import {doSetColorMode} from "@/reducers/app/appActions";
 import {useIntl} from "@/locale";
 
 export const ColorModeSwitchButton: FunctionComponent = () => {
@@ -13,7 +13,7 @@ export const ColorModeSwitchButton: FunctionComponent = () => {
     const intl = useIntl();
 
     // stores
-    const colorMode: ColorMode = useSelector((state: Store) => state.settings.colorMode);
+    const colorMode: ColorMode = useSelector((state: Store) => state.app.colorMode);
 
     const updateThemeToBody = (mode: ColorMode) => {
         const {body} = document;
@@ -36,15 +36,15 @@ export const ColorModeSwitchButton: FunctionComponent = () => {
 
     return (
         <Tooltip content={colorMode === ColorMode.DARK ?
-            intl.formatMessage({id: "nav.button.switchToLightMode"}) :
-            intl.formatMessage({id: "nav.button.switchToDarkMode"})}
+            intl.formatMessage({id: "nav.colorModeSwitchButton.switchToLightMode.text"}) :
+            intl.formatMessage({id: "nav.colorModeSwitchButton.switchToDarkMode.text"})}
         >
             <Button
                 theme="borderless"
                 icon={colorMode === ColorMode.DARK ? <IconSun size="extra-large"/> : <IconMoon size="extra-large"/>}
                 style={{
                     color: 'var(--semi-color-text-2)',
-                    marginRight:'6px'
+                    marginRight: '6px'
                 }}
                 onClick={handleSwitchColorMode}
             />

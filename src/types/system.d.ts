@@ -1,4 +1,4 @@
-import {ColorMode} from "@/constents/enums";
+import {ColorMode, PanelsDirection} from "@/constents/enums";
 import enTranslations from "@/locales/en.json";
 import type {IntlFormatters} from 'react-intl';
 
@@ -9,7 +9,6 @@ export interface RouteType {
     localeId: string;
 }
 
-
 // states
 export interface Action {
     type: string;
@@ -17,11 +16,21 @@ export interface Action {
 }
 
 export interface Store {
-    settings: SettingsReducerState;
+    app: AppReducerState;
+    exporter: ExporterReducerState;
+    workplace: WorkplaceReducerState;
 }
 
-export interface SettingsReducerState {
+export interface AppReducerState {
     colorMode: ColorMode;
+}
+
+export interface ExporterReducerState {
+    numberOfExportRows: number;
+}
+
+export interface WorkplaceReducerState {
+    panelsDirection: PanelsDirection;
 }
 
 // locales

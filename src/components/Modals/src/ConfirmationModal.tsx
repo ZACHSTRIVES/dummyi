@@ -1,0 +1,27 @@
+import React from "react";
+import {Modal} from "@douyinfe/semi-ui";
+import {IconAlertTriangle} from "@douyinfe/semi-icons";
+
+export interface ConfirmationModalProps {
+    isOpen: boolean,
+    onClose: () => void,
+    title: string,
+    content: string,
+    onConfirm?: () => void,
+}
+
+export const ConfirmationModal: React.FC<ConfirmationModalProps> = (props) => {
+    const {title, content, onConfirm, onClose, isOpen} = props;
+
+    return (
+        <Modal
+            icon={<IconAlertTriangle size={'large'}/>}
+            title={title}
+            visible={isOpen}
+            onCancel={onClose}
+            onOk={onConfirm}
+        >
+            {content}
+        </Modal>
+    )
+}
