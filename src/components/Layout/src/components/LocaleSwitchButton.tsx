@@ -2,7 +2,7 @@ import React, {FunctionComponent} from 'react';
 import {IconLanguage} from '@douyinfe/semi-icons';
 import {Button, Modal, Radio, RadioGroup, Tooltip} from '@douyinfe/semi-ui';
 import {useRouter} from 'next/router';
-import {Locales} from '@/constents/enums';
+import {Locales} from '@/constants/enums';
 import {useIntl} from "@/locale";
 
 const localeMap = {

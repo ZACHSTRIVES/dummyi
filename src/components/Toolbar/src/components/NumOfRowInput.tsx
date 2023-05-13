@@ -4,8 +4,9 @@ import {useIntl} from "@/locale";
 import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
 import {doSetNumberOfExportRows} from "@/reducers/exporter/exportActions";
-import {MAX_NUMBER_EXPORT_ROWS, MIN_NUMBER_EXPORT_ROWS} from "@/constents/core";
-import {ComponentSize} from "@/constents/enums";
+import {MAX_NUMBER_EXPORT_ROWS, MIN_NUMBER_EXPORT_ROWS} from "@/constants/core";
+import {ComponentSize} from "@/constants/enums";
+
 
 export type NumbOfRowInputProps = {
     size: ComponentSize

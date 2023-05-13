@@ -1,6 +1,6 @@
 import {Action, ExporterReducerState} from "@/types/system";
-import {SET_NUMBER_OF_EXPORT_ROWS} from "@/constents/actions";
-import {DEFAULT_NUMBER_EXPORT_ROWS} from "@/constents/core";
+import {SET_NUMBER_OF_EXPORT_ROWS} from "@/constants/actions";
+import {DEFAULT_NUMBER_EXPORT_ROWS} from "@/constants/core";
 
 export const initStates:ExporterReducerState = {
     numberOfExportRows: DEFAULT_NUMBER_EXPORT_ROWS,

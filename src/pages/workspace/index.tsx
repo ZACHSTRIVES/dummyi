@@ -5,7 +5,7 @@ import {InputPanel} from "@/components/InputPanel";
 import {PreviewPanel} from "@/components/PreviewPanel";
 import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
-import {PanelsOrientation} from "@/constents/enums";
+import {ColorMode, PanelsOrientation} from "@/constants/enums";
 import {doSetPanelsOrientation} from "@/reducers/workspace/workspaceActions";
 
 export default function Workspace() {
@@ -13,6 +13,7 @@ export default function Workspace() {
 
     // store
     const panelsDirection = useSelector((state: Store) => state.workspace.panelsOrientation);
+    const colorMode = useSelector((state: Store) => state.app.colorMode);
 
     useEffect(() => {
         function handleResize() {
@@ -31,17 +32,25 @@ export default function Workspace() {
     }
 
     function getOrientation(): PanelsOrientation {
-        return window.innerWidth < 750?
+        return window.innerWidth < 750 ?
             PanelsOrientation.HORIZONTAL : PanelsOrientation.VERTICAL;
     }
 
     return (
         <ReflexContainer orientation={panelsDirection}>
-            <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 200 : 375} className={styles.leftReflexElement}>
+            <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 200 : 375}
+                           className={styles.leftReflexElement}>
                 <InputPanel/>
             </ReflexElement>
 
-            <ReflexSplitter className={`${styles.splitter} ${panelsDirection}`}/>
+            <ReflexSplitter
+                style={{
+                    backgroundColor: colorMode === ColorMode.DARK? 'rgba(153,153,153,0.44)':'#d5d3d3',
+                    borderColor: 'transparent',
+                    borderWidth: '1px'
+                }}
+                className={`${styles.splitter} ${panelsDirection}`}
+            />
 
             <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 100 : 400}>
                 <PreviewPanel/>

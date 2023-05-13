@@ -1,5 +1,5 @@
-import {SET_COLOR_MODE} from "@/constents/actions";
-import {ColorMode} from "@/constents/enums";
+import {SET_COLOR_MODE} from "@/constants/actions";
+import {ColorMode} from "@/constants/enums";
 
 
 // change color mode

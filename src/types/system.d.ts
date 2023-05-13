@@ -1,4 +1,4 @@
-import {ColorMode, PanelsOrientation} from "@/constents/enums";
+import {ColorMode, PanelsOrientation, PreviewType} from "@/constants/enums";
 import enTranslations from "@/locales/en.json";
 import type {IntlFormatters} from 'react-intl';
 
@@ -19,6 +19,7 @@ export interface Store {
     app: AppReducerState;
     exporter: ExporterReducerState;
     workspace: WorkspaceReducerState;
+    preview: PreviewReducerState;
 }
 
 export interface AppReducerState {
@@ -31,6 +32,13 @@ export interface ExporterReducerState {
 
 export interface WorkspaceReducerState {
     panelsOrientation: PanelsOrientation;
+}
+
+export interface PreviewReducerState {
+    previewType: PreviewType;
+    rawViewShowLineNumber: boolean;
+    rawViewLineWrap: boolean;
+    rawViewFontSize: number;
 }
 
 // locales

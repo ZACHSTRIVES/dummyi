@@ -1,4 +1,4 @@
-import {SET_NUMBER_OF_EXPORT_ROWS} from "@/constents/actions";
+import {SET_NUMBER_OF_EXPORT_ROWS} from "@/constants/actions";
 
 
 // set number of exporter rows
