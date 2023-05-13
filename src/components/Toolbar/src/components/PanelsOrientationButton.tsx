@@ -8,9 +8,11 @@ import {PanelsOrientation} from "@/constants/enums";
 import {doSetPanelsOrientation} from "@/reducers/workspace/workspaceActions";
 
 
-export type PanelsOrientationButtonProps = {}
+export type PanelsOrientationButtonProps = {
+    className?: string;
+}
 
-export const PanelsOrientationButton: React.FC<PanelsOrientationButtonProps> = () => {
+export const PanelsOrientationButton: React.FC<PanelsOrientationButtonProps> = ({...props}) => {
     const intl = useIntl();
     const dispatch = useDispatch();
 
@@ -24,6 +26,7 @@ export const PanelsOrientationButton: React.FC<PanelsOrientationButtonProps> = (
 
     return (
         <Tooltip
+            className={props.className}
             position={'bottom'}
             content={intl.formatMessage(
             {

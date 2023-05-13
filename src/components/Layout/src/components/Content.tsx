@@ -12,11 +12,10 @@ export const Content: FunctionComponent<ContentProps> = ({children, className}) 
         <Content
             className={className}
             style={{
-                padding: '24px',
                 backgroundColor: 'var(--semi-color-bg-0)',
             }}
         >
-                {children}
+            {children}
         </Content>
     )
 }

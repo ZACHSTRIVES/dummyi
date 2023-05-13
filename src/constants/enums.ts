@@ -27,6 +27,10 @@ export enum ExportType {
     // JAVA = "java",
 }
 
+export enum ComponentSize{
+    SMALL = "small",
+    LARGE = "large",
+}
 
 
 

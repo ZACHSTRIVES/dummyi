@@ -35,3 +35,8 @@ body[theme-mode="dark"] .background:after {
     left: 166px;
     background-color: var(--color-after-dark); /* Dark mode color */
 }
+
+.inputPanel{
+    padding: 12px 24px;
+}
+

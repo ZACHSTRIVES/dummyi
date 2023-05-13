@@ -1,4 +1,4 @@
-import {Nav} from "@douyinfe/semi-ui";
+import {Divider, Nav} from "@douyinfe/semi-ui";
 import {IconTerminal} from "@douyinfe/semi-icons";
 import React, {FunctionComponent, useState} from "react";
 import styles from './NavBar.module.css';
@@ -78,10 +78,11 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                     })
                 }
 
+
                 <Nav.Footer>
-                    <GithubButton/>
-                    <ColorModeSwitchButton/>
-                    <LocaleSwitchButton/>
+                    <GithubButton size={isMenuOpen ? "large" : 'extra-large'}/>
+                    <ColorModeSwitchButton size={isMenuOpen ? "large" : 'extra-large'}/>
+                    <LocaleSwitchButton size={isMenuOpen ? "large" : 'extra-large'}/>
                 </Nav.Footer>
 
             </Nav>
