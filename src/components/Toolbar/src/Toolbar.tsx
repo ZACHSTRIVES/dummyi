@@ -8,7 +8,7 @@ import {PanelsOrientationButton} from "@/components/Toolbar/src/components/Panel
 import {EmptyPageButton} from "@/components/Toolbar/src/components/EmptyPageButton";
 import {ImportSchemaButton} from "@/components/Toolbar/src/components/ImportSchemaButton";
 import {ExportSchemaButton} from "@/components/Toolbar/src/components/ExportSchemaButton";
-import {ComponentSize} from "@/constents/enums";
+import {ComponentSize} from "@/constants/enums";
 import {ConfirmationModal} from "@/components/Modals";
 import {useIntl} from "@/locale";
 
