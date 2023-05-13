@@ -3,7 +3,7 @@ import {IconTerminal} from "@douyinfe/semi-icons";
 import React, {FunctionComponent, useState} from "react";
 import styles from './NavBar.module.css';
 import {ColorModeSwitchButton} from "@/components/Layout/src/components/ColorModeSwitchButton";
-import {ColorMode} from "@/constents/enums";
+import {ColorMode} from "@/constants/enums";
 import {useSelector} from "react-redux";
 import {Store} from "@/types/system";
 import {LocaleSwitchButton} from "@/components/Layout/src/components/LocaleSwitchButton";

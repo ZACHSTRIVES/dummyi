@@ -1,7 +1,8 @@
 import React, {useEffect, useRef} from 'react';
 import {RawPreviewer} from "@/components/PreviewPanel/src/components";
 import styles from './PreviewPanel.module.css';
-import {ComponentSize} from "@/constents/enums";
+import {ComponentSize} from "@/constants/enums";
+
 
 export type PreviewPanelProps = {}
 

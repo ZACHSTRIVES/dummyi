@@ -1,5 +1,5 @@
-import {SET_PANELS_DIRECTION} from "@/constents/actions";
-import {PanelsOrientation} from "@/constents/enums";
+import {SET_PANELS_DIRECTION} from "@/constants/actions";
+import {PanelsOrientation} from "@/constants/enums";
 
 
 // set panels direction

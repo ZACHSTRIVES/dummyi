@@ -1,3 +1,42 @@
+.background {
+    position: absolute;
+    width: 640px;
+    height: 640px;
+    left: -50px;
+    top: -20px;
+    filter: blur(120px);
+    opacity: .6;
+}
+
+.background:before, .background:after {
+    content: "";
+    position: absolute;
+    width: 474px;
+    height: 474px;
+    border-radius: 50%;
+}
+
+body[theme-mode="light"] .background:before {
+    top: 132px;
+    background-color: var(--color-before-light); /* Light mode color */
+}
+
+body[theme-mode="light"] .background:after {
+    left: 166px;
+    background-color: var(--color-after-light); /* Light mode color */
+}
+
+body[theme-mode="dark"] .background:before {
+    top: 132px;
+    background-color: var(--color-before-dark); /* Dark mode color */
+}
+
+body[theme-mode="dark"] .background:after {
+    left: 166px;
+    background-color: var(--color-after-dark); /* Dark mode color */
+}
+
 .inputPanel{
     padding: 12px 24px;
 }
+

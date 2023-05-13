@@ -8,7 +8,7 @@ import {FormatMessageArgs, IntlMessageKeys} from "@/types/system";
 // translation
 import zhTranslations from './translations/zh.json';
 import enTranslations from './translations/en.json';
-import {Locales} from "@/constents/enums";
+import {Locales} from "@/constants/enums";
 
 export const translations = {
     [Locales.EN]:{

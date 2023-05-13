@@ -1,4 +1,4 @@
-import {ColorMode, PanelsOrientation} from "@/constents/enums";
+import {ColorMode, PanelsOrientation} from "@/constants/enums";
 import enTranslations from "@/locales/en.json";
 import type {IntlFormatters} from 'react-intl';
 

@@ -1,6 +1,7 @@
 import React, {useRef} from 'react';
 import {Toolbar} from "@/components/Toolbar";
-import Styles from './InputPanel.module.css';
+
+import styles from "./InputPanel.module.css";
 
 
 export type InputPanelProps = {}
@@ -9,7 +10,8 @@ export const InputPanel: React.FunctionComponent<InputPanelProps> = () => {
 
 
     return (
-        <div className={Styles.inputPanel} >
+        <div className={styles.inputPanel}>
+            <div className={styles.background} />
             <Toolbar/>
         </div>
     );
