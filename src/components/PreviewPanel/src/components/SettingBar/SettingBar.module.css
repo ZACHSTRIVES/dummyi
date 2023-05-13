@@ -1,0 +1,6 @@
+.settingBar{
+    padding: 12px 0 0 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

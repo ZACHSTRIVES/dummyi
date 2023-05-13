@@ -14,5 +14,10 @@
   "toolbar.emptyPageButton.confirmation.title": "Empty workplace",
   "toolbar.emptyPageButton.confirmation.text": "Are you sure you want to empty the workplace? All the workplace configurations you have set up will be lost.",
   "toolbar.exportSchemaButton.tooltip": "Export schema",
-  "toolbar.importSchemaButton.tooltip": "Import schema"
+  "toolbar.importSchemaButton.tooltip": "Import schema",
+  "preview.setting.regenerateButton.tooltip": "Regenerate",
+  "preview.setting.lineNumberSwitch.tooltip.show": "Show line number",
+  "preview.setting.lineNumberSwitch.tooltip.hide": "Hide line number",
+  "preview.setting.lineWarpSwitch.tooltip.enable": "Enable line wrap",
+  "preview.setting.lineWarpSwitch.tooltip.disable": "Disable line wrap"
 }

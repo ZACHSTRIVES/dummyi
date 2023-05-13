@@ -14,5 +14,10 @@
   "toolbar.emptyPageButton.confirmation.title": "清空工作台",
   "toolbar.emptyPageButton.confirmation.text": "确定要清空工作台吗？所有的工作台配置将会被清空。",
   "toolbar.exportSchemaButton.tooltip": "导出模板",
-  "toolbar.importSchemaButton.tooltip": "导入模板"
+  "toolbar.importSchemaButton.tooltip": "导入模板",
+  "preview.setting.regenerateButton.tooltip": "重新生成",
+  "preview.setting.lineNumberSwitch.tooltip.show": "显示行数",
+  "preview.setting.lineNumberSwitch.tooltip.hide": "隐藏行数",
+  "preview.setting.lineWarpSwitch.tooltip.enable": "启用自动换行",
+  "preview.setting.lineWarpSwitch.tooltip.disable": "禁用自动换行"
 }
