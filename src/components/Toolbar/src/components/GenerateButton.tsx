@@ -3,7 +3,7 @@ import {Button} from "@douyinfe/semi-ui";
 import {IconPlayCircle } from "@douyinfe/semi-icons";
 import Styles from "@/components/Toolbar/src/Toolbar.module.css";
 import {useIntl} from "@/locale";
-import {ComponentSize} from "@/constents/enums";
+import {ComponentSize} from "@/constants/enums";
 
 export type GenerateButtonProps = {
     size: ComponentSize;

@@ -32,6 +32,9 @@ export enum ComponentSize{
     LARGE = "large",
 }
 
-
+export enum PreviewType{
+    TABLE = "table",
+    RAW = "raw"
+}
 
 

@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import {RawPreviewer} from "@/components/PreviewPanel/src/components";
+import {RawPreviewer, SettingBar} from "@/components/PreviewPanel/src/components";
 import styles from './PreviewPanel.module.css';
 import {ComponentSize} from "@/constants/enums";
 
@@ -27,7 +27,8 @@ export const PreviewPanel: React.FunctionComponent<PreviewPanelProps> = () => {
 
     return (
         <div className={styles.previewPanel} ref={containerRef}>
-            <RawPreviewer height={panelHeight}/>
+            <SettingBar/>
+            <RawPreviewer height={panelHeight - 48}/>
         </div>
     );
 };
