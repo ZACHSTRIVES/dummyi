@@ -1,9 +1,12 @@
-import React, {useEffect} from "react";
+import React from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import {langs} from '@uiw/codemirror-extensions-langs';
-import {lightTheme} from "./RawPreviewer.themes";
-import { EditorView } from '@codemirror/view';
-import Styles from './RawPreviewer.module.css';
+import {EditorView} from '@codemirror/view';
+import {useSelector} from "react-redux";
+import {Store} from "@/types/system";
+import {ColorMode} from "@/constants/enums";
+import {darkTheme, lightTheme} from "@/components/PreviewPanel/src/components/RawPreviewer/RawPreviewer.themes";
+
 
 export type RawPreviewerProps = {
     height?: number;
@@ -13,11 +16,14 @@ export type RawPreviewerProps = {
 export const RawPreviewer: React.FunctionComponent<RawPreviewerProps> = ({...props}) => {
     const {height} = props;
 
+    // store
+    const colorMode = useSelector((state: Store) => state.app.colorMode);
+
     return (
         <CodeMirror
             editable={false}
             readOnly={true}
-            theme={lightTheme}
+            theme={colorMode === ColorMode.DARK ? darkTheme: lightTheme}
             basicSetup={{
                 foldGutter: false,
                 history:false,
@@ -26,7 +32,7 @@ export const RawPreviewer: React.FunctionComponent<RawPreviewerProps> = ({...pro
             }}
             height={`${height}px`}
             value={sqlStatements}
-            style={{fontSize:10,padding: "0 16px"}}
+            style={{fontSize:13, padding: "0 16px"}}
             extensions={[langs.sql(),EditorView.lineWrapping]}/>
     )
 }
