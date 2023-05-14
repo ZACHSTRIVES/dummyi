@@ -3,11 +3,11 @@ import {Button, Tooltip} from "@douyinfe/semi-ui";
 import {IconRefresh} from "@douyinfe/semi-icons";
 import {useIntl} from "@/locale";
 
-export type RefreshButtonProps = {
+export type RegeneratePreviewButtonProps = {
 
 }
 
-export const RefreshButton: React.FunctionComponent<RefreshButtonProps> = ({...props}) => {
+export const RegeneratePreviewButton: React.FunctionComponent<RegeneratePreviewButtonProps> = ({...props}) => {
     const intl = useIntl();
 
 

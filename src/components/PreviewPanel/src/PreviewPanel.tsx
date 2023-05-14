@@ -28,7 +28,7 @@ export const PreviewPanel: React.FunctionComponent<PreviewPanelProps> = () => {
     return (
         <div className={styles.previewPanel} ref={containerRef}>
             <SettingBar/>
-            <RawPreviewer height={panelHeight - 48}/>
+            <RawPreviewer height={panelHeight - 54}/>
         </div>
     );
 };

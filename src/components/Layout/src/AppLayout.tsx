@@ -12,17 +12,17 @@ export const AppLayout: React.FC<LayoutProps> = ({children}) => {
     return (
         <>
             <Head>
-                <link rel="shortcut icon" href="/favicon.png" />
+                <link rel="shortcut icon" href="/favicon.ico"/>
             </Head>
-        <Layout className="h-screen">
-            <Header className="sticky top-0 z-1" style={{backgroundColor: 'var(--semi-color-bg-1)'}}>
-                <NavBar/>
-            </Header>
-            <Content className="grow overflow-hidden">
-                {children}
-            </Content>
-            <Footer className="sticky bottom-0 z-1"/>
-        </Layout>
+            <Layout className="h-screen">
+                <Header className="sticky top-0 z-1" style={{backgroundColor: 'var(--semi-color-bg-1)'}}>
+                    <NavBar/>
+                </Header>
+                <Content className="grow overflow-hidden">
+                    {children}
+                </Content>
+                <Footer className="sticky bottom-0 z-1"/>
+            </Layout>
         </>
     )
 }
