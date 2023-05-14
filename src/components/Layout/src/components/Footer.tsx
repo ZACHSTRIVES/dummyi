@@ -1,7 +1,10 @@
 import React, {FunctionComponent} from "react";
-import {Layout} from "@douyinfe/semi-ui";
-import {IconTerminal} from "@douyinfe/semi-icons";
-import {Typography} from '@douyinfe/semi-ui';
+import {Layout, Tag, Typography} from "@douyinfe/semi-ui";
+import Image from 'next/image';
+import packageJson from '../../../../../package.json';
+import {useSelector} from "react-redux";
+import {ColorMode} from "@/constants/enums";
+import {Store} from "@/types/system";
 
 
 export type FooterProps = {
@@ -12,13 +15,18 @@ export const Footer: FunctionComponent<FooterProps> = ({className}) => {
     const {Footer} = Layout;
     const {Text} = Typography;
 
+    // store
+    const colorMode = useSelector((state: Store) => state.app.colorMode);
+
+    const projectVersion = packageJson.version;
+
     return (
         <Footer
             className={className}
             style={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                padding: '20px',
+                padding: '16px',
                 color: 'var(--semi-color-text-2)',
                 backgroundColor: 'rgba(var(--semi-grey-0), 1)',
             }}
@@ -29,16 +37,17 @@ export const Footer: FunctionComponent<FooterProps> = ({className}) => {
                         alignItems: 'center',
                     }}
                 >
-                    <IconTerminal size="large" style={{marginRight: '8px'}}/>
-                    <span>Mockdata.co.nz </span>
+                    <Image width={100} height={30} alt={"Dummy"} src={"/images/logo-grey.svg"}/>
+                    <Tag color={'grey'} type={colorMode===ColorMode.DARK?'solid':'ghost'}  size={"small"}>Beta v{projectVersion}</Tag>
                 </span>
 
             <span>
-                    <Text link={{href: 'https://github.com/ZACHSTRIVES/mockdata.co.nz'}} style={{marginRight: '24px'}}
+                    <Text size={"small"} link={{href: 'https://github.com/ZACHSTRIVES/mockdata.co.nz'}}
+                          style={{marginRight: '24px'}}
                           underline>
                         Github
                     </Text>
-                    <Text link={{href: '/about'}} underline>
+                    <Text size={"small"} link={{href: '/about'}} underline>
                         About
                     </Text>
             </span>

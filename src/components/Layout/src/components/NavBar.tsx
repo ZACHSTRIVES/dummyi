@@ -12,6 +12,7 @@ import {useIntl} from "@/locale";
 import {useRouter} from "next/router";
 import {GithubButton} from "@/components/Layout/src/components/GithubButton";
 import Hamburger from 'hamburger-react'
+import {Logo} from "@/components/Layout/src/components/Logo";
 
 export type NavBarProps = {}
 
@@ -52,11 +53,8 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                 defaultSelectedKeys={defaultSelectedKeys}
                 onSelect={(key) => onSelectItem(key)}>
 
-                <Nav.Header
-                    logo={<IconTerminal
-                        style={{fontSize: 36, color: colorMode === ColorMode.DARK ? 'white' : "black"}}/>}
-                    text={"Mockdata.co.nz"}>
-
+                <Nav.Header>
+                    <Logo/>
                     <div className={styles.hamburgerIcon}>
                         <Hamburger toggled={isMenuOpen}
                                    toggle={handleMenuClick}

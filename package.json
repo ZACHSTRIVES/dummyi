@@ -1,5 +1,5 @@
 {
-  "name": "mockdata.co.nz",
+  "name": "dummyi",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,7 +13,7 @@
     "@douyinfe/semi-next": "^2.34.2",
     "@douyinfe/semi-ui": "^2.35.0",
     "@reduxjs/toolkit": "^1.9.5",
-    "@semi-bot/semi-theme-mockdatanz": "^1.0.7",
+    "@semi-bot/semi-theme-mockdatanz": "^1.0.8",
     "@types/node": "20.1.3",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
