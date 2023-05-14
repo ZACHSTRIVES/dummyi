@@ -19,5 +19,8 @@
   "preview.setting.lineNumberSwitch.tooltip.show": "显示行数",
   "preview.setting.lineNumberSwitch.tooltip.hide": "隐藏行数",
   "preview.setting.lineWarpSwitch.tooltip.enable": "启用自动换行",
-  "preview.setting.lineWarpSwitch.tooltip.disable": "禁用自动换行"
+  "preview.setting.lineWarpSwitch.tooltip.disable": "禁用自动换行",
+  "preview.setting.copyToClipboard.tooltip": "复制到剪切板",
+  "preview.setting.copyToClipboard.notification.success": "成功",
+  "preview.setting.copyToClipboard.notification.content": "已复制到剪切板"
 }
