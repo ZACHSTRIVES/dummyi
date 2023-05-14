@@ -9,10 +9,17 @@ export type PreviewPanelProps = {}
 export const PreviewPanel: React.FunctionComponent<PreviewPanelProps> = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [panelHeight, setPanelHeight] = React.useState(800);
+    const [componentsSize, setComponentsSize] = React.useState(ComponentSize.LARGE);
 
     useEffect(() => {
         const resizeObserver = new ResizeObserver((entries) => {
             const containerHeight = entries[0].contentRect.height;
+            const containerWidth = entries[0].contentRect.width;
+            if(containerWidth<430){
+                setComponentsSize(ComponentSize.SMALL);
+            }else{
+                setComponentsSize(ComponentSize.LARGE);
+            }
             setPanelHeight(containerHeight);
         });
 
@@ -27,7 +34,7 @@ export const PreviewPanel: React.FunctionComponent<PreviewPanelProps> = () => {
 
     return (
         <div className={styles.previewPanel} ref={containerRef}>
-            <SettingBar/>
+            <SettingBar size={componentsSize}/>
             <RawPreviewer height={panelHeight - 54}/>
         </div>
     );

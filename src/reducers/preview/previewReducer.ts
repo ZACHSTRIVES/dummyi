@@ -1,6 +1,7 @@
 import {PreviewReducerState} from "@/types/system";
 import {PreviewType} from "@/constants/enums";
 import {
+    SET_PREVIEW_TYPE,
     SET_RAW_VIEW_FONT_SIZE,
     SET_RAW_VIEW_LINE_WRAP,
     SET_RAW_VIEW_SHOW_LINE_NUMBERS
@@ -59,6 +60,11 @@ export const initState: PreviewReducerState = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state: PreviewReducerState = initState, action: any) => {
     switch (action.type) {
+        case SET_PREVIEW_TYPE:
+            return {
+                ...state,
+                previewType: action.payload
+            }
         case SET_RAW_VIEW_SHOW_LINE_NUMBERS:
             return {
                 ...state,

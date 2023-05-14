@@ -1,16 +1,14 @@
 import React from "react";
-import {Button, Icon, Select} from "@douyinfe/semi-ui";
+import {Select} from "@douyinfe/semi-ui";
 import {IconFont} from "@douyinfe/semi-icons";
 import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
-import {useIntl} from "@/locale";
 import {doSetRawViewFontSize} from "@/reducers/preview/previewActions";
 
 
 export type FontSizeSelectProps = {}
 
 export const FontSizeSelect: React.FunctionComponent<FontSizeSelectProps> = ({...props}) => {
-    const intl = useIntl();
     const dispatch = useDispatch();
 
     // store
