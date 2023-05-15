@@ -1,6 +1,15 @@
-.settingBar{
+.settingBar {
     padding: 12px 0 6px 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tools {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.switchButton{
+    padding: 6px 12px;
 }

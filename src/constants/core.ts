@@ -6,4 +6,4 @@ export const MAX_NUMBER_EXPORT_ROWS = 1000;
 export const MIN_NUMBER_EXPORT_ROWS = 1;
 
 // workspace
-export const DEFAULT_PANELS_ORIENTATION = PanelsOrientation.HORIZONTAL;
+export const DEFAULT_PANELS_ORIENTATION = PanelsOrientation.VERTICAL;

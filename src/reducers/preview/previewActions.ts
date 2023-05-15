@@ -1,5 +1,10 @@
-import {SET_RAW_VIEW_FONT_SIZE, SET_RAW_VIEW_LINE_WRAP, SET_RAW_VIEW_SHOW_LINE_NUMBERS} from "@/constants/actions";
-import {PanelsOrientation} from "@/constants/enums";
+import {
+    SET_PREVIEW_TYPE,
+    SET_RAW_VIEW_FONT_SIZE,
+    SET_RAW_VIEW_LINE_WRAP,
+    SET_RAW_VIEW_SHOW_LINE_NUMBERS
+} from "@/constants/actions";
+import {PanelsOrientation, PreviewType} from "@/constants/enums";
 
 
 // set rawPreview show line numbers
@@ -18,4 +23,10 @@ export const doSetRawViewLineWrap = (wrap: boolean): any =>
 export const doSetRawViewFontSize = (size: number): any =>
     async dispatch => {
         dispatch({type: SET_RAW_VIEW_FONT_SIZE, payload: size});
+    };
+
+// set preview type
+export const doSetPreviewType = (type: PreviewType): any =>
+    async dispatch => {
+        dispatch({type: SET_PREVIEW_TYPE, payload: type});
     };

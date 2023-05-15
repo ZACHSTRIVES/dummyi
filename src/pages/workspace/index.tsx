@@ -7,8 +7,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
 import {ColorMode, PanelsOrientation} from "@/constants/enums";
 import {doSetPanelsOrientation} from "@/reducers/workspace/workspaceActions";
+import Head from "next/head";
+import {useIntl} from "@/locale";
 
 export default function Workspace() {
+    const intl = useIntl();
     const dispatch = useDispatch();
 
     // store
@@ -37,24 +40,30 @@ export default function Workspace() {
     }
 
     return (
-        <ReflexContainer orientation={panelsDirection}>
-            <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 200 : 375}
-                           className={styles.leftReflexElement}>
-                <InputPanel/>
-            </ReflexElement>
+        <>
+            <Head>
+                <title>{intl.formatMessage({id:"nav.item.workspace"})} - Duymmi</title>
+            </Head>
 
-            <ReflexSplitter
-                style={{
-                    backgroundColor: colorMode === ColorMode.DARK? 'rgba(153,153,153,0.44)':'#d5d3d3',
-                    borderColor: 'transparent',
-                    borderWidth: '1px'
-                }}
-                className={`${styles.splitter} ${panelsDirection}`}
-            />
+            <ReflexContainer orientation={panelsDirection}>
+                <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 200 : 375}
+                               className={styles.leftReflexElement}>
+                    <InputPanel/>
+                </ReflexElement>
 
-            <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 100 : 400}>
-                <PreviewPanel/>
-            </ReflexElement>
-        </ReflexContainer>
+                <ReflexSplitter
+                    style={{
+                        backgroundColor: colorMode === ColorMode.DARK ? 'rgba(153,153,153,0.44)' : '#d5d3d3',
+                        borderColor: 'transparent',
+                        borderWidth: '1px'
+                    }}
+                    className={`${styles.splitter} ${panelsDirection}`}
+                />
+
+                <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 100 : 400}>
+                    <PreviewPanel/>
+                </ReflexElement>
+            </ReflexContainer>
+        </>
     );
 }
