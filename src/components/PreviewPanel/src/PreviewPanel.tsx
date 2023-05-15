@@ -1,7 +1,9 @@
 import React, {useEffect, useRef} from 'react';
-import {RawPreviewer, SettingBar} from "@/components/PreviewPanel/src/components";
+import {RawPreviewer, SettingBar, TablePreviewer} from "@/components/PreviewPanel/src/components";
 import styles from './PreviewPanel.module.css';
-import {ComponentSize} from "@/constants/enums";
+import {ComponentSize, PreviewType} from "@/constants/enums";
+import {Store} from "@/types/system";
+import {useSelector} from "react-redux";
 
 
 export type PreviewPanelProps = {}
@@ -9,10 +11,20 @@ export type PreviewPanelProps = {}
 export const PreviewPanel: React.FunctionComponent<PreviewPanelProps> = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [panelHeight, setPanelHeight] = React.useState(800);
+    const [componentsSize, setComponentsSize] = React.useState(ComponentSize.LARGE);
+
+    // store
+    const previewType = useSelector((state: Store) => state.preview.previewType);
 
     useEffect(() => {
         const resizeObserver = new ResizeObserver((entries) => {
             const containerHeight = entries[0].contentRect.height;
+            const containerWidth = entries[0].contentRect.width;
+            if (containerWidth < 430) {
+                setComponentsSize(ComponentSize.SMALL);
+            } else {
+                setComponentsSize(ComponentSize.LARGE);
+            }
             setPanelHeight(containerHeight);
         });
 
@@ -27,8 +39,12 @@ export const PreviewPanel: React.FunctionComponent<PreviewPanelProps> = () => {
 
     return (
         <div className={styles.previewPanel} ref={containerRef}>
-            <SettingBar/>
-            <RawPreviewer height={panelHeight - 54}/>
+            <SettingBar size={componentsSize}/>
+
+            {previewType === PreviewType.RAW ?
+                <RawPreviewer height={panelHeight - 62}/> :
+                <TablePreviewer/>
+            }
         </div>
     );
 };
