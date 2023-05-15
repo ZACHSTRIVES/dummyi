@@ -25,11 +25,11 @@ export const SettingBar: React.FunctionComponent<SettingBarProps> = ({...props})
         <div className={styles.settingBar}>
             <div className={styles.tools}>
                 <RegeneratePreviewButton/>
-                <CopyToClipboardButton/>
 
                 {
                     previewType === PreviewType.RAW &&
                     <>
+                        <CopyToClipboardButton/>
                         <Divider layout={'vertical'} className={'margin-left-6'}/>
                         <ShowLineNumberSwitch/>
                         <LineWarpSwitch/>

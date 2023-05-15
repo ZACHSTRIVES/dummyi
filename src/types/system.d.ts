@@ -37,6 +37,7 @@ export interface WorkspaceReducerState {
 export interface PreviewReducerState {
     previewType: PreviewType;
     rawViewContent: string;
+    tableViewContent: Object[];
     rawViewShowLineNumber: boolean;
     rawViewLineWrap: boolean;
     rawViewFontSize: number;
