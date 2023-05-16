@@ -10,15 +10,15 @@ export type TablePreviewerProps = {}
 export const TablePreviewer: React.FunctionComponent<TablePreviewerProps> = () => {
 
     // store
-    const data = useSelector((state:Store) => state.preview.tableViewContent);
+    const data = useSelector((state: Store) => state.preview.tableViewContent);
 
     return (
         <div className={styles.tablePreview}>
-            <Table dataSource={data} pagination={false}>
+            {data.length > 0 && <Table dataSource={data} pagination={false}>
                 {Object.entries(data[0]).map(([key, value]) => (
                     <Table.Column key={key} title={key} dataIndex={key}/>
                 ))}
-            </Table>
+            </Table>}
         </div>
     )
 }
