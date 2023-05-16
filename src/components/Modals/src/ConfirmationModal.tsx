@@ -1,6 +1,7 @@
 import React from "react";
 import {Modal} from "@douyinfe/semi-ui";
 import {IconAlertTriangle} from "@douyinfe/semi-icons";
+import styles from './ConfirmationModal.module.css';
 
 export interface ConfirmationModalProps {
     isOpen: boolean,
@@ -20,6 +21,7 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = (props) => {
             visible={isOpen}
             onCancel={onClose}
             onOk={onConfirm}
+            style={{width: '90vw', maxWidth: '600px'}}
         >
             {content}
         </Modal>
