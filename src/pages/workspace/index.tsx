@@ -19,6 +19,7 @@ export default function Workspace() {
     const colorMode = useSelector((state: Store) => state.app.colorMode);
 
     useEffect(() => {
+        setOrientation(getOrientation());
         function handleResize() {
             const newOrientation = getOrientation();
             setOrientation(newOrientation);
