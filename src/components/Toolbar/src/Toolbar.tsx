@@ -63,6 +63,7 @@ export const Toolbar: React.FC<ToolbarProps> = () => {
                         {showMoreButton ?
                             <Popover
                                 trigger="click"
+                                clickToHide={true}
                                 content={
                                     <>
                                         <ImportSchemaButton/>
