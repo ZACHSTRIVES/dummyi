@@ -56,7 +56,7 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitchButtonProps> = ({
             <Modal visible={isModalVisible}
                    icon={<IconLanguage size={'extra-large'}/>}
                    footer={null}
-                   size={'small'}
+                   style={{width: '90vw', maxWidth: '300px'}}
                    onCancel={() => setIsModalVisible(false)}
                    title={intl.formatMessage({id: 'nav.languageSwitchModal.title'})}>
 
@@ -64,7 +64,7 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitchButtonProps> = ({
                     <RadioGroup type='pureCard' value={locale} direction='vertical' name="lang-radio-group">
                         {Object.entries(localeMap).map(([key, value]) => (
                             <Radio key={key} value={key}
-                                   style={{width: 280, height: 50, borderRadius: '12px'}} onChange={handleLocaleChange}>
+                                   style={{width: 200, height: 50, borderRadius: '12px'}} onChange={handleLocaleChange}>
                                 {value.icon} {value.name}
                             </Radio>
                         ))}
