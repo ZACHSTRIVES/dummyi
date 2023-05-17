@@ -1,12 +1,8 @@
-<img src="./public/images/logo-black.svg" width="300" class="adaptive-image">
-
-<style>
-  @media (prefers-color-scheme: dark) {
-    .adaptive-image {
-      filter: invert(1); /* 反转图像颜色以适应暗黑模式 */
-    }
-  }
-</style>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./public/images/logo-white.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./public/images/logo-black.svg">
+  <img alt="Dummyi" src="./public/images/logo-black.svg" width="300">
+</picture>
 
 ![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=dummyi&style=flat-square)
 
