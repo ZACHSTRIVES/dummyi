@@ -1,6 +1,14 @@
-# mockdata.co.nz
+<img src="./public/images/logo-black.svg" width="300" class="adaptive-image">
 
-![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=mockdata-dev&style=flat-square)
+<style>
+  @media (prefers-color-scheme: dark) {
+    .adaptive-image {
+      filter: invert(1); /* 反转图像颜色以适应暗黑模式 */
+    }
+  }
+</style>
+
+![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=dummyi&style=flat-square)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
