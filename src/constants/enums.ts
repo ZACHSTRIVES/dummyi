@@ -15,11 +15,17 @@ export enum Locales {
     ZH = "zh"
 }
 
+export enum ExportTypeCategory {
+    FILE_TYPES = "File Types",
+    PROGRAMMING_LANGUAGES = "Programming Languages",
+}
+
 export enum ExportType {
-    CSV = "csv",
-    TSV = "tsv",
-    JSON = "json",
-    XML = "xml",
+    CSV = "Csv",
+    TSV = "Tsv",
+    JSON = "Json",
+    JAVA_SCRIPT = "JavaScript",
+    XML = "Xml",
     // SQL = "sql",
     // HTML = "html",
     // Markdown = "markdown",
