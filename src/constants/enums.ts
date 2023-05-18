@@ -24,6 +24,7 @@ export enum ExportType {
     CSV = "CSV",
     JSON = "JSON",
     JAVA_SCRIPT = "Javascript",
+    XML = "XML",
 }
 
 export enum ComponentSize{

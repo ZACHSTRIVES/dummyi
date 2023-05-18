@@ -1,0 +1,18 @@
+.selectOption{
+    display: flex;
+    padding: 10px 0 10px 18px;
+
+}
+.label{
+    font-size:12px;
+    font-weight: 500;
+    margin-left: 12px;
+}
+
+.selectedItem{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0 10px 18px;
+    border-bottom: 1px solid #e8e8e8;
+}
