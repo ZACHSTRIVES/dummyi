@@ -1,4 +1,6 @@
 {
+  "export.category.fileTypes": "General file types",
+  "export.category.programmingLanguages": "Programming languages",
   "nav.item.home": "Home",
   "nav.item.workspace": "Workspace",
   "nav.item.about": "About",
@@ -24,5 +26,6 @@
   "preview.setting.copyToClipboard.notification.success": "Success",
   "preview.setting.copyToClipboard.notification.content": "The content has been copied to the clipboard.",
   "preview.setting.rawView.text": "Raw",
-  "preview.setting.tableView.text": "Table"
+  "preview.setting.tableView.text": "Table",
+  "export.selector.modal.title": "Select export format"
 }

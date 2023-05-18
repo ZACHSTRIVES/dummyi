@@ -7,3 +7,7 @@ export type Formatter ={
     format: (data: any) => any;
     configComponent: React.FunctionComponent;
 }
+
+export type FormattersGroupedByCategory = {
+    [key in ExportTypeCategory]: Formatter[];
+}

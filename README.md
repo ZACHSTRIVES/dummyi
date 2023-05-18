@@ -4,7 +4,7 @@
   <img alt="Dummyi" src="./public/images/logo-black.svg" width="300">
 </picture>
 
-![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=dummyi&style=flat-square)
+![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=dummyi&style=flat-square) ![Version](https://badgen.net/badge/production/NA/red)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

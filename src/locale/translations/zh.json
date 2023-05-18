@@ -1,4 +1,6 @@
 {
+  "export.category.fileTypes": "常见格式",
+  "export.category.programmingLanguages": "编程语言",
   "nav.item.home": "首页",
   "nav.item.workspace": "工作台",
   "nav.item.about": "关于",
@@ -24,5 +26,6 @@
   "preview.setting.copyToClipboard.notification.success": "成功",
   "preview.setting.copyToClipboard.notification.content": "已复制到剪切板",
   "preview.setting.rawView.text": "原始",
-  "preview.setting.tableView.text": "表格"
+  "preview.setting.tableView.text": "表格",
+  "export.selector.modal.title": "选择导出格式"
 }

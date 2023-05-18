@@ -11,6 +11,7 @@ import {ExportSchemaButton} from "@/components/Toolbar/src/components/ExportSche
 import {ComponentSize} from "@/constants/enums";
 import {ConfirmationModal} from "@/components/Modals";
 import {useIntl} from "@/locale";
+import {ExportFormatSelector} from "@/components/ExportFormatSelector";
 
 
 export type ToolbarProps = {}
@@ -26,13 +27,13 @@ export const Toolbar: React.FC<ToolbarProps> = () => {
         const resizeObserver = new ResizeObserver((entries) => {
             const containerWidth = entries[0].contentRect.width;
 
-            if (containerWidth < 460) {
+            if (containerWidth < 500) {
                 setShowMoreButton(true);
             } else {
                 setShowMoreButton(false);
             }
 
-            if (containerWidth < 360) {
+            if (containerWidth < 400) {
                 setComponentsSize(ComponentSize.SMALL);
             } else {
                 setComponentsSize(ComponentSize.LARGE);
@@ -57,7 +58,9 @@ export const Toolbar: React.FC<ToolbarProps> = () => {
             <Row type={'flex'} justify={'space-between'}>
                 <Col>
                     <Row type={'flex'} justify={'space-between'}>
-                        <Button theme='light' style={{marginRight: 8, width: "70px"}}>SQL</Button>
+
+                        <ExportFormatSelector/>
+
                         <Divider layout={'vertical'} style={{height: "32px"}}/>
 
                         {showMoreButton ?

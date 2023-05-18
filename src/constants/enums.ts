@@ -16,21 +16,14 @@ export enum Locales {
 }
 
 export enum ExportTypeCategory {
-    FILE_TYPES = "File Types",
-    PROGRAMMING_LANGUAGES = "Programming Languages",
+    FILE_TYPES = "fileTypes",
+    PROGRAMMING_LANGUAGES = "programmingLanguages",
 }
 
 export enum ExportType {
-    CSV = "Csv",
-    TSV = "Tsv",
-    JSON = "Json",
-    JAVA_SCRIPT = "JavaScript",
-    XML = "Xml",
-    // SQL = "sql",
-    // HTML = "html",
-    // Markdown = "markdown",
-    // CSHARP = "csharp",
-    // JAVA = "java",
+    CSV = "CSV",
+    JSON = "JSON",
+    JAVA_SCRIPT = "Javascript",
 }
 
 export enum ComponentSize{
