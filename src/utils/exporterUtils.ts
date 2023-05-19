@@ -1,9 +1,10 @@
 import {Formatter} from "@/types/formatter";
 import {ExportFormat} from "@/constants/enums";
+import {formatters} from "@/core/formatters";
 
 
 // Get formatters grouped by category
-export const getFormattersGroupedByCategory = (formatters:{}):{} => {
+export const getFormattersGroupedByCategory = ():{} => {
 
     const categorizedFormatters: { [category: string]: Formatter[] } = {};
 
@@ -17,6 +18,15 @@ export const getFormattersGroupedByCategory = (formatters:{}):{} => {
             categorizedFormatters[category] = [formatter];
         }
     }
-
     return categorizedFormatters;
+}
+
+// Get formatter by format
+export const getFormatterByFormat = (format:ExportFormat):Formatter => {
+    return formatters[format];
+}
+
+// Gey formatter config component by format
+export const getFormatterConfigComponentByFormat = (format:ExportFormat):any => {
+    return formatters[format].configComponent;
 }

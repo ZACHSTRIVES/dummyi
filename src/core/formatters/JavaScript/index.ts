@@ -6,6 +6,5 @@ import {JavaScriptConfig} from "@/core/formatters/JavaScript/JavaScript.config";
 export const JavaScriptFormatter: Formatter = {
     type: ExportFormat.JAVA_SCRIPT,
     category: ExportFormatCategory.PROGRAMMING_LANGUAGES,
-    format: format,
-    configComponent: JavaScriptConfig
+    format: format
 }

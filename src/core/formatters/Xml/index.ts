@@ -8,5 +8,4 @@ export const XmlFormatter: Formatter = {
     type: ExportFormat.XML,
     category: ExportFormatCategory.FILE_TYPES,
     format: format,
-    configComponent: XmlConfig
 }

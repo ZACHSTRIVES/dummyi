@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
 import {Select, Typography} from "@douyinfe/semi-ui";
-import {getFormattersGroupedByCategory} from "@/utils/categoriesUtils";
+import {getFormattersGroupedByCategory} from "@/utils/exporterUtils";
 import {formatters} from "@/core/formatters";
 import {Formatter} from "@/types/formatter";
 import Image from "next/image";
@@ -16,7 +16,7 @@ export interface ExportFormatSelectProps {
 export const ExportFormatSelect: React.FunctionComponent<ExportFormatSelectProps> = () => {
     const intl = useIntl();
     const {Text} = Typography;
-    const data = useMemo(() => getFormattersGroupedByCategory(formatters), []);
+    const data = useMemo(() => getFormattersGroupedByCategory(), []);
     const dispatch = useDispatch();
 
     // store

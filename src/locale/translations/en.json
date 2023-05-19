@@ -27,5 +27,8 @@
   "preview.setting.copyToClipboard.notification.content": "The content has been copied to the clipboard.",
   "preview.setting.rawView.text": "Raw",
   "preview.setting.tableView.text": "Table",
-  "export.configurator.modal.title": "Export Format"
+  "export.configurator.modal.title": "Export Format",
+  "export.configurator.modal.closeButton.text": "Close",
+  "export.configurator.config.label": "Configurations",
+  "export.configurator.config.empty": "Configuration of this export format is currently not available."
 }
