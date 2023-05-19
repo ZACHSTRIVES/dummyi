@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 1140 1024" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <style bx:fonts="Alexandria">@import url(https://fonts.googleapis.com/css2?family=Alexandria%3Aital%2Cwght%400%2C100%3B0%2C200%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C800%3B0%2C900&amp;display=swap);</style>
+  </defs>
+  <path d="M1089.726017 1023.998652h-1044.896583A44.492371 44.492371 0 0 1 0 979.506281V62.019668A62.019668 62.019668 0 0 1 62.019668 0h805.58156l273.021365 253.134624v719.630389a51.233639 51.233639 0 0 1-50.896576 51.233639z" p-id="3303" style="fill: rgb(75, 75, 75);"/>
+  <path d="M878.050193 273.358429l262.5724-20.223805L867.601228 0l-18.538488 244.370975a28.987454 28.987454 0 0 0 28.987453 28.987454z" p-id="3304" style="fill: rgb(45, 45, 45);"/>
+  <path d="M896.588681 253.134624h244.033912L867.601228 0v224.14717a28.65039 28.65039 0 0 0 28.987453 28.987454z" p-id="3305" style="fill: rgb(96, 96, 96);"/>
+  <text style="fill: rgb(255, 255, 255); font-family: Alexandria; font-size: 300px; font-weight: 900; white-space: pre;" transform="matrix(1, 0, 0, 1, -146.386444, 323.313293)"><tspan x="284.846" y="618.37">csv</tspan><tspan x="284.846" dy="1em">​</tspan></text>
+  <ellipse style="stroke: rgb(255, 255, 255); fill: rgb(255, 255, 255);" cx="88.835" cy="916.725" rx="24.02" ry="24.213"/>
+</svg>

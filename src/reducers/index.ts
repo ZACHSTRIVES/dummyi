@@ -3,7 +3,7 @@ import {Store, Action} from "@/types/system";
 
 // reducers
 import app from "@/reducers/app/appReducer";
-import exporter from "@/reducers/exporter/exportReducer";
+import exporter from "@/reducers/exporter/exporterReducer";
 import workspace from "@/reducers/workspace/workspaceReducer";
 import preview from "@/reducers/preview/previewReducer";
 
