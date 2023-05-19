@@ -3,7 +3,7 @@ export const SET_COLOR_MODE = 'SET_COLOR_MODE';
 
 // exporter
 export const SET_NUMBER_OF_EXPORT_ROWS = 'SET_NUMBER_OF_EXPORT_ROWS';
-export const SET_EXPORT_TYPE = 'SET_EXPORT_TYPE';
+export const SET_EXPORT_FORMAT = 'SET_EXPORT_FORMAT';
 
 // workspace
 export const SET_PANELS_DIRECTION = 'SET_PANELS_DIRECTION';

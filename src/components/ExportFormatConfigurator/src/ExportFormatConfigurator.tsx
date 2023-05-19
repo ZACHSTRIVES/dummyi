@@ -1,6 +1,5 @@
 import React from 'react';
 import {Button} from "@douyinfe/semi-ui";
-import {Formatter} from "@/types/formatter";
 import {useSelector} from "react-redux";
 import {Store} from "@/types/system";
 import {ExportFormatConfiguratorModal} from "@/components/ExportFormatConfigurator/src/components";
@@ -13,7 +12,7 @@ export const ExportFormatConfigurator: React.FunctionComponent<ExportFormatConfi
     const [isSelectModalOpen, setIsSelectModalOpen] = React.useState(false);
 
     // store
-    const exportType = useSelector((state: Store) => state.exporter.exportType);
+    const exportFormat = useSelector((state: Store) => state.exporter.exportFormat);
 
     return (
         <>
@@ -23,7 +22,7 @@ export const ExportFormatConfigurator: React.FunctionComponent<ExportFormatConfi
                 }}
                 theme='light'
                 style={{marginRight: 8, width: "100px"}}>
-                {exportType}
+                {exportFormat}
             </Button>
             <ExportFormatConfiguratorModal
                 open={isSelectModalOpen}

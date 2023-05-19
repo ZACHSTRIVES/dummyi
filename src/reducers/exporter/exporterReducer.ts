@@ -1,10 +1,10 @@
 import {Action, ExporterReducerState} from "@/types/system";
-import {SET_EXPORT_TYPE, SET_NUMBER_OF_EXPORT_ROWS} from "@/constants/actions";
+import {SET_EXPORT_FORMAT, SET_NUMBER_OF_EXPORT_ROWS} from "@/constants/actions";
 import {DEFAULT_NUMBER_EXPORT_ROWS} from "@/constants/core";
-import {ExportType} from "@/constants/enums";
+import {ExportFormat} from "@/constants/enums";
 
 export const initStates: ExporterReducerState = {
-    exportType: ExportType.CSV,
+    exportFormat: ExportFormat.CSV,
     numberOfExportRows: DEFAULT_NUMBER_EXPORT_ROWS,
 }
 
@@ -15,10 +15,10 @@ export default (state: ExporterReducerState = initStates, action: Action) => {
                 ...state,
                 numberOfExportRows: action.payload
             }
-        case SET_EXPORT_TYPE:
+        case SET_EXPORT_FORMAT:
             return {
                 ...state,
-                exportType: action.payload
+                exportFormat: action.payload
             }
         default:
             return state;

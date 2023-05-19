@@ -15,12 +15,12 @@ export enum Locales {
     ZH = "zh"
 }
 
-export enum ExportTypeCategory {
+export enum ExportFormatCategory {
     FILE_TYPES = "fileTypes",
     PROGRAMMING_LANGUAGES = "programmingLanguages",
 }
 
-export enum ExportType {
+export enum ExportFormat {
     CSV = "CSV",
     JSON = "JSON",
     JAVA_SCRIPT = "Javascript",

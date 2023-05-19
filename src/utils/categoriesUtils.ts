@@ -1,13 +1,14 @@
 import {Formatter} from "@/types/formatter";
-import {ExportType} from "@/constants/enums";
+import {ExportFormat} from "@/constants/enums";
+
 
 // Get formatters grouped by category
 export const getFormattersGroupedByCategory = (formatters:{}):{} => {
 
     const categorizedFormatters: { [category: string]: Formatter[] } = {};
 
-    for (const exportType of Object.values(ExportType)) {
-        const formatter:Formatter = formatters[exportType];
+    for (const exportFormat of Object.values(ExportFormat)) {
+        const formatter:Formatter = formatters[exportFormat];
         const category = formatter.category;
 
         if (categorizedFormatters[category]) {

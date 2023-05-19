@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo} from 'react';
+import React, {useMemo} from 'react';
 import {Select, Typography} from "@douyinfe/semi-ui";
 import {getFormattersGroupedByCategory} from "@/utils/categoriesUtils";
 import {formatters} from "@/core/formatters";
@@ -8,7 +8,7 @@ import {useIntl} from "@/locale";
 import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
 import styles from './ExportFormatSelect.module.css';
-import {doChangeExportType} from "@/reducers/exporter/exporterActions";
+import {doChangeExportFormat} from "@/reducers/exporter/exporterActions";
 
 export interface ExportFormatSelectProps {
 }
@@ -21,11 +21,11 @@ export const ExportFormatSelect: React.FunctionComponent<ExportFormatSelectProps
 
     // store
     const colorMode = useSelector((state: Store) => state.app.colorMode);
-    const exportType = useSelector((state: Store) => state.exporter.exportType);
+    const exportFormat = useSelector((state: Store) => state.exporter.exportFormat);
 
     // actions
     const handleSelectChange = (value) => {
-        dispatch(doChangeExportType(value));
+        dispatch(doChangeExportFormat(value));
     }
 
     // render
@@ -59,7 +59,7 @@ export const ExportFormatSelect: React.FunctionComponent<ExportFormatSelectProps
             <Select
                 style={{width: "100%", height: 50}}
                 onChange={handleSelectChange}
-                value={exportType}
+                value={exportFormat}
                 renderSelectedItem={renderSelectedItem}
             >
                 {Object.entries(data).map(([category]) => {
