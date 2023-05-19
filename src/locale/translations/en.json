@@ -30,5 +30,8 @@
   "export.configurator.modal.title": "Export Format",
   "export.configurator.modal.closeButton.text": "Close",
   "export.configurator.config.label": "Configurations",
-  "export.configurator.config.empty": "Configuration of this export format is currently not available."
+  "export.configurator.config.empty": "Configuration of this export format is currently not available.",
+  "export.configurator.csv.delimiter": "Delimiter",
+  "export.configurator.csv.includeHeader": "Include header",
+  "export.configurator.csv.endLineChar": "End of line characters"
 }
