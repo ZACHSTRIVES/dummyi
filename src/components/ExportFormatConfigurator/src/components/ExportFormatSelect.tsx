@@ -5,9 +5,10 @@ import {formatters} from "@/core/formatters";
 import {Formatter} from "@/types/formatter";
 import Image from "next/image";
 import {useIntl} from "@/locale";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
 import styles from './ExportFormatSelect.module.css';
+import {doChangeExportType} from "@/reducers/exporter/exporterActions";
 
 export interface ExportFormatSelectProps {
 }
@@ -16,10 +17,16 @@ export const ExportFormatSelect: React.FunctionComponent<ExportFormatSelectProps
     const intl = useIntl();
     const {Text} = Typography;
     const data = useMemo(() => getFormattersGroupedByCategory(formatters), []);
+    const dispatch = useDispatch();
 
     // store
     const colorMode = useSelector((state: Store) => state.app.colorMode);
     const exportType = useSelector((state: Store) => state.exporter.exportType);
+
+    // actions
+    const handleSelectChange = (value) => {
+        dispatch(doChangeExportType(value));
+    }
 
     // render
     const renderOptionItem = (formatter: Formatter) => {
@@ -50,9 +57,9 @@ export const ExportFormatSelect: React.FunctionComponent<ExportFormatSelectProps
     return (
         <div>
             <Select
-                style={{width: 280, height: 50}}
-                onChange={v => console.log(v)}
-                defaultValue={'CSV'}
+                style={{width: "100%", height: 50}}
+                onChange={handleSelectChange}
+                value={exportType}
                 renderSelectedItem={renderSelectedItem}
             >
                 {Object.entries(data).map(([category]) => {

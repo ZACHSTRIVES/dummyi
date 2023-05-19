@@ -27,5 +27,5 @@
   "preview.setting.copyToClipboard.notification.content": "已复制到剪切板",
   "preview.setting.rawView.text": "原始",
   "preview.setting.tableView.text": "表格",
-  "export.selector.modal.title": "选择导出格式"
+  "export.configurator.modal.title": "导出格式"
 }

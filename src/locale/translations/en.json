@@ -27,5 +27,5 @@
   "preview.setting.copyToClipboard.notification.content": "The content has been copied to the clipboard.",
   "preview.setting.rawView.text": "Raw",
   "preview.setting.tableView.text": "Table",
-  "export.selector.modal.title": "Select export format"
+  "export.configurator.modal.title": "Export Format"
 }

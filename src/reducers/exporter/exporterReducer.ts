@@ -1,5 +1,5 @@
 import {Action, ExporterReducerState} from "@/types/system";
-import {SET_NUMBER_OF_EXPORT_ROWS} from "@/constants/actions";
+import {SET_EXPORT_TYPE, SET_NUMBER_OF_EXPORT_ROWS} from "@/constants/actions";
 import {DEFAULT_NUMBER_EXPORT_ROWS} from "@/constants/core";
 import {ExportType} from "@/constants/enums";
 
@@ -14,6 +14,11 @@ export default (state: ExporterReducerState = initStates, action: Action) => {
             return {
                 ...state,
                 numberOfExportRows: action.payload
+            }
+        case SET_EXPORT_TYPE:
+            return {
+                ...state,
+                exportType: action.payload
             }
         default:
             return state;

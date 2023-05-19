@@ -3,12 +3,12 @@ import {Button} from "@douyinfe/semi-ui";
 import {Formatter} from "@/types/formatter";
 import {useSelector} from "react-redux";
 import {Store} from "@/types/system";
-import {ExportFormatSelectModal} from "@/components/ExportFormatSelector/src/components";
+import {ExportFormatConfiguratorModal} from "@/components/ExportFormatConfigurator/src/components";
 
-export interface ExportFormatSelectorProps {
+export interface ExportFormatConfiguratorProps {
 }
 
-export const ExportFormatSelector: React.FunctionComponent<ExportFormatSelectorProps> = () => {
+export const ExportFormatConfigurator: React.FunctionComponent<ExportFormatConfiguratorProps> = () => {
 
     const [isSelectModalOpen, setIsSelectModalOpen] = React.useState(false);
 
@@ -25,7 +25,7 @@ export const ExportFormatSelector: React.FunctionComponent<ExportFormatSelectorP
                 style={{marginRight: 8, width: "100px"}}>
                 {exportType}
             </Button>
-            <ExportFormatSelectModal
+            <ExportFormatConfiguratorModal
                 open={isSelectModalOpen}
                 onClose={() => {
                     setIsSelectModalOpen(false)

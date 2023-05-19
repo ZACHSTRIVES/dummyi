@@ -11,7 +11,7 @@ import {ExportSchemaButton} from "@/components/Toolbar/src/components/ExportSche
 import {ComponentSize} from "@/constants/enums";
 import {ConfirmationModal} from "@/components/Modals";
 import {useIntl} from "@/locale";
-import {ExportFormatSelector} from "@/components/ExportFormatSelector";
+import {ExportFormatConfigurator} from "../../ExportFormatConfigurator";
 
 
 export type ToolbarProps = {}
@@ -59,7 +59,7 @@ export const Toolbar: React.FC<ToolbarProps> = () => {
                 <Col>
                     <Row type={'flex'} justify={'space-between'}>
 
-                        <ExportFormatSelector/>
+                        <ExportFormatConfigurator/>
 
                         <Divider layout={'vertical'} style={{height: "32px"}}/>
 

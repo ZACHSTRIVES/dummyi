@@ -7,15 +7,15 @@ import {Formatter} from "@/types/formatter";
 import {useSelector} from "react-redux";
 import {Store} from "@/types/system";
 import Image from "next/image";
-import {ExportFormatSelect} from "@/components/ExportFormatSelector/src/components/ExportFormatSelect";
+import {ExportFormatSelect} from "@/components/ExportFormatConfigurator/src/components/ExportFormatSelect";
 
 
-export type ExportFormatSelectModalProps = {
+export type ExportFormatConfiguratorModalProps = {
     open: boolean;
     onClose: () => void;
 }
 
-export const ExportFormatSelectModal: React.FC<ExportFormatSelectModalProps> = ({...props}) => {
+export const ExportFormatConfiguratorModal: React.FC<ExportFormatConfiguratorModalProps> = ({...props}) => {
     const intl = useIntl();
     const {open, onClose} = props;
 
@@ -26,8 +26,8 @@ export const ExportFormatSelectModal: React.FC<ExportFormatSelectModalProps> = (
     return (
         <Modal
             visible={open}
-            title={intl.formatMessage({id: 'export.selector.modal.title'})}
-            style={{width: '95vw', maxWidth: '650px'}}
+            title={intl.formatMessage({id: 'export.configurator.modal.title'})}
+            style={{width: '95vw', maxWidth: '500px'}}
             onCancel={onClose}
         >
             <ExportFormatSelect/>
