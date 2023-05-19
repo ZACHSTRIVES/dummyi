@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, ButtonGroup} from "@douyinfe/semi-ui";
+import {Button, ButtonGroup, Radio, RadioGroup} from "@douyinfe/semi-ui";
 import {useIntl} from "@/locale";
 import {ComponentSize, PreviewType} from "@/constants/enums";
 import {useDispatch, useSelector} from "react-redux";
@@ -26,18 +26,10 @@ export const PreviewTypeSwitchButton: React.FC<PreviewTypeSwitchButtonProps> = (
         <>
             {
                 props.size === ComponentSize.LARGE ?
-                    <ButtonGroup>
-                        <Button
-                            onClick={() => handlePreviewTypeChange(PreviewType.RAW)}
-                            type={previewType === PreviewType.RAW ? "primary" : "tertiary"}>
-                            {intl.formatMessage({id: 'preview.setting.rawView.text'})}
-                        </Button>
-                        <Button
-                            onClick={() => handlePreviewTypeChange(PreviewType.TABLE)}
-                            type={previewType === PreviewType.TABLE ? "primary" : "tertiary"}>
-                            {intl.formatMessage({id: 'preview.setting.tableView.text'})}
-                        </Button>
-                    </ButtonGroup>
+                    <RadioGroup style={{height:'32px'}} type='button' value={previewType} onChange={(e)=>{handlePreviewTypeChange(e.target.value)}}>
+                        <Radio value={PreviewType.RAW} >{intl.formatMessage({id: 'preview.setting.rawView.text'})}</Radio>
+                        <Radio value={PreviewType.TABLE}>{intl.formatMessage({id: 'preview.setting.tableView.text'})}</Radio>
+                    </RadioGroup>
                     :
                     <Button
                         onClick={() => handlePreviewTypeChange(previewType === PreviewType.RAW ? PreviewType.TABLE : PreviewType.RAW)}

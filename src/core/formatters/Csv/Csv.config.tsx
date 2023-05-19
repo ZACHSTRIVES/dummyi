@@ -3,6 +3,7 @@ import {Input, Form, Switch, Select} from "@douyinfe/semi-ui";
 import {EndOfLineChars} from "@/constants/enums";
 import {CsvFormatterConfig} from "@/core/formatters/Csv/Csv";
 import {FormatterConfigComponentInterface} from "@/types/formatter";
+import {useIntl} from "@/locale";
 
 export const defaultCsvFormatterConfig: CsvFormatterConfig = {
     delimiter: ',',
@@ -13,6 +14,7 @@ export const defaultCsvFormatterConfig: CsvFormatterConfig = {
 export const CsvConfig: React.FC<FormatterConfigComponentInterface> = ({...props}) => {
     const {onConfigChange, config} = props;
     const {Label} = Form;
+    const intl = useIntl();
 
     // action
     const handleValueChange = (field: string, value: any) => {
@@ -25,7 +27,7 @@ export const CsvConfig: React.FC<FormatterConfigComponentInterface> = ({...props
     return (
         <div>
             <div className={'margin-top-18 flex flex-column'}>
-                <Label>Delimiter</Label>
+                <Label>{intl.formatMessage({id:"export.configurator.csv.delimiter"})}</Label>
                 <Input
                     onChange={(value) => {
                         handleValueChange('delimiter', value)
@@ -36,7 +38,7 @@ export const CsvConfig: React.FC<FormatterConfigComponentInterface> = ({...props
             </div>
 
             <div className={'margin-top-18 flex flex-column'}>
-                <Label>Include header</Label>
+                <Label>{intl.formatMessage({id:"export.configurator.csv.includeHeader"})}</Label>
                 <Switch
                     onChange={(value) => {
                         handleValueChange('includeHeader', value)
@@ -47,7 +49,7 @@ export const CsvConfig: React.FC<FormatterConfigComponentInterface> = ({...props
             </div>
 
             <div className={'margin-top-18 flex flex-column'}>
-                <Label>End of line characters</Label>
+                <Label>{intl.formatMessage({id:"export.configurator.csv.endLineChar"})}</Label>
                 <Select
                     onChange={(value) => {
                         handleValueChange('endOfLineChar', value)
