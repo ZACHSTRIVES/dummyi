@@ -2,7 +2,7 @@
     border: 1px solid var(--semi-color-border);
     border-radius: var(--semi-border-radius-small);
     padding: 12px;
-    background-color: var(--semi-color-nav-bg);
+    background-color: rgba(var(--semi-grey-0), 1);
 }
 
 .generateButton{
