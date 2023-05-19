@@ -1,4 +1,4 @@
-import {SET_EXPORT_FORMAT, SET_NUMBER_OF_EXPORT_ROWS} from "@/constants/actions";
+import {SET_EXPORT_FORMAT, SET_NUMBER_OF_EXPORT_ROWS, SET_FORMATTER_CONFIG} from "@/constants/actions";
 import {ExportFormat} from "@/constants/enums";
 
 
@@ -9,7 +9,13 @@ export const doSetNumberOfExportRows = (rows: Number): any =>
     };
 
 // change export format
-export const doChangeExportFormat = (type: ExportFormat): any =>
+export const doChangeExportFormat = (type: ExportFormat, defaultConfig: any): any =>
     async dispatch => {
-        dispatch({type: SET_EXPORT_FORMAT, payload: type});
+        dispatch({type: SET_EXPORT_FORMAT, payload: {type, defaultConfig}});
+    };
+
+// set formatter config
+export const doSetFormatterConfig = (config: any): any =>
+    async dispatch => {
+        dispatch({type: SET_FORMATTER_CONFIG, payload: config});
     };

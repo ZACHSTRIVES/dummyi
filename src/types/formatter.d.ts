@@ -5,9 +5,12 @@ export type Formatter ={
     type: ExportType;
     category: ExportTypeCategory;
     format: (data: any) => any;
-    configComponent?: React.FunctionComponent;
+    configComponent?: React.FunctionComponent<FormatterConfigComponentInterface>;
+    defaultConfig?: any;
 }
 
-export type FormattersGroupedByCategory = {
-    [key in ExportTypeCategory]: Formatter[];
+export interface FormatterConfigComponentInterface{
+    onConfigChange: (config: any) => void;
+    config: any;
 }
+

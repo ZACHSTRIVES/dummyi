@@ -37,4 +37,9 @@ export enum PreviewType{
     RAW = "raw"
 }
 
+export enum EndOfLineChars {
+    LF = '\n',
+    CRLF = '\r\n'
+}
+
 

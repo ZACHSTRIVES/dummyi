@@ -29,6 +29,7 @@ export interface AppReducerState {
 export interface ExporterReducerState {
     exportFormat: ExportFormat;
     numberOfExportRows: number;
+    formatterConfig: any;
 }
 
 export interface WorkspaceReducerState {
