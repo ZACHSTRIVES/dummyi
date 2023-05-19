@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 
 export default function About() {
     return (
@@ -7,7 +8,7 @@ export default function About() {
             <Head>
                 <title>About - Duymmi</title>
             </Head>
-            <h1>About</h1>
+            <Image width={50} height={50} src={'/images/exportFormats/dark/Javascript.svg'} alt={'test'}/>
         </div>
     );
 }

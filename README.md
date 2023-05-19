@@ -1,6 +1,10 @@
-# mockdata.co.nz
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./public/images/logo-white.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./public/images/logo-black.svg">
+  <img alt="Dummyi" src="./public/images/logo-black.svg" width="300">
+</picture>
 
-![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=mockdata-dev&style=flat-square)
+![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=dummyi&style=flat-square) ![Version](https://badgen.net/badge/production/NA/red)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

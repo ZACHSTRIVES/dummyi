@@ -15,16 +15,16 @@ export enum Locales {
     ZH = "zh"
 }
 
-export enum ExportType {
-    CSV = "csv",
-    TSV = "tsv",
-    JSON = "json",
-    XML = "xml",
-    // SQL = "sql",
-    // HTML = "html",
-    // Markdown = "markdown",
-    // CSHARP = "csharp",
-    // JAVA = "java",
+export enum ExportFormatCategory {
+    FILE_TYPES = "fileTypes",
+    PROGRAMMING_LANGUAGES = "programmingLanguages",
+}
+
+export enum ExportFormat {
+    CSV = "CSV",
+    JSON = "JSON",
+    JAVA_SCRIPT = "Javascript",
+    XML = "XML",
 }
 
 export enum ComponentSize{
@@ -35,6 +35,11 @@ export enum ComponentSize{
 export enum PreviewType{
     TABLE = "table",
     RAW = "raw"
+}
+
+export enum EndOfLineChars {
+    LF = '\n',
+    CRLF = '\r\n'
 }
 
 

@@ -1,4 +1,4 @@
-import {ColorMode, PanelsOrientation, PreviewType} from "@/constants/enums";
+import {ColorMode, ExportFormat, ExportFormat, PanelsOrientation, PreviewType} from "@/constants/enums";
 import enTranslations from "@/locales/en.json";
 import type {IntlFormatters} from 'react-intl';
 
@@ -27,7 +27,9 @@ export interface AppReducerState {
 }
 
 export interface ExporterReducerState {
+    exportFormat: ExportFormat;
     numberOfExportRows: number;
+    formatterConfig: any;
 }
 
 export interface WorkspaceReducerState {

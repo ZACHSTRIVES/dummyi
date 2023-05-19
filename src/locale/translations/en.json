@@ -1,4 +1,6 @@
 {
+  "export.category.fileTypes": "General file types",
+  "export.category.programmingLanguages": "Programming languages",
   "nav.item.home": "Home",
   "nav.item.workspace": "Workspace",
   "nav.item.about": "About",
@@ -24,5 +26,9 @@
   "preview.setting.copyToClipboard.notification.success": "Success",
   "preview.setting.copyToClipboard.notification.content": "The content has been copied to the clipboard.",
   "preview.setting.rawView.text": "Raw",
-  "preview.setting.tableView.text": "Table"
+  "preview.setting.tableView.text": "Table",
+  "export.configurator.modal.title": "Export Format",
+  "export.configurator.modal.closeButton.text": "Close",
+  "export.configurator.config.label": "Configurations",
+  "export.configurator.config.empty": "Configuration of this export format is currently not available."
 }

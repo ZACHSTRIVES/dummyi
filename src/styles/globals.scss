@@ -11,6 +11,10 @@ body {
   display: flex;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
 .items-center {
   align-items: center;
 }
@@ -54,6 +58,10 @@ j
 
 .cm-editor {
   padding-left: 16px;
+}
+
+.margin-top-18 {
+  margin-top: 18px;
 }
 
 .margin-left-6 {
