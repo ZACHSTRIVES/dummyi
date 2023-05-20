@@ -2,6 +2,10 @@ import {Formatter} from "@/types/formatter";
 import {ExportFormat} from "@/constants/enums";
 import {formatters} from "@/core/formatters";
 
+// format data
+export const formatData = (data: any, format: ExportFormat, config: any): string => {
+    return formatters[format].format(data, config);
+}
 
 // Get formatters grouped by category
 export const getFormattersGroupedByCategory = ():{} => {

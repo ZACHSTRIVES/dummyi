@@ -33,7 +33,7 @@ export const CsvConfig: React.FC<FormatterConfigComponentInterface> = ({...props
                         handleValueChange('delimiter', value)
                     }}
                     value={config.delimiter}
-                    style={{width: '120px'}}
+                    style={{width: '60px'}}
                 />
             </div>
 

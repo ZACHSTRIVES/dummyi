@@ -3,6 +3,7 @@ import styles from './TablePreviewer.module.css';
 import {useSelector} from "react-redux";
 import {Store} from "@/types/system";
 import {Radio, Table} from "@douyinfe/semi-ui";
+import {DataField} from "@/types/generator";
 
 
 export type TablePreviewerProps = {
@@ -11,19 +12,20 @@ export type TablePreviewerProps = {
 }
 
 export const TablePreviewer: React.FunctionComponent<TablePreviewerProps> = ({...props}) => {
-    const {height,width} = props;
-    const scroll = useMemo(() => ({ y: height,x:width+100}), [height,width]);
+    const {height, width} = props;
+    const scroll = useMemo(() => ({y: height, x: width + 100}), [height, width]);
 
     // store
-    const data = useSelector((state: Store) => state.preview.tableViewContent);
+    const dataFields = useSelector((state: Store) => state.workspace.dataFields);
+    const data = useSelector((state: Store) => state.preview.previewData);
 
     return (
         <div className={styles.tablePreview}>
-            {data.length > 0 && <Table   scroll={scroll} dataSource={data} pagination={false}>
-                {Object.entries(data[0]).map(([key, value]) => (
-                    <Table.Column key={key} title={key} dataIndex={key}/>
+           <Table scroll={scroll} dataSource={data} pagination={false}>
+                {dataFields.map((field:DataField,index) => (
+                    <Table.Column key={field.fieldName} dataIndex={field.fieldName} title={field.fieldName}/>
                 ))}
-            </Table>}
+            </Table>
         </div>
     )
 }

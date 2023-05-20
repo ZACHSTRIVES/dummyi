@@ -5,6 +5,8 @@ import packageJson from '../../../../../package.json';
 import {useSelector} from "react-redux";
 import {ColorMode} from "@/constants/enums";
 import {Store} from "@/types/system";
+import Link from "next/link";
+import {GITHUB_URL} from "@/constants/links";
 
 
 export type FooterProps = {
@@ -38,18 +40,21 @@ export const Footer: FunctionComponent<FooterProps> = ({className}) => {
                     }}
                 >
                     <Image width={100} height={30} alt={"Dummy"} src={"/images/logo-grey.svg"}/>
-                    <Tag color={'grey'} type={colorMode===ColorMode.DARK?'solid':'ghost'}  size={"small"}>Beta v{projectVersion}</Tag>
+                    <Tag color={'grey'} type={colorMode === ColorMode.DARK ? 'solid' : 'ghost'}
+                         size={"small"}>Beta v{projectVersion}</Tag>
                 </span>
 
             <span>
-                    <Text size={"small"} link={{href: 'https://github.com/ZACHSTRIVES/mockdata.co.nz'}}
-                          style={{marginRight: '24px'}}
-                          underline>
+                <Link href={GITHUB_URL}>
+                    <Text size={"small"} style={{marginRight: '24px'}}>
                         Github
                     </Text>
-                    <Text size={"small"} link={{href: '/about'}} underline>
+                </Link>
+                <Link href={'/about'}>
+                    <Text size={"small"}>
                         About
                     </Text>
+                </Link>
             </span>
         </Footer>
     )

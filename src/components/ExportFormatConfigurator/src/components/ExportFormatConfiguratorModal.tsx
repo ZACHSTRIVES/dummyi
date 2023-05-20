@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
 import {ExportFormatSelect} from "@/components/ExportFormatConfigurator/src/components/ExportFormatSelect";
 import {IllustrationConstruction, IllustrationConstructionDark} from '@douyinfe/semi-illustrations';
-import {getFormatterByFormat, getFormatterConfigComponentByFormat} from "@/utils/exporterUtils";
+import {getFormatterByFormat, getFormatterConfigComponentByFormat} from "@/utils/formatterUtils";
 import {doSetFormatterConfig} from "@/reducers/exporter/exporterActions";
 
 export type ExportFormatConfiguratorModalProps = {

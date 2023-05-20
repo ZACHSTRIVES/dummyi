@@ -1,6 +1,7 @@
-import {ColorMode, ExportFormat, ExportFormat, PanelsOrientation, PreviewType} from "@/constants/enums";
+import {ColorMode, ExportFormat, PanelsOrientation, PreviewType} from "@/constants/enums";
 import enTranslations from "@/locales/en.json";
 import type {IntlFormatters} from 'react-intl';
+import {DataField} from "@/types/generator";
 
 // routes
 export interface RouteType {
@@ -33,18 +34,24 @@ export interface ExporterReducerState {
 }
 
 export interface WorkspaceReducerState {
+    dataFields: DataField[];
     panelsOrientation: PanelsOrientation;
 }
 
 export interface PreviewReducerState {
     previewType: PreviewType;
-    rawViewContent: string;
-    tableViewContent: Object[];
     rawViewShowLineNumber: boolean;
     rawViewLineWrap: boolean;
     rawViewFontSize: number;
+    previewData: any;
+    previewFormattedData: string;
 }
 
 // locales
 export type IntlMessageKeys = keyof typeof enTranslations;
 export type FormatMessageArgs = Parameters<IntlFormatters['formatMessage']>;
+
+// types
+export type JsonObject = {
+    [key: string]: any;
+}
