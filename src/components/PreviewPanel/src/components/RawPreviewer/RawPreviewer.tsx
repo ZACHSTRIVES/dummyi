@@ -23,8 +23,7 @@ export const RawPreviewer: React.FunctionComponent<RawPreviewerProps> = ({...pro
     const {rawViewContent,rawViewShowLineNumber, rawViewLineWrap, rawViewFontSize} = useSelector((state: Store) => state.preview);
 
     React.useEffect(() => {
-        const extensions:Extension[] = [
-            langs.sql()];
+        const extensions:Extension[] = [langs.sql()];
 
         if(rawViewLineWrap) {
             extensions.push(EditorView.lineWrapping);

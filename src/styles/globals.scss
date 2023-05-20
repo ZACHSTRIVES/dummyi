@@ -76,7 +76,6 @@ j
 .cm-scroller::-webkit-scrollbar-thumb {
   background-color: rgba(128, 125, 125, 0.23);
   border-radius: 4px;
-
 }
 
 .cm-scroller::-webkit-scrollbar-thumb:hover {
@@ -88,3 +87,19 @@ j
   background-color: transparent;
 }
 
+.semi-table-body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.semi-table-body::-webkit-scrollbar{
+  background-color: transparent;
+  width:0
+}
+
+.semi-table-body::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 125, 125, 0.23);
+  border-radius: 4px;
+}
+
+.semi-table-body::-webkit-scrollbar-thumb:hover {
+  background-color: #5e5353;
+}
