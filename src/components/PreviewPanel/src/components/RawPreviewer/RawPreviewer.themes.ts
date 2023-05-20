@@ -13,9 +13,9 @@ export const lightTheme = createTheme({
     },
     styles: [{tag: t.comment, color: '#dedede'},
         {tag: t.definition(t.typeName), color: '#482f4f'},
-        {tag: t.keyword, color: 'rgb(196,83,83)', fontWeight: 'bold'},
-        {tag: t.string, color: 'rgba(252,36,124,0.6)'},
-        {tag: t.typeName, color: '#d186ea'},
+        {tag: t.keyword, color: 'hsl(185, 90%, 30%)', fontWeight: 'bold'},
+        {tag: t.string, color: 'hsl(120, 50%, 45%)'},
+        {tag: t.typeName, color: 'hsl(185, 90%, 40%)'},
         {tag: t.tagName, color: '#008a02'},
         {tag: t.variableName, color: '#5b529b'}]
 });
