@@ -4,15 +4,15 @@
     height: 100%;
     left: 0;
     top: 0;
-    filter: blur(120px);
+    filter: blur(130px);
     opacity: .6;
 }
 
 .background:before, .background:after {
     content: "";
     position: absolute;
-    width: 40%;
-    height: 40%;
+    width: 60%;
+    height: 60%;
     border-radius: 50%;
 }
 

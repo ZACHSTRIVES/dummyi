@@ -5,6 +5,7 @@
 body {
   margin: 0;
   height: 100vh;
+  background-color: var(--semi-color-bg-0);
 }
 
 .flex {
@@ -76,7 +77,6 @@ j
 .cm-scroller::-webkit-scrollbar-thumb {
   background-color: rgba(128, 125, 125, 0.23);
   border-radius: 4px;
-
 }
 
 .cm-scroller::-webkit-scrollbar-thumb:hover {
@@ -88,3 +88,33 @@ j
   background-color: transparent;
 }
 
+.semi-table-body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.semi-table-body::-webkit-scrollbar{
+  background-color: transparent;
+  width:0
+}
+
+.semi-table-body::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 125, 125, 0.23);
+  border-radius: 4px;
+}
+
+.semi-table-body::-webkit-scrollbar-thumb:hover {
+  background-color: #5e5353;
+}
+
+.semi-select-option-list::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+
+.semi-select-option-list::-webkit-scrollbar-track {
+  background-color: rgba(128, 125, 125, 0.23);
+  border-radius: 4px;
+}
+
+.semi-select-option-list::-webkit-scrollbar-thumb {
+  background-color: #5e5353;
+}
