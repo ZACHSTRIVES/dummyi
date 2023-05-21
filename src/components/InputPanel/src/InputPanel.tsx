@@ -34,7 +34,7 @@ export const InputPanel: React.FunctionComponent<InputPanelProps> = () => {
         <div className={styles.inputPanel} ref={containerRef}>
             <div className={styles.background} />
             <Toolbar/>
-            <DataFieldsList height={containerHeight-85} />
+            <DataFieldsList height={containerHeight-64}  />
         </div>
     );
 };

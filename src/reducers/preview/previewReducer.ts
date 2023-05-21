@@ -30,7 +30,7 @@ export default (state: PreviewReducerState = initState, action: any) => {
             return {
                 ...state,
                 previewType: action.payload
-            }
+            };
         case SET_RAW_VIEW_SHOW_LINE_NUMBERS:
             return {
                 ...state,
@@ -40,17 +40,17 @@ export default (state: PreviewReducerState = initState, action: any) => {
             return {
                 ...state,
                 rawViewLineWrap: action.payload
-            }
+            };
         case SET_RAW_VIEW_FONT_SIZE:
             return {
                 ...state,
                 rawViewFontSize: action.payload
-            }
+            };
         case SET_PREVIEW_FORMATTED_DATA:
             return {
                 ...state,
                 previewFormattedData: action.payload
-            }
+            };
         default:
             return state;
     }

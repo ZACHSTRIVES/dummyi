@@ -8,6 +8,7 @@ export const SET_FORMATTER_CONFIG = 'SET_FORMATTER_CONFIG';
 
 // workspace
 export const SET_PANELS_DIRECTION = 'SET_PANELS_DIRECTION';
+export const SET_DATA_FIELDS = 'SET_DATA_FIELDS';
 
 // preview
 export const SET_PREVIEW_TYPE = 'SET_PREVIEW_TYPE';

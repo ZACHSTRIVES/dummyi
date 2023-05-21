@@ -2,22 +2,35 @@ import {DataField} from "@/types/generator";
 
 export const mockFields: DataField[] = [
     {
-        fieldName: 'name'
+        id:"1",
+        fieldName: 'name',
+        isDraft: false,
+
     },
     {
-        fieldName: 'phone'
+        id:"2",
+        fieldName: 'phone',
+        isDraft: false,
     },
     {
-        fieldName: 'email'
+        id:"3",
+        fieldName: 'email',
+        isDraft: false
     },
     {
-        fieldName: 'dob'
+        id:"4",
+        fieldName: 'dob',
+        isDraft: false
     },
     {
-        fieldName: 'company'
+        id:"5",
+        fieldName: 'company',
+        isDraft: false
     },
     {
-        fieldName: 'isActive'
+        id:"6",
+        fieldName: 'isActive',
+        isDraft: false
     }
 ]
 

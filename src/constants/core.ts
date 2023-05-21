@@ -1,4 +1,7 @@
-import {PanelsOrientation, PreviewType} from "@/constants/enums";
+import {ColorMode, PanelsOrientation, PreviewType} from "@/constants/enums";
+
+// app
+export const DEFAULT_COLOR_MODE = ColorMode.DARK;
 
 // exporter
 export const DEFAULT_NUMBER_EXPORT_ROWS = 100;

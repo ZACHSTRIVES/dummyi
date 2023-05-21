@@ -1,5 +1,7 @@
 export interface DataField {
-    fieldName: string;
+    id: string;
+    isDraft: boolean;
+    fieldName?: string;
     fieldType?: string;
 }
 

@@ -3,14 +3,16 @@ import styles from './DataFieldItem.module.scss';
 import {Form, Input, Typography, List, Divider} from "@douyinfe/semi-ui";
 import {IconHandle} from "@douyinfe/semi-icons";
 import {Draggable} from "react-beautiful-dnd";
+import {DataField} from "@/types/generator";
 
 export interface DataFieldItemProps {
     id: string;
     index: number;
+    dataField:DataField;
 }
 
 export const DataFieldItem: React.FunctionComponent<DataFieldItemProps> = ({...props}) => {
-    const {id, index} = props;
+    const {id, index,dataField} = props;
     const {Label} = Form;
     const {Text} = Typography;
 
@@ -38,7 +40,7 @@ export const DataFieldItem: React.FunctionComponent<DataFieldItemProps> = ({...p
                                 Field Name
                             </Label>
                             <Input
-                                value={`Field ${id}`}
+                                value={dataField.fieldName}
                                 style={{width: '120px'}}
                             />
                         </div>
