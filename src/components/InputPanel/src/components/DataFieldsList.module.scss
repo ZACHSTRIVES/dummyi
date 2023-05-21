@@ -1,7 +1,11 @@
 .dataFieldsList{
   margin-top: 24px;
-  overflow-x: auto;
+  overflow-y: scroll;
+}
 
+.dataFieldsList .dataFieldList__bottomButton{
+  text-align: center;
+  margin-bottom: 24px;
 }
 
 .dataFieldsList::-webkit-scrollbar {
