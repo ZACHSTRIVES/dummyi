@@ -11,12 +11,12 @@ export const CopyToClipboardButton: React.FunctionComponent<CopyToClipboardButto
     const intl = useIntl();
 
     // store
-    const rawViewContent = useSelector((state: Store) => state.preview.rawViewContent);
+    const previewFormattedData = useSelector((state: Store) => state.preview.previewFormattedData);
 
     // actions
     const copyToClipboard = () => {
         const input = document.createElement('textarea');
-        input.value = rawViewContent;
+        input.value = previewFormattedData;
         document.body.appendChild(input);
         input.select();
         document.execCommand('copy');
