@@ -1,5 +1,6 @@
 import {PreviewReducerState} from "@/types/system";
 import {
+    SET_PREVIEW_FORMATTED_DATA,
     SET_PREVIEW_TYPE,
     SET_RAW_VIEW_FONT_SIZE,
     SET_RAW_VIEW_LINE_WRAP,
@@ -44,6 +45,11 @@ export default (state: PreviewReducerState = initState, action: any) => {
             return {
                 ...state,
                 rawViewFontSize: action.payload
+            }
+        case SET_PREVIEW_FORMATTED_DATA:
+            return {
+                ...state,
+                previewFormattedData: action.payload
             }
         default:
             return state;

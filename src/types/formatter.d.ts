@@ -16,6 +16,7 @@ export interface FormatterConfigComponentInterface {
 }
 
 export interface FormatRequest {
+    format: ExportType;
     fields: DataField[];
     values: any[];
     config: JsonObject;

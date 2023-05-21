@@ -1,10 +1,10 @@
-import {Formatter} from "@/types/formatter";
+import {FormatRequest, Formatter} from "@/types/formatter";
 import {ExportFormat} from "@/constants/enums";
 import {formatters} from "@/core/formatters";
 
 // format data
-export const formatData = (data: any, format: ExportFormat, config: any): string => {
-    return formatters[format].format(data, config);
+export const formatData = (request:FormatRequest): string => {
+    return formatters[request.format].format(request);
 }
 
 // Get formatters grouped by category

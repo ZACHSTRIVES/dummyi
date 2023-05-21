@@ -10,18 +10,18 @@ export const format = (request: FormatRequest): string => {
         return output;
     }
 
+    const header = fields.map((field) => {
+        return field.fieldName;
+    });
+
     if (includeHeader) {
-        const header = fields.map((field) => {
-            return field.fieldName;
-        });
         output += header.join(delimiter) + endOfLineChar;
     }
 
-    const rows = values.map((row) => {
-        return row.map((value) => {
-            if (typeof value === 'boolean') {
-                value = boolToString(value); // Convert boolean to string
-            } else if (typeof value === 'string') {
+    const rows = values.map((item) => {
+        return header.map((column) => {
+            let value = item[column];
+            if (typeof value === 'string') {
                 value = value.replace(/"/g, '""'); // Escape double quotes
                 if (value.includes(delimiter) || value.includes(endOfLineChar)) {
                     value = `"${value}"`; // Enclose in double quotes if necessary
