@@ -38,5 +38,6 @@ body[theme-mode="dark"] .background:after {
 
 .inputPanel{
     padding: 12px 24px;
+    height: 95%;
 }
 

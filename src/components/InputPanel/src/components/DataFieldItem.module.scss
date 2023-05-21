@@ -1,0 +1,23 @@
+.dataFieldItem{
+  border-radius: var(--semi-border-radius-small);
+  padding: 12px;
+  align-items: center;
+}
+
+.dataFieldItem .dataFieldItem__content{
+  display: flex;
+}
+
+.dataFieldItem .dataFieldItem__column{
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dataFieldItem .dataFieldItem__header{
+  cursor: move !important;
+  color: var(--semi-color-text-2);
+  margin-bottom: 6px;
+  margin-right: 9px;
+}
+

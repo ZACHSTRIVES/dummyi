@@ -1,0 +1,20 @@
+.dataFieldsList{
+  margin-top: 24px;
+  overflow-x: auto;
+
+}
+
+.dataFieldsList::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+
+.dataFieldsList::-webkit-scrollbar-track {
+  background-color: transparent;
+
+}
+
+.dataFieldsList::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
