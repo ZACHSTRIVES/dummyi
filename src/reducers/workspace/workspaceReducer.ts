@@ -1,10 +1,11 @@
 import {Action, WorkspaceReducerState} from "@/types/system";
 import {SET_PANELS_DIRECTION} from "@/constants/actions";
 import {DEFAULT_PANELS_ORIENTATION} from "@/constants/core";
-import {PanelsOrientation} from "@/constants/enums";
+import {mockFields} from "@/reducers/mock";
 
-export const initStates:WorkspaceReducerState = {
-   panelsOrientation: DEFAULT_PANELS_ORIENTATION,
+export const initStates: WorkspaceReducerState = {
+    dataFields: mockFields,
+    panelsOrientation: DEFAULT_PANELS_ORIENTATION,
 }
 
 export default (state: WorkspaceReducerState = initStates, action: Action) => {

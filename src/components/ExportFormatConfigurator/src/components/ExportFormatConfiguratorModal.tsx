@@ -5,8 +5,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
 import {ExportFormatSelect} from "@/components/ExportFormatConfigurator/src/components/ExportFormatSelect";
 import {IllustrationConstruction, IllustrationConstructionDark} from '@douyinfe/semi-illustrations';
-import {getFormatterByFormat, getFormatterConfigComponentByFormat} from "@/utils/exporterUtils";
+import {getFormatterByFormat, getFormatterConfigComponentByFormat} from "@/utils/formatterUtils";
 import {doSetFormatterConfig} from "@/reducers/exporter/exporterActions";
+import {FormatRequest} from "@/types/formatter";
 
 export type ExportFormatConfiguratorModalProps = {
     open: boolean;
@@ -21,10 +22,20 @@ export const ExportFormatConfiguratorModal: React.FC<ExportFormatConfiguratorMod
     // store
     const exportFormat = useSelector((state: Store) => state.exporter.exportFormat);
     const formatterConfig = useSelector((state: Store) => state.exporter.formatterConfig);
+    const previewData = useSelector((state: Store) => state.preview.previewData);
+    const fields = useSelector((state: Store) => state.workspace.dataFields);
 
     // action
     const onConfigChange = (config) => {
-        dispatch(doSetFormatterConfig(config));
+
+        // CAUTION: temp solution, need to be refactored,for test only
+        const formatRequest: FormatRequest = {
+            format: exportFormat,
+            config: config,
+            values: previewData,
+            fields: fields
+        }
+        dispatch(doSetFormatterConfig(formatRequest, config));
     }
 
     // render

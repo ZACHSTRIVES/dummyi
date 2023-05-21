@@ -8,7 +8,6 @@ export default function About() {
             <Head>
                 <title>About - Duymmi</title>
             </Head>
-            <Image width={50} height={50} src={'/images/exportFormats/dark/Javascript.svg'} alt={'test'}/>
         </div>
     );
 }

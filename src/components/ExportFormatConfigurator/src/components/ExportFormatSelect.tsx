@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
 import {Select, Typography} from "@douyinfe/semi-ui";
-import {getFormatterByFormat, getFormattersGroupedByCategory} from "@/utils/exporterUtils";
+import {getFormatterByFormat, getFormattersGroupedByCategory} from "@/utils/formatterUtils";
 import {formatters} from "@/core/formatters";
 import {Formatter} from "@/types/formatter";
 import Image from "next/image";

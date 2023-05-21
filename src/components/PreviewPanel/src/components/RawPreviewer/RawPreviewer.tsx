@@ -20,12 +20,17 @@ export const RawPreviewer: React.FunctionComponent<RawPreviewerProps> = ({...pro
 
     // store
     const colorMode = useSelector((state: Store) => state.app.colorMode);
-    const {rawViewContent,rawViewShowLineNumber, rawViewLineWrap, rawViewFontSize} = useSelector((state: Store) => state.preview);
+    const {
+        previewFormattedData,
+        rawViewShowLineNumber,
+        rawViewLineWrap,
+        rawViewFontSize
+    } = useSelector((state: Store) => state.preview);
 
     React.useEffect(() => {
-        const extensions:Extension[] = [langs.sql()];
+        const extensions: Extension[] = [langs.sql()];
 
-        if(rawViewLineWrap) {
+        if (rawViewLineWrap) {
             extensions.push(EditorView.lineWrapping);
         }
 
@@ -45,7 +50,7 @@ export const RawPreviewer: React.FunctionComponent<RawPreviewerProps> = ({...pro
                 highlightActiveLineGutter: false,
             }}
             height={`${height}px`}
-            value={rawViewContent}
+            value={previewFormattedData}
             style={{
                 fontSize: rawViewFontSize,
             }}
