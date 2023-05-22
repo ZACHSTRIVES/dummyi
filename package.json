@@ -22,7 +22,7 @@
     "@uiw/react-codemirror": "^4.19.16",
     "@vercel/analytics": "^1.0.1",
     "autoprefixer": "10.4.14",
-    "eslint": "8.39.0",
+    "eslint": "8.41.0",
     "eslint-config-next": "13.4.3",
     "hamburger-react": "^2.5.0",
     "next": "13.4.2",
@@ -43,6 +43,6 @@
     "cypress": "^12.12.0",
     "mini-css-extract-plugin": "^2.7.5",
     "typescript": "^5.0.4",
-    "webpack": "^5.82.1"
+    "webpack": "^5.83.1"
   }
 }
