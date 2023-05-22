@@ -10,7 +10,7 @@ const localeMap = {
         name: 'English',
         shortcuts: 'EN'
     },
-    [Locales.ZH]: {
+    [Locales.ZH_CN]: {
         name: '中文',
         shortcuts: '中文'
     }

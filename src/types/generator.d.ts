@@ -1,3 +1,6 @@
+import {DataType, DataTypeCategory} from "@/constants/enums";
+import React from "react";
+
 export interface DataField {
     id: string;
     isDraft: boolean;
@@ -5,5 +8,20 @@ export interface DataField {
     fieldType?: string;
 }
 
+export interface Generator {
+    type: DataType;
+    category: DataTypeCategory;
+    generate: (request: GenerateRequest) => any;
+    examples?: string;
+    configComponent?: React.FunctionComponent<GeneratorConfigComponentInterface>;
+    defaultConfig?: any;
+}
 
+export interface GeneratorConfigComponentInterface {
+    onConfigChange: (config: any) => void;
+}
+
+export interface GenerateRequest {
+    dataFields: DataField[];
+}
 

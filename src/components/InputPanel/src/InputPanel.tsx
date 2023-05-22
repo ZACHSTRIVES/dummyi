@@ -11,7 +11,7 @@ export type InputPanelProps = {}
 export const InputPanel: React.FunctionComponent<InputPanelProps> = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [containerHeight, setPanelHeight] = React.useState(800);
-    const [containerWidth, setPanelWidth] = React.useState(800);
+    const [componentSize, setComponentSize] = React.useState(ComponentSize.LARGE);
 
     useEffect(() => {
         const resizeObserver = new ResizeObserver((entries) => {
@@ -19,7 +19,12 @@ export const InputPanel: React.FunctionComponent<InputPanelProps> = () => {
             const containerWidth = entries[0].contentRect.width;
 
             setPanelHeight(containerHeight);
-            setPanelWidth(containerWidth)
+
+            if(containerWidth < 470) {
+                setComponentSize(ComponentSize.SMALL);
+            }else {
+                setComponentSize(ComponentSize.LARGE);
+            }
         });
 
         if (containerRef.current) {
@@ -34,7 +39,7 @@ export const InputPanel: React.FunctionComponent<InputPanelProps> = () => {
         <div className={styles.inputPanel} ref={containerRef}>
             <div className={styles.background} />
             <Toolbar/>
-            <DataFieldsList height={containerHeight-64}  />
+            <DataFieldsList size={componentSize}  height={containerHeight-64}  />
         </div>
     );
 };

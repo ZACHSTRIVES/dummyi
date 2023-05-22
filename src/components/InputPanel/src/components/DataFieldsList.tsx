@@ -8,17 +8,21 @@ import {DragDropContext, Droppable} from "react-beautiful-dnd";
 import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
 import {doUpdateDataFields} from "@/reducers/workspace/workspaceActions";
-import { UUID } from "uuidjs";
+import {UUID} from "uuidjs";
 import {DataField} from "@/types/generator";
+import {useIntl} from "@/locale";
+import {ComponentSize} from "@/constants/enums";
 
 export interface InputFieldListProps {
     height: number;
+    size?: ComponentSize;
 }
 
 export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({...props}) => {
-    const {height} = props;
+    const {height, size} = props;
     const dispatch = useDispatch();
     const containerRef = useRef<HTMLDivElement>(null);
+    const intl = useIntl();
 
     // store
     const dataFields = useSelector((state: Store) => state.workspace.dataFields);
@@ -36,7 +40,7 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
     }
 
     const handleAddField = async () => {
-        const newDataField:DataField = {
+        const newDataField: DataField = {
             id: UUID.generate(),
             isDraft: true,
         }
@@ -53,11 +57,14 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
                                 <div ref={provided.innerRef} {...provided.droppableProps}>
                                     <List>
                                         {dataFields.map((item, index) =>
-                                            <DataFieldItem key={item.id} index={index} id={item.id} dataField={item}/>
+                                            <DataFieldItem size={size} key={item.id} index={index} id={item.id}
+                                                           dataField={item}/>
                                         )}
                                         {provided.placeholder}
                                         <div className={styles.dataFieldList__bottomButton}>
-                                            <Button onClick={handleAddField} icon={<IconPlus/>}>Add field</Button>
+                                            <Button onClick={handleAddField} icon={<IconPlus/>}>
+                                                {intl.formatMessage({id: "dataFields.list.addNewFieldButton.text"})}
+                                            </Button>
                                         </div>
                                     </List>
                                 </div>
@@ -68,10 +75,13 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
                         <Empty
                             title="No fields"
                             description="Let's start by creating your first field!"
-                            style={{marginBottom: 24}}
+                            style={{marginBottom: 24, textAlign: "center"}}
                         >
+
+                            <Button onClick={handleAddField} icon={<IconPlus/>}>
+                                {intl.formatMessage({id: "dataFields.list.addNewFieldButton.text"})}
+                            </Button>
                         </Empty>
-                        <Button onClick={handleAddField} icon={<IconPlus/>}>Add field</Button>
                     </>
             }
         </div>

@@ -1,5 +1,33 @@
-import {PanelsOrientationButton} from "@/components/Toolbar/src/components/PanelsOrientationButton";
 
+// format data
+export enum ExportFormatCategory {
+    FILE_TYPES = "fileTypes",
+    PROGRAMMING_LANGUAGES = "programmingLanguages",
+}
+
+export enum ExportFormat {
+    CSV = "CSV",
+    JSON = "JSON",
+    JAVA_SCRIPT = "Javascript",
+    XML = "XML",
+}
+
+// data types
+export enum DataTypeCategory {
+    BASIC = "basic",
+    PERSON = "person",
+    COMMERCE = "commerce",
+}
+
+export enum DataType {
+    NUMBER = "number",
+    PERSON_NAME = "personName",
+    DATE_TIME = "dateTime",
+    ACCOUNT_NUMBER = "accountNumber",
+    BOOLEAN = "boolean"
+}
+
+// systems
 export enum ColorMode {
     DARK = "dark",
     LIGHT = "light",
@@ -12,19 +40,7 @@ export enum PanelsOrientation {
 
 export enum Locales {
     EN = "en",
-    ZH = "zh"
-}
-
-export enum ExportFormatCategory {
-    FILE_TYPES = "fileTypes",
-    PROGRAMMING_LANGUAGES = "programmingLanguages",
-}
-
-export enum ExportFormat {
-    CSV = "CSV",
-    JSON = "JSON",
-    JAVA_SCRIPT = "Javascript",
-    XML = "XML",
+    ZH_CN = "zh-CN",
 }
 
 export enum ComponentSize{

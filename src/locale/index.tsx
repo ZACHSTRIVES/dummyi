@@ -6,18 +6,18 @@ import React, { ReactNode } from 'react';
 import {FormatMessageArgs, IntlMessageKeys} from "@/types/system";
 
 // translation
-import zhTranslations from './translations/zh.json';
-import enTranslations from './translations/en.json';
+import {zhCn} from './translations/zhCn';
+import {en} from './translations/en';
 import {Locales} from "@/constants/enums";
 
 export const translations = {
     [Locales.EN]:{
         semi:semiEnUS,
-        app:enTranslations
+        app:en
     },
-    [Locales.ZH]:{
+    [Locales.ZH_CN]:{
         semi:semiZhCN,
-        app:zhTranslations
+        app:zhCn
     }
 };
 

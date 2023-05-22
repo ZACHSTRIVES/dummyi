@@ -40,3 +40,23 @@
     margin-top: 12px;
   }
 }
+
+.dataTypeSelectModalItemList {
+  padding: 0 24px;
+  height: 480px;
+  overflow-y: auto;
+}
+
+.dataTypeSelectModalItemList::-webkit-scrollbar {
+  width: 4px;
+  background-color: transparent;
+}
+
+.dataTypeSelectModalItemList::-webkit-scrollbar-track {
+  background-color: rgba(128, 125, 125, 0.23);
+  border-radius: 4px;
+}
+
+.dataTypeSelectModalItemList::-webkit-scrollbar-thumb {
+  background-color: #5e5353;
+}

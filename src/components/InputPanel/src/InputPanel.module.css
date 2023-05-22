@@ -6,6 +6,7 @@
     top: 0;
     filter: blur(130px);
     opacity: .6;
+
 }
 
 .background:before, .background:after {
