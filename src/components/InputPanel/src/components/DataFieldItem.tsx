@@ -4,6 +4,7 @@ import {Form, Input, Typography, List, Divider} from "@douyinfe/semi-ui";
 import {IconHandle} from "@douyinfe/semi-icons";
 import {Draggable} from "react-beautiful-dnd";
 import {DataField} from "@/types/generator";
+import {DataTypeSelector} from "@/components/DataTypeSelector";
 
 export interface DataFieldItemProps {
     id: string;
@@ -41,7 +42,7 @@ export const DataFieldItem: React.FunctionComponent<DataFieldItemProps> = ({...p
                             </Label>
                             <Input
                                 value={dataField.fieldName}
-                                style={{width: '120px'}}
+                                style={{width: '100px'}}
                             />
                         </div>
 
@@ -49,10 +50,7 @@ export const DataFieldItem: React.FunctionComponent<DataFieldItemProps> = ({...p
                             <Label style={{fontWeight: 'normal', fontSize: 'small', marginLeft: '6px'}}>
                                 Type
                             </Label>
-                            <Input
-                                value={'Person Name'}
-                                style={{width: '120px'}}
-                            />
+                           <DataTypeSelector />
                         </div>
                     </div>
                     <Divider style={{marginTop: "12px"}}/>

@@ -1,0 +1,42 @@
+.dataTypeSelectModalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+
+  .dataTypeSelectModalHeader__titleSection {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .dataTypeSelectModalHeader__title {
+    width: 127px;
+  }
+
+  .dataTypeSelectModalHeader__searchBar {
+    width: 300px;
+    margin-left: 24px;
+  }
+
+}
+
+.dataTypeSelectModalTab {
+  display: flex;
+  width: 100px;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 670px) {
+  .dataTypeSelectModalHeader {
+    align-items: normal;
+  }
+  .dataTypeSelectModalHeader__titleSection {
+    display: block !important;
+  }
+  .dataTypeSelectModalHeader__searchBar {
+    width: 100% !important;
+    margin-left: 0px !important;
+    margin-top: 12px;
+  }
+}

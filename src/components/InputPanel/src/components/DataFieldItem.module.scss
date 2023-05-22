@@ -1,23 +1,32 @@
-.dataFieldItem{
+.dataFieldItem {
   border-radius: var(--semi-border-radius-small);
   padding: 12px;
   align-items: center;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  .dataFieldItem__content {
+    display: flex;
+  }
+
+  .dataFieldItem__column {
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dataFieldItem__header {
+    cursor: move !important;
+    color: var(--semi-color-text-2);
+    margin-bottom: 6px;
+    margin-right: 9px;
+  }
 }
 
-.dataFieldItem .dataFieldItem__content{
-  display: flex;
-}
 
-.dataFieldItem .dataFieldItem__column{
-  padding: 6px;
-  display: flex;
-  flex-direction: column;
-}
-
-.dataFieldItem .dataFieldItem__header{
-  cursor: move !important;
-  color: var(--semi-color-text-2);
-  margin-bottom: 6px;
-  margin-right: 9px;
-}
 

@@ -1,12 +1,19 @@
-.dataFieldsList{
+.dataFieldsList {
   margin-top: 24px;
   overflow-y: scroll;
-}
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 
-.dataFieldsList .dataFieldList__bottomButton{
-  cursor: pointer;
-  text-align: center;
-  margin-bottom: 24px;
+  .dataFieldList__bottomButton {
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 24px;
+  }
 }
 
 .dataFieldsList::-webkit-scrollbar {
