@@ -54,15 +54,15 @@ export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalPro
                     }
                     itemKey="1"
                 >
-                    <div style={{padding: '0 24px',height:'480px', overflowY:'scroll'}}>
+                    <div style={{padding: '0 24px', height: '480px', overflowY: 'scroll'}}>
                         <CardGroup spacing={10}>
                             {
-                                new Array(30).fill(null).map((v, idx)=>(
+                                new Array(30).fill(null).map((v, idx) => (
                                     <Card
                                         key={idx}
                                         shadows='hover'
                                         title='Card title'
-                                        style={{ width: 170}}
+                                        style={{width: 170}}
                                     >
                                         Card content
                                     </Card>

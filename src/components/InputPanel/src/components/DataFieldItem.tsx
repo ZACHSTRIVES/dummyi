@@ -1,10 +1,13 @@
 import React from 'react';
 import styles from './DataFieldItem.module.scss';
-import {Form, Input, Typography, List, Divider} from "@douyinfe/semi-ui";
-import {IconHandle} from "@douyinfe/semi-icons";
+import {Form, Input, Typography, List, Divider, Button} from "@douyinfe/semi-ui";
+import {IconClose, IconHandle} from "@douyinfe/semi-icons";
 import {Draggable} from "react-beautiful-dnd";
 import {DataField} from "@/types/generator";
 import {DataTypeSelector} from "@/components/DataTypeSelector";
+import {Store} from "@/types/system";
+import {useDispatch, useSelector} from "react-redux";
+import {doUpdateDataFields} from "@/reducers/workspace/workspaceActions";
 
 export interface DataFieldItemProps {
     id: string;
@@ -15,12 +18,21 @@ export interface DataFieldItemProps {
 export const DataFieldItem: React.FunctionComponent<DataFieldItemProps> = ({...props}) => {
     const {id, index,dataField} = props;
     const {Label} = Form;
-    const {Text} = Typography;
+    const dispatch = useDispatch();
+
+    // store
+    const dataFields = useSelector((state: Store) => state.workspace.dataFields);
 
     const getItemStyle = (isDragging, draggableStyle) => ({
         backgroundColor: isDragging ? "rgba(var(--semi-grey-0), 0.5)" : null,
         ...draggableStyle
     })
+
+    // actions
+    const handleDelete = () => {
+        const newDataFields = dataFields.filter(field => field.id !== id);
+        dispatch(doUpdateDataFields(newDataFields));
+    }
 
     return (
         <Draggable draggableId={id} index={index}>
@@ -52,6 +64,11 @@ export const DataFieldItem: React.FunctionComponent<DataFieldItemProps> = ({...p
                             </Label>
                            <DataTypeSelector />
                         </div>
+
+                        <div className={styles.dataFieldItem__column}>
+                           <Button onClick={handleDelete} style={{color:'#c7c4c4'}} theme={'borderless'} icon={<IconClose/>}/>
+                        </div>
+
                     </div>
                     <Divider style={{marginTop: "12px"}}/>
                 </div>

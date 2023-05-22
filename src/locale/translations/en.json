@@ -33,5 +33,9 @@
   "export.configurator.config.empty": "Configuration of this export format is currently not available.",
   "export.configurator.csv.delimiter": "Delimiter",
   "export.configurator.csv.includeHeader": "Include header",
-  "export.configurator.csv.endLineChar": "End of line characters"
+  "export.configurator.csv.endLineChar": "End of line characters",
+  "error.404.description": "Page does not exist",
+  "error.404.button.text": "Home page",
+  "error.general.description": "Oops! An error has occurred!",
+  "error.general.button.text": "Home page"
 }
