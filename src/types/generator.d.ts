@@ -12,7 +12,7 @@ export interface Generator {
     type: DataType;
     category: DataTypeCategory;
     generate: (request: GenerateRequest) => any;
-    examples?: string;
+    exampleLines?: string[];
     configComponent?: React.FunctionComponent<GeneratorConfigComponentInterface>;
     defaultConfig?: any;
     displayName?: string;

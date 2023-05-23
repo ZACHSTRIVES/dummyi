@@ -13,7 +13,7 @@
     "@douyinfe/semi-next": "^2.35.0",
     "@douyinfe/semi-ui": "^2.35.0",
     "@reduxjs/toolkit": "^1.9.5",
-    "@semi-bot/semi-theme-mockdatanz": "^1.1.1",
+    "@semi-bot/semi-theme-mockdatanz": "^1.1.2",
     "@types/node": "20.1.4",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",

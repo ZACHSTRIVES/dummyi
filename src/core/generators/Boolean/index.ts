@@ -7,5 +7,6 @@ export const BooleanGenerator : Generator = {
     type: DataType.BOOLEAN,
     category: DataTypeCategory.BASIC,
     generate: generate,
-    configComponent: BooleanConfigPanel
+    configComponent: BooleanConfigPanel,
+    exampleLines:["true, false", "1, 0",'"True", "Yes", "No"']
 }

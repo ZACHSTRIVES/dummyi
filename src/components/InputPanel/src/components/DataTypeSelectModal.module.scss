@@ -60,3 +60,17 @@
 .dataTypeSelectModalItemList::-webkit-scrollbar-thumb {
   background-color: #5e5353;
 }
+
+.dataTypeSelectModalCard {
+  width: 170px;
+  height: 130px;
+  cursor: pointer;
+
+  .dataTypeSelectModalCard__examples {
+    font-size: 2px;
+  }
+}
+
+.dataTypeSelectModalCard:hover {
+  border-color: var(--semi-color-text-2);
+}

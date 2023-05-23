@@ -58,7 +58,8 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
                                 <div ref={provided.innerRef} {...provided.droppableProps}>
                                     <List>
                                         {dataFields.map((item, index) =>
-                                            <DataFieldsListItem size={size} key={item.id} index={index} id={item.id} dataField={item}/>
+                                            <DataFieldsListItem size={size} key={item.id} index={index} id={item.id}
+                                                                dataField={item}/>
                                         )}
                                         {provided.placeholder}
                                         <div className={styles.dataFieldList__bottomButton}>

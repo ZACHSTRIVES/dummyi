@@ -52,6 +52,7 @@ export const zhCN = {
     "nav.colorModeSwitchButton.switchToLightMode.text": "切换到亮色模式",
     "nav.languageSwitchButton.tooltip": "语言",
     "nav.languageSwitchModal.title": "选择语言",
+    "nav.languageSwitchModal.footer.chatGPT.text": "多语言翻译由ChatGPT生成",
 
     // workspace
     "toolbar.numOfRowInput.suffix": "行",

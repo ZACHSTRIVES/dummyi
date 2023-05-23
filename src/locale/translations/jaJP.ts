@@ -54,6 +54,7 @@ export const jaJP = {
     "nav.colorModeSwitchButton.switchToLightMode.text": "ライトモードに切り替え",
     "nav.languageSwitchButton.tooltip": "言語",
     "nav.languageSwitchModal.title": "言語の選択",
+    "nav.languageSwitchModal.footer.chatGPT.text": "多言語翻訳はChatGPTによって生成されました",
 
     // workspace
     "toolbar.numOfRowInput.suffix": "行",

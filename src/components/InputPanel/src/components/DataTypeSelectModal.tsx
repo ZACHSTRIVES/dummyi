@@ -7,17 +7,20 @@ import {getGeneratorList} from "@/utils/generatorUtils";
 import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
 import {doCloseDataTypeSelectModal} from "@/reducers/workspace/workspaceActions";
+import {ColorMode} from "@/constants/enums";
 
-export interface DataTypeSelectModalProps {}
+export interface DataTypeSelectModalProps {
+}
 
 export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalProps> = ({...props}) => {
     const intl = useIntl();
     const {Title} = Typography;
     const dispatch = useDispatch();
-    const [searchText, setSearchText] = React.useState(null);
 
     // store
     const open = useSelector((state: Store) => state.workspace.showDataTypeSelectModal);
+    const colorMode = useSelector((state: Store) => state.app.colorMode);
+    const [searchText, setSearchText] = React.useState(null);
     const data = useMemo(() => getGeneratorList(searchText, intl), [intl, searchText]);
 
     // actions
@@ -66,7 +69,7 @@ export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalPro
                             tab={
                                 <div className={styles.dataTypeSelectModalTab}>
                                     {intl.formatMessage({id: `dataType.category.${category}`})}
-                                    <Tag type={'solid'}>{data[category].length}</Tag>
+                                    <Tag type={colorMode === ColorMode.LIGHT? 'light':'solid'}>{data[category].length}</Tag>
                                 </div>
                             }
                             itemKey={category}
@@ -79,9 +82,16 @@ export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalPro
                                                 key={item.type}
                                                 shadows='hover'
                                                 title={item.displayName}
-                                                style={{width: 170}}
+                                                className={styles.dataTypeSelectModalCard}
                                             >
-                                                Card content
+                                                {
+                                                    item.exampleLines && item.exampleLines.map((example, index) => (
+                                                        <div key={index}
+                                                             className={styles.dataTypeSelectModalCard__example}>
+                                                            {example}
+                                                        </div>
+                                                    ))
+                                                }
                                             </Card>
                                         ))
                                     }
@@ -91,7 +101,6 @@ export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalPro
                     )
                 })}
             </Tabs>
-
         </Modal>
     );
 }
