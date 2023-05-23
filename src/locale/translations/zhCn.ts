@@ -21,12 +21,25 @@ export const zhCn = {
     // data types
 
     // data type category
+    "dataType.category.all": "全部",
     "dataType.category.basic": "基础",
     "dataType.category.person": "人物",
     "dataType.category.commerce": "商业",
 
     // number
     "dataType.number": "数字",
+
+    // dateTime
+    "dataType.dateTime": "日期时间",
+
+    // boolean
+    "dataType.boolean": "布尔值",
+
+    // person name
+    "dataType.personName": "人名",
+
+    // account mi,ner
+    "dataType.accountNumber": "账号",
 
     // -------------------------------------------------------------------------------------------------------------
     // pages
@@ -64,6 +77,8 @@ export const zhCn = {
     "dataFields.input.fieldName.label": "字段名",
     "dataFields.input.type.label": "类型",
     "dataFields.input.blank.label": "空值概率",
+    "dataFields.type.modal.title": "选择类型",
+    "dataFields.type.modal.search.placeholder": "搜索类型...",
 
     // error pages
     "error.404.description": "页面不存在",

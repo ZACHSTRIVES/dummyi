@@ -15,6 +15,7 @@ export interface Generator {
     examples?: string;
     configComponent?: React.FunctionComponent<GeneratorConfigComponentInterface>;
     defaultConfig?: any;
+    displayName?: string;
 }
 
 export interface GeneratorConfigComponentInterface {

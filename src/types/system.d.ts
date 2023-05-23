@@ -36,6 +36,8 @@ export interface ExporterReducerState {
 export interface WorkspaceReducerState {
     dataFields: DataField[];
     panelsOrientation: PanelsOrientation;
+    showDataTypeSelectModal: boolean;
+    currentDataTypeSelectModalTargetField?: DataField;
 }
 
 export interface PreviewReducerState {

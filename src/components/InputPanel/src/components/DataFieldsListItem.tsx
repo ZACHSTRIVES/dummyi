@@ -1,24 +1,23 @@
 import React from 'react';
-import styles from './DataFieldItem.module.scss';
+import styles from './DataFieldsListItem.module.scss';
 import {Form, Input, Typography, List, Divider, Button, InputNumber} from "@douyinfe/semi-ui";
-import {IconClose, IconHandle, IconSetting} from "@douyinfe/semi-icons";
+import {IconAppCenter, IconClose, IconHandle, IconSetting} from "@douyinfe/semi-icons";
 import {Draggable} from "react-beautiful-dnd";
 import {DataField} from "@/types/generator";
-import {DataTypeSelector} from "@/components/DataTypeSelector";
 import {Store} from "@/types/system";
 import {useDispatch, useSelector} from "react-redux";
-import {doUpdateDataFields} from "@/reducers/workspace/workspaceActions";
+import {doOpenDataTypeSelectModal, doUpdateDataFields} from "@/reducers/workspace/workspaceActions";
 import {useIntl} from "@/locale";
 import {ComponentSize} from "@/constants/enums";
 
-export interface DataFieldItemProps {
+export interface DataFieldsListItemItemProps {
     id: string;
     index: number;
     dataField: DataField;
     size?: ComponentSize;
 }
 
-export const DataFieldItem: React.FunctionComponent<DataFieldItemProps> = ({...props}) => {
+export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemProps> = ({...props}) => {
     const {id, index, dataField, size} = props;
     const {Label} = Form;
     const dispatch = useDispatch();
@@ -36,6 +35,10 @@ export const DataFieldItem: React.FunctionComponent<DataFieldItemProps> = ({...p
     const handleDelete = () => {
         const newDataFields = dataFields.filter(field => field.id !== id);
         dispatch(doUpdateDataFields(newDataFields));
+    }
+
+    const handleOpenDataTypeSelectModal = () => {
+        dispatch(doOpenDataTypeSelectModal(dataField));
     }
 
     return (
@@ -66,7 +69,7 @@ export const DataFieldItem: React.FunctionComponent<DataFieldItemProps> = ({...p
                             <Label style={{fontWeight: 'normal', fontSize: 'small', marginLeft: '6px'}}>
                                 {intl.formatMessage({id: 'dataFields.input.type.label'})}
                             </Label>
-                            <DataTypeSelector/>
+                            <Button onClick={handleOpenDataTypeSelectModal} style={{width: 120}} icon={<IconAppCenter/>}>Number</Button>
                         </div>
 
                         {size === ComponentSize.LARGE && <div className={styles.dataFieldItem__column}>

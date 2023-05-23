@@ -6,7 +6,7 @@ import {PersonNameConfigPanel} from "@/core/generators/PersonName/PersonName.con
 
 
 export const PersonNameGenerator : Generator = {
-    type: DataType.NAME,
+    type: DataType.PERSON_NAME,
     category: DataTypeCategory.PERSON,
     generate: generate,
     configComponent: PersonNameConfigPanel

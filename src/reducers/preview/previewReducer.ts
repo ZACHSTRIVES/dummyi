@@ -23,7 +23,7 @@ export const initState: PreviewReducerState = {
     rawViewFontSize: DEFAULT_FONT_SIZE,
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
+
 export default (state: PreviewReducerState = initState, action: any) => {
     switch (action.type) {
         case SET_PREVIEW_TYPE:

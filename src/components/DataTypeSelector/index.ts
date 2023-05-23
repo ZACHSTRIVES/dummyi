@@ -1,1 +1,0 @@
-export {DataTypeSelector} from './src';

@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import {Button, Empty, List} from "@douyinfe/semi-ui";
-import {DataFieldItem} from "./DataFieldItem";
+import {DataFieldsListItem} from "./DataFieldsListItem";
 import styles from './DataFieldsList.module.scss';
 import {reorder} from "@/utils/listUtils";
 import {IconPlus} from "@douyinfe/semi-icons";
@@ -12,6 +12,7 @@ import {UUID} from "uuidjs";
 import {DataField} from "@/types/generator";
 import {useIntl} from "@/locale";
 import {ComponentSize} from "@/constants/enums";
+import {DataTypeSelectModal} from "@/components/InputPanel/src/components/DataTypeSelectModal";
 
 export interface InputFieldListProps {
     height: number;
@@ -57,8 +58,7 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
                                 <div ref={provided.innerRef} {...provided.droppableProps}>
                                     <List>
                                         {dataFields.map((item, index) =>
-                                            <DataFieldItem size={size} key={item.id} index={index} id={item.id}
-                                                           dataField={item}/>
+                                            <DataFieldsListItem size={size} key={item.id} index={index} id={item.id} dataField={item}/>
                                         )}
                                         {provided.placeholder}
                                         <div className={styles.dataFieldList__bottomButton}>
@@ -84,6 +84,8 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
                         </Empty>
                     </>
             }
+
+            <DataTypeSelectModal/>
         </div>
     )
 };

@@ -14,6 +14,7 @@ export enum ExportFormat {
 
 // data types
 export enum DataTypeCategory {
+    ALL= "all",
     BASIC = "basic",
     PERSON = "person",
     COMMERCE = "commerce",

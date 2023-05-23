@@ -22,12 +22,25 @@ export const en = {
     // data types
 
     // data type category
+    "dataType.category.all": "All",
     "dataType.category.basic": "Basic",
     "dataType.category.person": "Person",
     "dataType.category.commerce": "Commerce",
 
     // number
     "dataType.number": "Number",
+
+    // dateTime
+    "dataType.dateTime": "DateTime",
+
+    // boolean
+    "dataType.boolean": "Boolean",
+
+    // person name
+    "dataType.personName": "Person name",
+
+    // account mi,ner
+    "dataType.accountNumber": "Account number",
 
     // -------------------------------------------------------------------------------------------------------------
     // pages
@@ -65,6 +78,8 @@ export const en = {
     "dataFields.input.fieldName.label": "Field name",
     "dataFields.input.type.label": "Type",
     "dataFields.input.blank.label": "Blanking",
+    "dataFields.type.modal.title": "Data types",
+    "dataFields.type.modal.search.placeholder": "Search data type...",
 
     // error pages
     "error.404.description": "Page does not exist",
