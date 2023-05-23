@@ -42,6 +42,7 @@ export enum PanelsOrientation {
 export enum Locales {
     EN = "en",
     ZH_CN = "zh-CN",
+    JA_JP = "ja-JP",
 }
 
 export enum ComponentSize{

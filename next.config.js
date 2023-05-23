@@ -7,7 +7,7 @@ const semi = require('@douyinfe/semi-next').default({
 /** @type {import('next').NextConfig} */
 const nextConfig = semi({
     i18n: {
-        locales: ['zh-CN', 'en'],
+        locales: ['en', 'zh-CN', 'ja-JP'],
         defaultLocale: 'en',
         localeDetection: false,
     },

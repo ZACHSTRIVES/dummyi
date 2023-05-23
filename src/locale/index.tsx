@@ -1,14 +1,16 @@
-import semiZhCN from '@douyinfe/semi-ui/lib/es/locale/source/zh_CN';
-import semiEnUS from '@douyinfe/semi-ui/lib/es/locale/source/en_US';
 import type { Props as ReactIntlFormattedMessageProps } from 'react-intl/src/components/message';
 import { useIntl as useReactIntl, FormattedMessage as ReactIntlFormattedMessage } from 'react-intl';
 import React, { ReactNode } from 'react';
 import {FormatMessageArgs, IntlMessageKeys} from "@/types/system";
 
 // translation
-import {zhCn} from './translations/zhCn';
-import {en} from './translations/en';
 import {Locales} from "@/constants/enums";
+import {zhCN} from "./translations/zhCN";
+import {jaJP} from './translations/jaJP';
+import {en} from './translations/en';
+import semiZhCN from '@douyinfe/semi-ui/lib/es/locale/source/zh_CN';
+import semiEnUS from '@douyinfe/semi-ui/lib/es/locale/source/en_US';
+import semiJpJP from '@douyinfe/semi-ui/lib/es/locale/source/ja_JP';
 
 export const translations = {
     [Locales.EN]:{
@@ -17,7 +19,11 @@ export const translations = {
     },
     [Locales.ZH_CN]:{
         semi:semiZhCN,
-        app:zhCn
+        app:zhCN
+    },
+    [Locales.JA_JP]:{
+        semi:semiJpJP,
+        app:jaJP
     }
 };
 

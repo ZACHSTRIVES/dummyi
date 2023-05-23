@@ -14,7 +14,7 @@ export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalPro
     const intl = useIntl();
     const {Title} = Typography;
     const dispatch = useDispatch();
-    const [searchText, setSearchText] = React.useState('');
+    const [searchText, setSearchText] = React.useState(null);
 
     // store
     const open = useSelector((state: Store) => state.workspace.showDataTypeSelectModal);
@@ -23,6 +23,7 @@ export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalPro
     // actions
     const onCancel = () => {
         dispatch(doCloseDataTypeSelectModal());
+        setSearchText(null);
     }
 
     // renders

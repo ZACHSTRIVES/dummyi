@@ -8,11 +8,18 @@ import {useIntl} from "@/locale";
 const localeMap = {
     [Locales.EN]: {
         name: 'English',
-        shortcuts: 'EN'
+        shortcuts: 'EN',
+        flag:'🇬🇧'
     },
     [Locales.ZH_CN]: {
         name: '中文',
-        shortcuts: '中文'
+        shortcuts: '中文',
+        flag:'🇨🇳'
+    },
+    [Locales.JA_JP]: {
+        name: '日本語',
+        shortcuts: '日本語',
+        flag:'🇯🇵'
     }
 }
 
@@ -63,7 +70,7 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitchButtonProps> = ({
                         {Object.entries(localeMap).map(([key, value]) => (
                             <Radio key={key} value={key}
                                    style={{width: 200, height: 50, borderRadius: '12px'}} onChange={handleLocaleChange}>
-                                 {value.name}
+                                {value.flag} {value.name}
                             </Radio>
                         ))}
                     </RadioGroup>
