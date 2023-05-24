@@ -1,4 +1,5 @@
 // app
+export const SET_LOCALE = 'SET_LOCALE';
 export const SET_COLOR_MODE = 'SET_COLOR_MODE';
 
 // exporter

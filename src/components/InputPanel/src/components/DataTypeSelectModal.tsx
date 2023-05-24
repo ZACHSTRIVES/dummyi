@@ -2,12 +2,14 @@ import React, {useMemo} from "react";
 import styles from './DataTypeSelectModal.module.scss';
 import {Button, Card, CardGroup, Input, Modal, TabPane, Tabs, Tag, Typography} from "@douyinfe/semi-ui";
 import {IconClose, IconSearch} from "@douyinfe/semi-icons";
-import {useIntl} from "@/locale";
+import {FormattedMessage, useIntl} from "@/locale";
 import {getGeneratorList} from "@/utils/generatorUtils";
 import {useDispatch, useSelector} from "react-redux";
 import {Store} from "@/types/system";
-import {doCloseDataTypeSelectModal} from "@/reducers/workspace/workspaceActions";
+import {doCloseDataTypeSelectModal, doUpdateDataFields} from "@/reducers/workspace/workspaceActions";
 import {ColorMode} from "@/constants/enums";
+import {Generator} from "@/types/generator";
+
 
 export interface DataTypeSelectModalProps {
 }
@@ -20,10 +22,30 @@ export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalPro
     // store
     const open = useSelector((state: Store) => state.workspace.showDataTypeSelectModal);
     const colorMode = useSelector((state: Store) => state.app.colorMode);
+    const currentDataTypeSelectModalTargetField = useSelector((state: Store) => state.workspace.currentDataTypeSelectModalTargetField);
+    const dataFields = useSelector((state: Store) => state.workspace.dataFields);
     const [searchText, setSearchText] = React.useState(null);
     const data = useMemo(() => getGeneratorList(searchText, intl), [intl, searchText]);
 
     // actions
+
+    const handleSelect = (item: Generator) => {
+        const newDataFields = dataFields.map(field => {
+            if (field.id === currentDataTypeSelectModalTargetField.id) {
+                field = {...field, dataType: item.type};
+                if (field.dataType && field.fieldName) {
+                    field.isDraft = false;
+                } else {
+                    field.isDraft = true;
+                }
+                return field;
+            }
+            return field;
+        });
+        dispatch(doUpdateDataFields(newDataFields));
+        onCancel();
+    }
+
     const onCancel = () => {
         dispatch(doCloseDataTypeSelectModal());
         setSearchText(null);
@@ -59,8 +81,7 @@ export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalPro
             visible={open}
             onCancel={onCancel}
             header={renderHeader()}
-            footer={null}
-        >
+            footer={null}>
             <Tabs tabPosition="left" type={'button'}>
                 {Object.entries(data).map(([category], index) => {
                     return (
@@ -68,8 +89,11 @@ export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalPro
                             key={index}
                             tab={
                                 <div className={styles.dataTypeSelectModalTab}>
-                                    {intl.formatMessage({id: `dataType.category.${category}`})}
-                                    <Tag type={colorMode === ColorMode.LIGHT? 'light':'solid'}>{data[category].length}</Tag>
+                                    <FormattedMessage id={`dataType.category.${category}`}/>
+                                    <Tag style={{width: '35px'}}
+                                         type={colorMode === ColorMode.LIGHT ? 'light' : 'solid'}>
+                                        {data[category].length}
+                                    </Tag>
                                 </div>
                             }
                             itemKey={category}
@@ -78,21 +102,24 @@ export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalPro
                                 <CardGroup spacing={10}>
                                     {
                                         data[category].map((item) => (
-                                            <Card
-                                                key={item.type}
-                                                shadows='hover'
-                                                title={item.displayName}
-                                                className={styles.dataTypeSelectModalCard}
-                                            >
-                                                {
-                                                    item.exampleLines && item.exampleLines.map((example, index) => (
-                                                        <div key={index}
-                                                             className={styles.dataTypeSelectModalCard__example}>
-                                                            {example}
-                                                        </div>
-                                                    ))
-                                                }
-                                            </Card>
+                                            <div key={item.type} onClick={() => {
+                                                handleSelect(item)
+                                            }}>
+                                                <Card
+                                                    shadows='hover'
+                                                    title={item.displayName}
+                                                    className={`${item.type === (currentDataTypeSelectModalTargetField?.dataType || null) ?
+                                                        styles.dataTypeSelectModalCard__selected : styles.dataTypeSelectModalCard} no-select-area`}>
+                                                    {
+                                                        item.exampleLines && item.exampleLines.map((example, index) => (
+                                                            <div key={index}
+                                                                 className={styles.dataTypeSelectModalCard__example}>
+                                                                {example}
+                                                            </div>
+                                                        ))
+                                                    }
+                                                </Card>
+                                            </div>
                                         ))
                                     }
                                 </CardGroup>

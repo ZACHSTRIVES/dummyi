@@ -79,7 +79,7 @@ export const jaJP = {
     "dataFields.list.addNewFieldButton.text": "フィールドを追加",
     "dataFields.input.fieldName.label": "フィールド名",
     "dataFields.input.type.label": "タイプ",
-    "dataFields.input.blank.label": "ブランク",
+    "dataFields.input.emptyRate.label": "空の確率",
     "dataFields.type.modal.title": "データタイプ",
     "dataFields.type.modal.search.placeholder": "データタイプを検索...",
 

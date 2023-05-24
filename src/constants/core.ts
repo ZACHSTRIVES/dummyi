@@ -1,6 +1,7 @@
-import {ColorMode, PanelsOrientation, PreviewType} from "@/constants/enums";
+import {ColorMode, Locales, PanelsOrientation, PreviewType} from "@/constants/enums";
 
 // app
+export const DEFAULT_LOCALE = Locales.EN;
 export const DEFAULT_COLOR_MODE = ColorMode.DARK;
 
 // exporter

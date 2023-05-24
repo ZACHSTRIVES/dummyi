@@ -37,7 +37,6 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
             return {
                 ...state,
                 showDataTypeSelectModal: false,
-                currentDataTypeSelectModalTargetField: null,
             };
         default:
             return state;

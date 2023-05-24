@@ -11,7 +11,7 @@
   }
 
   .dataTypeSelectModalHeader__title {
-    width: 127px;
+    width: 147px;
   }
 
   .dataTypeSelectModalHeader__searchBar {
@@ -23,22 +23,8 @@
 
 .dataTypeSelectModalTab {
   display: flex;
-  width: 100px;
+  width: 120px;
   justify-content: space-between;
-}
-
-@media screen and (max-width: 670px) {
-  .dataTypeSelectModalHeader {
-    align-items: normal;
-  }
-  .dataTypeSelectModalHeader__titleSection {
-    display: block !important;
-  }
-  .dataTypeSelectModalHeader__searchBar {
-    width: 100% !important;
-    margin-left: 0px !important;
-    margin-top: 12px;
-  }
 }
 
 .dataTypeSelectModalItemList {
@@ -71,6 +57,37 @@
   }
 }
 
+.dataTypeSelectModalCard__selected {
+  width: 170px;
+  height: 130px;
+  cursor: pointer;
+  border-color: var(--semi-color-text-2);
+  border-width: 2px;
+
+  .dataTypeSelectModalCard__examples {
+    font-size: 2px;
+  }
+}
+
 .dataTypeSelectModalCard:hover {
   border-color: var(--semi-color-text-2);
+}
+
+
+@media screen and (max-width: 670px) {
+  .dataTypeSelectModalHeader {
+    align-items: normal;
+  }
+  .dataTypeSelectModalHeader__titleSection {
+    display: block !important;
+  }
+  .dataTypeSelectModalHeader__searchBar {
+    width: 100% !important;
+    margin-left: 0px !important;
+    margin-top: 12px;
+  }
+  .dataTypeSelectModalItemList {
+    padding: 0 9px 0 1px;
+  }
+
 }

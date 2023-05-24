@@ -12,6 +12,7 @@ import semiZhCN from '@douyinfe/semi-ui/lib/es/locale/source/zh_CN';
 import semiEnUS from '@douyinfe/semi-ui/lib/es/locale/source/en_US';
 import semiJpJP from '@douyinfe/semi-ui/lib/es/locale/source/ja_JP';
 
+
 export const translations = {
     [Locales.EN]:{
         semi:semiEnUS,
@@ -26,6 +27,8 @@ export const translations = {
         app:jaJP
     }
 };
+
+
 
 export const useIntl = () => {
     // Pull out the original formatMessage function

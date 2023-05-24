@@ -1,10 +1,13 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useEffect} from 'react';
 import {IconLanguage} from '@douyinfe/semi-icons';
 import {Button, Modal, Radio, RadioGroup, Row, Tooltip, Typography} from '@douyinfe/semi-ui';
 import Image from "next/image";
 import {useRouter} from 'next/router';
 import {Locales} from '@/constants/enums';
 import {useIntl} from "@/locale";
+import {useDispatch, useSelector} from "react-redux";
+import {Store} from "@/types/system";
+import {doChangeLocale} from "@/reducers/app/appActions";
 
 const localeMap = {
     [Locales.EN]: {
@@ -33,20 +36,22 @@ export type LocaleSwitchButtonProps = {
 
 export const LocaleSwitchButton: FunctionComponent<LocaleSwitchButtonProps> = ({...props}) => {
     const intl = useIntl();
-    const {locale, push, asPath} = useRouter();
+    const { push, asPath} = useRouter();
+    const dispatch = useDispatch();
+
+    // store
     const [isModalVisible, setIsModalVisible] = React.useState(false);
-    const [isSettingLocale, setIsSettingLocale] = React.useState(false);
-    const {Text} = Typography;
+    const locale = useSelector((state:Store) => state.app.locale);
+
+    useEffect(() => {
+        push(asPath, asPath, {locale: locale}).then(() => {});
+    }, [locale]);
 
     // actions
-    const handleLocaleChange = async (e) => {
-        if (isSettingLocale) return;
-        setIsSettingLocale(true);
-        push(asPath, asPath, {locale: e.target.value}).then(() => {
-            setIsSettingLocale(false);
-            setIsModalVisible(false);
-        });
-    }
+    const handleLocaleChange = (e) => {
+        dispatch(doChangeLocale(e.target.value));
+        setIsModalVisible(false);
+    };
 
     return (
         <>
@@ -93,7 +98,7 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitchButtonProps> = ({
                         ))}
                     </RadioGroup>
 
-                    <div className={'flex'}
+                    <div className={'flex no-select-area'}
                          style={{marginTop: "24px", alignItems: 'center', width: '100%', justifyContent: 'center'}}>
                         <Image src={'/images/ChatGpt.svg'} height={16} width={16} alt={'ChatGPT'}/>
                         <div style={{fontSize: 8, color: 'gray', marginLeft: '6px'}}>

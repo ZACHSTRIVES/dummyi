@@ -5,7 +5,8 @@ export interface DataField {
     id: string;
     isDraft: boolean;
     fieldName?: string;
-    fieldType?: string;
+    dataType?: DataType;
+    emptyRate?: number ;
 }
 
 export interface Generator {
