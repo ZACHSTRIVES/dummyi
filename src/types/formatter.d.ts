@@ -2,6 +2,18 @@ import React from "react";
 import {ExportType, ExportTypeCategory} from "@/constants/enums";
 import {JsonObject} from "@/types/system";
 
+export enum ExportFormatCategory {
+    FILE_TYPES = "fileTypes",
+    PROGRAMMING_LANGUAGES = "programmingLanguages",
+}
+
+export enum ExportFormat {
+    CSV = "CSV",
+    JSON = "JSON",
+    JAVA_SCRIPT = "Javascript",
+    XML = "XML",
+}
+
 export interface Formatter {
     type: ExportType;
     category: ExportTypeCategory;

@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from "react";
-import {Layout, Tag, Typography} from "@douyinfe/semi-ui";
+import {Divider, Layout, Tag, Typography} from "@douyinfe/semi-ui";
 import Image from 'next/image';
 import packageJson from '../../../../../package.json';
 import {useSelector} from "react-redux";

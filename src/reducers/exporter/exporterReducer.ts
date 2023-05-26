@@ -17,18 +17,18 @@ export default (state: ExporterReducerState = initStates, action: Action) => {
             return {
                 ...state,
                 numberOfExportRows: action.payload
-            }
+            };
         case SET_EXPORT_FORMAT:
             return {
                 ...state,
                 exportFormat: action.payload.type,
                 formatterConfig: action.payload.defaultConfig
-            }
+            };
         case SET_FORMATTER_CONFIG:
             return {
                 ...state,
                 formatterConfig: action.payload
-            }
+            };
         default:
             return state;
     }

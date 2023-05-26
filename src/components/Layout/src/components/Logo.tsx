@@ -15,6 +15,7 @@ export const Logo: FunctionComponent<LogoProps> = ({...props}) => {
     return (
         <Link href={"/"} legacyBehavior>
             <Image alt="Logo" width={135} height={40} priority={true}
+                   style={{cursor: "pointer"}}
                    src={colorMode === ColorMode.DARK ? "/images/logo-white.svg" : "/images/logo-black.svg"}/>
         </Link>
     );

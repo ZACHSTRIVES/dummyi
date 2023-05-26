@@ -20,22 +20,23 @@ import {PersistGate} from 'redux-persist/integration/react'
 import {translations} from "@/locale";
 import {Locales} from "@/constants/enums";
 import {IntlProvider} from "react-intl";
-import { Analytics } from '@vercel/analytics/react';
+import {Analytics} from '@vercel/analytics/react';
 
 export default function MyApp({Component, pageProps}: AppProps) {
     const {locale} = useRouter();
+
 
     return (
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 <IntlProvider locale={locale} messages={translations[locale].app} defaultLocale={Locales.EN}>
                     <LocaleProvider locale={translations[locale].semi}>
-                        <NextNProgress options={{showSpinner:false}}  height={2} color={"var(--semi-color-text-0)"}/>
+                        <NextNProgress options={{showSpinner: false}} height={2} color={"var(--semi-color-text-0)"}/>
                         <DefaultSeo {...SEO} />
                         <AppLayout>
                             <Component {...pageProps} />
                         </AppLayout>
-                        <Analytics />
+                        <Analytics/>
                     </LocaleProvider>
                 </IntlProvider>
             </PersistGate>

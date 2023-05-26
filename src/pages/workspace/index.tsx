@@ -69,9 +69,11 @@ export default function Workspace() {
                 <title>{intl.formatMessage({ id: "nav.item.workspace" })} - Duymmi</title>
             </Head>
 
-            <ReflexContainer orientation={PanelsOrientation.VERTICAL}>
-                <ReflexElement size={200} minSize={200}>
-                    <FilesPanel files={files} />
+
+            <ReflexContainer orientation={panelsDirection}>
+                <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 200 : 400}
+                               className={styles.leftReflexElement}>
+                    <InputPanel/>
                 </ReflexElement>
 
                 <ReflexSplitter

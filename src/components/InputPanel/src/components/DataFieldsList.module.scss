@@ -1,0 +1,32 @@
+.dataFieldsList {
+  margin-top: 24px;
+  overflow-y: auto;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  .dataFieldList__bottomButton {
+    cursor: pointer;
+    text-align: center;
+    margin: 24px 0;
+  }
+}
+
+.dataFieldsList::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+
+.dataFieldsList::-webkit-scrollbar-track {
+  background-color: transparent;
+
+}
+
+.dataFieldsList::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+

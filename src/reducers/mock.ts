@@ -1,23 +1,48 @@
 import {DataField} from "@/types/generator";
+import {DataType} from "@/constants/enums";
 
 export const mockFields: DataField[] = [
     {
-        fieldName: 'name'
+        id:"1",
+        fieldName: 'name',
+        isDraft: false,
+        dataType: DataType.PERSON_NAME,
+        emptyRate:0,
     },
     {
-        fieldName: 'phone'
+        id:"2",
+        fieldName: 'phone',
+        isDraft: false,
+        dataType: DataType.NUMBER,
+        emptyRate:0,
     },
     {
-        fieldName: 'email'
+        id:"3",
+        fieldName: 'email',
+        isDraft: false,
+        dataType: DataType.ACCOUNT_NUMBER,
+        emptyRate:0,
     },
     {
-        fieldName: 'dob'
+        id:"4",
+        fieldName: 'dob',
+        isDraft: false,
+        dataType: DataType.DATE_TIME,
+        emptyRate:0,
     },
     {
-        fieldName: 'company'
+        id:"5",
+        fieldName: 'company',
+        isDraft: false,
+        dataType: DataType.PERSON_NAME,
+        emptyRate:50,
     },
     {
-        fieldName: 'isActive'
+        id:"6",
+        fieldName: 'isActive',
+        isDraft: false,
+        dataType:DataType.BOOLEAN,
+        emptyRate:0,
     }
 ]
 

@@ -23,14 +23,14 @@ export const initState: PreviewReducerState = {
     rawViewFontSize: DEFAULT_FONT_SIZE,
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
+
 export default (state: PreviewReducerState = initState, action: any) => {
     switch (action.type) {
         case SET_PREVIEW_TYPE:
             return {
                 ...state,
                 previewType: action.payload
-            }
+            };
         case SET_RAW_VIEW_SHOW_LINE_NUMBERS:
             return {
                 ...state,
@@ -40,17 +40,17 @@ export default (state: PreviewReducerState = initState, action: any) => {
             return {
                 ...state,
                 rawViewLineWrap: action.payload
-            }
+            };
         case SET_RAW_VIEW_FONT_SIZE:
             return {
                 ...state,
                 rawViewFontSize: action.payload
-            }
+            };
         case SET_PREVIEW_FORMATTED_DATA:
             return {
                 ...state,
                 previewFormattedData: action.payload
-            }
+            };
         default:
             return state;
     }
