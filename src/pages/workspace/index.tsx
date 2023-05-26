@@ -69,7 +69,7 @@ export default function Workspace() {
                 <title>{intl.formatMessage({ id: "nav.item.workspace" })} - Duymmi</title>
             </Head>
 
-            <ReflexContainer orientation={panelsDirection}>
+            <ReflexContainer orientation={PanelsOrientation.VERTICAL}>
                 <ReflexElement size={200} minSize={200}>
                     <FilesPanel files={files} />
                 </ReflexElement>
@@ -80,25 +80,29 @@ export default function Workspace() {
                         borderColor: 'transparent',
                         borderWidth: '1px'
                     }}
-                    className={`${styles.splitter} vertical`}
+                    className={`${styles.splitter} ${PanelsOrientation.VERTICAL}`}
                 />
 
-                <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 200 : 375}
-                    className={styles.leftReflexElement}>
-                    <InputPanel />
-                </ReflexElement>
+                <ReflexElement>
+                    <ReflexContainer orientation={panelsDirection}>
+                        <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 200 : 375}
+                            className={styles.leftReflexElement}>
+                            <InputPanel />
+                        </ReflexElement>
 
-                <ReflexSplitter
-                    style={{
-                        backgroundColor: colorMode === ColorMode.DARK ? 'rgba(153,153,153,0.44)' : '#d5d3d3',
-                        borderColor: 'transparent',
-                        borderWidth: '1px'
-                    }}
-                    className={`${styles.splitter} ${panelsDirection}`}
-                />
+                        <ReflexSplitter
+                            style={{
+                                backgroundColor: colorMode === ColorMode.DARK ? 'rgba(153,153,153,0.44)' : '#d5d3d3',
+                                borderColor: 'transparent',
+                                borderWidth: '1px'
+                            }}
+                            className={`${styles.splitter} ${panelsDirection}`}
+                        />
 
-                <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 100 : 400}>
-                    <PreviewPanel />
+                        <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 100 : 400}>
+                            <PreviewPanel />
+                        </ReflexElement>
+                    </ReflexContainer>
                 </ReflexElement>
             </ReflexContainer>
         </>
