@@ -70,7 +70,7 @@ export default function Workspace() {
             </Head>
 
             <ReflexContainer orientation={panelsDirection}>
-                <ReflexElement minSize={200}>
+                <ReflexElement size={200} minSize={200}>
                     <FilesPanel files={files} />
                 </ReflexElement>
 
