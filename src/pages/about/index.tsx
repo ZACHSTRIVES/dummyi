@@ -1,13 +1,21 @@
-import React from "react";
-import Head from "next/head";
-import Image from "next/image";
+import { useRouter } from 'next/router';
+import { AboutLayout } from '@/components/Layout/about';
+import NumberPage from './number';
+import DatePage from './date';
+import StringPage from './string';
 
-export default function About() {
-    return (
-        <div>
-            <Head>
-                <title>About - Duymmi</title>
-            </Head>
-        </div>
-    );
-}
+const AboutPage: React.FC = () => {
+  const router = useRouter();
+
+  return (
+    <AboutLayout>
+      <div>
+        {router.query.category === 'number' && <NumberPage />}
+        {router.query.category === 'string' && <StringPage />}
+        {router.query.category === 'date' && <DatePage />}
+      </div>
+    </AboutLayout>
+  );
+};
+
+export default AboutPage;
