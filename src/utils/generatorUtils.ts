@@ -1,7 +1,6 @@
 import {generators} from "@/core/generators";
 import {Generator} from "@/types/generator";
 import {DataType, DataTypeCategory} from "@/constants/enums";
-import {DatetimeGenerator} from "@/core/generators/Datetime";
 
 // get generator grouped by category list with search and locale
 export const getGeneratorList = (search: string, intl: any): { [category: string]: Generator[] } => {
@@ -20,4 +19,15 @@ export const getGeneratorList = (search: string, intl: any): { [category: string
         }
     });
     return categorizedGenerator;
+}
+
+// Get generator by data type
+export const getGeneratorByDataType = (dataType:DataType):Generator => {
+    return generators[dataType];
+}
+
+
+// Get generator config components by data type
+export const getGeneratorConfigComponentByDataType = (dataType:DataType):any => {
+    return generators[dataType].configComponent;
 }

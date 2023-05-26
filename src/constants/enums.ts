@@ -47,6 +47,7 @@ export enum Locales {
 
 export enum ComponentSize{
     SMALL = "small",
+    MEDIUM = "medium",
     LARGE = "large",
 }
 

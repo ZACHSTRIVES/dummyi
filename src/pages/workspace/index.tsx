@@ -47,7 +47,7 @@ export default function Workspace() {
             </Head>
 
             <ReflexContainer orientation={panelsDirection}>
-                <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 200 : 375}
+                <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 200 : 400}
                                className={styles.leftReflexElement}>
                     <InputPanel/>
                 </ReflexElement>

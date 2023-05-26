@@ -2,6 +2,7 @@
 @import 'react-reflex/styles.css';
 @import './variables.scss';
 @import './scrollbars.scss';
+@import './generators.scss';
 
 body {
   margin: 0;
@@ -70,7 +71,7 @@ j
   margin-left: 6px;
 }
 
-.no-select-area{
+.no-select-area {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;

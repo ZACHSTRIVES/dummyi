@@ -9,6 +9,8 @@
   -ms-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  display: flex;
+  justify-content: space-between;
 
   .dataFieldItem__content {
     display: flex;

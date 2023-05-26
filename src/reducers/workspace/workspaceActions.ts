@@ -1,5 +1,6 @@
 import {
-    CLOSE_DATA_TYPE_SELECT_MODAL,
+    CLOSE_DATA_TYPE_OPTIONS_MODAL,
+    CLOSE_DATA_TYPE_SELECT_MODAL, OPEN_DATA_TYPE_OPTIONS_MODAL,
     OPEN_DATA_TYPE_SELECT_MODAL,
     SET_DATA_FIELDS,
     SET_PANELS_DIRECTION
@@ -32,3 +33,14 @@ export const doCloseDataTypeSelectModal = (): any =>
         dispatch({type: CLOSE_DATA_TYPE_SELECT_MODAL});
     };
 
+// open data type options modal
+export const doOpenDataTypeOptionsModal = (field: DataField): any =>
+    async dispatch => {
+        dispatch({type: OPEN_DATA_TYPE_OPTIONS_MODAL, payload: field});
+    };
+
+// close data type options modal
+export const doCloseDataTypeOptionsModal = (): any =>
+    async dispatch => {
+        dispatch({type: CLOSE_DATA_TYPE_OPTIONS_MODAL});
+    };

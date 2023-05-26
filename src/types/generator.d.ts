@@ -20,6 +20,7 @@ export interface Generator {
 }
 
 export interface GeneratorConfigComponentInterface {
+    config: any;
     onConfigChange: (config: any) => void;
 }
 

@@ -13,6 +13,7 @@ import {DataField} from "@/types/generator";
 import {useIntl} from "@/locale";
 import {ComponentSize} from "@/constants/enums";
 import {DataTypeSelectModal} from "@/components/InputPanel/src/components/DataTypeSelectModal";
+import {DataTypeConfigModal} from "@/components/InputPanel/src/components/DataTypeConfigModal";
 
 export interface InputFieldListProps {
     height: number;
@@ -63,7 +64,7 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
                                         )}
                                         {provided.placeholder}
                                         <div className={styles.dataFieldList__bottomButton}>
-                                            <Button onClick={handleAddField} icon={<IconPlus/>}>
+                                            <Button onClick={handleAddField} icon={<IconPlus/>} >
                                                 {intl.formatMessage({id: "dataFields.list.addNewFieldButton.text"})}
                                             </Button>
                                         </div>
@@ -79,14 +80,14 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
                             style={{marginBottom: 24, textAlign: "center"}}
                         >
 
-                            <Button onClick={handleAddField} icon={<IconPlus/>}>
+                            <Button onClick={handleAddField} icon={<IconPlus/>} >
                                 {intl.formatMessage({id: "dataFields.list.addNewFieldButton.text"})}
                             </Button>
                         </Empty>
                     </>
             }
-
             <DataTypeSelectModal/>
+            <DataTypeConfigModal size={size}/>
         </div>
     )
 };

@@ -78,6 +78,7 @@ export const en = {
     "dataFields.list.addNewFieldButton.text": "Add field",
     "dataFields.input.fieldName.label": "Field name",
     "dataFields.input.type.label": "Type",
+    "dataFields.input.type.placeholder": "Select type",
     "dataFields.input.emptyRate.label": "Empty %",
     "dataFields.type.modal.title": "Data types",
     "dataFields.type.modal.search.placeholder": "Search data type...",

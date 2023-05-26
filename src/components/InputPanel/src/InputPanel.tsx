@@ -20,10 +20,12 @@ export const InputPanel: React.FunctionComponent<InputPanelProps> = () => {
 
             setPanelHeight(containerHeight);
 
-            if(containerWidth < 470) {
-                setComponentSize(ComponentSize.SMALL);
-            }else {
+            if (containerWidth > 1000) {
                 setComponentSize(ComponentSize.LARGE);
+            } else if (containerWidth > 550) {
+                setComponentSize(ComponentSize.MEDIUM);
+            } else {
+                setComponentSize(ComponentSize.SMALL);
             }
         });
 
@@ -39,7 +41,7 @@ export const InputPanel: React.FunctionComponent<InputPanelProps> = () => {
         <div className={styles.inputPanel} ref={containerRef}>
             <div className={styles.background} />
             <Toolbar/>
-            <DataFieldsList size={componentSize}  height={containerHeight-64}  />
+            <DataFieldsList size={componentSize} height={containerHeight - 64}/>
         </div>
     );
 };

@@ -77,6 +77,7 @@ export const zhCN = {
     "dataFields.list.addNewFieldButton.text": "添加字段",
     "dataFields.input.fieldName.label": "字段名",
     "dataFields.input.type.label": "类型",
+    "dataFields.input.type.placeholder": "选择类型...",
     "dataFields.input.emptyRate.label": "空值概率",
     "dataFields.type.modal.title": "选择类型",
     "dataFields.type.modal.search.placeholder": "搜索类型...",

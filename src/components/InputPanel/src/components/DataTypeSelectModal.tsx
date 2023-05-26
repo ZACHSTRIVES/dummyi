@@ -9,6 +9,8 @@ import {Store} from "@/types/system";
 import {doCloseDataTypeSelectModal, doUpdateDataFields} from "@/reducers/workspace/workspaceActions";
 import {ColorMode} from "@/constants/enums";
 import {Generator} from "@/types/generator";
+import {selectDataFields, selectShowDataTypeSelectModal} from "@/reducers/workspace/workspaceSelectors";
+import {selectColorMode} from "@/reducers/app/appSelectors";
 
 
 export interface DataTypeSelectModalProps {
@@ -18,14 +20,14 @@ export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalPro
     const intl = useIntl();
     const {Title} = Typography;
     const dispatch = useDispatch();
-
-    // store
-    const open = useSelector((state: Store) => state.workspace.showDataTypeSelectModal);
-    const colorMode = useSelector((state: Store) => state.app.colorMode);
     const currentDataTypeSelectModalTargetField = useSelector((state: Store) => state.workspace.currentDataTypeSelectModalTargetField);
-    const dataFields = useSelector((state: Store) => state.workspace.dataFields);
     const [searchText, setSearchText] = React.useState(null);
     const data = useMemo(() => getGeneratorList(searchText, intl), [intl, searchText]);
+
+    // store
+    const open = useSelector(selectShowDataTypeSelectModal);
+    const colorMode = useSelector(selectColorMode);
+    const dataFields = useSelector(selectDataFields);
 
     // actions
 
