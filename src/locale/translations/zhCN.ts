@@ -28,6 +28,10 @@ export const zhCN = {
 
     // number
     "dataType.number": "数字",
+    "dataType.number.kind.label": "种类",
+    "dataType.number.precision.label": "精度",
+    "dataType.number.min.label": "最小值",
+    "dataType.number.max.label": "最大值",
 
     // dateTime
     "dataType.dateTime": "日期时间",
@@ -79,6 +83,7 @@ export const zhCN = {
     "dataFields.input.type.label": "类型",
     "dataFields.input.type.placeholder": "选择类型...",
     "dataFields.input.emptyRate.label": "空值概率",
+    "dataFields.input.options.label": "选项",
     "dataFields.type.modal.title": "选择类型",
     "dataFields.type.modal.search.placeholder": "搜索类型...",
 

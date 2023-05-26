@@ -29,6 +29,10 @@ export const en = {
 
     // number
     "dataType.number": "Number",
+    "dataType.number.kind.label": "Kind",
+    "dataType.number.precision.label": "Precision",
+    "dataType.number.min.label": "Min.",
+    "dataType.number.max.label": "Max.",
 
     // dateTime
     "dataType.dateTime": "Date time",
@@ -80,6 +84,7 @@ export const en = {
     "dataFields.input.type.label": "Type",
     "dataFields.input.type.placeholder": "Select type",
     "dataFields.input.emptyRate.label": "Empty %",
+    "dataFields.input.options.label": "Options",
     "dataFields.type.modal.title": "Data types",
     "dataFields.type.modal.search.placeholder": "Search data type...",
 

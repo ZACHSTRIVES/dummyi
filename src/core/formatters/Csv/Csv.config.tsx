@@ -12,7 +12,7 @@ export const defaultCsvFormatterConfig: CsvFormatterConfig = {
 }
 
 export const CsvConfig: React.FC<FormatterConfigComponentInterface> = ({...props}) => {
-    const {onConfigChange, config} = props;
+    const {onConfigChange, config } = props;
     const csvConfig: CsvFormatterConfig = config;
     const {Label} = Form;
     const intl = useIntl();

@@ -12,6 +12,7 @@
   "dependencies": {
     "@douyinfe/semi-next": "^2.35.0",
     "@douyinfe/semi-ui": "^2.35.0",
+    "@faker-js/faker": "^8.0.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@semi-bot/semi-theme-mockdatanz": "^1.1.2",
     "@types/node": "20.1.4",

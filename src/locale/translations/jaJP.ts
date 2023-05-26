@@ -30,6 +30,10 @@ export const jaJP = {
 
     // number
     "dataType.number": "数値",
+    "dataType.number.kind.label": "種類",
+    "dataType.number.precision.label": "精度",
+    "dataType.number.min.label": "最小値",
+    "dataType.number.max.label": "最大値",
 
     // dateTime
     "dataType.dateTime": "日時",
@@ -81,6 +85,7 @@ export const jaJP = {
     "dataFields.input.type.label": "タイプ",
     "dataFields.input.type.placeholder": "タイプを選択",
     "dataFields.input.emptyRate.label": "空の確率",
+    "dataFields.input.options.label": "オプション",
     "dataFields.type.modal.title": "データタイプ",
     "dataFields.type.modal.search.placeholder": "データタイプを検索...",
 

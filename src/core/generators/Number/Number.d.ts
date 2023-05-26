@@ -6,3 +6,10 @@ export enum NumberGeneratorKind {
     INTEGER = "INT",
     OCTAL = "OCTAL",
 }
+
+export interface NumberGeneratorConfig {
+    kind: NumberGeneratorKind;
+    precision: number;
+    min: number;
+    max: number;
+}

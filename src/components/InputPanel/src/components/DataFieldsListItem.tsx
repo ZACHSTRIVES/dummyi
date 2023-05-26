@@ -88,13 +88,10 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
     return (
         <Draggable draggableId={id} index={index}>
             {(provided, snapshot) => (
-                <>
-                    <div
-                        className={styles.dataFieldItem}
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
-                    >
+                <div ref={provided.innerRef}
+                     {...provided.draggableProps}
+                     style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
+                    <div className={styles.dataFieldItem}>
                         <div>
                             <div className={styles.dataFieldItem__content}>
                                 <div className={styles.dataFieldItem__header} {...provided.dragHandleProps}>
@@ -132,10 +129,13 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
                                         <EmptyRateInput/>
                                         {size !== ComponentSize.LARGE && <div className="generatorConfig_column">
                                             <Text className='generatorConfig_column__label'>
-                                                Options
+                                                <FormattedMessage id="dataFields.input.options.label"/>
                                             </Text>
-                                            <Button onClick={handleOpenDataTypeOptionsModal}
-                                                    icon={<IconSetting style={{color: 'grey'}}/>}/>
+                                            <Button
+                                                style={{width: 80}}
+                                                onClick={handleOpenDataTypeOptionsModal}
+                                                icon={<IconSetting style={{color: 'grey'}}/>
+                                                }/>
                                         </div>}
                                     </>
                                 )}
@@ -160,7 +160,7 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
                         </div>
                     </div>
                     <Divider style={{marginTop: '12px'}}/>
-                </>
+                </div>
             )}
 
         </Draggable>
