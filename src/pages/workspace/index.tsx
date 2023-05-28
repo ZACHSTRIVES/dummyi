@@ -1,23 +1,24 @@
-import React, { useEffect } from "react";
-import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
+import React, {useEffect} from "react";
+import {ReflexContainer, ReflexElement, ReflexSplitter} from 'react-reflex';
 import styles from './workspace.module.css';
-import { InputPanel } from "@/components/InputPanel";
-import { PreviewPanel } from "@/components/PreviewPanel";
-import { useDispatch, useSelector } from "react-redux";
-import { Store } from "@/types/system";
-import { ColorMode, PanelsOrientation } from "@/constants/enums";
-import { doSetPanelsOrientation } from "@/reducers/workspace/workspaceActions";
+import {InputPanel} from "@/components/InputPanel";
+import {PreviewPanel} from "@/components/PreviewPanel";
+import {useDispatch, useSelector} from "react-redux";
+import {ColorMode, PanelsOrientation} from "@/constants/enums";
+import {doSetPanelsOrientation} from "@/reducers/workspace/workspaceActions";
 import Head from "next/head";
-import { useIntl } from "@/locale";
-import { FilesPanel } from "@/components/FilesPanel/src";
+import {useIntl} from "@/locale";
+import {FilesPanel} from "@/components/FilesPanel/src";
+import {selectPanelsOrientation} from "@/reducers/workspace/workspaceSelectors";
+import {selectColorMode} from "@/reducers/app/appSelectors";
 
 export default function Workspace() {
     const intl = useIntl();
     const dispatch = useDispatch();
 
     // store
-    const panelsDirection = useSelector((state: Store) => state.workspace.panelsOrientation);
-    const colorMode = useSelector((state: Store) => state.app.colorMode);
+    const panelsDirection = useSelector(selectPanelsOrientation);
+    const colorMode = useSelector(selectColorMode);
 
     const files = [
         {
@@ -43,6 +44,7 @@ export default function Workspace() {
 
     useEffect(() => {
         setOrientation(getOrientation());
+
         function handleResize() {
             const newOrientation = getOrientation();
             setOrientation(newOrientation);
@@ -66,12 +68,12 @@ export default function Workspace() {
     return (
         <>
             <Head>
-                <title>{intl.formatMessage({ id: "nav.item.workspace" })} - Duymmi</title>
+                <title>{intl.formatMessage({id: "nav.item.workspace"})} - Duymmi</title>
             </Head>
 
             <ReflexContainer orientation={PanelsOrientation.VERTICAL}>
                 <ReflexElement size={200} minSize={200} maxSize={300}>
-                    <FilesPanel files={files} />
+                    <FilesPanel files={files}/>
                 </ReflexElement>
 
                 <ReflexSplitter
@@ -87,7 +89,7 @@ export default function Workspace() {
                     <ReflexContainer orientation={panelsDirection}>
                         <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 200 : 400}
                                        className={styles.leftReflexElement}>
-                            <InputPanel />
+                            <InputPanel/>
                         </ReflexElement>
 
                         <ReflexSplitter
@@ -100,7 +102,7 @@ export default function Workspace() {
                         />
 
                         <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 100 : 400}>
-                            <PreviewPanel />
+                            <PreviewPanel/>
                         </ReflexElement>
                     </ReflexContainer>
                 </ReflexElement>

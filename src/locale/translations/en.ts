@@ -32,7 +32,9 @@ export const en = {
     "dataType.number.kind.label": "Kind",
     "dataType.number.precision.label": "Precision",
     "dataType.number.min.label": "Min.",
+    "dataType.number.min.tooltip":"Lower bound for generated numbers",
     "dataType.number.max.label": "Max.",
+    "dataType.number.max.tooltip":"Upper bound for generated numbers",
 
     // dateTime
     "dataType.dateTime": "Date time",

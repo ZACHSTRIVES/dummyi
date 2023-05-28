@@ -1,10 +1,13 @@
 import {Action, WorkspaceReducerState} from "@/types/system";
 import {
+    ADD_NEW_DATA_FIELD,
     CLOSE_DATA_TYPE_OPTIONS_MODAL,
-    CLOSE_DATA_TYPE_SELECT_MODAL, OPEN_DATA_TYPE_OPTIONS_MODAL,
+    CLOSE_DATA_TYPE_SELECT_MODAL,
+    DELETE_DATA_FIELD,
+    OPEN_DATA_TYPE_OPTIONS_MODAL,
     OPEN_DATA_TYPE_SELECT_MODAL,
     SET_DATA_FIELDS,
-    SET_PANELS_DIRECTION
+    SET_PANELS_DIRECTION, UPDATE_DATA_FIELD
 } from "@/constants/actions";
 import {DEFAULT_PANELS_ORIENTATION} from "@/constants/core";
 import {mockFields} from "@/reducers/mock";
@@ -13,9 +16,9 @@ export const initStates: WorkspaceReducerState = {
     dataFields: mockFields,
     panelsOrientation: DEFAULT_PANELS_ORIENTATION,
     showDataTypeSelectModal: false,
-    currentDataTypeSelectModalTargetField: null,
+    currentDataTypeSelectModalTargetFieldId: null,
     showDataTypeOptionsModal: false,
-    currentDataTypeOptionsModalTargetField: null,
+    currentDataTypeOptionsModalTargetFieldId: null,
 }
 
 export default (state: WorkspaceReducerState = initStates, action: Action) => {
@@ -34,7 +37,7 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
             return {
                 ...state,
                 showDataTypeSelectModal: true,
-                currentDataTypeSelectModalTargetField: action.payload,
+                currentDataTypeSelectModalTargetFieldId: action.payload,
             };
         case CLOSE_DATA_TYPE_SELECT_MODAL:
             return {
@@ -45,13 +48,41 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
             return {
                 ...state,
                 showDataTypeOptionsModal: true,
-                currentDataTypeOptionsModalTargetField: action.payload,
+                currentDataTypeOptionsModalTargetFieldId: action.payload,
             };
         case CLOSE_DATA_TYPE_OPTIONS_MODAL:
             return {
                 ...state,
                 showDataTypeOptionsModal: false,
             }
+        case ADD_NEW_DATA_FIELD:
+            return {
+                ...state,
+                dataFields: {
+                    ...state.dataFields,
+                    [action.payload.id]: action.payload.field
+                }
+            }
+        case DELETE_DATA_FIELD:
+            let newDateFields = {};
+            for (const key in state.dataFields) {
+                if (key !== action.payload) {
+                    newDateFields[key] = state.dataFields[key];
+                }
+            }
+            return {
+                ...state,
+                dataFields: newDateFields,
+            }
+        case UPDATE_DATA_FIELD:
+            return {
+                ...state,
+                dataFields: {
+                    ...state.dataFields,
+                    [action.payload.id]: action.payload.field
+                }
+            }
+
         default:
             return state;
     }

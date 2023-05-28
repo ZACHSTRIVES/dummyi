@@ -7,7 +7,7 @@ export enum NumberGeneratorKind {
     OCTAL = "OCTAL",
 }
 
-export interface NumberGeneratorConfig {
+export interface NumberGeneratorOptions {
     kind: NumberGeneratorKind;
     precision: number;
     min: number;

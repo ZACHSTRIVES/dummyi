@@ -31,7 +31,9 @@ export const zhCN = {
     "dataType.number.kind.label": "种类",
     "dataType.number.precision.label": "精度",
     "dataType.number.min.label": "最小值",
+    "dataType.number.min.tooltip":"生成数据的最小值",
     "dataType.number.max.label": "最大值",
+    "dataType.number.max.tooltip":"生成数据的最大值",
 
     // dateTime
     "dataType.dateTime": "日期时间",

@@ -95,7 +95,7 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitchButtonProps> = ({
 
                     <div className={'flex'}
                          style={{marginTop: "24px", alignItems: 'center', width: '100%', justifyContent: 'center'}}>
-                        <Image src={'/images/ChatGpt.svg'} height={16} width={16} alt={'ChatGPT'}/>
+                        <Image src={"/images/ChatGpt.svg" } height={16} width={16} alt={'ChatGPT'}/>
                         <div style={{fontSize: 8, color: 'gray', marginLeft: '6px'}}>
                             {intl.formatMessage({id: 'nav.languageSwitchModal.footer.chatGPT.text'})}
                         </div>

@@ -1,7 +1,7 @@
 import {ColorMode, ExportFormat, Locales, PanelsOrientation, PreviewType} from "@/constants/enums";
 import enTranslations from "@/locales/en.json";
 import type {IntlFormatters} from 'react-intl';
-import {DataField} from "@/types/generator";
+import {DataField, DataFieldList} from "@/types/generator";
 
 // routes
 export interface RouteType {
@@ -35,12 +35,14 @@ export interface ExporterReducerState {
 }
 
 export interface WorkspaceReducerState {
-    dataFields: DataField[];
+    dataFields: DataFieldList;
     panelsOrientation: PanelsOrientation;
     showDataTypeSelectModal: boolean;
     currentDataTypeSelectModalTargetField?: DataField;
+    currentDataTypeSelectModalTargetFieldId?: string;
     showDataTypeOptionsModal: boolean;
     currentDataTypeOptionsModalTargetField?: DataField;
+    currentDataTypeOptionsModalTargetFieldId?: string;
 }
 
 export interface PreviewReducerState {
