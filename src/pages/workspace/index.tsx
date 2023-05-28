@@ -22,9 +22,18 @@ export default function Workspace() {
     const files = [
         {
             label: 'Asia',
+            emoji: {
+                background: "#123456",
+                code: "U+1F600"
+            },
+
             children: [
                 {
                     label: 'China',
+                    emoji: {
+                        background: "#123456",
+                        code: "U+1F1E8 U+1F1F3",
+                    },
                     children: [
                         {
                             label: 'Beijing',
@@ -36,6 +45,10 @@ export default function Workspace() {
                 },
                 {
                     label: 'Japan',
+                    emoji: {
+                        background: "#123456",
+                        code: "U+1F1EF U+1F1F5",
+                    },
                 },
             ],
         },
@@ -86,7 +99,7 @@ export default function Workspace() {
                 <ReflexElement>
                     <ReflexContainer orientation={panelsDirection}>
                         <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 200 : 375}
-                                       className={styles.leftReflexElement}>
+                            className={styles.leftReflexElement}>
                             <InputPanel />
                         </ReflexElement>
 

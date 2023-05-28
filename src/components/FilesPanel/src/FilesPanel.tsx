@@ -1,17 +1,32 @@
 import { Tree } from '@douyinfe/semi-ui';
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 
 import styles from "./FilesPanel.module.css";
+import { Emoji, EmojiStyle } from 'emoji-picker-react';
 
 export type TreeNode = {
     label: string;
     value: string;
+    icon?: ReactNode;
     key: string;
     children?: TreeNode[];
 };
 
 export type FilesPanelProps = {
-    files: { label: string; children?: FilesPanelProps['files'] }[];
+    files: {
+        label: string;
+        emoji?: {
+            background: string;
+            code: string;
+        }
+        children?: FilesPanelProps['files']
+    }[];
+};
+
+export const convertToUnifiedCode = (code: string) => {
+    const parts = code.split(' ');
+    const unifiedParts = parts.map(part => part.replace('U+', '').toLowerCase()).filter(part => part.trim() !== '');
+    return unifiedParts.join('-');
 };
 
 export const FilesPanel: React.FunctionComponent<FilesPanelProps> = ({ files }) => {
@@ -26,6 +41,11 @@ export const FilesPanel: React.FunctionComponent<FilesPanelProps> = ({ files }) 
 
             if (node.children) {
                 treeNode.children = convertToTreeData(node.children, key);
+            }
+
+            if (node.emoji) {
+                console.log(convertToUnifiedCode(node.emoji.code));
+                treeNode.icon = <div className={styles.emojiIcon}><Emoji unified={convertToUnifiedCode(node.emoji.code)} emojiStyle={EmojiStyle.APPLE} size={16} /></div>
             }
 
             return treeNode;
