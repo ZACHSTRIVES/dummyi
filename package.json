@@ -10,7 +10,7 @@
     "cypress": "cypress open"
   },
   "dependencies": {
-    "@douyinfe/semi-next": "^2.35.0",
+    "@douyinfe/semi-next": "^2.36.0",
     "@douyinfe/semi-ui": "^2.36.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@semi-bot/semi-theme-mockdatanz": "^1.1.2",
