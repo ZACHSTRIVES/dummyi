@@ -7,13 +7,14 @@ import {
     OPEN_DATA_TYPE_OPTIONS_MODAL,
     OPEN_DATA_TYPE_SELECT_MODAL,
     SET_DATA_FIELDS,
-    SET_PANELS_DIRECTION, UPDATE_DATA_FIELD
+    SET_PANELS_DIRECTION, SORT_DATA_FIELDS, UPDATE_DATA_FIELD
 } from "@/constants/actions";
 import {DEFAULT_PANELS_ORIENTATION} from "@/constants/core";
 import {mockFields} from "@/reducers/mock";
 
 export const initStates: WorkspaceReducerState = {
     dataFields: mockFields,
+    dataFieldsSortableIdsList: Object.keys(mockFields),
     panelsOrientation: DEFAULT_PANELS_ORIENTATION,
     showDataTypeSelectModal: false,
     currentDataTypeSelectModalTargetFieldId: null,
@@ -81,6 +82,11 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
                     ...state.dataFields,
                     [action.payload.id]: action.payload.field
                 }
+            }
+        case SORT_DATA_FIELDS:
+            return {
+                ...state,
+                dataFieldsSortableIdsList: action.payload,
             }
 
         default:

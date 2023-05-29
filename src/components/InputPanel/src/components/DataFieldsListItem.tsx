@@ -1,20 +1,19 @@
 import React from 'react';
 import styles from './DataFieldsListItem.module.scss';
-import {Input, Divider, Button, InputNumber, Typography} from "@douyinfe/semi-ui";
+import {Input, Divider, Button, InputNumber} from "@douyinfe/semi-ui";
 import {IconClose, IconHandle, IconSetting} from "@douyinfe/semi-icons";
 import {Draggable} from "react-beautiful-dnd";
 import {DataField} from "@/types/generator";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {
     doDeleteDataField,
     doOpenDataTypeOptionsModal,
-    doOpenDataTypeSelectModal, doUpdateDataField,
-    doUpdateDataFields
+    doOpenDataTypeSelectModal,
+    doUpdateDataField,
 } from "@/reducers/workspace/workspaceActions";
 import {FormattedMessage} from "@/locale";
 import {ComponentSize} from "@/constants/enums";
-import {getGeneratorByDataType} from "@/utils/generatorUtils";
-import {selectDataFields} from "@/reducers/workspace/workspaceSelectors";
+import {getGeneratorOptionsComponentByDataType} from "@/utils/generatorUtils";
 
 export interface DataFieldsListItemItemProps {
     id: string;
@@ -56,13 +55,11 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
     };
 
     // renders
-    const DataTypeOptions = () => {
+    const renderDataTypeOptions = () => {
         if (!dataField.dataType) return null;
-        const generator = getGeneratorByDataType(dataField.dataType);
-        return generator.optionsComponent ? React.createElement(generator.optionsComponent, {
-            options: dataField.dataTypeOptions,
-            onOptionsChange: handleOptionsChange
-        }) : null;
+        const OptionsComponent = getGeneratorOptionsComponentByDataType(dataField.dataType);
+        return OptionsComponent ?
+            <OptionsComponent options={dataField.dataTypeOptions} onOptionsChange={handleOptionsChange}/> : null;
     };
 
     const EmptyRateInput = () => {
@@ -137,7 +134,7 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
                                     </>
                                 )}
 
-                                {size === ComponentSize.LARGE && <DataTypeOptions/>}
+                                {size === ComponentSize.LARGE && renderDataTypeOptions()}
 
                             </div>
                         </div>

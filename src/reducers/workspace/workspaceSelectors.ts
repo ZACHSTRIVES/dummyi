@@ -7,6 +7,7 @@ export const selectPanelsOrientation = (state: Store) => state.workspace.panelsO
 
 // data fields
 export const selectDataFields = (state: Store) => state.workspace.dataFields;
+export const selectDataFieldsSortableIdsList = (state: Store) => state.workspace.dataFieldsSortableIdsList;
 export const selectNumbersOfDataFields = createSelector(
     selectDataFields,
     (dataFields) => Object.keys(dataFields).length);

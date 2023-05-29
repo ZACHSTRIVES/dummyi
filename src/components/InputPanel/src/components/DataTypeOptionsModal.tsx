@@ -6,7 +6,7 @@ import {
     selectCurrentDataTypeOptionsModalTargetFieldId,
     selectShowDataTypeOptionsModal
 } from "@/reducers/workspace/workspaceSelectors";
-import {getGeneratorByDataType} from "@/utils/generatorUtils";
+import {getGeneratorOptionsComponentByDataType} from "@/utils/generatorUtils";
 import {doCloseDataTypeOptionsModal, doUpdateDataField} from "@/reducers/workspace/workspaceActions";
 import {ComponentSize} from "@/constants/enums";
 import {FormattedMessage} from "@/locale";
@@ -29,17 +29,13 @@ export const DataTypeOptionsModal: React.FunctionComponent<DataTypeOptionsModalP
         dispatch(doCloseDataTypeOptionsModal());
     }
 
-    // render
-    const DataTypeOptions = () => {
-        if (!dataField) return null;
+    // renders
+    const renderDataTypeOptions = () => {
         if (!dataField.dataType) return null;
-
-        const generator = getGeneratorByDataType(dataField.dataType);
-        return generator.optionsComponent ? React.createElement(generator.optionsComponent, {
-            options: dataField.dataTypeOptions,
-            onOptionsChange: handleDataFieldOptionsChange
-        }) : null;
-    }
+        const OptionsComponent = getGeneratorOptionsComponentByDataType(dataField.dataType);
+        return OptionsComponent ?
+            <OptionsComponent options={dataField.dataTypeOptions} onOptionsChange={handleDataFieldOptionsChange}/> : null;
+    };
 
     // actions
     const handleDataFieldOptionsChange = (options) => {
@@ -77,7 +73,7 @@ export const DataTypeOptionsModal: React.FunctionComponent<DataTypeOptionsModalP
                         style={{width: '100px'}}
                     />
                 </div>}
-                <DataTypeOptions/>
+                {renderDataTypeOptions()}
             </div>
         </Modal>
     )

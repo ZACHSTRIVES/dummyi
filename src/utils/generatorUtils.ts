@@ -1,6 +1,7 @@
 import {generators} from "@/core/generators";
-import {Generator} from "@/types/generator";
+import {Generator, GeneratorOptionsComponentInterface} from "@/types/generator";
 import {DataType, DataTypeCategory} from "@/constants/enums";
+import React from "react";
 
 // get generator grouped by category list with search and locale
 export const getGeneratorList = (search: string, intl: any): { [category: string]: Generator[] } => {
@@ -22,12 +23,11 @@ export const getGeneratorList = (search: string, intl: any): { [category: string
 }
 
 // Get generator by data type
-export const getGeneratorByDataType = (dataType:DataType):Generator => {
+export const getGeneratorByDataType = (dataType: DataType): Generator => {
     return generators[dataType];
 }
 
-
 // Get generator config components by data type
-export const getGeneratorConfigComponentByDataType = (dataType:DataType):any => {
-    return generators[dataType].configComponent;
+export const getGeneratorOptionsComponentByDataType = (dataType: DataType): React.FunctionComponent<GeneratorOptionsComponentInterface> => {
+    return generators[dataType].optionsComponent
 }

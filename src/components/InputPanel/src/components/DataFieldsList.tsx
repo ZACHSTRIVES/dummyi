@@ -6,15 +6,16 @@ import {reorder} from "@/utils/listUtils";
 import {IconPlus} from "@douyinfe/semi-icons";
 import {DragDropContext, Droppable} from "react-beautiful-dnd";
 import {useDispatch, useSelector} from "react-redux";
-import {Store} from "@/types/system";
-import {doAddNewDataField, doUpdateDataFields} from "@/reducers/workspace/workspaceActions";
-import {UUID} from "uuidjs";
-import {DataField} from "@/types/generator";
+import {doAddNewDataField, doSortDataFields} from "@/reducers/workspace/workspaceActions";
 import {useIntl} from "@/locale";
 import {ComponentSize} from "@/constants/enums";
 import {DataTypeSelectModal} from "@/components/InputPanel/src/components/DataTypeSelectModal";
 import {DataTypeOptionsModal} from "@/components/InputPanel/src/components/DataTypeOptionsModal";
-import {selectDataFields, selectNumbersOfDataFields} from "@/reducers/workspace/workspaceSelectors";
+import {
+    selectDataFields,
+    selectDataFieldsSortableIdsList,
+    selectNumbersOfDataFields
+} from "@/reducers/workspace/workspaceSelectors";
 
 export interface InputFieldListProps {
     height: number;
@@ -29,6 +30,7 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
 
     // store
     const dataFields = useSelector(selectDataFields);
+    const sortableDataFieldsIds = useSelector(selectDataFieldsSortableIdsList);
     const numberOfDataFields = useSelector(selectNumbersOfDataFields);
 
     // actions
@@ -39,8 +41,8 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
         if (result.destination.index === result.source.index) {
             return;
         }
-        const newData: any[] = reorder(dataFields, result.source.index, result.destination.index);
-        dispatch(doUpdateDataFields(newData));
+        const newData: any[] = reorder(sortableDataFieldsIds, result.source.index, result.destination.index);
+        dispatch(doSortDataFields(newData));
     }
 
     const handleAddField = () => {
@@ -56,7 +58,7 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
                             {provided => (
                                 <div ref={provided.innerRef} {...provided.droppableProps}>
                                     <List>
-                                        {Object.keys(dataFields).map((id, index) => {
+                                        {sortableDataFieldsIds.map((id, index) => {
                                                 const dataField = dataFields[id];
                                                 return <DataFieldsListItem size={size} key={id} index={index} id={id}
                                                                            dataField={dataField}/>
