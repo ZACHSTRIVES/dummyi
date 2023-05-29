@@ -1,13 +1,14 @@
 import {DataField, DataFieldList} from "@/types/generator";
 import {DataType} from "@/constants/enums";
 import {NumberGeneratorDefaultOptions} from "@/core/generators/Number/Number";
+import {BooleanGeneratorDefaultOptions} from "@/core/generators/Boolean/Boolean";
 
 export const mockFields: DataFieldList =
     {
         "1": {
             fieldName: 'name',
             isDraft: false,
-            dataType: DataType.PERSON_NAME,
+            dataType: DataType.FULL_NAME,
             emptyRate: 0,
         },
         "2": {
@@ -32,13 +33,14 @@ export const mockFields: DataFieldList =
         "5": {
             fieldName: 'company',
             isDraft: false,
-            dataType: DataType.PERSON_NAME,
+            dataType: DataType.FULL_NAME,
             emptyRate: 50,
         },
         "6": {
             fieldName: 'isActive',
             isDraft: false,
             dataType: DataType.BOOLEAN,
+            dataTypeOptions: BooleanGeneratorDefaultOptions,
             emptyRate: 0,
         }
     }

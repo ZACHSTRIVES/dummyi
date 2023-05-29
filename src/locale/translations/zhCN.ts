@@ -40,9 +40,12 @@ export const zhCN = {
 
     // boolean
     "dataType.boolean": "布尔值",
+    "dataType.boolean.true.label": "真值概率",
+    "dataType.boolean.true.tooltip": "生成真值(true)的概率",
+    "dataType.boolean.format.label": "格式",
 
-    // person name
-    "dataType.personName": "人名",
+    // full name
+    "dataType.fullName": "全名",
 
     // account mi,ner
     "dataType.accountNumber": "账号",

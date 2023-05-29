@@ -41,9 +41,12 @@ export const en = {
 
     // boolean
     "dataType.boolean": "Boolean",
+    "dataType.boolean.true.label": "Prob of True",
+    "dataType.boolean.true.tooltip": "Probability of generating true value",
+    "dataType.boolean.format.label": "Format",
 
-    // person name
-    "dataType.personName": "Person name",
+    // full name
+    "dataType.fullName": "Full name",
 
     // account mi,ner
     "dataType.accountNumber": "Account number",

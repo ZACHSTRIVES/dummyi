@@ -5,7 +5,7 @@ import {IconClose, IconSearch} from "@douyinfe/semi-icons";
 import {FormattedMessage, useIntl} from "@/locale";
 import {getGeneratorList} from "@/utils/generatorUtils";
 import {useDispatch, useSelector} from "react-redux";
-import {doCloseDataTypeSelectModal, doUpdateDataField} from "@/reducers/workspace/workspaceActions";
+import {doChangeDataType, doCloseDataTypeSelectModal} from "@/reducers/workspace/workspaceActions";
 import {ColorMode} from "@/constants/enums";
 import {Generator} from "@/types/generator";
 import {
@@ -34,8 +34,7 @@ export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalPro
 
     // actions
     const handleSelect = (item: Generator) => {
-        const field = {...currentTargetDataField, dataType: item.type};
-        dispatch(doUpdateDataField(currentTargetDataFieldId, field));
+        dispatch(doChangeDataType(currentTargetDataFieldId,item.type));
         onCancel();
     }
 

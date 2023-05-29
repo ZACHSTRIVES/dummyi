@@ -2,11 +2,25 @@ import React from 'react';
 import {GenerateRequest, GeneratorOptionsComponentInterface} from "@/types/generator";
 import {FormattedMessage} from "@/locale";
 import {InputNumber, Select} from "@douyinfe/semi-ui";
-import {NumberGeneratorKind, NumberGeneratorOptions} from "@/core/generators/Number/Number.d";
 import {InfoTooltip} from "@/components/Utils";
 
-export const generate = (request: GenerateRequest): string => {
-    return 'Hello World';
+// -------------------------------------------------------------------------------------------------------------
+// types
+
+export enum NumberGeneratorKind {
+    BIGINT = "BIGINT",
+    BINARY = "BINARY",
+    FLOAT = "FLOAT",
+    HEX = "HEX",
+    INTEGER = "INT",
+    OCTAL = "OCTAL",
+}
+
+export interface NumberGeneratorOptions {
+    kind: NumberGeneratorKind;
+    precision: number;
+    min: number;
+    max: number;
 }
 
 export const NumberGeneratorDefaultOptions: NumberGeneratorOptions = {
@@ -15,6 +29,16 @@ export const NumberGeneratorDefaultOptions: NumberGeneratorOptions = {
     min: null,
     max: null,
 }
+
+// -------------------------------------------------------------------------------------------------------------
+// generate method
+
+export const generate = (request: GenerateRequest): string => {
+    return 'Hello World';
+}
+
+// -------------------------------------------------------------------------------------------------------------
+// options component
 
 export const NumberGeneratorOptionsComponent: React.FunctionComponent<GeneratorOptionsComponentInterface> = ({...props}) => {
     const {options, onOptionsChange} = props;

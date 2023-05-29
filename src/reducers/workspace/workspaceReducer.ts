@@ -1,6 +1,6 @@
 import {Action, WorkspaceReducerState} from "@/types/system";
 import {
-    ADD_NEW_DATA_FIELD,
+    ADD_NEW_DATA_FIELD, CHANGE_DATA_TYPE,
     CLOSE_DATA_TYPE_OPTIONS_MODAL,
     CLOSE_DATA_TYPE_SELECT_MODAL,
     DELETE_DATA_FIELD,
@@ -62,18 +62,23 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
                 dataFields: {
                     ...state.dataFields,
                     [action.payload.id]: action.payload.field
-                }
-            }
+                },
+                dataFieldsSortableIdsList: [...state.dataFieldsSortableIdsList, action.payload.id]
+            };
         case DELETE_DATA_FIELD:
             let newDateFields = {};
-            for (const key in state.dataFields) {
-                if (key !== action.payload) {
-                    newDateFields[key] = state.dataFields[key];
+            let newSortableIdsList = [];
+            for (let i = 0; i < state.dataFieldsSortableIdsList.length; i++) {
+                const id = state.dataFieldsSortableIdsList[i]
+                if (id !== action.payload) {
+                    newSortableIdsList.push(state.dataFieldsSortableIdsList[i]);
+                    newDateFields[id] = state.dataFields[id];
                 }
             }
             return {
                 ...state,
                 dataFields: newDateFields,
+                dataFieldsSortableIdsList: newSortableIdsList,
             }
         case UPDATE_DATA_FIELD:
             return {
@@ -88,6 +93,20 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
                 ...state,
                 dataFieldsSortableIdsList: action.payload,
             }
+        case CHANGE_DATA_TYPE:
+            const {id, dataType, options} = action.payload;
+            const field = {
+                ...state.dataFields[id],
+                dataType,
+                dataTypeOptions: options
+            };
+            return {
+                ...state,
+                dataFields: {
+                    ...state.dataFields,
+                    [id]: field
+                }
+            };
 
         default:
             return state;

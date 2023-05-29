@@ -31,3 +31,8 @@ export const getGeneratorByDataType = (dataType: DataType): Generator => {
 export const getGeneratorOptionsComponentByDataType = (dataType: DataType): React.FunctionComponent<GeneratorOptionsComponentInterface> => {
     return generators[dataType].optionsComponent
 }
+
+// Get generator default options by data type
+export const getGeneratorDefaultOptionsByDataType = (dataType: DataType): any => {
+    return generators[dataType].defaultOptions;
+}

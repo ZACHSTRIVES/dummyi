@@ -1,5 +1,5 @@
 import {
-    ADD_NEW_DATA_FIELD,
+    ADD_NEW_DATA_FIELD, CHANGE_DATA_TYPE,
     CLOSE_DATA_TYPE_OPTIONS_MODAL,
     CLOSE_DATA_TYPE_SELECT_MODAL,
     DELETE_DATA_FIELD,
@@ -8,9 +8,10 @@ import {
     SET_PANELS_DIRECTION, SORT_DATA_FIELDS,
     UPDATE_DATA_FIELD
 } from "@/constants/actions";
-import {PanelsOrientation} from "@/constants/enums";
+import {DataType, PanelsOrientation} from "@/constants/enums";
 import {DataField} from "@/types/generator";
 import {UUID} from "uuidjs";
+import {getGeneratorDefaultOptionsByDataType} from "@/utils/generatorUtils";
 
 
 // set panels direction
@@ -20,7 +21,7 @@ export const doSetPanelsOrientation = (direction: PanelsOrientation): any =>
     };
 
 // open data type select modal
-export const doOpenDataTypeSelectModal = (fieldId:string): any =>
+export const doOpenDataTypeSelectModal = (fieldId: string): any =>
     async dispatch => {
         dispatch({type: OPEN_DATA_TYPE_SELECT_MODAL, payload: fieldId});
     };
@@ -32,7 +33,7 @@ export const doCloseDataTypeSelectModal = (): any =>
     };
 
 // open data type options modal
-export const doOpenDataTypeOptionsModal = (fieldId:string): any =>
+export const doOpenDataTypeOptionsModal = (fieldId: string): any =>
     async dispatch => {
         dispatch({type: OPEN_DATA_TYPE_OPTIONS_MODAL, payload: fieldId});
     };
@@ -71,6 +72,13 @@ export const doUpdateDataField = (id: string, field: DataField): any =>
 export const doSortDataFields = (sortableIdsList: string[]): any =>
     async dispatch => {
         dispatch({type: SORT_DATA_FIELDS, payload: sortableIdsList});
+    };
+
+// change data type
+export const doChangeDataType = (id: string, dataType: DataType): any =>
+    async dispatch => {
+        const defaultOptions = getGeneratorDefaultOptionsByDataType(dataType);
+        dispatch({type: CHANGE_DATA_TYPE, payload: {id: id, dataType: dataType, options: defaultOptions}});
     };
 
 

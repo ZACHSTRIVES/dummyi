@@ -22,10 +22,10 @@ export enum DataTypeCategory {
 
 export enum DataType {
     NUMBER = "number",
-    PERSON_NAME = "personName",
     DATE_TIME = "dateTime",
     ACCOUNT_NUMBER = "accountNumber",
-    BOOLEAN = "boolean"
+    BOOLEAN = "boolean",
+    FULL_NAME = "fullName",
 }
 
 // systems
