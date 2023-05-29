@@ -25,8 +25,7 @@ export const ExportFormatSelect: React.FunctionComponent<ExportFormatSelectProps
 
     // actions
     const handleSelectChange = (value) => {
-        const formatter = getFormatterByFormat(value);
-        dispatch(doChangeExportFormat(value,formatter.defaultConfig));
+        dispatch(doChangeExportFormat(value));
     }
 
     // render

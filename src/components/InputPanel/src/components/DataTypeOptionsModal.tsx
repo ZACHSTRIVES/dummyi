@@ -31,10 +31,12 @@ export const DataTypeOptionsModal: React.FunctionComponent<DataTypeOptionsModalP
 
     // renders
     const renderDataTypeOptions = () => {
+        if (!dataField) return null;
         if (!dataField.dataType) return null;
         const OptionsComponent = getGeneratorOptionsComponentByDataType(dataField.dataType);
         return OptionsComponent ?
-            <OptionsComponent options={dataField.dataTypeOptions} onOptionsChange={handleDataFieldOptionsChange}/> : null;
+            <OptionsComponent options={dataField.dataTypeOptions}
+                              onOptionsChange={handleDataFieldOptionsChange}/> : null;
     };
 
     // actions
@@ -42,6 +44,14 @@ export const DataTypeOptionsModal: React.FunctionComponent<DataTypeOptionsModalP
         const newDataField = {
             ...dataField,
             dataTypeOptions: options
+        };
+        dispatch(doUpdateDataField(dataFieldId, newDataField));
+    }
+
+    const handleEmptyRateChange = (value) => {
+        const newDataField = {
+            ...dataField,
+            emptyRate: value
         };
         dispatch(doUpdateDataField(dataFieldId, newDataField));
     }
@@ -64,8 +74,7 @@ export const DataTypeOptionsModal: React.FunctionComponent<DataTypeOptionsModalP
                         <FormattedMessage id={'dataFields.input.emptyRate.label'}/>
                     </div>
                     <InputNumber
-                        onChange={(value) => {
-                        }}
+                        onChange={handleEmptyRateChange}
                         min={0}
                         max={100}
                         suffix={"%"}
