@@ -2,7 +2,7 @@ import {
     ADD_NEW_DATA_FIELD, CHANGE_DATA_TYPE,
     CLOSE_DATA_TYPE_OPTIONS_MODAL,
     CLOSE_DATA_TYPE_SELECT_MODAL,
-    DELETE_DATA_FIELD,
+    DELETE_DATA_FIELD, GENERATE_PREVIEW_DATA, GENERATE_SPECIFIC_FIELD_PREVIEW_DATA,
     OPEN_DATA_TYPE_OPTIONS_MODAL,
     OPEN_DATA_TYPE_SELECT_MODAL,
     SET_PANELS_DIRECTION, SORT_DATA_FIELDS,
@@ -66,6 +66,7 @@ export const doUpdateDataField = (id: string, field: DataField): any =>
     async dispatch => {
         field.isDraft = !(field.dataType && field.fieldName);
         dispatch({type: UPDATE_DATA_FIELD, payload: {id: id, field: field}});
+        dispatch(doGeneratePreviewData());
     };
 
 // sort data fields
@@ -79,7 +80,19 @@ export const doChangeDataType = (id: string, dataType: DataType): any =>
     async dispatch => {
         const defaultOptions = getGeneratorDefaultOptionsByDataType(dataType);
         dispatch({type: CHANGE_DATA_TYPE, payload: {id: id, dataType: dataType, options: defaultOptions}});
+        dispatch(doGenerateSpecificFieldPreviewData(id));
     };
 
+// generate preview data
+export const doGeneratePreviewData = (): any =>
+    async dispatch => {
+        dispatch({type: GENERATE_PREVIEW_DATA});
+    };
+
+// generate specific field data
+export const doGenerateSpecificFieldPreviewData = (id: string): any =>
+    async dispatch => {
+        dispatch({type: GENERATE_SPECIFIC_FIELD_PREVIEW_DATA, payload: id});
+    };
 
 

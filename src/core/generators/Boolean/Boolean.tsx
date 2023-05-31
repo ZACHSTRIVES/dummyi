@@ -1,10 +1,12 @@
 import React from 'react';
-import {GenerateRequest, GeneratorOptionsComponentInterface} from "@/types/generator";
+import {GenerateRequest, GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
 import {FormattedMessage} from "@/locale";
 import {InputNumber, Select, Tag} from "@douyinfe/semi-ui";
 import {InfoTooltip} from "@/components/Utils";
 import {useSelector} from "react-redux";
 import {selectColorMode} from "@/reducers/app/appSelectors";
+import {faker} from "@faker-js/faker";
+import {ExportValueType} from "@/constants/enums";
 
 // -------------------------------------------------------------------------------------------------------------
 // types
@@ -27,8 +29,36 @@ export const BooleanGeneratorDefaultOptions: BooleanGeneratorOptions = {
 
 // -------------------------------------------------------------------------------------------------------------
 // generate method
-export const generate = (request: GenerateRequest): string => {
-    return 'Hello World';
+export const generate = (options: any): GenerateResult => {
+    const {truePercentage, format} = options;
+    let truePercentageRate = truePercentage / 100;
+    const result = faker.datatype.boolean(truePercentageRate);
+    switch (format) {
+        case BooleanGenerateFormat.TRUE_FALSE_BOOLEAN:
+            return {
+                value: result,
+                stringValue: result ? 'true' : 'false',
+                type: ExportValueType.BOOLEAN
+            };
+        case BooleanGenerateFormat.ONE_ZERO_NUMBER:
+            return {
+                value: result ? 1 : 0,
+                stringValue: result ? '1' : '0',
+                type: ExportValueType.NUMBER
+            };
+        case BooleanGenerateFormat.TRUE_FALSE_STRING:
+            return {
+                value: result ? 'true' : 'false',
+                stringValue: result ? 'true' : 'false',
+                type: ExportValueType.STRING
+            };
+        case BooleanGenerateFormat.YES_NO_STRING:
+            return {
+                value: result ? 'Yes' : 'No',
+                stringValue: result ? 'Yes' : 'No',
+                type: ExportValueType.STRING
+            };
+    }
 }
 
 // -------------------------------------------------------------------------------------------------------------
@@ -84,8 +114,6 @@ export const BooleanGeneratorOptionsComponent: React.FunctionComponent<Generator
                             </Select.Option>
                         )
                     })}
-
-
                 </Select>
             </div>
         </>

@@ -32,3 +32,6 @@ export const selectCurrentDataTypeOptionsModalTargetField = createSelector(
     (dataFields, id) => dataFields[id]
 )
 
+// preview data
+export const selectPreviewData = (state: Store) => state.workspace.previewData;
+export const selectPreviewFormattedData = (state: Store) => state.workspace.previewFormattedData;

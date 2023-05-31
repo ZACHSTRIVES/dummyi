@@ -1,9 +1,9 @@
 import React from "react";
-import {Button, Notification, Toast, Tooltip} from "@douyinfe/semi-ui";
+import {Button, Toast, Tooltip} from "@douyinfe/semi-ui";
 import {IconCopy} from "@douyinfe/semi-icons";
 import {useIntl} from "@/locale";
 import {useSelector} from "react-redux";
-import {Store} from "@/types/system";
+import {selectPreviewFormattedData} from "@/reducers/workspace/workspaceSelectors";
 
 export type CopyToClipboardButtonProps = {}
 
@@ -11,7 +11,7 @@ export const CopyToClipboardButton: React.FunctionComponent<CopyToClipboardButto
     const intl = useIntl();
 
     // store
-    const previewFormattedData = useSelector((state: Store) => state.preview.previewFormattedData);
+    const previewFormattedData = useSelector(selectPreviewFormattedData);
 
     // actions
     const copyToClipboard = () => {

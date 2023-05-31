@@ -37,6 +37,8 @@ export interface ExporterReducerState {
 export interface WorkspaceReducerState {
     dataFields: DataFieldList;
     dataFieldsSortableIdsList: string[];
+    previewData: any;
+    previewFormattedData: string;
     panelsOrientation: PanelsOrientation;
     showDataTypeSelectModal: boolean;
     currentDataTypeSelectModalTargetField?: DataField;
@@ -51,8 +53,6 @@ export interface PreviewReducerState {
     rawViewShowLineNumber: boolean;
     rawViewLineWrap: boolean;
     rawViewFontSize: number;
-    previewData: any;
-    previewFormattedData: string;
 }
 
 // locales

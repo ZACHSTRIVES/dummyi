@@ -1,7 +1,48 @@
 import {generators} from "@/core/generators";
-import {Generator, GeneratorOptionsComponentInterface} from "@/types/generator";
+import {DataFieldList, Generator, GeneratorOptionsComponentInterface} from "@/types/generator";
 import {DataType, DataTypeCategory} from "@/constants/enums";
 import React from "react";
+
+// generate data
+export const generateData = (fields: DataFieldList, sortableList: string[], count: number): any => {
+    const data: any[] = [];
+    for (let i = 0; i < count; i++) {
+        const row: any = {};
+        sortableList.forEach((id) => {
+            const field = fields[id];
+            if (!field.isDraft) {
+                if (!isEmptyField(field.emptyRate)) {
+                    row[field.fieldName] = generators[field.dataType].generate(field.dataTypeOptions);
+                }
+            }
+        });
+        data.push(row);
+    }
+    return data;
+}
+
+// generate specific data
+export const generateSpecificFieldData = (fields: DataFieldList, sortableList: string[], currentData: any[], specificFieldId: string): any[] => {
+    return currentData.map((rowData) => {
+        const row: any = {};
+        sortableList.forEach((id) => {
+            const field = fields[id];
+            if (!field.isDraft) {
+                if (id === specificFieldId) {
+                    row[field.fieldName] = generators[field.dataType].generate(field.dataTypeOptions);
+                } else {
+                    row[field.fieldName] = rowData[field.fieldName];
+                }
+            }
+        });
+        return row;
+    });
+}
+
+// get is empty line
+export const isEmptyField = (emptyProb: number): boolean => {
+    return Math.random() < (emptyProb / 100);
+}
 
 // get generator grouped by category list with search and locale
 export const getGeneratorList = (search: string, intl: any): { [category: string]: Generator[] } => {
@@ -20,11 +61,6 @@ export const getGeneratorList = (search: string, intl: any): { [category: string
         }
     });
     return categorizedGenerator;
-}
-
-// Get generator by data type
-export const getGeneratorByDataType = (dataType: DataType): Generator => {
-    return generators[dataType];
 }
 
 // Get generator config components by data type

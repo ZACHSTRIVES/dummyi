@@ -1,8 +1,10 @@
 import React from 'react';
-import {GenerateRequest, GeneratorOptionsComponentInterface} from "@/types/generator";
+import {GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
 import {FormattedMessage} from "@/locale";
 import {InputNumber, Select} from "@douyinfe/semi-ui";
 import {InfoTooltip} from "@/components/Utils";
+import {faker} from "@faker-js/faker";
+import {ExportValueType} from "@/constants/enums";
 
 // -------------------------------------------------------------------------------------------------------------
 // types
@@ -26,15 +28,43 @@ export interface NumberGeneratorOptions {
 export const NumberGeneratorDefaultOptions: NumberGeneratorOptions = {
     kind: NumberGeneratorKind.INTEGER,
     precision: 0.1,
-    min: null,
-    max: null,
+    min: 0,
+    max: 9999,
 }
 
 // -------------------------------------------------------------------------------------------------------------
 // generate method
 
-export const generate = (request: GenerateRequest): string => {
-    return 'Hello World';
+export const generate = (options): GenerateResult => {
+    const {kind, precision, min, max} = options;
+    const fakerOptions = min && max ? {min: min, max: max} : {min: 0, max: 9999};
+    let result: any;
+
+    switch (kind) {
+        case NumberGeneratorKind.BIGINT:
+            result = faker.number.bigInt(fakerOptions);
+            break;
+        case NumberGeneratorKind.BINARY:
+            result = faker.number.binary(fakerOptions);
+            break;
+        case NumberGeneratorKind.FLOAT:
+            result = faker.number.float({...fakerOptions, precision});
+            break;
+        case NumberGeneratorKind.HEX:
+            result = faker.number.hex(fakerOptions);
+            break;
+        case NumberGeneratorKind.INTEGER:
+            result = faker.number.int(fakerOptions);
+            break;
+        case NumberGeneratorKind.OCTAL:
+            result = faker.number.octal(fakerOptions);
+            break;
+    }
+    return {
+        value: result,
+        stringValue: result.toString(),
+        type: kind === NumberGeneratorKind.BINARY || kind === NumberGeneratorKind.OCTAL || kind === NumberGeneratorKind.HEX ? ExportValueType.STRING : ExportValueType.NUMBER
+    };
 }
 
 // -------------------------------------------------------------------------------------------------------------
