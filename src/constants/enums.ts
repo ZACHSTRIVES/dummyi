@@ -16,7 +16,8 @@ export enum ExportValueType {
     STRING = "string",
     NUMBER = "number",
     BOOLEAN = "boolean",
-    DATE_TIME = "dateTime"
+    DATE_TIME = "dateTime",
+    NULL = "null"
 }
 
 // data types

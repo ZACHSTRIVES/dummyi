@@ -66,7 +66,7 @@ export const doUpdateDataField = (id: string, field: DataField): any =>
     async dispatch => {
         field.isDraft = !(field.dataType && field.fieldName);
         dispatch({type: UPDATE_DATA_FIELD, payload: {id: id, field: field}});
-        dispatch(doGeneratePreviewData());
+        dispatch(doGenerateSpecificFieldPreviewData(id));
     };
 
 // sort data fields

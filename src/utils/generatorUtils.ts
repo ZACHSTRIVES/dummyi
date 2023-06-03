@@ -1,6 +1,6 @@
 import {generators} from "@/core/generators";
 import {DataFieldList, Generator, GeneratorOptionsComponentInterface} from "@/types/generator";
-import {DataType, DataTypeCategory} from "@/constants/enums";
+import {DataType, DataTypeCategory, ExportValueType} from "@/constants/enums";
 import React from "react";
 
 // generate data
@@ -13,6 +13,12 @@ export const generateData = (fields: DataFieldList, sortableList: string[], coun
             if (!field.isDraft) {
                 if (!isEmptyField(field.emptyRate)) {
                     row[field.fieldName] = generators[field.dataType].generate(field.dataTypeOptions);
+                } else {
+                    row[field.fieldName] = {
+                        value: null,
+                        stringValue: null,
+                        type: ExportValueType.NULL
+                    }
                 }
             }
         });
@@ -29,7 +35,15 @@ export const generateSpecificFieldData = (fields: DataFieldList, sortableList: s
             const field = fields[id];
             if (!field.isDraft) {
                 if (id === specificFieldId) {
-                    row[field.fieldName] = generators[field.dataType].generate(field.dataTypeOptions);
+                    if (!isEmptyField(field.emptyRate)) {
+                        row[field.fieldName] = generators[field.dataType].generate(field.dataTypeOptions);
+                    } else {
+                        row[field.fieldName] = {
+                            value: null,
+                            stringValue: null,
+                            type: ExportValueType.NULL
+                        }
+                    }
                 } else {
                     row[field.fieldName] = rowData[field.fieldName];
                 }
@@ -38,6 +52,21 @@ export const generateSpecificFieldData = (fields: DataFieldList, sortableList: s
         return row;
     });
 }
+
+// delete specific field data
+export const deleteSpecificFieldData = (fields: DataFieldList, sortableList: string[], currentData: any[], specificFieldId: string): any[] => {
+    return currentData.map((rowData) => {
+        const row: any = {};
+        sortableList.forEach((id) => {
+            const field = fields[id];
+                if (id !== specificFieldId) {
+                    row[field.fieldName] = rowData[field.fieldName];
+                }
+        });
+        return row;
+    });
+}
+
 
 // get is empty line
 export const isEmptyField = (emptyProb: number): boolean => {

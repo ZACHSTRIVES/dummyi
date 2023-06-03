@@ -13,7 +13,7 @@ import {
 } from "@/constants/actions";
 import {DEFAULT_PANELS_ORIENTATION} from "@/constants/core";
 import {mockData, mockFields} from "@/reducers/mock";
-import {generateData, generateSpecificFieldData} from "@/utils/generatorUtils";
+import {deleteSpecificFieldData, generateData, generateSpecificFieldData} from "@/utils/generatorUtils";
 
 
 export const initStates: WorkspaceReducerState = {
@@ -86,6 +86,7 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
                 ...state,
                 dataFields: newDateFields,
                 dataFieldsSortableIdsList: newSortableIdsList,
+                previewData:deleteSpecificFieldData(state.dataFields, state.dataFieldsSortableIdsList, state.previewData, action.payload)
             };
         case UPDATE_DATA_FIELD:
             return {

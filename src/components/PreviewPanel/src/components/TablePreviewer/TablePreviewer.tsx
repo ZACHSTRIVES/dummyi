@@ -31,7 +31,7 @@ export const TablePreviewer: React.FunctionComponent<TablePreviewerProps> = ({..
                             dataIndex={field.fieldName}
                             title={field.fieldName}
                             render={(value: any) => {
-                                return <>{value.stringValue}</>
+                                return <>{value?value.stringValue:""}</>
                             }}
                         />
                 })}

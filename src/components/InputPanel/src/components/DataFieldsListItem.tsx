@@ -62,7 +62,7 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
             <OptionsComponent options={dataField.dataTypeOptions} onOptionsChange={handleOptionsChange}/> : null;
     };
 
-    const EmptyRateInput = () => {
+    const renderEmptyRateInput = () => {
         return (<div className="generatorConfig_column">
             <div className='generatorConfig_column__label'>
                 <FormattedMessage id={'dataFields.input.emptyRate.label'}/>
@@ -120,7 +120,7 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
 
                                 {size !== ComponentSize.SMALL && (
                                     <>
-                                        <EmptyRateInput/>
+                                        {renderEmptyRateInput()}
                                         {size !== ComponentSize.LARGE && <div className="generatorConfig_column">
                                             <div className='generatorConfig_column__label'>
                                                 <FormattedMessage id="dataFields.input.options.label"/>
