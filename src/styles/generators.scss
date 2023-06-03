@@ -1,0 +1,13 @@
+.generatorConfig_column {
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+
+  .generatorConfig_column__label{
+    font-weight: normal;
+    font-size: small;
+    margin-left: 6px;
+    margin-bottom: 3px;
+  }
+}
+

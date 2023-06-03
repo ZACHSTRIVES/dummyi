@@ -1,12 +1,15 @@
 import React from 'react';
 import {Button, Divider, Empty, Modal} from "@douyinfe/semi-ui";
-import {useIntl} from "@/locale";
+import {FormattedMessage, useIntl} from "@/locale";
 import {useDispatch, useSelector} from "react-redux";
-import {Store} from "@/types/system";
 import {ExportFormatSelect} from "@/components/ExportFormatConfigurator/src/components/ExportFormatSelect";
 import {IllustrationConstruction, IllustrationConstructionDark} from '@douyinfe/semi-illustrations';
-import {getFormatterByFormat, getFormatterConfigComponentByFormat} from "@/utils/exporterUtils";
+import {getFormatterConfigComponentByFormat} from "@/utils/formatterUtils";
 import {doSetFormatterConfig} from "@/reducers/exporter/exporterActions";
+import {FormatRequest} from "@/types/formatter";
+import {selectExportFormat, selectFormatterConfig} from "@/reducers/exporter/exporterSelectors";
+import {selectPreviewData} from "@/reducers/preview/previewSelectors";
+import {selectDataFields} from "@/reducers/workspace/workspaceSelectors";
 
 export type ExportFormatConfiguratorModalProps = {
     open: boolean;
@@ -19,12 +22,22 @@ export const ExportFormatConfiguratorModal: React.FC<ExportFormatConfiguratorMod
     const dispatch = useDispatch();
 
     // store
-    const exportFormat = useSelector((state: Store) => state.exporter.exportFormat);
-    const formatterConfig = useSelector((state: Store) => state.exporter.formatterConfig);
+    const exportFormat = useSelector(selectExportFormat);
+    const formatterConfig = useSelector(selectFormatterConfig);
+    const previewData = useSelector(selectPreviewData);
+    const fields = useSelector(selectDataFields);
 
     // action
     const onConfigChange = (config) => {
-        dispatch(doSetFormatterConfig(config));
+
+        // CAUTION: temp solution, need to be refactored,for test only
+        const formatRequest: FormatRequest = {
+            format: exportFormat,
+            config: config,
+            values: previewData,
+            fields: fields
+        }
+        dispatch(doSetFormatterConfig(formatRequest, config));
     }
 
     // render
@@ -45,10 +58,13 @@ export const ExportFormatConfiguratorModal: React.FC<ExportFormatConfiguratorMod
             visible={open}
             title={intl.formatMessage({id: 'export.configurator.modal.title'})}
             style={{width: '95vw', maxWidth: '500px', height: '500px'}}
-            footer={<Button onClick={onClose}
-                            style={{width: '100px'}}>{intl.formatMessage({id: 'export.configurator.modal.closeButton.text'})}</Button>}
-            onCancel={onClose}
-        >
+            footer={
+                <Button onClick={onClose} style={{width: '100px'}}>
+                    <FormattedMessage id='export.configurator.modal.closeButton.text'/>
+                </Button>
+            }
+            onCancel={onClose}>
+
             <ExportFormatSelect/>
 
             <Divider style={{marginTop: 24}}/>

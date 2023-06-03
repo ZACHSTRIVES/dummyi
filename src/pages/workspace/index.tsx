@@ -1,14 +1,15 @@
-import React, {useEffect} from "react";
-import {ReflexContainer, ReflexElement, ReflexSplitter} from 'react-reflex';
+import React, { useEffect } from "react";
+import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
 import styles from './workspace.module.css';
-import {InputPanel} from "@/components/InputPanel";
-import {PreviewPanel} from "@/components/PreviewPanel";
-import {useDispatch, useSelector} from "react-redux";
-import {Store} from "@/types/system";
-import {ColorMode, PanelsOrientation} from "@/constants/enums";
-import {doSetPanelsOrientation} from "@/reducers/workspace/workspaceActions";
+import { InputPanel } from "@/components/InputPanel";
+import { PreviewPanel } from "@/components/PreviewPanel";
+import { useDispatch, useSelector } from "react-redux";
+import { Store } from "@/types/system";
+import { ColorMode, PanelsOrientation } from "@/constants/enums";
+import { doSetPanelsOrientation } from "@/reducers/workspace/workspaceActions";
 import Head from "next/head";
-import {useIntl} from "@/locale";
+import { useIntl } from "@/locale";
+import { FilesPanel } from "@/components/FilesPanel/src";
 
 export default function Workspace() {
     const intl = useIntl();
@@ -17,6 +18,41 @@ export default function Workspace() {
     // store
     const panelsDirection = useSelector((state: Store) => state.workspace.panelsOrientation);
     const colorMode = useSelector((state: Store) => state.app.colorMode);
+
+    const files = [
+        {
+            label: 'Asia',
+            emoji: {
+                background: "#123456",
+                code: "U+1F600"
+            },
+
+            children: [
+                {
+                    label: 'China',
+                    emoji: {
+                        background: "#123456",
+                        code: "U+1F1E8 U+1F1F3",
+                    },
+                    children: [
+                        {
+                            label: 'Beijing',
+                        },
+                        {
+                            label: 'Guangzhou',
+                        },
+                    ],
+                },
+                {
+                    label: 'Japan',
+                    emoji: {
+                        background: "#123456",
+                        code: "U+1F1EF U+1F1F5",
+                    },
+                },
+            ],
+        },
+    ];
 
     useEffect(() => {
         setOrientation(getOrientation());
@@ -43,13 +79,12 @@ export default function Workspace() {
     return (
         <>
             <Head>
-                <title>{intl.formatMessage({id:"nav.item.workspace"})} - Duymmi</title>
+                <title>{intl.formatMessage({ id: "nav.item.workspace" })} - Duymmi</title>
             </Head>
 
-            <ReflexContainer orientation={panelsDirection}>
-                <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 200 : 375}
-                               className={styles.leftReflexElement}>
-                    <InputPanel/>
+            <ReflexContainer orientation={PanelsOrientation.VERTICAL}>
+                <ReflexElement size={200} minSize={200} maxSize={300}>
+                    <FilesPanel files={files} />
                 </ReflexElement>
 
                 <ReflexSplitter
@@ -58,11 +93,29 @@ export default function Workspace() {
                         borderColor: 'transparent',
                         borderWidth: '1px'
                     }}
-                    className={`${styles.splitter} ${panelsDirection}`}
+                    className={`${styles.splitter} ${PanelsOrientation.VERTICAL}`}
                 />
 
-                <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 100 : 400}>
-                    <PreviewPanel/>
+                <ReflexElement>
+                    <ReflexContainer orientation={panelsDirection}>
+                        <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 200 : 375}
+                            className={styles.leftReflexElement}>
+                            <InputPanel />
+                        </ReflexElement>
+
+                        <ReflexSplitter
+                            style={{
+                                backgroundColor: colorMode === ColorMode.DARK ? 'rgba(153,153,153,0.44)' : '#d5d3d3',
+                                borderColor: 'transparent',
+                                borderWidth: '1px'
+                            }}
+                            className={`${styles.splitter} ${panelsDirection}`}
+                        />
+
+                        <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 100 : 400}>
+                            <PreviewPanel />
+                        </ReflexElement>
+                    </ReflexContainer>
                 </ReflexElement>
             </ReflexContainer>
         </>

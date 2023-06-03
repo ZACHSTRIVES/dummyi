@@ -1,4 +1,5 @@
 import {
+    SET_PREVIEW_FORMATTED_DATA,
     SET_PREVIEW_TYPE,
     SET_RAW_VIEW_FONT_SIZE,
     SET_RAW_VIEW_LINE_WRAP,
@@ -29,4 +30,10 @@ export const doSetRawViewFontSize = (size: number): any =>
 export const doSetPreviewType = (type: PreviewType): any =>
     async dispatch => {
         dispatch({type: SET_PREVIEW_TYPE, payload: type});
+    };
+
+// set preview formatted data
+export const doSetPreviewFormattedData = (data: string): any =>
+    async dispatch => {
+        dispatch({type: SET_PREVIEW_FORMATTED_DATA, payload: data});
     };

@@ -13,13 +13,14 @@ export const defaultCsvFormatterConfig: CsvFormatterConfig = {
 
 export const CsvConfig: React.FC<FormatterConfigComponentInterface> = ({...props}) => {
     const {onConfigChange, config} = props;
+    const csvConfig: CsvFormatterConfig = config;
     const {Label} = Form;
     const intl = useIntl();
 
     // action
     const handleValueChange = (field: string, value: any) => {
         onConfigChange({
-            ...config,
+            ...csvConfig,
             [field]: value
         })
     }
@@ -27,35 +28,35 @@ export const CsvConfig: React.FC<FormatterConfigComponentInterface> = ({...props
     return (
         <div>
             <div className={'margin-top-18 flex flex-column'}>
-                <Label>{intl.formatMessage({id:"export.configurator.csv.delimiter"})}</Label>
+                <Label>{intl.formatMessage({id: "export.configurator.csv.delimiter"})}</Label>
                 <Input
                     onChange={(value) => {
                         handleValueChange('delimiter', value)
                     }}
-                    value={config.delimiter}
-                    style={{width: '120px'}}
+                    value={csvConfig.delimiter}
+                    style={{width: '60px'}}
                 />
             </div>
 
             <div className={'margin-top-18 flex flex-column'}>
-                <Label>{intl.formatMessage({id:"export.configurator.csv.includeHeader"})}</Label>
+                <Label>{intl.formatMessage({id: "export.configurator.csv.includeHeader"})}</Label>
                 <Switch
                     onChange={(value) => {
                         handleValueChange('includeHeader', value)
                     }}
                     size={'large'}
-                    checked={config.includeHeader}
+                    checked={csvConfig.includeHeader}
                 />
             </div>
 
             <div className={'margin-top-18 flex flex-column'}>
-                <Label>{intl.formatMessage({id:"export.configurator.csv.endLineChar"})}</Label>
+                <Label>{intl.formatMessage({id: "export.configurator.csv.endLineChar"})}</Label>
                 <Select
                     onChange={(value) => {
                         handleValueChange('endOfLineChar', value)
                     }
                     }
-                    value={config.endOfLineChar}
+                    value={csvConfig.endOfLineChar}
                     style={{width: '200px'}}
                 >
                     <Select.Option value={EndOfLineChars.CRLF}>

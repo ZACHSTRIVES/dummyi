@@ -1,20 +1,31 @@
 import React, {FunctionComponent} from 'react';
 import {IconLanguage} from '@douyinfe/semi-icons';
-import {Button, Modal, Radio, RadioGroup, Tooltip} from '@douyinfe/semi-ui';
+import {Button, Modal, Radio, RadioGroup, Row, Tooltip, Typography} from '@douyinfe/semi-ui';
+import Image from "next/image";
 import {useRouter} from 'next/router';
 import {Locales} from '@/constants/enums';
 import {useIntl} from "@/locale";
+import { Emoji, EmojiStyle } from 'emoji-picker-react';
+import { convertToUnifiedCode } from '@/components/FilesPanel/src/FilesPanel';
 
 const localeMap = {
     [Locales.EN]: {
         name: 'English',
-        icon: '🇬🇧',
-        shortcuts: 'EN'
+        shortcuts: 'EN',
+        flag: 'U+1F1EC U+1F1E7',
+        generatedByChatGPT: false
     },
-    [Locales.ZH]: {
+    [Locales.ZH_CN]: {
         name: '中文',
-        icon: '🇨🇳',
-        shortcuts: '中文'
+        shortcuts: '中文',
+        flag: 'U+1F1E8 U+1F1F3',
+        generatedByChatGPT: false
+    },
+    [Locales.JA_JP]: {
+        name: '日本語',
+        shortcuts: '日本語',
+        flag: 'U+1F1EF U+1F1F5',
+        generatedByChatGPT: true
     }
 }
 
@@ -27,6 +38,7 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitchButtonProps> = ({
     const {locale, push, asPath} = useRouter();
     const [isModalVisible, setIsModalVisible] = React.useState(false);
     const [isSettingLocale, setIsSettingLocale] = React.useState(false);
+    const {Text} = Typography;
 
     // actions
     const handleLocaleChange = async (e) => {
@@ -54,21 +66,42 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitchButtonProps> = ({
             </Tooltip>
 
             <Modal visible={isModalVisible}
-                   icon={<IconLanguage size={'extra-large'}/>}
                    footer={null}
-                   style={{width: '90vw', maxWidth: '300px'}}
+                   style={{width: '90vw', maxWidth: '350px'}}
                    onCancel={() => setIsModalVisible(false)}
-                   title={intl.formatMessage({id: 'nav.languageSwitchModal.title'})}>
+                   title={<>
+                       <IconLanguage size={'extra-large'}/>
+                       <div style={{marginLeft: "6px"}}>
+                           {intl.formatMessage({id: 'nav.languageSwitchModal.title'})}
+                       </div>
+                   </>}
+            >
 
                 <div style={{marginBottom: '20px'}}>
                     <RadioGroup type='pureCard' value={locale} direction='vertical' name="lang-radio-group">
-                        {Object.entries(localeMap).map(([key, value]) => (
-                            <Radio key={key} value={key}
-                                   style={{width: 200, height: 50, borderRadius: '12px'}} onChange={handleLocaleChange}>
-                                {value.icon} {value.name}
-                            </Radio>
-                        ))}
+                        {Object.entries(localeMap).map(([key, value]) => {
+                            return (<Radio key={key} value={key}
+                                   style={{
+                                       width: '300px',
+                                       height: 50,
+                                       borderRadius: '12px'
+                                   }}
+                                   onChange={handleLocaleChange}
+                            >
+                                <Emoji unified={convertToUnifiedCode(value.flag)} emojiStyle={EmojiStyle.APPLE} size={16} />
+                                <span style={{ marginLeft: '8px' }}>{value.name}</span>
+                            </Radio>)
+                        })}
                     </RadioGroup>
+
+                    <div className={'flex'}
+                         style={{marginTop: "24px", alignItems: 'center', width: '100%', justifyContent: 'center'}}>
+                        <Image src={'/images/ChatGpt.svg'} height={16} width={16} alt={'ChatGPT'}/>
+                        <div style={{fontSize: 8, color: 'gray', marginLeft: '6px'}}>
+                            {intl.formatMessage({id: 'nav.languageSwitchModal.footer.chatGPT.text'})}
+                        </div>
+                    </div>
+
                 </div>
 
             </Modal>
