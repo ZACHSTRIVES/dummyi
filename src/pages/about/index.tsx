@@ -1,13 +1,17 @@
-import React from "react";
-import Head from "next/head";
-import Image from "next/image";
+import React, { ReactElement } from "react";
+import { NextPageWithLayout } from "../_app";
+import { useRouter } from "next/router";
+import { AboutLayout } from "@/components/Layout/about";
+import DatePage from "./date";
+import NumberPage from "./number";
+import StringPage from "./string";
 
-export default function About() {
+
+const About: React.FC = () => {
     return (
-        <div>
-            <Head>
-                <title>About - Duymmi</title>
-            </Head>
-        </div>
+        <AboutLayout>            
+        </AboutLayout>
     );
 }
+
+export default About;
