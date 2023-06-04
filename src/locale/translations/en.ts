@@ -81,7 +81,7 @@ export const en = {
     "preview.setting.lineWarpSwitch.tooltip.disable": "Disable line wrap",
     "preview.setting.copyToClipboard.tooltip": "Copy to clipboard",
     "preview.setting.copyToClipboard.notification.success": "Success",
-    "preview.setting.copyToClipboard.notification.content": "The content has been copied to the clipboard.",
+    "preview.setting.copyToClipboard.notification.content": "Copied to the clipboard.",
     "preview.setting.rawView.text": "Raw",
     "preview.setting.tableView.text": "Table",
     "dataFields.list.addNewFieldButton.text": "Add field",

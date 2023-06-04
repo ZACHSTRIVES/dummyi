@@ -66,6 +66,7 @@ export const generate = (options: any): GenerateResult => {
 export const BooleanGeneratorOptionsComponent: React.FunctionComponent<GeneratorOptionsComponentInterface> = ({...props}) => {
     const {options, onOptionsChange} = props;
     const booleanOptions: BooleanGeneratorOptions = options;
+
     // store
     const colorMode = useSelector(selectColorMode)
 
@@ -73,6 +74,11 @@ export const BooleanGeneratorOptionsComponent: React.FunctionComponent<Generator
         let newOptions = {...booleanOptions, [changedFieldName]: value};
         onOptionsChange(newOptions);
     }
+
+    // error check
+
+
+
 
     return (
         <>

@@ -6,38 +6,14 @@ import {BooleanGeneratorDefaultOptions} from "@/core/generators/Boolean/Boolean"
 export const mockFields: DataFieldList =
     {
         "1": {
-            fieldName: 'name',
-            isDraft: false,
-            dataType: DataType.FULL_NAME,
-            emptyRate: 0,
-        },
-        "2": {
-            fieldName: 'phone',
+            fieldName: 'number',
             isDraft: false,
             dataType: DataType.NUMBER,
             dataTypeOptions: NumberGeneratorDefaultOptions,
             emptyRate: 0,
         },
-        "3": {
-            fieldName: 'email',
-            isDraft: false,
-            dataType: DataType.ACCOUNT_NUMBER,
-            emptyRate: 0,
-        },
-        "4": {
-            fieldName: 'dob',
-            isDraft: false,
-            dataType: DataType.DATE_TIME,
-            emptyRate: 0,
-        },
-        "5": {
-            fieldName: 'company',
-            isDraft: false,
-            dataType: DataType.FULL_NAME,
-            emptyRate: 50,
-        },
-        "6": {
-            fieldName: 'isActive',
+        "2": {
+            fieldName: 'boolean',
             isDraft: false,
             dataType: DataType.BOOLEAN,
             dataTypeOptions: BooleanGeneratorDefaultOptions,

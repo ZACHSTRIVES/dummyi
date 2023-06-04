@@ -1,10 +1,12 @@
 import React from 'react';
 import {GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
 import {FormattedMessage} from "@/locale";
-import {InputNumber, Select} from "@douyinfe/semi-ui";
-import {InfoTooltip} from "@/components/Utils";
+import {InputNumber, Select, Tooltip} from "@douyinfe/semi-ui";
+import {ErrorTooltip, InfoTooltip, OptionsNumberInput, OptionsSelect, SelectOption} from "@/components/Utils";
 import {faker} from "@faker-js/faker";
 import {ExportValueType} from "@/constants/enums";
+import {isNull} from "util";
+import {isNullOrWhiteSpace} from "@/utils/stringUtils";
 
 // -------------------------------------------------------------------------------------------------------------
 // types
@@ -79,66 +81,79 @@ export const NumberGeneratorOptionsComponent: React.FunctionComponent<GeneratorO
         onOptionsChange(newOptions);
     }
 
+    // error validation
+    const [errorMessages, setErrorMessages] = React.useState({
+        min: '',
+        max: '',
+    });
+
+    React.useEffect(() => {
+        const newErrorMessages = {...errorMessages};
+        // min
+        if (isNullOrWhiteSpace(numberOptions.min.toString())) {
+            newErrorMessages.min = "Min is required";
+        } else if (numberOptions.min > numberOptions.max) {
+            newErrorMessages.min = "Min must be less than max";
+        } else {
+            newErrorMessages.min = '';
+        }
+
+        // max
+        if (isNullOrWhiteSpace(numberOptions.max.toString())) {
+            newErrorMessages.max = "Max is required";
+        } else if (numberOptions.max < numberOptions.min) {
+            newErrorMessages.max = "Max must be greater than min";
+        } else {
+            newErrorMessages.max = '';
+        }
+
+        setErrorMessages(newErrorMessages);
+    }, [numberOptions.min, numberOptions.max, errorMessages]);
+
     return (
         <>
-            <div className="generatorConfig_column">
-                <div className='generatorConfig_column__label'>
-                    <FormattedMessage id='dataType.number.kind.label'/>
-                </div>
-                <Select value={numberOptions.kind}
-                        onChange={(value) => handleOptionsChange("kind", value)}>
-                    {Object.values(NumberGeneratorKind).map((kind, index) => {
-                        return (
-                            <Select.Option key={index} value={kind}>
-                                {kind}
-                            </Select.Option>
-                        )
-                    })}
-                </Select>
-            </div>
+            <OptionsSelect
+                label={<FormattedMessage id='dataType.number.kind.label'/>}
+                selectOptions={kindSelectOptions}
+                value={numberOptions.kind}
+                onChange={(v) => handleOptionsChange('kind', v)}
+            />
 
-            {numberOptions.kind === NumberGeneratorKind.FLOAT && <div className="generatorConfig_column">
-                <div className='generatorConfig_column__label'>
-                    <FormattedMessage id='dataType.number.precision.label'/>
-                </div>
-                <Select value={numberOptions.precision}
-                        onChange={(value) => handleOptionsChange("precision", value)}>
-                    <Select.Option value={0.1}>0.1</Select.Option>
-                    <Select.Option value={0.01}>0.01</Select.Option>
-                    <Select.Option value={0.001}>0.001</Select.Option>
-                    <Select.Option value={0.0001}>0.0001</Select.Option>
-                </Select>
-            </div>}
+            {numberOptions.kind === NumberGeneratorKind.FLOAT && <OptionsSelect
+                label={<FormattedMessage id='dataType.number.precision.label'/>}
+                selectOptions={precisionSelectOptions}
+                value={numberOptions.precision}
+                onChange={(v) => handleOptionsChange('precision', v)}
+            />}
 
             <div className='flex'>
-                <div className="generatorConfig_column">
-                    <div className='generatorConfig_column__label'>
-                        <FormattedMessage id='dataType.number.min.label'/>
-                        <InfoTooltip>
-                            <FormattedMessage id='dataType.number.min.tooltip'/>
-                        </InfoTooltip>
-                    </div>
-                    <InputNumber
-                        onChange={(value) => handleOptionsChange("min", value)}
-                        value={numberOptions.min}
-                        style={{width: '120px'}}
-                    />
-                </div>
-
-                <div className="generatorConfig_column">
-                    <div className='generatorConfig_column__label'>
-                        <FormattedMessage id='dataType.number.max.label'/>
-                        <InfoTooltip>
-                            <FormattedMessage id='dataType.number.max.tooltip'/>
-                        </InfoTooltip>
-                    </div>
-                    <InputNumber
-                        onChange={(value) => handleOptionsChange("max", value)}
-                        value={numberOptions.max}
-                        style={{width: '120px'}}
-                    />
-                </div>
+                <OptionsNumberInput
+                    label={<FormattedMessage id='dataType.number.min.label'/>}
+                    value={numberOptions.min}
+                    onChange={(v) => handleOptionsChange('min', v)}
+                    style={{width: '120px'}}
+                    errorMessage={errorMessages.min}
+                />
+                <OptionsNumberInput
+                    label={<FormattedMessage id='dataType.number.max.label'/>}
+                    value={numberOptions.max}
+                    onChange={(v) => handleOptionsChange('max', v)}
+                    style={{width: '120px'}}
+                    errorMessage={errorMessages.max}
+                />
             </div>
         </>
     )
 };
+
+const precisionSelectOptions: SelectOption[] = [
+    {value: 0.1, label: "0.1"},
+    {value: 0.01, label: "0.01"},
+    {value: 0.001, label: "0.001"},
+    {value: 0.0001, label: "0.0001"},
+]
+
+const kindSelectOptions: SelectOption[] = Object.values(NumberGeneratorKind).map((kind) => ({
+    value: kind,
+    label: kind,
+}));

@@ -12,7 +12,15 @@ export const generateData = (fields: DataFieldList, sortableList: string[], coun
             const field = fields[id];
             if (!field.isDraft) {
                 if (!isEmptyField(field.emptyRate)) {
-                    row[field.fieldName] = generators[field.dataType].generate(field.dataTypeOptions);
+                    try {
+                        row[field.fieldName] = generators[field.dataType].generate(field.dataTypeOptions);
+                    } catch {
+                        row[field.fieldName] = {
+                            value: null,
+                            stringValue: null,
+                            type: ExportValueType.NULL
+                        }
+                    }
                 } else {
                     row[field.fieldName] = {
                         value: null,
@@ -36,7 +44,15 @@ export const generateSpecificFieldData = (fields: DataFieldList, sortableList: s
             if (!field.isDraft) {
                 if (id === specificFieldId) {
                     if (!isEmptyField(field.emptyRate)) {
-                        row[field.fieldName] = generators[field.dataType].generate(field.dataTypeOptions);
+                        try{
+                            row[field.fieldName] = generators[field.dataType].generate(field.dataTypeOptions);
+                        } catch {
+                            row[field.fieldName] = {
+                                value: null,
+                                stringValue: null,
+                                type: ExportValueType.NULL
+                            }
+                        }
                     } else {
                         row[field.fieldName] = {
                             value: null,
@@ -59,9 +75,9 @@ export const deleteSpecificFieldData = (fields: DataFieldList, sortableList: str
         const row: any = {};
         sortableList.forEach((id) => {
             const field = fields[id];
-                if (id !== specificFieldId) {
-                    row[field.fieldName] = rowData[field.fieldName];
-                }
+            if (id !== specificFieldId) {
+                row[field.fieldName] = rowData[field.fieldName];
+            }
         });
         return row;
     });
