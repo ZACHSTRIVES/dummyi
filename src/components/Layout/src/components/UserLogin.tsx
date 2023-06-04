@@ -31,6 +31,7 @@ export type UserLoginProps = {
 
 export const UserLogin: React.FunctionComponent<UserLoginProps> = ({ dropDownPosition = DropDownPosition.BottomLeft, onLogout, ...props }) => {
     return (
+        //min width: ?px
         <Dropdown
             trigger={'click'}
             position={dropDownPosition}
@@ -39,19 +40,15 @@ export const UserLogin: React.FunctionComponent<UserLoginProps> = ({ dropDownPos
                     <Dropdown.Item>
                         <div className="flex w-100 items-center gap-2">
                             <Avatar size="small" className={props.className}>{props.user?.name?.charAt(0)}</Avatar>
-                            {props.user?.name}
-                        </div>                        
+                            <div className="flex flex-column">
+                                <span>{props.user?.name}</span>
+                                <span>{props.user?.id}</span>
+                            </div>
+                        </div>
                     </Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item>
-                        <Button
-                            theme="borderless"
-                            icon={<IconExit />}
-                            className="nav-btn"
-                            onClick={onLogout}
-                        >
-                            Logout
-                        </Button>
+                    <Dropdown.Item icon={<IconExit />}>
+                        Logout
                     </Dropdown.Item>
                 </Dropdown.Menu>
             }
