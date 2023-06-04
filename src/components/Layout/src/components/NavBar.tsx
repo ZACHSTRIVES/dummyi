@@ -1,4 +1,4 @@
-import {Nav} from "@douyinfe/semi-ui";
+import {Button, Nav} from "@douyinfe/semi-ui";
 import React, {FunctionComponent, useState} from "react";
 import styles from './NavBar.module.css';
 import {ColorModeSwitchButton} from "@/components/Layout/src/components/ColorModeSwitchButton";
@@ -12,6 +12,7 @@ import {useRouter} from "next/router";
 import {GithubButton} from "@/components/Layout/src/components/GithubButton";
 import Hamburger from 'hamburger-react'
 import {Logo} from "@/components/Layout/src/components/Logo";
+import { LoginButton } from "./LoginButton";
 
 export type NavBarProps = {}
 
@@ -52,7 +53,8 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                 defaultSelectedKeys={defaultSelectedKeys}
                 onSelect={(key) => onSelectItem(key)}>
 
-                <Nav.Header>
+                <Nav.Header className={styles.navHeader}>
+                    <LoginButton className={styles.loginButtonMobile}/>
                     <Logo/>
                     <div className={styles.hamburgerIcon}>
                         <Hamburger toggled={isMenuOpen}
@@ -76,10 +78,11 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                 }
 
 
-                <Nav.Footer>
+                <Nav.Footer className="gap-2">
                     <GithubButton size={isMenuOpen ? "large" : 'extra-large'}/>
                     <ColorModeSwitchButton size={isMenuOpen ? "large" : 'extra-large'}/>
                     <LocaleSwitchButton size={isMenuOpen ? "large" : 'extra-large'}/>
+                    <LoginButton className={styles.loginButton}/>
                 </Nav.Footer>
 
             </Nav>

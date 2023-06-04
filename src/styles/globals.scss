@@ -55,8 +55,16 @@ j
   bottom: 0;
 }
 
+.pa-2 {
+  padding: 8px;
+}
+
 .z-1 {
   z-index: 1;
+}
+
+.gap-2 {
+  gap: 8px;
 }
 
 .cm-editor {
@@ -71,6 +79,10 @@ j
   margin-left: 6px;
 }
 
+.mr-2 {
+  margin-right: 8px;
+}
+
 .no-select-area {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -78,4 +90,8 @@ j
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.nav-btn {
+  color: var(--semi-color-text-2) !important;
 }
