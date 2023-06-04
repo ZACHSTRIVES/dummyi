@@ -6,6 +6,6 @@ export type LoginProps = {
 
 export const LoginButton : React.FunctionComponent<LoginProps> = ({...props}) => {
     return (
-        <Button className={`nav-btn pa-2 mr-2 ${props.className}`}>Login</Button>
+        <Button className={`nav-btn ${props.className}`}>Login</Button>
     )
 }

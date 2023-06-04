@@ -79,10 +79,10 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
 
 
                 <Nav.Footer className="gap-2">
-                    <LoginButton className={styles.loginButton}/>
                     <GithubButton size={isMenuOpen ? "large" : 'extra-large'}/>
                     <ColorModeSwitchButton size={isMenuOpen ? "large" : 'extra-large'}/>
                     <LocaleSwitchButton size={isMenuOpen ? "large" : 'extra-large'}/>
+                    <LoginButton className={styles.loginButton}/>
                 </Nav.Footer>
 
             </Nav>
