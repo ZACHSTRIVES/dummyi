@@ -13,6 +13,7 @@ import {GithubButton} from "@/components/Layout/src/components/GithubButton";
 import Hamburger from 'hamburger-react'
 import {Logo} from "@/components/Layout/src/components/Logo";
 import { LoginButton } from "./LoginButton";
+import { User, UserLogin } from "./UserLogin";
 
 export type NavBarProps = {}
 
@@ -23,6 +24,7 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
     const [defaultSelectedKeys, setSelectedKeys] = useState([]);
     const intl = useIntl();
     const {pathname, push} = useRouter();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     React.useEffect(() => {
         setSelectedKeys([pathname]);
@@ -45,6 +47,19 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
         }
     }
 
+    const handleLogin = () => {
+        setIsLoggedIn(true);
+    }
+
+    const handleLogout = () => {
+        setIsLoggedIn(false);
+    }
+
+    const user : User = {
+        id: "ID123",
+        name: "John"
+    }
+
     return (
         <div>
             <Nav
@@ -54,7 +69,12 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                 onSelect={(key) => onSelectItem(key)}>
 
                 <Nav.Header className={styles.navHeader}>
-                    <LoginButton className={styles.loginButtonMobile}/>
+                    {
+                        isLoggedIn
+                            ? <UserLogin user={user} className={styles.loginButtonMobile} onLogout={handleLogout} />
+                            : <LoginButton className={styles.loginButtonMobile} onLogin={handleLogin}/>
+                    }
+                    
                     <Logo/>
                     <div className={styles.hamburgerIcon}>
                         <Hamburger toggled={isMenuOpen}
@@ -77,14 +97,16 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                     })
                 }
 
-
                 <Nav.Footer className="gap-2">
                     <GithubButton size={isMenuOpen ? "large" : 'extra-large'}/>
                     <ColorModeSwitchButton size={isMenuOpen ? "large" : 'extra-large'}/>
                     <LocaleSwitchButton size={isMenuOpen ? "large" : 'extra-large'}/>
-                    <LoginButton className={styles.loginButton}/>
+                    {
+                        isLoggedIn
+                            ? <UserLogin user={user} className={styles.loginButton} onLogout={handleLogout} />
+                            : <LoginButton className={styles.loginButton} onLogin={handleLogin}/>
+                    }
                 </Nav.Footer>
-
             </Nav>
         </div>
     );

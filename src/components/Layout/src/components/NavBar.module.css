@@ -12,7 +12,7 @@
     }
 
     .loginButtonMobile {
-        display: block !important;
+        display: flex !important;
     }
 
     .loginButton {
