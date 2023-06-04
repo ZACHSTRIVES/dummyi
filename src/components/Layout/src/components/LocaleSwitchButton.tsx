@@ -56,7 +56,7 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitchButtonProps> = ({
                 <Button
                     theme="borderless"
                     icon={<IconLanguage size={props.size}/>}
-                    className="nav-btn"
+                    className="text-2"
                     onClick={() => setIsModalVisible(true)}
                 >
                     {localeMap[locale].shortcuts}

@@ -48,7 +48,7 @@ export const ColorModeSwitchButton: FunctionComponent<ColorModeSwitchButtonProps
                 icon={colorMode === ColorMode.DARK ?
                     <IconSun size={props.size}/> :
                     <IconMoon size={props.size}/>}
-                className="nav-btn"
+                className="text-2"
                 onClick={handleSwitchColorMode}
             />
         </Tooltip>
