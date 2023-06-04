@@ -17,10 +17,7 @@ export const GithubButton:React.FunctionComponent<GithubButtonProps> = ({...prop
                 theme="borderless"
                 icon={<IconGithubLogo size={props.size}/>}
                 onClick={handleGithubButtonClick}
-                style={{
-                    color: 'var(--semi-color-text-2)',
-                    marginRight: '6px'
-                }}/>
+                className="nav-btn"/>
         </Tooltip>
     )
 }
