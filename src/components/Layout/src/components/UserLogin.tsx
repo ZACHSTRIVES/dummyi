@@ -1,6 +1,6 @@
-import { Avatar, Button, Dropdown } from "@douyinfe/semi-ui";
-import { IconExit } from '@douyinfe/semi-icons';
-import { useState } from "react";
+import { Avatar, Dropdown } from "@douyinfe/semi-ui";
+import { IconExit, IconUser } from '@douyinfe/semi-icons';
+import styles from './UserLogin.module.css';
 
 export type User = {
     id: string,
@@ -31,8 +31,8 @@ export type UserLoginProps = {
 
 export const UserLogin: React.FunctionComponent<UserLoginProps> = ({ dropDownPosition = DropDownPosition.BottomLeft, onLogout, ...props }) => {
     return (
-        //min width: ?px
         <Dropdown
+            className={styles.dropDown}
             trigger={'click'}
             position={dropDownPosition}
             render={
@@ -41,13 +41,16 @@ export const UserLogin: React.FunctionComponent<UserLoginProps> = ({ dropDownPos
                         <div className="flex w-100 items-center gap-2">
                             <Avatar size="small" className={props.className}>{props.user?.name?.charAt(0)}</Avatar>
                             <div className="flex flex-column">
-                                <span>{props.user?.name}</span>
-                                <span>{props.user?.id}</span>
+                                <span className={`text-2 bold`}>{props.user?.name}</span>
+                                <span className={`text-2`}>{props.user?.id}</span>
                             </div>
                         </div>
                     </Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item icon={<IconExit />}>
+                    <Dropdown.Item className="text-2" icon={<IconUser />}>
+                        Profile
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={onLogout} className="text-2" icon={<IconExit />}>
                         Logout
                     </Dropdown.Item>
                 </Dropdown.Menu>

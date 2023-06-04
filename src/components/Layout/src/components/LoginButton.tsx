@@ -7,6 +7,6 @@ export type LoginProps = {
 
 export const LoginButton : React.FunctionComponent<LoginProps> = ({onLogin, ...props}) => {
     return (
-        <Button className={`nav-btn ${props.className}`} onClick={onLogin}>Login</Button>
+        <Button className={`text-2 ${props.className}`} onClick={onLogin}>Login</Button>
     )
 }
