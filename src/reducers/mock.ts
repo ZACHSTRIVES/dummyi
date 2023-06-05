@@ -1,50 +1,25 @@
-import {DataField} from "@/types/generator";
+import {DataField, DataFieldList} from "@/types/generator";
 import {DataType} from "@/constants/enums";
+import {NumberGeneratorDefaultOptions} from "@/core/generators/Number/Number";
+import {BooleanGeneratorDefaultOptions} from "@/core/generators/Boolean/Boolean";
 
-export const mockFields: DataField[] = [
+export const mockFields: DataFieldList =
     {
-        id:"1",
-        fieldName: 'name',
-        isDraft: false,
-        dataType: DataType.PERSON_NAME,
-        emptyRate:0,
-    },
-    {
-        id:"2",
-        fieldName: 'phone',
-        isDraft: false,
-        dataType: DataType.NUMBER,
-        emptyRate:0,
-    },
-    {
-        id:"3",
-        fieldName: 'email',
-        isDraft: false,
-        dataType: DataType.ACCOUNT_NUMBER,
-        emptyRate:0,
-    },
-    {
-        id:"4",
-        fieldName: 'dob',
-        isDraft: false,
-        dataType: DataType.DATE_TIME,
-        emptyRate:0,
-    },
-    {
-        id:"5",
-        fieldName: 'company',
-        isDraft: false,
-        dataType: DataType.PERSON_NAME,
-        emptyRate:50,
-    },
-    {
-        id:"6",
-        fieldName: 'isActive',
-        isDraft: false,
-        dataType:DataType.BOOLEAN,
-        emptyRate:0,
+        "1": {
+            fieldName: 'number',
+            isDraft: false,
+            dataType: DataType.NUMBER,
+            dataTypeOptions: NumberGeneratorDefaultOptions,
+            emptyRate: 0,
+        },
+        "2": {
+            fieldName: 'boolean',
+            isDraft: false,
+            dataType: DataType.BOOLEAN,
+            dataTypeOptions: BooleanGeneratorDefaultOptions,
+            emptyRate: 0,
+        }
     }
-]
 
 export const mockData: any[] = [
     {

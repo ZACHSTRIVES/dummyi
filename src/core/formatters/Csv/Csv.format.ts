@@ -1,5 +1,4 @@
 import {FormatRequest} from "@/types/formatter";
-import {boolToString} from "@/utils/typeUtils";
 
 export const format = (request: FormatRequest): string => {
     const {fields, values, config} = request;

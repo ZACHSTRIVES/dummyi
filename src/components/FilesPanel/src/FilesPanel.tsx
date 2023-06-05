@@ -1,6 +1,5 @@
 import { Tree } from '@douyinfe/semi-ui';
 import React, { ReactNode, useState } from 'react';
-
 import styles from "./FilesPanel.module.css";
 import { Emoji, EmojiStyle } from 'emoji-picker-react';
 
@@ -29,7 +28,7 @@ export const convertToUnifiedCode = (code: string) => {
     return unifiedParts.join('-');
 };
 
-export const FilesPanel: React.FunctionComponent<FilesPanelProps> = ({ files }) => {
+export const FilesPanel: React.FunctionComponent<FilesPanelProps> = ({files}) => {
     const convertToTreeData = (data: FilesPanelProps['files'], parentKey: string): TreeNode[] => {
         return data.map((node, index) => {
             const key = parentKey ? `${parentKey}-${index}` : `${index}`;

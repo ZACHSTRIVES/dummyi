@@ -1,6 +1,93 @@
 import {generators} from "@/core/generators";
-import {Generator} from "@/types/generator";
-import {DataType, DataTypeCategory} from "@/constants/enums";
+import {DataFieldList, Generator, GeneratorOptionsComponentInterface} from "@/types/generator";
+import {DataType, DataTypeCategory, ExportValueType} from "@/constants/enums";
+import React from "react";
+
+// generate data
+export const generateData = (fields: DataFieldList, sortableList: string[], count: number): any => {
+    const data: any[] = [];
+    for (let i = 0; i < count; i++) {
+        const row: any = {};
+        sortableList.forEach((id) => {
+            const field = fields[id];
+            if (!field.isDraft) {
+                if (!isEmptyField(field.emptyRate)) {
+                    try {
+                        row[field.fieldName] = generators[field.dataType].generate(field.dataTypeOptions);
+                    } catch {
+                        row[field.fieldName] = {
+                            value: null,
+                            stringValue: null,
+                            type: ExportValueType.NULL
+                        }
+                    }
+                } else {
+                    row[field.fieldName] = {
+                        value: null,
+                        stringValue: null,
+                        type: ExportValueType.NULL
+                    }
+                }
+            }
+        });
+        data.push(row);
+    }
+    return data;
+}
+
+// generate specific data
+export const generateSpecificFieldData = (fields: DataFieldList, sortableList: string[], currentData: any[], specificFieldId: string): any[] => {
+    return currentData.map((rowData) => {
+        const row: any = {};
+        sortableList.forEach((id) => {
+            const field = fields[id];
+            if (!field.isDraft) {
+                if (id === specificFieldId) {
+                    if (!isEmptyField(field.emptyRate)) {
+                        try{
+                            row[field.fieldName] = generators[field.dataType].generate(field.dataTypeOptions);
+                        } catch {
+                            row[field.fieldName] = {
+                                value: null,
+                                stringValue: null,
+                                type: ExportValueType.NULL
+                            }
+                        }
+                    } else {
+                        row[field.fieldName] = {
+                            value: null,
+                            stringValue: null,
+                            type: ExportValueType.NULL
+                        }
+                    }
+                } else {
+                    row[field.fieldName] = rowData[field.fieldName];
+                }
+            }
+        });
+        return row;
+    });
+}
+
+// delete specific field data
+export const deleteSpecificFieldData = (fields: DataFieldList, sortableList: string[], currentData: any[], specificFieldId: string): any[] => {
+    return currentData.map((rowData) => {
+        const row: any = {};
+        sortableList.forEach((id) => {
+            const field = fields[id];
+            if (id !== specificFieldId) {
+                row[field.fieldName] = rowData[field.fieldName];
+            }
+        });
+        return row;
+    });
+}
+
+
+// get is empty line
+export const isEmptyField = (emptyProb: number): boolean => {
+    return Math.random() < (emptyProb / 100);
+}
 
 // get generator grouped by category list with search and locale
 export const getGeneratorList = (search: string, intl: any): { [category: string]: Generator[] } => {
@@ -21,13 +108,12 @@ export const getGeneratorList = (search: string, intl: any): { [category: string
     return categorizedGenerator;
 }
 
-// Get generator by data type
-export const getGeneratorByDataType = (dataType:DataType):Generator => {
-    return generators[dataType];
+// Get generator config components by data type
+export const getGeneratorOptionsComponentByDataType = (dataType: DataType): React.FunctionComponent<GeneratorOptionsComponentInterface> => {
+    return generators[dataType].optionsComponent
 }
 
-
-// Get generator config components by data type
-export const getGeneratorConfigComponentByDataType = (dataType:DataType):any => {
-    return generators[dataType].configComponent;
+// Get generator default options by data type
+export const getGeneratorDefaultOptionsByDataType = (dataType: DataType): any => {
+    return generators[dataType].defaultOptions;
 }

@@ -28,15 +28,29 @@ export const zhCN = {
 
     // number
     "dataType.number": "数字",
+    "dataType.number.kind.label": "种类",
+    "dataType.number.precision.label": "精度",
+    "dataType.number.min.label": "最小值",
+    "dataType.number.min.tooltip":"生成数据的最小值",
+    "dataType.number.min.errorMessage.empty": "最小值不能为空",
+    "dataType.number.min.errorMessage.greaterThanMax": "最小值不能大于最大值",
+    "dataType.number.max.label": "最大值",
+    "dataType.number.max.tooltip":"生成数据的最大值",
+    "dataType.number.max.errorMessage.empty": "最大值不能为空",
+    "dataType.number.max.errorMessage.lessThanMin": "最大值不能小于最小值",
 
     // dateTime
     "dataType.dateTime": "日期时间",
 
     // boolean
     "dataType.boolean": "布尔值",
+    "dataType.boolean.true.label": "真值概率",
+    "dataType.boolean.true.tooltip": "生成真值(true)的概率",
+    "dataType.boolean.true.errorMessage.empty": "真值概率不能为空",
+    "dataType.boolean.format.label": "格式",
 
-    // person name
-    "dataType.personName": "人名",
+    // full name
+    "dataType.fullName": "全名",
 
     // account mi,ner
     "dataType.accountNumber": "账号",
@@ -76,9 +90,13 @@ export const zhCN = {
     "preview.setting.tableView.text": "表格",
     "dataFields.list.addNewFieldButton.text": "添加字段",
     "dataFields.input.fieldName.label": "字段名",
+    "dataFields.input.fieldName.errorMessage.empty": "字段名不能为空",
     "dataFields.input.type.label": "类型",
     "dataFields.input.type.placeholder": "选择类型...",
     "dataFields.input.emptyRate.label": "空值概率",
+    "dataFields.input.emptyRate.tooltip": "生成空值(null)的概率",
+    "dataFields.input.emptyRate.errorMessage.empty": "空值概率不能为空",
+    "dataFields.input.options.label": "选项",
     "dataFields.type.modal.title": "选择类型",
     "dataFields.type.modal.search.placeholder": "搜索类型...",
 

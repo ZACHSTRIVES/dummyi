@@ -1,12 +1,17 @@
 import {Generator} from "@/types/generator";
 import {DataType, DataTypeCategory} from "@/constants/enums";
-import {generate} from "@/core/generators/Boolean/Boolean.generate";
-import {BooleanConfigPanel} from "@/core/generators/Boolean/Boolean.config";
+import {
+    generate,
+    BooleanGeneratorOptionsComponent,
+    BooleanGeneratorDefaultOptions
+} from "@/core/generators/Boolean/Boolean";
 
-export const BooleanGenerator : Generator = {
+
+export const BooleanGenerator: Generator = {
     type: DataType.BOOLEAN,
     category: DataTypeCategory.BASIC,
     generate: generate,
-    configComponent: BooleanConfigPanel,
-    exampleLines:["true, false", "1, 0",'"True", "Yes", "No"']
+    optionsComponent: BooleanGeneratorOptionsComponent,
+    defaultOptions: BooleanGeneratorDefaultOptions,
+    exampleLines: ["true, false", "1, 0", '"True", "Yes", "No"']
 }

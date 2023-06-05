@@ -6,14 +6,16 @@ import {reorder} from "@/utils/listUtils";
 import {IconPlus} from "@douyinfe/semi-icons";
 import {DragDropContext, Droppable} from "react-beautiful-dnd";
 import {useDispatch, useSelector} from "react-redux";
-import {Store} from "@/types/system";
-import {doUpdateDataFields} from "@/reducers/workspace/workspaceActions";
-import {UUID} from "uuidjs";
-import {DataField} from "@/types/generator";
+import {doAddNewDataField, doSortDataFields} from "@/reducers/workspace/workspaceActions";
 import {useIntl} from "@/locale";
 import {ComponentSize} from "@/constants/enums";
 import {DataTypeSelectModal} from "@/components/InputPanel/src/components/DataTypeSelectModal";
-import {DataTypeConfigModal} from "@/components/InputPanel/src/components/DataTypeConfigModal";
+import {DataTypeOptionsModal} from "@/components/InputPanel/src/components/DataTypeOptionsModal";
+import {
+    selectDataFields,
+    selectDataFieldsSortableIdsList,
+    selectNumbersOfDataFields
+} from "@/reducers/workspace/workspaceSelectors";
 
 export interface InputFieldListProps {
     height: number;
@@ -27,7 +29,9 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
     const intl = useIntl();
 
     // store
-    const dataFields = useSelector((state: Store) => state.workspace.dataFields);
+    const dataFields = useSelector(selectDataFields);
+    const sortableDataFieldsIds = useSelector(selectDataFieldsSortableIdsList);
+    const numberOfDataFields = useSelector(selectNumbersOfDataFields);
 
     // actions
     const handleOnDragEnd = (result: any) => {
@@ -37,34 +41,32 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
         if (result.destination.index === result.source.index) {
             return;
         }
-        const newData: any[] = reorder(dataFields, result.source.index, result.destination.index);
-        dispatch(doUpdateDataFields(newData));
+        const newData: any[] = reorder(sortableDataFieldsIds, result.source.index, result.destination.index);
+        dispatch(doSortDataFields(newData));
     }
 
-    const handleAddField = async () => {
-        const newDataField: DataField = {
-            id: UUID.generate(),
-            isDraft: true,
-        }
-        await dispatch(doUpdateDataFields([...dataFields, newDataField]));
+    const handleAddField = () => {
+        dispatch(doAddNewDataField());
         containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
 
     return (
         <div className={styles.dataFieldsList} style={{height: height}} ref={containerRef}>
             {
-                dataFields.length !== 0 ? <DragDropContext onDragEnd={handleOnDragEnd}>
+                numberOfDataFields !== 0 ? <DragDropContext onDragEnd={handleOnDragEnd}>
                         <Droppable droppableId="droppable">
                             {provided => (
                                 <div ref={provided.innerRef} {...provided.droppableProps}>
                                     <List>
-                                        {dataFields.map((item, index) =>
-                                            <DataFieldsListItem size={size} key={item.id} index={index} id={item.id}
-                                                                dataField={item}/>
+                                        {sortableDataFieldsIds.map((id, index) => {
+                                                const dataField = dataFields[id];
+                                                return <DataFieldsListItem size={size} key={id} index={index} id={id}
+                                                                           dataField={dataField}/>
+                                            }
                                         )}
                                         {provided.placeholder}
                                         <div className={styles.dataFieldList__bottomButton}>
-                                            <Button onClick={handleAddField} icon={<IconPlus/>} >
+                                            <Button onClick={handleAddField} icon={<IconPlus/>}>
                                                 {intl.formatMessage({id: "dataFields.list.addNewFieldButton.text"})}
                                             </Button>
                                         </div>
@@ -80,14 +82,14 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
                             style={{marginBottom: 24, textAlign: "center"}}
                         >
 
-                            <Button onClick={handleAddField} icon={<IconPlus/>} >
+                            <Button onClick={handleAddField} icon={<IconPlus/>}>
                                 {intl.formatMessage({id: "dataFields.list.addNewFieldButton.text"})}
                             </Button>
                         </Empty>
                     </>
             }
             <DataTypeSelectModal/>
-            <DataTypeConfigModal size={size}/>
+            <DataTypeOptionsModal size={size}/>
         </div>
     )
 };

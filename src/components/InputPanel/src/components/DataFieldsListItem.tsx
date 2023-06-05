@@ -1,19 +1,21 @@
 import React from 'react';
 import styles from './DataFieldsListItem.module.scss';
-import {Input, Divider, Button, InputNumber, Typography} from "@douyinfe/semi-ui";
+import {Divider, Button} from "@douyinfe/semi-ui";
 import {IconClose, IconHandle, IconSetting} from "@douyinfe/semi-icons";
 import {Draggable} from "react-beautiful-dnd";
 import {DataField} from "@/types/generator";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {
+    doDeleteDataField,
     doOpenDataTypeOptionsModal,
     doOpenDataTypeSelectModal,
-    doUpdateDataFields
+    doUpdateDataField,
 } from "@/reducers/workspace/workspaceActions";
-import {FormattedMessage} from "@/locale";
+import {FormattedMessage, useIntl} from "@/locale";
 import {ComponentSize} from "@/constants/enums";
-import {getGeneratorByDataType} from "@/utils/generatorUtils";
-import {selectDataFields} from "@/reducers/workspace/workspaceSelectors";
+import {getGeneratorOptionsComponentByDataType} from "@/utils/generatorUtils";
+import {OptionsButton, OptionsInput, OptionsNumberInput} from "@/components/Utils";
+import {isNullOrWhiteSpace} from "@/utils/stringUtils";
 
 export interface DataFieldsListItemItemProps {
     id: string;
@@ -24,124 +26,127 @@ export interface DataFieldsListItemItemProps {
 
 export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemProps> = ({...props}) => {
     const {id, index, dataField, size} = props;
-    const {Text} = Typography;
     const dispatch = useDispatch();
-
-    // store
-    const dataFields = useSelector(selectDataFields);
+    const intl = useIntl();
 
     const getItemStyle = (isDragging, draggableStyle) => ({
         backgroundColor: isDragging ? "rgba(var(--semi-grey-0), 0.5)" : null,
         ...draggableStyle
-    })
+    });
 
     // actions
     const handleUpdateDataField = (changedFieldName: string, value: any) => {
-        const newDataFields = dataFields.map(field => {
-            if (field.id === id) {
-                field = {...field, [changedFieldName]: value};
-                field.isDraft = !(field.dataType && field.fieldName);
-                return field;
-            }
-            return field;
-        });
-        dispatch(doUpdateDataFields(newDataFields));
+        const field = {...dataField, [changedFieldName]: value};
+        dispatch(doUpdateDataField(id, field));
+    };
+
+    const handleOptionsChange = (options: any) => {
+        const field = {...dataField, dataTypeOptions: options};
+        handleUpdateDataField('dataTypeOptions', options);
     }
 
     const handleDelete = () => {
-        const newDataFields = dataFields.filter(field => field.id !== id);
-        dispatch(doUpdateDataFields(newDataFields));
-    }
+        dispatch(doDeleteDataField(id));
+    };
 
     const handleOpenDataTypeSelectModal = () => {
-        dispatch(doOpenDataTypeSelectModal(dataField));
-    }
+        dispatch(doOpenDataTypeSelectModal(id));
+    };
 
     const handleOpenDataTypeOptionsModal = () => {
-        dispatch(doOpenDataTypeOptionsModal(dataField));
-    }
+        dispatch(doOpenDataTypeOptionsModal(id));
+    };
 
     // renders
-    const DataTypeConfigs = () => {
+    const renderDataTypeOptions = () => {
         if (!dataField.dataType) return null;
-        const generator = getGeneratorByDataType(dataField.dataType);
-        return generator.configComponent ? React.createElement(generator.configComponent) : null;
-    }
+        const OptionsComponent = getGeneratorOptionsComponentByDataType(dataField.dataType);
+        return OptionsComponent ?
+            <OptionsComponent options={dataField.dataTypeOptions} onOptionsChange={handleOptionsChange}/> : null;
+    };
 
-    const EmptyRateInput = () => {
-        return <div className={styles.dataFieldItem__column}>
-            <Text style={{fontWeight: 'normal', fontSize: 'small', marginLeft: '6px'}}>
-                <FormattedMessage id={'dataFields.input.emptyRate.label'}/>
-            </Text>
-
-            <InputNumber
-                onChange={(value) => handleUpdateDataField('emptyRate', value)}
-                min={0}
-                max={100}
-                suffix={"%"}
+    const renderEmptyRateInput = () => {
+        return (
+            <OptionsNumberInput
+                label={<FormattedMessage id={'dataFields.input.emptyRate.label'}/>}
                 value={dataField.emptyRate}
+                onChange={(value) => handleUpdateDataField('emptyRate', value)}
                 style={{width: '100px'}}
-            />
-        </div>
-    }
+                suffix={"%"}
+                infoTooltip={<FormattedMessage id={'dataFields.input.emptyRate.tooltip'}/>}
+                errorMessage={errorMessages.emptyRate}
+            />)
+    };
+
+    // error validation
+    const [errorMessages, setErrorMessages] = React.useState({
+        fieldName: '',
+        emptyRate: '',
+    });
+
+    React.useEffect(() => {
+        const newErrorMessages = {...errorMessages};
+        if (!dataField.isDraft) {
+            if (isNullOrWhiteSpace(dataField.fieldName)) {
+                newErrorMessages.fieldName = intl.formatMessage({id: 'dataFields.input.fieldName.errorMessage.empty'});
+            } else {
+                newErrorMessages.fieldName = '';
+            }
+            if (isNullOrWhiteSpace(dataField.emptyRate.toString())) {
+                newErrorMessages.emptyRate = intl.formatMessage({id: 'dataFields.input.emptyRate.errorMessage.empty'});
+            } else {
+                newErrorMessages.emptyRate = '';
+            }
+        }else {
+            newErrorMessages.fieldName = '';
+            newErrorMessages.emptyRate = '';
+        }
+
+        setErrorMessages(newErrorMessages);
+    }, [dataField.fieldName, dataField.emptyRate]);
+
 
     return (
         <Draggable draggableId={id} index={index}>
             {(provided, snapshot) => (
-                <>
-                    <div
-                        className={styles.dataFieldItem}
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
-                    >
+                <div ref={provided.innerRef}
+                     {...provided.draggableProps}
+                     style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
+                    <div className={styles.dataFieldItem}>
                         <div>
                             <div className={styles.dataFieldItem__content}>
                                 <div className={styles.dataFieldItem__header} {...provided.dragHandleProps}>
                                     <IconHandle size="large" style={{cursor: 'move'}}/>
                                     <div>#{index + 1}</div>
                                 </div>
-
-                                <div className="generatorConfig_column">
-                                    <Text className='generatorConfig_column__label'>
-                                        <FormattedMessage id="dataFields.input.fieldName.label"/>
-                                    </Text>
-                                    <Input
-                                        onChange={(value) => handleUpdateDataField('fieldName', value)}
-                                        value={dataField.fieldName}
-                                        style={{width: '100px'}}
-                                    />
-                                </div>
-
-                                <div className="generatorConfig_column">
-                                    <Text className='generatorConfig_column__label'>
-                                        <FormattedMessage id="dataFields.input.type.label"/>
-                                    </Text>
-                                    <Button
-                                        onClick={handleOpenDataTypeSelectModal}
-                                        style={{width: 140, fontSize: '13px', fontWeight: 'normal'}}
-                                    >
-                                        {dataField.dataType ?
-                                            <FormattedMessage id={`dataType.${dataField.dataType}`}/> :
-                                            <FormattedMessage id={`dataFields.input.type.placeholder`}/>}
-                                    </Button>
-                                </div>
-
+                                <OptionsInput
+                                    label={<FormattedMessage id="dataFields.input.fieldName.label"/>}
+                                    value={dataField.fieldName}
+                                    onChange={(value) => handleUpdateDataField('fieldName', value)}
+                                    style={{width: '100px'}}
+                                    errorMessage={errorMessages.fieldName}
+                                />
+                                <OptionsButton
+                                    label={<FormattedMessage id="dataFields.input.type.label"/>}
+                                    onClick={handleOpenDataTypeSelectModal}
+                                    style={{width: 140, fontSize: '13px', fontWeight: 'normal'}}
+                                    text={dataField.dataType ?
+                                        <FormattedMessage id={`dataType.${dataField.dataType}`}/> :
+                                        <FormattedMessage id={`dataFields.input.type.placeholder`}/>}
+                                />
                                 {size !== ComponentSize.SMALL && (
                                     <>
-                                        <EmptyRateInput/>
-                                        {size !== ComponentSize.LARGE && <div className="generatorConfig_column">
-                                            <Text className='generatorConfig_column__label'>
-                                                Options
-                                            </Text>
-                                            <Button onClick={handleOpenDataTypeOptionsModal}
-                                                    icon={<IconSetting style={{color: 'grey'}}/>}/>
-                                        </div>}
+                                        {renderEmptyRateInput()}
+                                        {(size !== ComponentSize.LARGE && dataField.dataType) &&
+                                            <OptionsButton
+                                                label={<FormattedMessage id="dataFields.input.options.label"/>}
+                                                onClick={handleOpenDataTypeOptionsModal}
+                                                style={{width: 80}}
+                                                icon={<IconSetting style={{color: 'grey'}}/>}
+                                            />}
                                     </>
                                 )}
-
-                                {size === ComponentSize.LARGE && <DataTypeConfigs/>}
-
+                                {size === ComponentSize.LARGE && renderDataTypeOptions()}
                             </div>
                         </div>
                         <div>
@@ -160,10 +165,8 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
                         </div>
                     </div>
                     <Divider style={{marginTop: '12px'}}/>
-                </>
+                </div>
             )}
-
         </Draggable>
-
     )
 }
