@@ -1,11 +1,9 @@
 import React from 'react';
 import {GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
-import {FormattedMessage} from "@/locale";
-import {InputNumber, Select, Tooltip} from "@douyinfe/semi-ui";
-import {ErrorTooltip, InfoTooltip, OptionsNumberInput, OptionsSelect, SelectOption} from "@/components/Utils";
+import {FormattedMessage, useIntl} from "@/locale";
+import {OptionsNumberInput, OptionsSelect, SelectOption} from "@/components/Utils";
 import {faker} from "@faker-js/faker";
 import {ExportValueType} from "@/constants/enums";
-import {isNull} from "util";
 import {isNullOrWhiteSpace} from "@/utils/stringUtils";
 
 // -------------------------------------------------------------------------------------------------------------
@@ -39,7 +37,7 @@ export const NumberGeneratorDefaultOptions: NumberGeneratorOptions = {
 
 export const generate = (options): GenerateResult => {
     const {kind, precision, min, max} = options;
-    const fakerOptions = min && max ? {min: min, max: max} : {min: 0, max: 9999};
+    const fakerOptions = {min: min, max: max};
     let result: any;
 
     switch (kind) {
@@ -75,6 +73,7 @@ export const generate = (options): GenerateResult => {
 export const NumberGeneratorOptionsComponent: React.FunctionComponent<GeneratorOptionsComponentInterface> = ({...props}) => {
     const {options, onOptionsChange} = props;
     const numberOptions: NumberGeneratorOptions = options;
+    const intl = useIntl();
 
     const handleOptionsChange = (changedFieldName: string, value: any) => {
         let newOptions = {...numberOptions, [changedFieldName]: value};
@@ -91,24 +90,24 @@ export const NumberGeneratorOptionsComponent: React.FunctionComponent<GeneratorO
         const newErrorMessages = {...errorMessages};
         // min
         if (isNullOrWhiteSpace(numberOptions.min.toString())) {
-            newErrorMessages.min = "Min is required";
+            newErrorMessages.min = intl.formatMessage({id: 'dataType.number.min.errorMessage.empty'})
         } else if (numberOptions.min > numberOptions.max) {
-            newErrorMessages.min = "Min must be less than max";
+            newErrorMessages.min = intl.formatMessage({id: 'dataType.number.min.errorMessage.greaterThanMax'})
         } else {
             newErrorMessages.min = '';
         }
 
         // max
         if (isNullOrWhiteSpace(numberOptions.max.toString())) {
-            newErrorMessages.max = "Max is required";
+            newErrorMessages.max = intl.formatMessage({id: 'dataType.number.max.errorMessage.empty'})
         } else if (numberOptions.max < numberOptions.min) {
-            newErrorMessages.max = "Max must be greater than min";
+            newErrorMessages.max = intl.formatMessage({id: 'dataType.number.max.errorMessage.lessThanMin'})
         } else {
             newErrorMessages.max = '';
         }
 
         setErrorMessages(newErrorMessages);
-    }, [numberOptions.min, numberOptions.max, errorMessages]);
+    }, [numberOptions.min, numberOptions.max]);
 
     return (
         <>

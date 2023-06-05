@@ -1,12 +1,12 @@
 import React from 'react';
-import {GenerateRequest, GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
-import {FormattedMessage} from "@/locale";
-import {InputNumber, Select, Tag} from "@douyinfe/semi-ui";
-import {InfoTooltip} from "@/components/Utils";
-import {useSelector} from "react-redux";
-import {selectColorMode} from "@/reducers/app/appSelectors";
+import {GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
+import {FormattedMessage, useIntl} from "@/locale";
+import {Tag} from "@douyinfe/semi-ui";
+import {OptionsNumberInput, OptionsSelect, SelectOption} from "@/components/Utils";
 import {faker} from "@faker-js/faker";
 import {ExportValueType} from "@/constants/enums";
+import style from './Boolean.module.scss';
+import {isNullOrWhiteSpace} from "@/utils/stringUtils";
 
 // -------------------------------------------------------------------------------------------------------------
 // types
@@ -66,85 +66,73 @@ export const generate = (options: any): GenerateResult => {
 export const BooleanGeneratorOptionsComponent: React.FunctionComponent<GeneratorOptionsComponentInterface> = ({...props}) => {
     const {options, onOptionsChange} = props;
     const booleanOptions: BooleanGeneratorOptions = options;
-
-    // store
-    const colorMode = useSelector(selectColorMode)
+    const intl = useIntl();
 
     const handleOptionsChange = (changedFieldName: string, value: any) => {
         let newOptions = {...booleanOptions, [changedFieldName]: value};
         onOptionsChange(newOptions);
     }
 
-    // error check
+    // error validation
+    const [errorMessages, setErrorMessages] = React.useState({
+        truePercentage: '',
+    });
 
-
-
+    React.useEffect(() => {
+        if(isNullOrWhiteSpace(booleanOptions.truePercentage.toString())) {
+            setErrorMessages({
+                ...errorMessages,
+                truePercentage: intl.formatMessage({id: 'dataType.boolean.true.errorMessage.empty'})
+            })
+        }else{
+            setErrorMessages({
+                ...errorMessages,
+                truePercentage: ''
+            })
+        }
+    }, [booleanOptions.truePercentage])
 
     return (
         <>
-            <div className="generatorConfig_column">
-                <div className='generatorConfig_column__label'>
-                    <FormattedMessage id='dataType.boolean.true.label'/>
-                    <InfoTooltip>
-                        <FormattedMessage id='dataType.boolean.true.tooltip'/>
-                    </InfoTooltip>
-                </div>
-                <InputNumber
-                    value={booleanOptions.truePercentage}
-                    onChange={(value) => handleOptionsChange("truePercentage", value)}
-                    style={{width: '100px'}}
-                    min={0}
-                    max={100}
-                    suffix={"%"}
-                />
-            </div>
+            <OptionsNumberInput
+                label={<FormattedMessage id='dataType.boolean.true.label'/>}
+                infoTooltip={<FormattedMessage id='dataType.boolean.true.tooltip'/>}
+                value={booleanOptions.truePercentage}
+                onChange={(v) => handleOptionsChange("truePercentage", v)}
+                style={{width: '100px'}}
+                suffix={"%"}
+                min={0}
+                max={100}
+                errorMessage={errorMessages.truePercentage}
+            />
 
-            <div className="generatorConfig_column">
-                <div className='generatorConfig_column__label'>
-                    <FormattedMessage id='dataType.boolean.format.label'/>
-                </div>
-                <Select
-                    style={{width: 210}}
-                    value={booleanOptions.format}
-                    onChange={(value) => handleOptionsChange("format", value)}>
-                    {formatOptions.map((option, index) => {
-                        return (
-                            <Select.Option key={index} value={option.value}>
-                                <Tag
-                                    type={colorMode === 'dark' ? 'solid' : 'light'}
-                                    style={{
-                                        width: 60,
-                                        textAlign: 'center',
-                                        marginRight: '12px'
-                                    }}>{option.tag}</Tag> {option.label}
-                            </Select.Option>
-                        )
-                    })}
-                </Select>
-            </div>
+            <OptionsSelect
+                label={<FormattedMessage id='dataType.boolean.format.label'/>}
+                selectOptions={formatOptions}
+                value={booleanOptions.format}
+                onChange={(v) => handleOptionsChange("format", v)}
+                style={{width: '210px'}}
+            />
         </>
     )
 };
 
-const formatOptions = [
+const formatOptions: SelectOption[] = [
     {
-        tag: 'bool',
         value: BooleanGenerateFormat.TRUE_FALSE_BOOLEAN,
-        label: 'true, false'
+        label: <><Tag type={'light'} className={style.formatSelectOption}>bool</Tag> true, false</>
     },
     {
-        tag: 'int',
         value: BooleanGenerateFormat.ONE_ZERO_NUMBER,
-        label: '1, 0'
+        label: <><Tag type={'light'} className={style.formatSelectOption}>int</Tag> 1, 0</>
     },
     {
-        tag: 'string',
-        value: BooleanGenerateFormat.YES_NO_STRING,
-        label: '"Yes", "No"'
-    },
-    {
-        tag: 'string',
         value: BooleanGenerateFormat.TRUE_FALSE_STRING,
-        label: '"true", "false"'
+        label: <><Tag type={'light'} className={style.formatSelectOption}>string</Tag> true, false</>
+    },
+    {
+        value: BooleanGenerateFormat.YES_NO_STRING,
+        label: <><Tag type={'light'} className={style.formatSelectOption}>string</Tag> Yes, No</>
     }
 ]
+

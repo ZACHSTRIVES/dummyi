@@ -32,8 +32,12 @@ export const zhCN = {
     "dataType.number.precision.label": "精度",
     "dataType.number.min.label": "最小值",
     "dataType.number.min.tooltip":"生成数据的最小值",
+    "dataType.number.min.errorMessage.empty": "最小值不能为空",
+    "dataType.number.min.errorMessage.greaterThanMax": "最小值不能大于最大值",
     "dataType.number.max.label": "最大值",
     "dataType.number.max.tooltip":"生成数据的最大值",
+    "dataType.number.max.errorMessage.empty": "最大值不能为空",
+    "dataType.number.max.errorMessage.lessThanMin": "最大值不能小于最小值",
 
     // dateTime
     "dataType.dateTime": "日期时间",
@@ -42,6 +46,7 @@ export const zhCN = {
     "dataType.boolean": "布尔值",
     "dataType.boolean.true.label": "真值概率",
     "dataType.boolean.true.tooltip": "生成真值(true)的概率",
+    "dataType.boolean.true.errorMessage.empty": "真值概率不能为空",
     "dataType.boolean.format.label": "格式",
 
     // full name

@@ -19,7 +19,7 @@ export interface OptionsSelectProps {
 }
 
 export const OptionsSelect: React.FunctionComponent<OptionsSelectProps> = ({...props}) => {
-    const {label, selectOptions, infoTooltip, errorMessage, value, onChange} = props;
+    const {label, selectOptions, infoTooltip, errorMessage, value, style, onChange} = props;
     return (
         <div className="generatorConfig_column">
             <div className='generatorConfig_column__label'>
@@ -30,6 +30,7 @@ export const OptionsSelect: React.FunctionComponent<OptionsSelectProps> = ({...p
             </div>
             <ErrorTooltip message={errorMessage}>
                 <Select value={value}
+                        style={style}
                         onChange={(value) => onChange(value)}>
                     {selectOptions.map((option, index) => {
                         return (

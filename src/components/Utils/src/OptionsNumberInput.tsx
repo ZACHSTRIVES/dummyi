@@ -11,25 +11,31 @@ export interface OptionsNumberInputProps {
     value: number;
     onChange: (value: any) => void;
     style?: React.CSSProperties;
+    suffix?: string | React.ReactNode;
+    min?: number;
+    max?: number;
 }
 
 export const OptionsNumberInput: React.FunctionComponent<OptionsNumberInputProps> = ({...props}) => {
-    const {label, infoTooltip, errorMessage, value, onChange} = props;
+    const {label, infoTooltip, errorMessage, value, suffix, style, min, max, onChange} = props;
 
     return (
         <div className="generatorConfig_column">
             <div className='generatorConfig_column__label'>
                 {label}
                 {infoTooltip && <InfoTooltip>
-                    <FormattedMessage id='dataType.number.max.tooltip'/>
+                    {infoTooltip}
                 </InfoTooltip>}
             </div>
             <ErrorTooltip message={errorMessage}>
                 <InputNumber
-                    onChange={(value) => onChange( value)}
+                    onChange={(value) => onChange(value)}
                     value={value}
-                    style={{width: '120px'}}
+                    style={style}
                     validateStatus={!isNullOrWhiteSpace(errorMessage) ? 'error' : 'default'}
+                    suffix={suffix}
+                    min={min}
+                    max={max}
                 />
             </ErrorTooltip>
         </div>
