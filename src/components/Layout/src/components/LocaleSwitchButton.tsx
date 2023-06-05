@@ -5,24 +5,26 @@ import Image from "next/image";
 import {useRouter} from 'next/router';
 import {Locales} from '@/constants/enums';
 import {useIntl} from "@/locale";
+import { Emoji, EmojiStyle } from 'emoji-picker-react';
+import { convertToUnifiedCode } from '@/components/FilesPanel/src/FilesPanel';
 
 const localeMap = {
     [Locales.EN]: {
         name: 'English',
         shortcuts: 'EN',
-        flag: '🇬🇧',
+        flag: 'U+1F1EC U+1F1E7',
         generatedByChatGPT: false
     },
     [Locales.ZH_CN]: {
         name: '中文',
         shortcuts: '中文',
-        flag: '🇨🇳',
+        flag: 'U+1F1E8 U+1F1F3',
         generatedByChatGPT: false
     },
     [Locales.JA_JP]: {
         name: '日本語',
         shortcuts: '日本語',
-        flag: '🇯🇵',
+        flag: 'U+1F1EF U+1F1F5',
         generatedByChatGPT: true
     }
 }
@@ -54,9 +56,7 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitchButtonProps> = ({
                 <Button
                     theme="borderless"
                     icon={<IconLanguage size={props.size}/>}
-                    style={{
-                        color: 'var(--semi-color-text-2)',
-                    }}
+                    className="text-2"
                     onClick={() => setIsModalVisible(true)}
                 >
                     {localeMap[locale].shortcuts}
@@ -77,8 +77,8 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitchButtonProps> = ({
 
                 <div style={{marginBottom: '20px'}}>
                     <RadioGroup type='pureCard' value={locale} direction='vertical' name="lang-radio-group">
-                        {Object.entries(localeMap).map(([key, value]) => (
-                            <Radio key={key} value={key}
+                        {Object.entries(localeMap).map(([key, value]) => {
+                            return (<Radio key={key} value={key}
                                    style={{
                                        width: '300px',
                                        height: 50,
@@ -86,16 +86,15 @@ export const LocaleSwitchButton: FunctionComponent<LocaleSwitchButtonProps> = ({
                                    }}
                                    onChange={handleLocaleChange}
                             >
-
-                                {value.flag} {value.name}
-
-                            </Radio>
-                        ))}
+                                <Emoji unified={convertToUnifiedCode(value.flag)} emojiStyle={EmojiStyle.APPLE} size={16} />
+                                <span style={{ marginLeft: '8px' }}>{value.name}</span>
+                            </Radio>)
+                        })}
                     </RadioGroup>
 
                     <div className={'flex'}
                          style={{marginTop: "24px", alignItems: 'center', width: '100%', justifyContent: 'center'}}>
-                        <Image src={"/images/ChatGpt.svg" } height={16} width={16} alt={'ChatGPT'}/>
+                        <Image src={'/images/ChatGPT.svg'} height={16} width={16} alt={'ChatGPT'}/>
                         <div style={{fontSize: 8, color: 'gray', marginLeft: '6px'}}>
                             {intl.formatMessage({id: 'nav.languageSwitchModal.footer.chatGPT.text'})}
                         </div>

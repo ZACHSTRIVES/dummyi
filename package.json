@@ -10,19 +10,20 @@
     "cypress": "cypress open"
   },
   "dependencies": {
-    "@douyinfe/semi-next": "^2.35.0",
-    "@douyinfe/semi-ui": "^2.35.0",
+    "@douyinfe/semi-next": "^2.36.0",
+    "@douyinfe/semi-ui": "^2.36.0",
     "@faker-js/faker": "^8.0.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@semi-bot/semi-theme-mockdatanz": "^1.1.4",
     "@types/node": "20.1.4",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
-    "@uiw/codemirror-extensions-langs": "^4.19.16",
-    "@uiw/codemirror-themes": "^4.19.16",
+    "@uiw/codemirror-extensions-langs": "^4.20.2",
+    "@uiw/codemirror-themes": "^4.20.2",
     "@uiw/react-codemirror": "^4.19.16",
     "@vercel/analytics": "^1.0.1",
     "autoprefixer": "10.4.14",
+    "emoji-picker-react": "^4.4.9",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.3",
     "hamburger-react": "^2.5.0",
@@ -44,7 +45,7 @@
   },
   "devDependencies": {
     "cypress": "^12.12.0",
-    "mini-css-extract-plugin": "^2.7.5",
+    "mini-css-extract-plugin": "^2.7.6",
     "typescript": "^5.0.4",
     "webpack": "^5.83.1"
   }
