@@ -2,8 +2,8 @@ import React from "react";
 import {Select} from "@douyinfe/semi-ui";
 import {IconFont} from "@douyinfe/semi-icons";
 import {useDispatch, useSelector} from "react-redux";
-import {Store} from "@/types/system";
 import {doSetRawViewFontSize} from "@/reducers/preview/previewActions";
+import {selectRawViewFontSize, selectRawViewLineWrap} from "@/reducers/preview/previewSelectors";
 
 
 export type FontSizeSelectProps = {}
@@ -12,7 +12,7 @@ export const FontSizeSelect: React.FunctionComponent<FontSizeSelectProps> = ({..
     const dispatch = useDispatch();
 
     // store
-    const fontSize = useSelector((state: Store) => state.preview.rawViewFontSize);
+    const fontSize = useSelector(selectRawViewFontSize);
 
     // action
     const onChangeFontSize = (value) => {

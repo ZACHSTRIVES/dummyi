@@ -3,8 +3,8 @@ import {Button, Tooltip} from "@douyinfe/semi-ui";
 import {IconAlignLeft} from "@douyinfe/semi-icons";
 import {useIntl} from "@/locale";
 import {useDispatch, useSelector} from "react-redux";
-import {Store} from "@/types/system";
-import {doSetRawViewLineWrap, doSetRawViewShowLineNumbers} from "@/reducers/preview/previewActions";
+import {doSetRawViewLineWrap} from "@/reducers/preview/previewActions";
+import {selectRawViewLineWrap} from "@/reducers/preview/previewSelectors";
 
 export type LineWarpSwitchProps = {}
 
@@ -13,7 +13,7 @@ export const LineWarpSwitch: React.FunctionComponent<LineWarpSwitchProps> = ({..
     const dispatch = useDispatch();
 
     // store
-    const lineWarp = useSelector((state: Store) => state.preview.rawViewLineWrap);
+    const lineWarp = useSelector(selectRawViewLineWrap);
 
     // action
     const toggleLineWarp = () => {

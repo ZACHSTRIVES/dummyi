@@ -85,18 +85,18 @@ export default function Workspace() {
             </Head>
 
             <ReflexContainer orientation={PanelsOrientation.VERTICAL}>
-                <ReflexElement size={200} minSize={200} maxSize={300}>
-                    <FilesPanel files={files}/>
-                </ReflexElement>
+                {/*<ReflexElement size={200} minSize={200} maxSize={300}>*/}
+                {/*    <FilesPanel files={files}/>*/}
+                {/*</ReflexElement>*/}
 
-                <ReflexSplitter
-                    style={{
-                        backgroundColor: colorMode === ColorMode.DARK ? 'rgba(153,153,153,0.44)' : '#d5d3d3',
-                        borderColor: 'transparent',
-                        borderWidth: '1px'
-                    }}
-                    className={`${styles.splitter} ${PanelsOrientation.VERTICAL}`}
-                />
+                {/*<ReflexSplitter*/}
+                {/*    style={{*/}
+                {/*        backgroundColor: colorMode === ColorMode.DARK ? 'rgba(153,153,153,0.44)' : '#d5d3d3',*/}
+                {/*        borderColor: 'transparent',*/}
+                {/*        borderWidth: '1px'*/}
+                {/*    }}*/}
+                {/*    className={`${styles.splitter} ${PanelsOrientation.VERTICAL}`}*/}
+                {/*/>*/}
 
                 <ReflexElement>
                     <ReflexContainer orientation={panelsDirection}>

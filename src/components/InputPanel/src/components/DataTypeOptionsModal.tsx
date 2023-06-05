@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, InputNumber, Modal} from "@douyinfe/semi-ui";
+import {Button, Modal} from "@douyinfe/semi-ui";
 import {useDispatch, useSelector} from "react-redux";
 import {
     selectCurrentDataTypeOptionsModalTargetField,
@@ -68,7 +68,7 @@ export const DataTypeOptionsModal: React.FunctionComponent<DataTypeOptionsModalP
         } else {
             setEmptyRateError(null);
         }
-    }, [dataField.emptyRate]);
+    }, [dataField?.emptyRate]);
 
     return (
         <Modal
