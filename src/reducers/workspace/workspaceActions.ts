@@ -4,14 +4,15 @@ import {
     CLOSE_DATA_TYPE_SELECT_MODAL,
     DELETE_DATA_FIELD, GENERATE_PREVIEW_DATA, GENERATE_SPECIFIC_FIELD_PREVIEW_DATA,
     OPEN_DATA_TYPE_OPTIONS_MODAL,
-    OPEN_DATA_TYPE_SELECT_MODAL,
+    OPEN_DATA_TYPE_SELECT_MODAL, SET_EXPORT_FORMAT, SET_FORMATTER_CONFIG, SET_NUMBER_OF_EXPORT_ROWS,
     SET_PANELS_DIRECTION, SORT_DATA_FIELDS,
     UPDATE_DATA_FIELD
 } from "@/constants/actions";
-import {DataType, PanelsOrientation} from "@/constants/enums";
+import {DataType, ExportFormat, PanelsOrientation} from "@/constants/enums";
 import {DataField} from "@/types/generator";
 import {UUID} from "uuidjs";
 import {getGeneratorDefaultOptionsByDataType} from "@/utils/generatorUtils";
+import {getFormatterByFormat} from "@/utils/formatterUtils";
 
 
 // set panels direction
@@ -94,5 +95,25 @@ export const doGenerateSpecificFieldPreviewData = (id: string): any =>
     async dispatch => {
         dispatch({type: GENERATE_SPECIFIC_FIELD_PREVIEW_DATA, payload: id});
     };
+
+// set number of exporter rows
+export const doSetNumberOfExportRows = (rows: Number): any =>
+    async dispatch => {
+        dispatch({type: SET_NUMBER_OF_EXPORT_ROWS, payload: rows});
+    };
+
+// change export format
+export const doChangeExportFormat = (type: ExportFormat): any =>
+    async dispatch => {
+        const formatter = getFormatterByFormat(type);
+        const defaultConfig = formatter.defaultConfig;
+        dispatch({type: SET_EXPORT_FORMAT, payload: {type, defaultConfig}});
+    };
+
+// update formatter config
+export const doUpdateFormatterConfig = (config: any): any =>
+    async dispatch => {
+        dispatch({type: SET_FORMATTER_CONFIG, payload: config});
+    }
 
 
