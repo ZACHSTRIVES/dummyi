@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './DataFieldsListItem.module.scss';
-import {Input, Divider, Button, InputNumber} from "@douyinfe/semi-ui";
+import {Divider, Button} from "@douyinfe/semi-ui";
 import {IconClose, IconHandle, IconSetting} from "@douyinfe/semi-icons";
 import {Draggable} from "react-beautiful-dnd";
 import {DataField} from "@/types/generator";
@@ -11,9 +11,11 @@ import {
     doOpenDataTypeSelectModal,
     doUpdateDataField,
 } from "@/reducers/workspace/workspaceActions";
-import {FormattedMessage} from "@/locale";
+import {FormattedMessage, useIntl} from "@/locale";
 import {ComponentSize} from "@/constants/enums";
 import {getGeneratorOptionsComponentByDataType} from "@/utils/generatorUtils";
+import {OptionsButton, OptionsInput, OptionsNumberInput} from "@/components/Utils";
+import {isNullOrWhiteSpace} from "@/utils/stringUtils";
 
 export interface DataFieldsListItemItemProps {
     id: string;
@@ -25,6 +27,7 @@ export interface DataFieldsListItemItemProps {
 export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemProps> = ({...props}) => {
     const {id, index, dataField, size} = props;
     const dispatch = useDispatch();
+    const intl = useIntl();
 
     const getItemStyle = (isDragging, draggableStyle) => ({
         backgroundColor: isDragging ? "rgba(var(--semi-grey-0), 0.5)" : null,
@@ -63,21 +66,45 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
     };
 
     const renderEmptyRateInput = () => {
-        return (<div className="generatorConfig_column">
-            <div className='generatorConfig_column__label'>
-                <FormattedMessage id={'dataFields.input.emptyRate.label'}/>
-            </div>
-
-            <InputNumber
-                onChange={(value) => handleUpdateDataField('emptyRate', value)}
-                min={0}
-                max={100}
-                suffix={"%"}
+        return (
+            <OptionsNumberInput
+                label={<FormattedMessage id={'dataFields.input.emptyRate.label'}/>}
                 value={dataField.emptyRate}
+                onChange={(value) => handleUpdateDataField('emptyRate', value)}
                 style={{width: '100px'}}
-            />
-        </div>)
+                suffix={"%"}
+                infoTooltip={<FormattedMessage id={'dataFields.input.emptyRate.tooltip'}/>}
+                errorMessage={errorMessages.emptyRate}
+            />)
     };
+
+    // error validation
+    const [errorMessages, setErrorMessages] = React.useState({
+        fieldName: '',
+        emptyRate: '',
+    });
+
+    React.useEffect(() => {
+        const newErrorMessages = {...errorMessages};
+        if (!dataField.isDraft) {
+            if (isNullOrWhiteSpace(dataField.fieldName)) {
+                newErrorMessages.fieldName = intl.formatMessage({id: 'dataFields.input.fieldName.errorMessage.empty'});
+            } else {
+                newErrorMessages.fieldName = '';
+            }
+            if (isNullOrWhiteSpace(dataField.emptyRate.toString())) {
+                newErrorMessages.emptyRate = intl.formatMessage({id: 'dataFields.input.emptyRate.errorMessage.empty'});
+            } else {
+                newErrorMessages.emptyRate = '';
+            }
+        }else {
+            newErrorMessages.fieldName = '';
+            newErrorMessages.emptyRate = '';
+        }
+
+        setErrorMessages(newErrorMessages);
+    }, [dataField.fieldName, dataField.emptyRate]);
+
 
     return (
         <Draggable draggableId={id} index={index}>
@@ -92,50 +119,34 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
                                     <IconHandle size="large" style={{cursor: 'move'}}/>
                                     <div>#{index + 1}</div>
                                 </div>
-
-                                <div className="generatorConfig_column">
-                                    <div className='generatorConfig_column__label'>
-                                        <FormattedMessage id="dataFields.input.fieldName.label"/>
-                                    </div>
-                                    <Input
-                                        onChange={(value) => handleUpdateDataField('fieldName', value)}
-                                        value={dataField.fieldName}
-                                        style={{width: '100px'}}
-                                    />
-                                </div>
-
-                                <div className="generatorConfig_column">
-                                    <div className='generatorConfig_column__label'>
-                                        <FormattedMessage id="dataFields.input.type.label"/>
-                                    </div>
-                                    <Button
-                                        onClick={handleOpenDataTypeSelectModal}
-                                        style={{width: 140, fontSize: '13px', fontWeight: 'normal'}}
-                                    >
-                                        {dataField.dataType ?
-                                            <FormattedMessage id={`dataType.${dataField.dataType}`}/> :
-                                            <FormattedMessage id={`dataFields.input.type.placeholder`}/>}
-                                    </Button>
-                                </div>
-
+                                <OptionsInput
+                                    label={<FormattedMessage id="dataFields.input.fieldName.label"/>}
+                                    value={dataField.fieldName}
+                                    onChange={(value) => handleUpdateDataField('fieldName', value)}
+                                    style={{width: '100px'}}
+                                    errorMessage={errorMessages.fieldName}
+                                />
+                                <OptionsButton
+                                    label={<FormattedMessage id="dataFields.input.type.label"/>}
+                                    onClick={handleOpenDataTypeSelectModal}
+                                    style={{width: 140, fontSize: '13px', fontWeight: 'normal'}}
+                                    text={dataField.dataType ?
+                                        <FormattedMessage id={`dataType.${dataField.dataType}`}/> :
+                                        <FormattedMessage id={`dataFields.input.type.placeholder`}/>}
+                                />
                                 {size !== ComponentSize.SMALL && (
                                     <>
                                         {renderEmptyRateInput()}
-                                        {size !== ComponentSize.LARGE && <div className="generatorConfig_column">
-                                            <div className='generatorConfig_column__label'>
-                                                <FormattedMessage id="dataFields.input.options.label"/>
-                                            </div>
-                                            <Button
-                                                style={{width: 80}}
+                                        {(size !== ComponentSize.LARGE && dataField.dataType) &&
+                                            <OptionsButton
+                                                label={<FormattedMessage id="dataFields.input.options.label"/>}
                                                 onClick={handleOpenDataTypeOptionsModal}
-                                                icon={<IconSetting style={{color: 'grey'}}/>
-                                                }/>
-                                        </div>}
+                                                style={{width: 80}}
+                                                icon={<IconSetting style={{color: 'grey'}}/>}
+                                            />}
                                     </>
                                 )}
-
                                 {size === ComponentSize.LARGE && renderDataTypeOptions()}
-
                             </div>
                         </div>
                         <div>
@@ -156,8 +167,6 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
                     <Divider style={{marginTop: '12px'}}/>
                 </div>
             )}
-
         </Draggable>
-
     )
 }

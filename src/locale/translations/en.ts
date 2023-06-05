@@ -53,7 +53,7 @@ export const en = {
     // full name
     "dataType.fullName": "Full name",
 
-    // account mi,ner
+    // account number
     "dataType.accountNumber": "Account number",
 
     // -------------------------------------------------------------------------------------------------------------
@@ -91,9 +91,12 @@ export const en = {
     "preview.setting.tableView.text": "Table",
     "dataFields.list.addNewFieldButton.text": "Add field",
     "dataFields.input.fieldName.label": "Field name",
+    "dataFields.input.fieldName.errorMessage.empty": "Field name cannot be empty",
     "dataFields.input.type.label": "Type",
     "dataFields.input.type.placeholder": "Select type",
     "dataFields.input.emptyRate.label": "Empty %",
+    "dataFields.input.emptyRate.tooltip": "Probability of generating empty value",
+    "dataFields.input.emptyRate.errorMessage.empty": "Empty rate cannot be empty",
     "dataFields.input.options.label": "Options",
     "dataFields.type.modal.title": "Data types",
     "dataFields.type.modal.search.placeholder": "Search data type...",

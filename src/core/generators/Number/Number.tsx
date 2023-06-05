@@ -116,6 +116,7 @@ export const NumberGeneratorOptionsComponent: React.FunctionComponent<GeneratorO
                 selectOptions={kindSelectOptions}
                 value={numberOptions.kind}
                 onChange={(v) => handleOptionsChange('kind', v)}
+                style={{width: '100px'}}
             />
 
             {numberOptions.kind === NumberGeneratorKind.FLOAT && <OptionsSelect

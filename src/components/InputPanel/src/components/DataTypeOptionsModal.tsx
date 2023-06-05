@@ -9,7 +9,9 @@ import {
 import {getGeneratorOptionsComponentByDataType} from "@/utils/generatorUtils";
 import {doCloseDataTypeOptionsModal, doUpdateDataField} from "@/reducers/workspace/workspaceActions";
 import {ComponentSize} from "@/constants/enums";
-import {FormattedMessage} from "@/locale";
+import {FormattedMessage, useIntl} from "@/locale";
+import {OptionsNumberInput} from "@/components/Utils";
+import {isNullOrWhiteSpace} from "@/utils/stringUtils";
 
 export interface DataTypeOptionsModalProps {
     size: ComponentSize;
@@ -17,6 +19,7 @@ export interface DataTypeOptionsModalProps {
 
 export const DataTypeOptionsModal: React.FunctionComponent<DataTypeOptionsModalProps> = ({...props}) => {
     const {size} = props;
+    const intl = useIntl();
 
     // store
     const open = useSelector(selectShowDataTypeOptionsModal);
@@ -56,6 +59,17 @@ export const DataTypeOptionsModal: React.FunctionComponent<DataTypeOptionsModalP
         dispatch(doUpdateDataField(dataFieldId, newDataField));
     }
 
+    // error validation
+    const [emptyRateError, setEmptyRateError] = React.useState<string>(null);
+    React.useEffect(() => {
+        if (!dataField) return;
+        if (isNullOrWhiteSpace(dataField.emptyRate.toString())) {
+            setEmptyRateError(intl.formatMessage({id: 'dataFields.input.emptyRate.errorMessage.empty'}));
+        } else {
+            setEmptyRateError(null);
+        }
+    }, [dataField.emptyRate]);
+
     return (
         <Modal
             onCancel={handleCancel}
@@ -69,19 +83,15 @@ export const DataTypeOptionsModal: React.FunctionComponent<DataTypeOptionsModalP
             style={{width: '80%', maxWidth: '400px'}}
         >
             <div style={{marginBottom: '12px'}}>
-                {(size === ComponentSize.SMALL && dataField) && <div className="generatorConfig_column">
-                    <div className='generatorConfig_column__label'>
-                        <FormattedMessage id={'dataFields.input.emptyRate.label'}/>
-                    </div>
-                    <InputNumber
-                        onChange={handleEmptyRateChange}
-                        min={0}
-                        max={100}
-                        suffix={"%"}
-                        value={dataField.emptyRate}
-                        style={{width: '100px'}}
-                    />
-                </div>}
+                {(size === ComponentSize.SMALL && dataField) && <OptionsNumberInput
+                    label={<FormattedMessage id={'dataFields.input.emptyRate.label'}/>}
+                    value={dataField.emptyRate}
+                    onChange={handleEmptyRateChange}
+                    style={{width: '100px'}}
+                    suffix={"%"}
+                    infoTooltip={<FormattedMessage id={'dataFields.input.emptyRate.tooltip'}/>}
+                    errorMessage={emptyRateError}
+                />}
                 {renderDataTypeOptions()}
             </div>
         </Modal>
