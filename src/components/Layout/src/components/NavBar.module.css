@@ -2,10 +2,25 @@
     display: none !important;
 }
 
+.loginButtonMobile {
+    display: none !important;
+}
+
 @media screen and (max-width: 768px) {
+    .navHeader {
+        justify-content: space-between;
+    }
+
+    .loginButtonMobile {
+        display: flex !important;
+    }
+
+    .loginButton {
+        display: none !important;
+    }
+
     .hamburgerIcon {
         display: block !important;
-        margin-left: auto !important;
     }
 
     .navBar {

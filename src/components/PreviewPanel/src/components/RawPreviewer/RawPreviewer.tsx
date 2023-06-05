@@ -7,6 +7,8 @@ import {Store} from "@/types/system";
 import {ColorMode} from "@/constants/enums";
 import {darkTheme, lightTheme} from "@/components/PreviewPanel/src/components/RawPreviewer/RawPreviewer.themes";
 import {Extension} from "@codemirror/state";
+import {selectPreviewFormattedData} from "@/reducers/workspace/workspaceSelectors";
+import {selectColorMode} from "@/reducers/app/appSelectors";
 
 
 export type RawPreviewerProps = {
@@ -19,13 +21,14 @@ export const RawPreviewer: React.FunctionComponent<RawPreviewerProps> = ({...pro
     const [codeMirrorExtensions, setCodeMirrorExtensions] = React.useState<any[]>([]);
 
     // store
-    const colorMode = useSelector((state: Store) => state.app.colorMode);
+    const colorMode = useSelector(selectColorMode);
     const {
-        previewFormattedData,
         rawViewShowLineNumber,
         rawViewLineWrap,
         rawViewFontSize
     } = useSelector((state: Store) => state.preview);
+
+    const previewFormattedData = useSelector(selectPreviewFormattedData);
 
     React.useEffect(() => {
         const extensions: Extension[] = [langs.sql()];

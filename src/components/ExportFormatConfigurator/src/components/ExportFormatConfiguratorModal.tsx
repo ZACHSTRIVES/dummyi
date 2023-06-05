@@ -5,11 +5,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {ExportFormatSelect} from "@/components/ExportFormatConfigurator/src/components/ExportFormatSelect";
 import {IllustrationConstruction, IllustrationConstructionDark} from '@douyinfe/semi-illustrations';
 import {getFormatterConfigComponentByFormat} from "@/utils/formatterUtils";
-import {doSetFormatterConfig} from "@/reducers/exporter/exporterActions";
-import {FormatRequest} from "@/types/formatter";
+import {doUpdateFormatterConfig} from "@/reducers/exporter/exporterActions";
 import {selectExportFormat, selectFormatterConfig} from "@/reducers/exporter/exporterSelectors";
-import {selectPreviewData} from "@/reducers/preview/previewSelectors";
-import {selectDataFields} from "@/reducers/workspace/workspaceSelectors";
+
 
 export type ExportFormatConfiguratorModalProps = {
     open: boolean;
@@ -24,20 +22,10 @@ export const ExportFormatConfiguratorModal: React.FC<ExportFormatConfiguratorMod
     // store
     const exportFormat = useSelector(selectExportFormat);
     const formatterConfig = useSelector(selectFormatterConfig);
-    const previewData = useSelector(selectPreviewData);
-    const fields = useSelector(selectDataFields);
 
     // action
     const onConfigChange = (config) => {
-
-        // CAUTION: temp solution, need to be refactored,for test only
-        const formatRequest: FormatRequest = {
-            format: exportFormat,
-            config: config,
-            values: previewData,
-            fields: fields
-        }
-        dispatch(doSetFormatterConfig(formatRequest, config));
+        dispatch(doUpdateFormatterConfig(config));
     }
 
     // render

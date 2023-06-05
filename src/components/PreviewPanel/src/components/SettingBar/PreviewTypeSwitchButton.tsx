@@ -1,10 +1,10 @@
 import React from 'react';
-import {Button, ButtonGroup, Radio, RadioGroup} from "@douyinfe/semi-ui";
+import {Button, Radio, RadioGroup} from "@douyinfe/semi-ui";
 import {useIntl} from "@/locale";
 import {ComponentSize, PreviewType} from "@/constants/enums";
 import {useDispatch, useSelector} from "react-redux";
-import {Store} from "@/types/system";
 import {doSetPreviewType} from "@/reducers/preview/previewActions";
+import {selectPreviewType} from "@/reducers/preview/previewSelectors";
 
 export type PreviewTypeSwitchButtonProps = {
     size: ComponentSize;
@@ -14,7 +14,7 @@ export const PreviewTypeSwitchButton: React.FC<PreviewTypeSwitchButtonProps> = (
     const intl = useIntl();
 
     // store
-    const previewType = useSelector((state: Store) => state.preview.previewType);
+    const previewType = useSelector(selectPreviewType);
 
     // actions
     const dispatch = useDispatch();

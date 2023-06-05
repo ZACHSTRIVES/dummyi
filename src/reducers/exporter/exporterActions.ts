@@ -6,8 +6,6 @@ import {
 } from "@/constants/actions";
 import {ExportFormat} from "@/constants/enums";
 import {formatData, getFormatterByFormat} from "@/utils/formatterUtils";
-import {useSelector} from "react-redux";
-import {Store} from "@/types/system";
 import {FormatRequest} from "@/types/formatter";
 
 
@@ -18,16 +16,24 @@ export const doSetNumberOfExportRows = (rows: Number): any =>
     };
 
 // change export format
-export const doChangeExportFormat = (type: ExportFormat, defaultConfig: any): any =>
+export const doChangeExportFormat = (type: ExportFormat): any =>
     async dispatch => {
+        const formatter = getFormatterByFormat(type);
+        const defaultConfig = formatter.defaultConfig;
         dispatch({type: SET_EXPORT_FORMAT, payload: {type, defaultConfig}});
     };
 
+// update formatter config
+export const doUpdateFormatterConfig = (config: any): any =>
+    async dispatch => {
+        dispatch({type: SET_FORMATTER_CONFIG, payload: config});
+    }
+
 // set formatter config
-export const doSetFormatterConfig = (formatRequest:FormatRequest, config: any): any =>
+export const doSetFormatterConfig = (formatRequest: FormatRequest, config: any): any =>
     async dispatch => {
         // CAUTION: A temporary solution that will be reconstructed shortly！
         const newData = formatData(formatRequest);
         dispatch({type: SET_FORMATTER_CONFIG, payload: config});
-        dispatch({type:SET_PREVIEW_FORMATTED_DATA, payload: newData});
+        dispatch({type: SET_PREVIEW_FORMATTED_DATA, payload: newData});
     };

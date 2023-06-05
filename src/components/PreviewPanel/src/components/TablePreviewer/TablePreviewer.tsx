@@ -1,8 +1,9 @@
 import React, {useMemo} from "react";
 import styles from './TablePreviewer.module.css';
 import {useSelector} from "react-redux";
-import {Store} from "@/types/system";
-import {Radio, Table} from "@douyinfe/semi-ui";
+import {Table} from "@douyinfe/semi-ui";
+import {selectDataFields, selectDataFieldsSortableIdsList} from "@/reducers/workspace/workspaceSelectors";
+import {selectPreviewData} from "@/reducers/workspace/workspaceSelectors";
 import {DataField} from "@/types/generator";
 
 
@@ -16,15 +17,24 @@ export const TablePreviewer: React.FunctionComponent<TablePreviewerProps> = ({..
     const scroll = useMemo(() => ({y: height, x: width + 100}), [height, width]);
 
     // store
-    const dataFields = useSelector((state: Store) => state.workspace.dataFields);
-    const data = useSelector((state: Store) => state.preview.previewData);
+    const dataFields = useSelector(selectDataFields);
+    const dataFieldsSortableList = useSelector(selectDataFieldsSortableIdsList);
+    const data = useSelector(selectPreviewData);
 
     return (
         <div className={styles.tablePreview}>
-           <Table scroll={scroll} dataSource={data} pagination={false}>
-                {dataFields.map((field:DataField,index) => (
-                    <Table.Column key={field.fieldName} dataIndex={field.fieldName} title={field.fieldName}/>
-                ))}
+            <Table scroll={scroll} dataSource={data} pagination={false}>
+                {dataFieldsSortableList.map((fieldId: string, index) => {
+                    const field: DataField = dataFields[fieldId];
+                    return field.isDraft ? null : <Table.Column
+                            key={field.fieldName}
+                            dataIndex={field.fieldName}
+                            title={field.fieldName}
+                            render={(value: any) => {
+                                return <>{value?value.stringValue:""}</>
+                            }}
+                        />
+                })}
             </Table>
         </div>
     )

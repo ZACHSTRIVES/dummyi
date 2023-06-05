@@ -39,7 +39,7 @@ export const InputPanel: React.FunctionComponent<InputPanelProps> = () => {
     }, [containerRef]);
     return (
         <div className={styles.inputPanel} ref={containerRef}>
-            <div className={styles.background} />
+            <div className={styles.background}/>
             <Toolbar/>
             <DataFieldsList size={componentSize} height={containerHeight - 64}/>
         </div>

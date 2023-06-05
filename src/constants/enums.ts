@@ -12,6 +12,14 @@ export enum ExportFormat {
     XML = "XML",
 }
 
+export enum ExportValueType {
+    STRING = "string",
+    NUMBER = "number",
+    BOOLEAN = "boolean",
+    DATE_TIME = "dateTime",
+    NULL = "null"
+}
+
 // data types
 export enum DataTypeCategory {
     ALL= "all",
@@ -22,10 +30,10 @@ export enum DataTypeCategory {
 
 export enum DataType {
     NUMBER = "number",
-    PERSON_NAME = "personName",
     DATE_TIME = "dateTime",
     ACCOUNT_NUMBER = "accountNumber",
-    BOOLEAN = "boolean"
+    BOOLEAN = "boolean",
+    FULL_NAME = "fullName",
 }
 
 // systems

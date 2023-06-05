@@ -5,11 +5,14 @@ import {IconClose, IconSearch} from "@douyinfe/semi-icons";
 import {FormattedMessage, useIntl} from "@/locale";
 import {getGeneratorList} from "@/utils/generatorUtils";
 import {useDispatch, useSelector} from "react-redux";
-import {Store} from "@/types/system";
-import {doCloseDataTypeSelectModal, doUpdateDataFields} from "@/reducers/workspace/workspaceActions";
+import {doChangeDataType, doCloseDataTypeSelectModal} from "@/reducers/workspace/workspaceActions";
 import {ColorMode} from "@/constants/enums";
 import {Generator} from "@/types/generator";
-import {selectDataFields, selectShowDataTypeSelectModal} from "@/reducers/workspace/workspaceSelectors";
+import {
+    selectCurrentDataTypeSelectModalTargetField,
+    selectCurrentDataTypeSelectModalTargetFieldId,
+    selectShowDataTypeSelectModal
+} from "@/reducers/workspace/workspaceSelectors";
 import {selectColorMode} from "@/reducers/app/appSelectors";
 
 
@@ -20,31 +23,18 @@ export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalPro
     const intl = useIntl();
     const {Title} = Typography;
     const dispatch = useDispatch();
-    const currentDataTypeSelectModalTargetField = useSelector((state: Store) => state.workspace.currentDataTypeSelectModalTargetField);
     const [searchText, setSearchText] = React.useState(null);
     const data = useMemo(() => getGeneratorList(searchText, intl), [intl, searchText]);
 
     // store
     const open = useSelector(selectShowDataTypeSelectModal);
     const colorMode = useSelector(selectColorMode);
-    const dataFields = useSelector(selectDataFields);
+    const currentTargetDataField = useSelector(selectCurrentDataTypeSelectModalTargetField);
+    const currentTargetDataFieldId = useSelector(selectCurrentDataTypeSelectModalTargetFieldId);
 
     // actions
-
     const handleSelect = (item: Generator) => {
-        const newDataFields = dataFields.map(field => {
-            if (field.id === currentDataTypeSelectModalTargetField.id) {
-                field = {...field, dataType: item.type};
-                if (field.dataType && field.fieldName) {
-                    field.isDraft = false;
-                } else {
-                    field.isDraft = true;
-                }
-                return field;
-            }
-            return field;
-        });
-        dispatch(doUpdateDataFields(newDataFields));
+        dispatch(doChangeDataType(currentTargetDataFieldId,item.type));
         onCancel();
     }
 
@@ -110,7 +100,7 @@ export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalPro
                                                 <Card
                                                     shadows='hover'
                                                     title={item.displayName}
-                                                    className={`${item.type === (currentDataTypeSelectModalTargetField?.dataType || null) ?
+                                                    className={`${item.type === (currentTargetDataField?.dataType || null) ?
                                                         styles.dataTypeSelectModalCard__selected : styles.dataTypeSelectModalCard} no-select-area`}>
                                                     {
                                                         item.exampleLines && item.exampleLines.map((example, index) => (

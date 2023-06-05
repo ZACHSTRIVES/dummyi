@@ -29,17 +29,31 @@ export const en = {
 
     // number
     "dataType.number": "Number",
+    "dataType.number.kind.label": "Kind",
+    "dataType.number.precision.label": "Precision",
+    "dataType.number.min.label": "Min.",
+    "dataType.number.min.tooltip":"Lower bound for generated numbers",
+    "dataType.number.min.errorMessage.empty": "Min. value cannot be empty",
+    "dataType.number.min.errorMessage.greaterThanMax": "Min. value cannot be greater than max. value",
+    "dataType.number.max.label": "Max.",
+    "dataType.number.max.tooltip":"Upper bound for generated numbers",
+    "dataType.number.max.errorMessage.empty": "Max. value cannot be empty",
+    "dataType.number.max.errorMessage.lessThanMin": "Max. value cannot be less than min. value",
 
     // dateTime
     "dataType.dateTime": "Date time",
 
     // boolean
     "dataType.boolean": "Boolean",
+    "dataType.boolean.true.label": "Prob of True",
+    "dataType.boolean.true.tooltip": "Probability of generating true value",
+    "dataType.boolean.true.errorMessage.empty": "Prob of True cannot be empty",
+    "dataType.boolean.format.label": "Format",
 
-    // person name
-    "dataType.personName": "Person name",
+    // full name
+    "dataType.fullName": "Full name",
 
-    // account mi,ner
+    // account number
     "dataType.accountNumber": "Account number",
 
     // -------------------------------------------------------------------------------------------------------------
@@ -72,14 +86,18 @@ export const en = {
     "preview.setting.lineWarpSwitch.tooltip.disable": "Disable line wrap",
     "preview.setting.copyToClipboard.tooltip": "Copy to clipboard",
     "preview.setting.copyToClipboard.notification.success": "Success",
-    "preview.setting.copyToClipboard.notification.content": "The content has been copied to the clipboard.",
+    "preview.setting.copyToClipboard.notification.content": "Copied to the clipboard.",
     "preview.setting.rawView.text": "Raw",
     "preview.setting.tableView.text": "Table",
     "dataFields.list.addNewFieldButton.text": "Add field",
     "dataFields.input.fieldName.label": "Field name",
+    "dataFields.input.fieldName.errorMessage.empty": "Field name cannot be empty",
     "dataFields.input.type.label": "Type",
     "dataFields.input.type.placeholder": "Select type",
     "dataFields.input.emptyRate.label": "Empty %",
+    "dataFields.input.emptyRate.tooltip": "Probability of generating empty value",
+    "dataFields.input.emptyRate.errorMessage.empty": "Empty rate cannot be empty",
+    "dataFields.input.options.label": "Options",
     "dataFields.type.modal.title": "Data types",
     "dataFields.type.modal.search.placeholder": "Search data type...",
 

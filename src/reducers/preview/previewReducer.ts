@@ -6,7 +6,6 @@ import {
     SET_RAW_VIEW_LINE_WRAP,
     SET_RAW_VIEW_SHOW_LINE_NUMBERS
 } from "@/constants/actions";
-import {mockData} from "@/reducers/mock";
 import {
     DEFAULT_LINE_WRAP,
     DEFAULT_SHOW_ROW_NUMBERS,
@@ -16,8 +15,6 @@ import {
 
 export const initState: PreviewReducerState = {
     previewType: DEFAULT_PREVIEW_TYPE,
-    previewData: mockData,
-    previewFormattedData: '',
     rawViewShowLineNumber: DEFAULT_SHOW_ROW_NUMBERS,
     rawViewLineWrap: DEFAULT_LINE_WRAP,
     rawViewFontSize: DEFAULT_FONT_SIZE,

@@ -1,30 +1,40 @@
-import {DataType, DataTypeCategory} from "@/constants/enums";
+import {DataType, DataTypeCategory, ExportValueType} from "@/constants/enums";
 import React from "react";
 
 export interface DataField {
-    id: string;
     isDraft: boolean;
     fieldName?: string;
     dataType?: DataType;
-    emptyRate?: number ;
+    dataTypeOptions?: any;
+    emptyRate?: number;
+}
+
+export interface DataFieldList {
+    [id: string]: DataField;
 }
 
 export interface Generator {
     type: DataType;
     category: DataTypeCategory;
-    generate: (request: GenerateRequest) => any;
+    generate: (options:any) => any;
     exampleLines?: string[];
-    configComponent?: React.FunctionComponent<GeneratorConfigComponentInterface>;
-    defaultConfig?: any;
+    optionsComponent?: React.FunctionComponent<GeneratorOptionsComponentInterface>;
+    defaultOptions?: any;
     displayName?: string;
 }
 
-export interface GeneratorConfigComponentInterface {
-    config: any;
-    onConfigChange: (config: any) => void;
+export interface GeneratorOptionsComponentInterface {
+    options: any;
+    onOptionsChange: (config: any) => void;
 }
 
 export interface GenerateRequest {
-    dataFields: DataField[];
+    field: DataField;
+}
+
+export interface GenerateResult {
+    value: any;
+    stringValue: string;
+    type: ExportValueType
 }
 

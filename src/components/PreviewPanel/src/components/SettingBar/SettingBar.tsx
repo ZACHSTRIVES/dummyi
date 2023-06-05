@@ -9,7 +9,7 @@ import {CopyToClipboardButton} from "@/components/PreviewPanel/src/components/Se
 import {PreviewTypeSwitchButton} from "@/components/PreviewPanel/src/components/SettingBar/PreviewTypeSwitchButton";
 import {ComponentSize, PreviewType} from "@/constants/enums";
 import {useSelector} from "react-redux";
-import {Store} from "@/types/system";
+import {selectPreviewType} from "@/reducers/preview/previewSelectors";
 
 export type SettingBarProps = {
     size: ComponentSize;
@@ -18,8 +18,7 @@ export type SettingBarProps = {
 export const SettingBar: React.FunctionComponent<SettingBarProps> = ({...props}) => {
 
     // store
-    const previewType = useSelector((state: Store) => state.preview.previewType);
-
+    const previewType = useSelector(selectPreviewType);
 
     return (
         <div className={styles.settingBar}>
