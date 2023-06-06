@@ -52,6 +52,12 @@ export const en = {
 
     // full name
     "dataType.fullName": "Full name",
+    "dataType.fullName.sex.label": "Sex",
+    "dataType.fullName.sex.selectOptions.all": "Male, Female",
+    "dataType.fullName.sex.selectOptions.male": "Male",
+    "dataType.fullName.sex.selectOptions.female": "Female",
+    "dataType.fullName.firstName.label": "First name",
+    "dataType.fullName.lastName.label": "Last name",
 
     // account number
     "dataType.accountNumber": "Account number",

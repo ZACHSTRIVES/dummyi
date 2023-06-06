@@ -51,6 +51,12 @@ export const zhCN = {
 
     // full name
     "dataType.fullName": "全名",
+    "dataType.fullName.sex.label": "性别",
+    "dataType.fullName.sex.selectOptions.all": "男性, 女性",
+    "dataType.fullName.sex.selectOptions.male": "男性",
+    "dataType.fullName.sex.selectOptions.female": "女性",
+    "dataType.fullName.firstName.label": "名",
+    "dataType.fullName.lastName.label": "姓",
 
     // account mi,ner
     "dataType.accountNumber": "账号",

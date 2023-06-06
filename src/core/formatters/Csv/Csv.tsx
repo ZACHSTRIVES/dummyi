@@ -32,15 +32,17 @@ export const format = (request: FormatRequest): string => {
         return '';
     }
 
-    const header = sortedFieldIds.map((fieldId) => fields[fieldId].fieldName);
+    const header = sortedFieldIds
+        .filter((fieldId) => !fields[fieldId].isDraft)
+        .map((fieldId) => fields[fieldId].fieldName);
 
     let output = '';
     if (includeHeader) {
         output += header.join(delimiter) + endOfLineChar;
     }
-
     const rows = values.map((item) =>
-        header.map((column) => {
+        sortedFieldIds.map((column) => {
+            if(fields[column].isDraft) return '' // skip draft field
             let value = item[column].stringValue;
             value = value.replace(/"/g, '""'); // Escape double quotes
 

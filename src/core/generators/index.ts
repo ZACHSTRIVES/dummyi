@@ -10,8 +10,8 @@ import {FullNameGenerator} from "@/core/generators/FullName";
 
 export const generators = {
     [DataType.BOOLEAN]:BooleanGenerator,
-    [DataType.DATE_TIME]:DatetimeGenerator,
+    // [DataType.DATE_TIME]:DatetimeGenerator,
     [DataType.NUMBER]:NumberGenerator,
-    [DataType.ACCOUNT_NUMBER]:AccountNumberGenerator,
+    // [DataType.ACCOUNT_NUMBER]:AccountNumberGenerator,
     [DataType.FULL_NAME]:FullNameGenerator
 }

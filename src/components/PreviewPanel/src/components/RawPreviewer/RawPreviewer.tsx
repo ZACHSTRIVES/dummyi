@@ -31,7 +31,7 @@ export const RawPreviewer: React.FunctionComponent<RawPreviewerProps> = ({...pro
     const previewFormattedData = useSelector(selectPreviewFormattedData);
 
     React.useEffect(() => {
-        const extensions: Extension[] = [langs.sql()];
+        const extensions: Extension[] = [langs.mathematica()];
 
         if (rawViewLineWrap) {
             extensions.push(EditorView.lineWrapping);

@@ -27,8 +27,8 @@ export const TablePreviewer: React.FunctionComponent<TablePreviewerProps> = ({..
                 {dataFieldsSortableList.map((fieldId: string, index) => {
                     const field: DataField = dataFields[fieldId];
                     return field.isDraft ? null : <Table.Column
-                            key={field.fieldName}
-                            dataIndex={field.fieldName}
+                            key={fieldId}
+                            dataIndex={fieldId}
                             title={field.fieldName}
                             render={(value: any) => {
                                 return <>{value?value.stringValue:""}</>

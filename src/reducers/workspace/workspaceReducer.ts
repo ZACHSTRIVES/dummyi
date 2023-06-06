@@ -3,7 +3,7 @@ import {
     ADD_NEW_DATA_FIELD, CHANGE_DATA_TYPE,
     CLOSE_DATA_TYPE_OPTIONS_MODAL,
     CLOSE_DATA_TYPE_SELECT_MODAL,
-    DELETE_DATA_FIELD, GENERATE_PREVIEW_DATA, GENERATE_SPECIFIC_FIELD_PREVIEW_DATA,
+    DELETE_DATA_FIELD, FORMAT_PREVIEW_DATA, GENERATE_PREVIEW_DATA, GENERATE_SPECIFIC_FIELD_PREVIEW_DATA,
     OPEN_DATA_TYPE_OPTIONS_MODAL,
     OPEN_DATA_TYPE_SELECT_MODAL,
     SET_DATA_FIELDS, SET_EXPORT_FORMAT, SET_FORMATTER_CONFIG, SET_NUMBER_OF_EXPORT_ROWS,
@@ -16,6 +16,8 @@ import {mockData, mockFields} from "@/reducers/mock";
 import {deleteSpecificFieldData, generateData, generateSpecificFieldData} from "@/utils/generatorUtils";
 import {ExportFormat} from "@/constants/enums";
 import {CsvFormatter} from "@/core/formatters/Csv";
+import {FormatRequest} from "@/types/formatter";
+import {formatData} from "@/utils/formatterUtils";
 
 
 export const initStates: WorkspaceReducerState = {
@@ -146,6 +148,18 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
                 ...state,
                 formatterConfig: action.payload
             };
+        case FORMAT_PREVIEW_DATA:
+            const request: FormatRequest = {
+                fields: state.dataFields,
+                sortedFieldIds: state.dataFieldsSortableIdsList,
+                format: state.exportFormat,
+                config: state.formatterConfig,
+                values: state.previewData
+            }
+            return {
+                ...state,
+                previewFormattedData: formatData(request)
+            }
 
         default:
             return state;

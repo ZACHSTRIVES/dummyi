@@ -2,7 +2,7 @@ import {
     ADD_NEW_DATA_FIELD, CHANGE_DATA_TYPE,
     CLOSE_DATA_TYPE_OPTIONS_MODAL,
     CLOSE_DATA_TYPE_SELECT_MODAL,
-    DELETE_DATA_FIELD, GENERATE_PREVIEW_DATA, GENERATE_SPECIFIC_FIELD_PREVIEW_DATA,
+    DELETE_DATA_FIELD, FORMAT_PREVIEW_DATA, GENERATE_PREVIEW_DATA, GENERATE_SPECIFIC_FIELD_PREVIEW_DATA,
     OPEN_DATA_TYPE_OPTIONS_MODAL,
     OPEN_DATA_TYPE_SELECT_MODAL, SET_EXPORT_FORMAT, SET_FORMATTER_CONFIG, SET_NUMBER_OF_EXPORT_ROWS,
     SET_PANELS_DIRECTION, SORT_DATA_FIELDS,
@@ -74,6 +74,7 @@ export const doUpdateDataField = (id: string, field: DataField): any =>
 export const doSortDataFields = (sortableIdsList: string[]): any =>
     async dispatch => {
         dispatch({type: SORT_DATA_FIELDS, payload: sortableIdsList});
+        dispatch(doFormatData());
     };
 
 // change data type
@@ -88,12 +89,14 @@ export const doChangeDataType = (id: string, dataType: DataType): any =>
 export const doGeneratePreviewData = (): any =>
     async dispatch => {
         dispatch({type: GENERATE_PREVIEW_DATA});
+        dispatch(doFormatData());
     };
 
 // generate specific field data
 export const doGenerateSpecificFieldPreviewData = (id: string): any =>
     async dispatch => {
         dispatch({type: GENERATE_SPECIFIC_FIELD_PREVIEW_DATA, payload: id});
+        dispatch(doFormatData());
     };
 
 // set number of exporter rows
@@ -108,12 +111,19 @@ export const doChangeExportFormat = (type: ExportFormat): any =>
         const formatter = getFormatterByFormat(type);
         const defaultConfig = formatter.defaultConfig;
         dispatch({type: SET_EXPORT_FORMAT, payload: {type, defaultConfig}});
+        dispatch(doFormatData());
     };
 
 // update formatter config
 export const doUpdateFormatterConfig = (config: any): any =>
     async dispatch => {
         dispatch({type: SET_FORMATTER_CONFIG, payload: config});
+        dispatch(doFormatData());
     }
 
+// format data
+export const doFormatData = (): any =>
+    async dispatch => {
+        dispatch({type: FORMAT_PREVIEW_DATA});
+    }
 

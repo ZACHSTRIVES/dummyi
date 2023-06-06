@@ -30,8 +30,8 @@ export enum DataTypeCategory {
 
 export enum DataType {
     NUMBER = "number",
-    DATE_TIME = "dateTime",
-    ACCOUNT_NUMBER = "accountNumber",
+    // DATE_TIME = "dateTime",
+    // ACCOUNT_NUMBER = "accountNumber",
     BOOLEAN = "boolean",
     FULL_NAME = "fullName",
 }
@@ -67,6 +67,12 @@ export enum PreviewType{
 export enum EndOfLineChars {
     LF = '\n',
     CRLF = '\r\n'
+}
+
+export enum Sex{
+    ALL = "all",
+    MALE = "male",
+    FEMALE = "female"
 }
 
 

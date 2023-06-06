@@ -13,18 +13,18 @@ export const generateData = (fields: DataFieldList, sortableList: string[], coun
             if (!field.isDraft) {
                 if (!isEmptyField(field.emptyRate)) {
                     try {
-                        row[field.fieldName] = generators[field.dataType].generate(field.dataTypeOptions);
+                        row[id] = generators[field.dataType].generate(field.dataTypeOptions);
                     } catch {
-                        row[field.fieldName] = {
+                        row[id] = {
                             value: null,
-                            stringValue: null,
+                            stringValue: '',
                             type: ExportValueType.NULL
                         }
                     }
                 } else {
-                    row[field.fieldName] = {
+                    row[id] = {
                         value: null,
-                        stringValue: null,
+                        stringValue: '',
                         type: ExportValueType.NULL
                     }
                 }
@@ -45,23 +45,23 @@ export const generateSpecificFieldData = (fields: DataFieldList, sortableList: s
                 if (id === specificFieldId) {
                     if (!isEmptyField(field.emptyRate)) {
                         try{
-                            row[field.fieldName] = generators[field.dataType].generate(field.dataTypeOptions);
+                            row[id] = generators[field.dataType].generate(field.dataTypeOptions);
                         } catch {
-                            row[field.fieldName] = {
+                            row[id] = {
                                 value: null,
                                 stringValue: null,
                                 type: ExportValueType.NULL
                             }
                         }
                     } else {
-                        row[field.fieldName] = {
+                        row[id] = {
                             value: null,
                             stringValue: null,
                             type: ExportValueType.NULL
                         }
                     }
                 } else {
-                    row[field.fieldName] = rowData[field.fieldName];
+                    row[id] = rowData[id];
                 }
             }
         });
