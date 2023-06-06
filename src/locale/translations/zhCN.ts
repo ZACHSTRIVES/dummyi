@@ -17,6 +17,12 @@ export const zhCN = {
     "export.configurator.csv.includeHeader": "包含表头",
     "export.configurator.csv.endLineChar": "行结束符",
 
+    // xml
+    "export.configurator.xml.rootNodeName": "根节点",
+    "export.configurator.xml.childNodeName": "子节点",
+    "export.configurator.xml.encoding": "编码",
+    "export.configurator.xml.indentSize": "缩进大小",
+
     // -------------------------------------------------------------------------------------------------------------
     // data types
 

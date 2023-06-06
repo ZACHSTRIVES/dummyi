@@ -31,7 +31,7 @@ export const RawPreviewer: React.FunctionComponent<RawPreviewerProps> = ({...pro
     const previewFormattedData = useSelector(selectPreviewFormattedData);
 
     React.useEffect(() => {
-        const extensions: Extension[] = [langs.mathematica()];
+        const extensions: Extension[] = [langs.xml()];
 
         if (rawViewLineWrap) {
             extensions.push(EditorView.lineWrapping);

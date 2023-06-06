@@ -33,28 +33,28 @@ export const format = (request: FormatRequest): string => {
     }
 
     const header = sortedFieldIds
-        .filter((fieldId) => !fields[fieldId].isDraft)
-        .map((fieldId) => fields[fieldId].fieldName);
+        .filter(fieldId => !fields[fieldId].isDraft)
+        .map(fieldId => fields[fieldId].fieldName);
 
     let output = '';
     if (includeHeader) {
         output += header.join(delimiter) + endOfLineChar;
     }
-    const rows = values.map((item) =>
-        sortedFieldIds.map((column) => {
-            if(fields[column].isDraft) return '' // skip draft field
-            let value = item[column].stringValue;
-            value = value.replace(/"/g, '""'); // Escape double quotes
 
-            if (value.includes(delimiter) || value.includes(endOfLineChar)) {
-                value = `"${value}"`; // Enclose in double quotes if necessary
-            }
+    const rows = values.map(item =>
+        sortedFieldIds
+            .filter(column => !fields[column].isDraft)
+            .map(column => {
+                let value = item[column].stringValue;
+                value = value.replace(/"/g, '""'); // Escape double quotes
+                if (value.includes(delimiter) || value.includes(endOfLineChar)) {
+                    value = `"${value}"`; // Enclose in double quotes if necessary
+                }
 
-            return value;
-        })
-    );
+                return value;
+            }));
 
-    output += rows.map((row) => row.join(delimiter) + endOfLineChar).join('');
+    output += rows.map(row => row.join(delimiter) + endOfLineChar).join('');
 
     return output;
 };

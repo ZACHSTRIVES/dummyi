@@ -18,6 +18,12 @@ export const en = {
     "export.configurator.csv.includeHeader": "Include header",
     "export.configurator.csv.endLineChar": "End of line characters",
 
+    // xml
+    "export.configurator.xml.rootNodeName": "Root node",
+    "export.configurator.xml.childNodeName": "Child node",
+    "export.configurator.xml.encoding": "Encoding",
+    "export.configurator.xml.indentSize": "Indent size",
+
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
