@@ -6,7 +6,7 @@ import {
     OPEN_DATA_TYPE_OPTIONS_MODAL,
     OPEN_DATA_TYPE_SELECT_MODAL, SET_EXPORT_FORMAT, SET_FORMATTER_CONFIG, SET_NUMBER_OF_EXPORT_ROWS,
     SET_PANELS_DIRECTION, SORT_DATA_FIELDS,
-    UPDATE_DATA_FIELD
+    UPDATE_DATA_FIELD, UPDATE_DATA_FIELD_NAME
 } from "@/constants/actions";
 import {DataType, ExportFormat, PanelsOrientation} from "@/constants/enums";
 import {DataField} from "@/types/generator";
@@ -69,6 +69,13 @@ export const doUpdateDataField = (id: string, field: DataField): any =>
         dispatch({type: UPDATE_DATA_FIELD, payload: {id: id, field: field}});
         dispatch(doGenerateSpecificFieldPreviewData(id));
     };
+
+// update daya field name
+export const doUpdateDataFieldName = (id: string, name: string): any =>
+    async dispatch => {
+        dispatch({type: UPDATE_DATA_FIELD_NAME, payload: {id: id, name: name}});
+        dispatch(doFormatData());
+    }
 
 // sort data fields
 export const doSortDataFields = (sortableIdsList: string[]): any =>

@@ -31,6 +31,7 @@ export const zhCN = {
     "dataType.category.basic": "基础",
     "dataType.category.person": "人物",
     "dataType.category.commerce": "商业",
+    "dataType.category.network": "网络",
 
     // number
     "dataType.number": "数字",
@@ -63,6 +64,11 @@ export const zhCN = {
     "dataType.fullName.sex.selectOptions.female": "女性",
     "dataType.fullName.firstName.label": "名",
     "dataType.fullName.lastName.label": "姓",
+
+    // email
+    "dataType.email": "邮箱",
+    "dataType.email.provider.label": "邮箱提供商",
+    "dataType.email.allowSpecialCharacters.label": "允许特殊字符",
 
     // account mi,ner
     "dataType.accountNumber": "账号",

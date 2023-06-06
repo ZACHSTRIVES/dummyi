@@ -9,7 +9,7 @@ import {
     doDeleteDataField,
     doOpenDataTypeOptionsModal,
     doOpenDataTypeSelectModal,
-    doUpdateDataField,
+    doUpdateDataField, doUpdateDataFieldName,
 } from "@/reducers/workspace/workspaceActions";
 import {FormattedMessage, useIntl} from "@/locale";
 import {ComponentSize} from "@/constants/enums";
@@ -36,8 +36,12 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
 
     // actions
     const handleUpdateDataField = (changedFieldName: string, value: any) => {
-        const field = {...dataField, [changedFieldName]: value};
-        dispatch(doUpdateDataField(id, field));
+        if(changedFieldName === 'fieldName'){
+            dispatch(doUpdateDataFieldName(id, value))
+        }else{
+            const field = {...dataField, [changedFieldName]: value};
+            dispatch(doUpdateDataField(id, field));
+        }
     };
 
     const handleOptionsChange = (options: any) => {

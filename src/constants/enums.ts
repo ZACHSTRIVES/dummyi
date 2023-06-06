@@ -25,11 +25,13 @@ export enum DataTypeCategory {
     ALL= "all",
     BASIC = "basic",
     PERSON = "person",
+    NETWORK = "network",
     COMMERCE = "commerce",
 }
 
 export enum DataType {
     NUMBER = "number",
+    EMAIL = "email",
     // DATE_TIME = "dateTime",
     // ACCOUNT_NUMBER = "accountNumber",
     BOOLEAN = "boolean",

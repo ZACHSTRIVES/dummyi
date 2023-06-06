@@ -32,6 +32,7 @@ export const en = {
     "dataType.category.basic": "Basic",
     "dataType.category.person": "Person",
     "dataType.category.commerce": "Commerce",
+    "dataType.category.network": "Network",
 
     // number
     "dataType.number": "Number",
@@ -64,6 +65,11 @@ export const en = {
     "dataType.fullName.sex.selectOptions.female": "Female",
     "dataType.fullName.firstName.label": "First name",
     "dataType.fullName.lastName.label": "Last name",
+
+    // email
+    "dataType.email": "Email",
+    "dataType.email.provider.label": "Provider",
+    "dataType.email.allowSpecialCharacters.label": "Special characters",
 
     // account number
     "dataType.accountNumber": "Account number",

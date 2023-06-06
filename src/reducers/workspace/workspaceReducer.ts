@@ -9,7 +9,7 @@ import {
     SET_DATA_FIELDS, SET_EXPORT_FORMAT, SET_FORMATTER_CONFIG, SET_NUMBER_OF_EXPORT_ROWS,
     SET_PANELS_DIRECTION,
     SORT_DATA_FIELDS,
-    UPDATE_DATA_FIELD
+    UPDATE_DATA_FIELD, UPDATE_DATA_FIELD_NAME
 } from "@/constants/actions";
 import {DEFAULT_NUMBER_EXPORT_ROWS, DEFAULT_PANELS_ORIENTATION} from "@/constants/core";
 import {mockData, mockFields} from "@/reducers/mock";
@@ -103,6 +103,18 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
                     [action.payload.id]: action.payload.field
                 }
             };
+        case UPDATE_DATA_FIELD_NAME:
+            const {id: fieldId, name} = action.payload;
+            return{
+                ...state,
+                dataFields: {
+                    ...state.dataFields,
+                    [fieldId]: {
+                        ...state.dataFields[fieldId],
+                        fieldName: name
+                    }
+                }
+            }
         case SORT_DATA_FIELDS:
             return {
                 ...state,

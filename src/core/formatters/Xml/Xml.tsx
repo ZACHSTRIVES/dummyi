@@ -81,7 +81,7 @@ export const XmlConfigComponent: React.FunctionComponent<FormatterConfigComponen
                 label={<FormattedMessage id="export.configurator.xml.rootNodeName"/>}
                 value={xmlConfig.rootNodeName}
                 onChange={(value) => {
-                    handleValueChange('delimiter', value)
+                    handleValueChange('rootNodeName', value)
                 }}
                 style={{width: '100px'}}
                 // errorMessage={errorMessages.delimiter}
@@ -91,7 +91,7 @@ export const XmlConfigComponent: React.FunctionComponent<FormatterConfigComponen
                 label={<FormattedMessage id="export.configurator.xml.childNodeName"/>}
                 value={xmlConfig.childNodeName}
                 onChange={(value) => {
-                    handleValueChange('delimiter', value)
+                    handleValueChange('childNodeName', value)
                 }}
                 style={{width: '100px'}}
                 // errorMessage={errorMessages.delimiter}
