@@ -1,16 +1,16 @@
-import React, {useRef} from 'react';
-import {Button, Empty, List} from "@douyinfe/semi-ui";
-import {DataFieldsListItem} from "./DataFieldsListItem";
+import React, { useRef } from 'react';
+import { Button, Empty, List } from "@douyinfe/semi-ui";
+import { DataFieldsListItem } from "./DataFieldsListItem";
 import styles from './DataFieldsList.module.scss';
-import {reorder} from "@/utils/listUtils";
-import {IconPlus} from "@douyinfe/semi-icons";
-import {DragDropContext, Droppable} from "react-beautiful-dnd";
-import {useDispatch, useSelector} from "react-redux";
-import {doAddNewDataField, doSortDataFields} from "@/reducers/workspace/workspaceActions";
-import {useIntl} from "@/locale";
-import {ComponentSize} from "@/constants/enums";
-import {DataTypeSelectModal} from "@/components/InputPanel/src/components/DataTypeSelectModal";
-import {DataTypeOptionsModal} from "@/components/InputPanel/src/components/DataTypeOptionsModal";
+import { reorder } from "@/utils/listUtils";
+import { IconPlus } from "@douyinfe/semi-icons";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { useDispatch, useSelector } from "react-redux";
+import { doAddNewDataField, doSortDataFields } from "@/reducers/workspace/workspaceActions";
+import { useIntl } from "@/locale";
+import { ComponentSize } from "@/constants/enums";
+import { DataTypeSelectModal } from "@/components/InputPanel/src/components/DataTypeSelectModal";
+import { DataTypeOptionsModal } from "@/components/InputPanel/src/components/DataTypeOptionsModal";
 import {
     selectDataFields,
     selectDataFieldsSortableIdsList,
@@ -22,8 +22,8 @@ export interface InputFieldListProps {
     size?: ComponentSize;
 }
 
-export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({...props}) => {
-    const {height, size} = props;
+export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({ ...props }) => {
+    const { height, size } = props;
     const dispatch = useDispatch();
     const containerRef = useRef<HTMLDivElement>(null);
     const intl = useIntl();
@@ -51,45 +51,43 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
     }
 
     return (
-        <div className={styles.dataFieldsList} style={{height: height}} ref={containerRef}>
+        <div className={styles.dataFieldsList} style={{ height: height }} ref={containerRef}>
             {
                 numberOfDataFields !== 0 ? <DragDropContext onDragEnd={handleOnDragEnd}>
-                        <Droppable droppableId="droppable">
-                            {provided => (
-                                <div ref={provided.innerRef} {...provided.droppableProps}>
-                                    <List>
-                                        {sortableDataFieldsIds.map((id, index) => {
-                                                const dataField = dataFields[id];
-                                                return <DataFieldsListItem size={size} key={id} index={index} id={id}
-                                                                           dataField={dataField}/>
-                                            }
-                                        )}
-                                        {provided.placeholder}
-                                        <div className={styles.dataFieldList__bottomButton}>
-                                            <Button onClick={handleAddField} icon={<IconPlus/>}>
-                                                {intl.formatMessage({id: "dataFields.list.addNewFieldButton.text"})}
-                                            </Button>
-                                        </div>
-                                    </List>
+                    <Droppable droppableId="droppable">
+                        {provided => (
+                            <div ref={provided.innerRef} {...provided.droppableProps}>
+                                {sortableDataFieldsIds.map((id, index) => {
+                                    const dataField = dataFields[id];
+                                    return <DataFieldsListItem size={size} key={id} index={index} id={id}
+                                        dataField={dataField} />
+                                }
+                                )}
+                                {provided.placeholder}
+                                <div className={styles.dataFieldList__bottomButton}>
+                                    <Button onClick={handleAddField} icon={<IconPlus />}>
+                                        {intl.formatMessage({ id: "dataFields.list.addNewFieldButton.text" })}
+                                    </Button>
                                 </div>
-                            )}
-                        </Droppable>
-                    </DragDropContext> :
+                            </div>
+                        )}
+                    </Droppable>
+                </DragDropContext> :
                     <>
                         <Empty
                             title="No fields"
                             description="Let's start by creating your first field!"
-                            style={{marginBottom: 24, textAlign: "center"}}
+                            style={{ marginBottom: 24, textAlign: "center" }}
                         >
 
-                            <Button onClick={handleAddField} icon={<IconPlus/>}>
-                                {intl.formatMessage({id: "dataFields.list.addNewFieldButton.text"})}
+                            <Button onClick={handleAddField} icon={<IconPlus />}>
+                                {intl.formatMessage({ id: "dataFields.list.addNewFieldButton.text" })}
                             </Button>
                         </Empty>
                     </>
             }
-            <DataTypeSelectModal/>
-            <DataTypeOptionsModal size={size}/>
+            <DataTypeSelectModal />
+            <DataTypeOptionsModal size={size} />
         </div>
     )
 };

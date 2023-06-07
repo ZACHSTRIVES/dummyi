@@ -8,6 +8,8 @@
   -ms-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  position: relative;
+  z-index: 2;
 
   .dataFieldList__bottomButton {
     cursor: pointer;
