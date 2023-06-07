@@ -35,9 +35,8 @@ export const PreviewTypeSwitchButton: React.FC<PreviewTypeSwitchButtonProps> = (
                         onClick={() => handlePreviewTypeChange(previewType === PreviewType.RAW ? PreviewType.TABLE : PreviewType.RAW)}
                         type='primary'>
                         {previewType === PreviewType.RAW ?
-                            intl.formatMessage({id: 'preview.setting.rawView.text'})
-                            :
-                            intl.formatMessage({id: 'preview.setting.tableView.text'})}
+                            intl.formatMessage({id: 'preview.setting.tableView.text'})
+                            : intl.formatMessage({id: 'preview.setting.rawView.text'})}
                     </Button>
             }
         </>)
