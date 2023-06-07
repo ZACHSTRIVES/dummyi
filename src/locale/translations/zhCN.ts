@@ -110,6 +110,8 @@ export const zhCN = {
     "preview.setting.rawView.text": "原始",
     "preview.setting.tableView.text": "表格",
     "dataFields.list.addNewFieldButton.text": "添加字段",
+    "dataFields.list.noDataFields.text": "还没有字段",
+    "dataFields.list.createFirstField.text": "从创建第一个字段开始吧！",
     "dataFields.input.fieldName.label": "字段名",
     "dataFields.input.fieldName.errorMessage.empty": "字段名不能为空",
     "dataFields.input.type.label": "类型",

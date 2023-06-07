@@ -111,6 +111,8 @@ export const en = {
     "preview.setting.rawView.text": "Raw",
     "preview.setting.tableView.text": "Table",
     "dataFields.list.addNewFieldButton.text": "Add field",
+    "dataFields.list.noDataFields.text": "No fields",
+    "dataFields.list.createFirstField.text": "Let's start by creating the first field!",
     "dataFields.input.fieldName.label": "Field name",
     "dataFields.input.fieldName.errorMessage.empty": "Field name cannot be empty",
     "dataFields.input.type.label": "Type",
