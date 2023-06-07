@@ -65,7 +65,6 @@ export const doDeleteDataField = (id: string): any =>
 // update data field
 export const doUpdateDataField = (id: string, field: DataField): any =>
     async dispatch => {
-        field.isDraft = !(field.dataType);
         dispatch({type: UPDATE_DATA_FIELD, payload: {id: id, field: field}});
         dispatch(doGenerateSpecificFieldPreviewData(id));
     };

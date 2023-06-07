@@ -1,10 +1,11 @@
 import React, {useMemo} from "react";
 import styles from './TablePreviewer.module.css';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Table} from "@douyinfe/semi-ui";
 import {selectDataFields, selectDataFieldsSortableIdsList} from "@/reducers/workspace/workspaceSelectors";
 import {selectPreviewData} from "@/reducers/workspace/workspaceSelectors";
 import {DataField} from "@/types/generator";
+import {doGeneratePreviewData} from "@/reducers/workspace/workspaceActions";
 
 
 export type TablePreviewerProps = {
@@ -24,7 +25,7 @@ export const TablePreviewer: React.FunctionComponent<TablePreviewerProps> = ({..
     return (
         <div className={styles.tablePreview}>
             <Table scroll={scroll} dataSource={data} pagination={false}>
-                {dataFieldsSortableList.map((fieldId: string, index) => {
+                {dataFieldsSortableList.map((fieldId: string) => {
                     const field: DataField = dataFields[fieldId];
                     return field.isDraft ? null : <Table.Column
                             key={fieldId}

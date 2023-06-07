@@ -28,6 +28,7 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
     const {id, index, dataField, size} = props;
     const dispatch = useDispatch();
     const intl = useIntl();
+    const OptionsComponent = dataField.dataType && getGeneratorOptionsComponentByDataType(dataField.dataType);
 
     const getItemStyle = (isDragging, draggableStyle) => ({
         backgroundColor: isDragging ? "rgba(var(--semi-grey-0), 0.5)" : null,
@@ -36,16 +37,15 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
 
     // actions
     const handleUpdateDataField = (changedFieldName: string, value: any) => {
-        if(changedFieldName === 'fieldName'){
+        if (changedFieldName === 'fieldName') {
             dispatch(doUpdateDataFieldName(id, value))
-        }else{
+        } else {
             const field = {...dataField, [changedFieldName]: value};
             dispatch(doUpdateDataField(id, field));
         }
     };
 
     const handleOptionsChange = (options: any) => {
-        const field = {...dataField, dataTypeOptions: options};
         handleUpdateDataField('dataTypeOptions', options);
     }
 
@@ -64,7 +64,6 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
     // renders
     const renderDataTypeOptions = () => {
         if (!dataField.dataType) return null;
-        const OptionsComponent = getGeneratorOptionsComponentByDataType(dataField.dataType);
         return OptionsComponent ?
             <OptionsComponent options={dataField.dataTypeOptions} onOptionsChange={handleOptionsChange}/> : null;
     };
@@ -101,13 +100,13 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
             } else {
                 newErrorMessages.emptyRate = '';
             }
-        }else {
+        } else {
             newErrorMessages.fieldName = '';
             newErrorMessages.emptyRate = '';
         }
 
         setErrorMessages(newErrorMessages);
-    }, [dataField.fieldName, dataField.emptyRate]);
+    }, [dataField.fieldName, dataField.emptyRate, dataField.isDraft]);
 
 
     return (
@@ -141,7 +140,7 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
                                 {size !== ComponentSize.SMALL && (
                                     <>
                                         {renderEmptyRateInput()}
-                                        {(size !== ComponentSize.LARGE && dataField.dataType) &&
+                                        {(size !== ComponentSize.LARGE && dataField.dataType && OptionsComponent) &&
                                             <OptionsButton
                                                 label={<FormattedMessage id="dataFields.input.options.label"/>}
                                                 onClick={handleOpenDataTypeOptionsModal}

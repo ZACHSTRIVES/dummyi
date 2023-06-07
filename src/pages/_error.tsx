@@ -2,11 +2,11 @@ import React from "react";
 import {Button, Empty} from "@douyinfe/semi-ui";
 import {IllustrationFailure, IllustrationFailureDark} from "@douyinfe/semi-illustrations";
 import {useIntl} from "@/locale";
+import Link from "next/link";
 
 interface ErrorPageProps {
     statusCode: any
 }
-
 
 const ErrorPage: React.FunctionComponent<ErrorPageProps> = ({...props}) => {
     const {statusCode} = props;
@@ -20,7 +20,9 @@ const ErrorPage: React.FunctionComponent<ErrorPageProps> = ({...props}) => {
             title={statusCode}
             description={intl.formatMessage({id: "error.general.description"})}
         >
-            <Button>{intl.formatMessage({id: "error.general.button.text"})}</Button>
+            <Link href={'/'}>
+                <Button>{intl.formatMessage({id: "error.general.button.text"})}</Button>
+            </Link>
         </Empty>
     )
 }

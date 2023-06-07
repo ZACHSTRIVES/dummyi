@@ -12,7 +12,7 @@ import {
     UPDATE_DATA_FIELD, UPDATE_DATA_FIELD_NAME
 } from "@/constants/actions";
 import {DEFAULT_NUMBER_EXPORT_ROWS, DEFAULT_PANELS_ORIENTATION} from "@/constants/core";
-import {mockData, mockFields} from "@/reducers/mock";
+import {mockFields} from "@/reducers/mock";
 import {deleteSpecificFieldData, generateData, generateSpecificFieldData} from "@/utils/generatorUtils";
 import {ExportFormat} from "@/constants/enums";
 import {CsvFormatter} from "@/core/formatters/Csv";
@@ -23,7 +23,7 @@ import {formatData} from "@/utils/formatterUtils";
 export const initStates: WorkspaceReducerState = {
     dataFields: mockFields,
     dataFieldsSortableIdsList: Object.keys(mockFields),
-    previewData: mockData,
+    previewData: [],
     previewFormattedData: '',
     exportFormat: ExportFormat.CSV,
     numberOfExportRows: DEFAULT_NUMBER_EXPORT_ROWS,
@@ -124,6 +124,7 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
             const {id, dataType, options} = action.payload;
             const field = {
                 ...state.dataFields[id],
+                isDraft: false,
                 dataType,
                 dataTypeOptions: options
             };

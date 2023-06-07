@@ -57,7 +57,7 @@ export const zhCN = {
     "dataType.boolean.format.label": "格式",
 
     // full name
-    "dataType.fullName": "全名",
+    "dataType.fullName": "人物全名",
     "dataType.fullName.sex.label": "性别",
     "dataType.fullName.sex.selectOptions.all": "男性, 女性",
     "dataType.fullName.sex.selectOptions.male": "男性",

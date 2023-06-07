@@ -58,7 +58,7 @@ export const en = {
     "dataType.boolean.format.label": "Format",
 
     // full name
-    "dataType.fullName": "Full Name",
+    "dataType.fullName": "Person Full Name",
     "dataType.fullName.sex.label": "Sex",
     "dataType.fullName.sex.selectOptions.all": "Male, Female",
     "dataType.fullName.sex.selectOptions.male": "Male",

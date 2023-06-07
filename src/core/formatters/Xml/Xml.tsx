@@ -24,7 +24,7 @@ export const defaultXmlFormatterConfig: XmlFormatterConfig = {
 // format method
 export const format = (request: FormatRequest): string => {
     const {fields, values, config, sortedFieldIds} = request
-    const {rootNodeName, childNodeName, version, encoding, indentSize} = config;
+    const {rootNodeName, childNodeName, encoding, indentSize} = config;
 
     if (values.length === 0) {
         return '';
@@ -42,13 +42,11 @@ export const format = (request: FormatRequest): string => {
         sortedFieldIds.forEach(column => {
             if (!fields[column].isDraft) {
                 let value = item[column].stringValue;
-                value = value.replace(/"/g, '""');
-
-                if (value.includes(',') || value.includes('\n')) {
+                if (value.includes('\n')) {
                     value = `"${value}"`;
                 }
-
-                xml += indent.repeat(2) + `<${fields[column].fieldName}>${value}</${fields[column].fieldName}>\n`;
+                const fieldName = fields[column].fieldName ? fields[column].fieldName : "";
+                xml += indent.repeat(2) + `<${fieldName}>${value}</${fieldName}>\n`;
             }
         });
 
@@ -101,7 +99,9 @@ export const XmlConfigComponent: React.FunctionComponent<FormatterConfigComponen
                 label={<FormattedMessage id="export.configurator.xml.encoding"/>}
                 selectOptions={xmlEncodingOptions}
                 value={xmlConfig.encoding}
-                onChange={(value) => {handleValueChange('encoding', value)}}
+                onChange={(value) => {
+                    handleValueChange('encoding', value)
+                }}
                 style={{width: '150px'}}
             />
 
@@ -109,7 +109,9 @@ export const XmlConfigComponent: React.FunctionComponent<FormatterConfigComponen
                 label={<FormattedMessage id="export.configurator.xml.indentSize"/>}
                 selectOptions={xmlIndentSizeOptions}
                 value={xmlConfig.indentSize}
-                onChange={(value) => {handleValueChange('indentSize', value)}}
+                onChange={(value) => {
+                    handleValueChange('indentSize', value)
+                }}
                 style={{width: '80px'}}
             />
 
