@@ -18,6 +18,12 @@ export const en = {
     "export.configurator.csv.includeHeader": "Include header",
     "export.configurator.csv.endLineChar": "End of line characters",
 
+    // xml
+    "export.configurator.xml.rootNodeName": "Root node",
+    "export.configurator.xml.childNodeName": "Child node",
+    "export.configurator.xml.encoding": "Encoding",
+    "export.configurator.xml.indentSize": "Indent size",
+
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
@@ -26,6 +32,7 @@ export const en = {
     "dataType.category.basic": "Basic",
     "dataType.category.person": "Person",
     "dataType.category.commerce": "Commerce",
+    "dataType.category.network": "Network",
 
     // number
     "dataType.number": "Number",
@@ -51,10 +58,24 @@ export const en = {
     "dataType.boolean.format.label": "Format",
 
     // full name
-    "dataType.fullName": "Full name",
+    "dataType.fullName": "Person Full Name",
+    "dataType.fullName.sex.label": "Sex",
+    "dataType.fullName.sex.selectOptions.all": "Male, Female",
+    "dataType.fullName.sex.selectOptions.male": "Male",
+    "dataType.fullName.sex.selectOptions.female": "Female",
+    "dataType.fullName.firstName.label": "First name",
+    "dataType.fullName.lastName.label": "Last name",
+
+    // email
+    "dataType.email": "Email",
+    "dataType.email.provider.label": "Provider",
+    "dataType.email.allowSpecialCharacters.label": "Special characters",
+
+    // company name
+    "dataType.companyName": "Company Name",
 
     // account number
-    "dataType.accountNumber": "Account number",
+    "dataType.accountNumber": "Account Number",
 
     // -------------------------------------------------------------------------------------------------------------
     // pages

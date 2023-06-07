@@ -3,24 +3,31 @@ import {
     ADD_NEW_DATA_FIELD, CHANGE_DATA_TYPE,
     CLOSE_DATA_TYPE_OPTIONS_MODAL,
     CLOSE_DATA_TYPE_SELECT_MODAL,
-    DELETE_DATA_FIELD, GENERATE_PREVIEW_DATA, GENERATE_SPECIFIC_FIELD_PREVIEW_DATA,
+    DELETE_DATA_FIELD, FORMAT_PREVIEW_DATA, GENERATE_PREVIEW_DATA, GENERATE_SPECIFIC_FIELD_PREVIEW_DATA,
     OPEN_DATA_TYPE_OPTIONS_MODAL,
     OPEN_DATA_TYPE_SELECT_MODAL,
-    SET_DATA_FIELDS,
+    SET_DATA_FIELDS, SET_EXPORT_FORMAT, SET_FORMATTER_CONFIG, SET_NUMBER_OF_EXPORT_ROWS,
     SET_PANELS_DIRECTION,
     SORT_DATA_FIELDS,
-    UPDATE_DATA_FIELD
+    UPDATE_DATA_FIELD, UPDATE_DATA_FIELD_NAME
 } from "@/constants/actions";
-import {DEFAULT_PANELS_ORIENTATION} from "@/constants/core";
-import {mockData, mockFields} from "@/reducers/mock";
+import {DEFAULT_NUMBER_EXPORT_ROWS, DEFAULT_PANELS_ORIENTATION} from "@/constants/core";
+import {mockFields} from "@/reducers/mock";
 import {deleteSpecificFieldData, generateData, generateSpecificFieldData} from "@/utils/generatorUtils";
+import {ExportFormat} from "@/constants/enums";
+import {CsvFormatter} from "@/core/formatters/Csv";
+import {FormatRequest} from "@/types/formatter";
+import {formatData} from "@/utils/formatterUtils";
 
 
 export const initStates: WorkspaceReducerState = {
     dataFields: mockFields,
     dataFieldsSortableIdsList: Object.keys(mockFields),
-    previewData: mockData,
+    previewData: [],
     previewFormattedData: '',
+    exportFormat: ExportFormat.CSV,
+    numberOfExportRows: DEFAULT_NUMBER_EXPORT_ROWS,
+    formatterConfig: CsvFormatter.defaultConfig,
     panelsOrientation: DEFAULT_PANELS_ORIENTATION,
     showDataTypeSelectModal: false,
     currentDataTypeSelectModalTargetFieldId: null,
@@ -86,7 +93,7 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
                 ...state,
                 dataFields: newDateFields,
                 dataFieldsSortableIdsList: newSortableIdsList,
-                previewData:deleteSpecificFieldData(state.dataFields, state.dataFieldsSortableIdsList, state.previewData, action.payload)
+                previewData: deleteSpecificFieldData(state.dataFields, state.dataFieldsSortableIdsList, state.previewData, action.payload)
             };
         case UPDATE_DATA_FIELD:
             return {
@@ -96,6 +103,18 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
                     [action.payload.id]: action.payload.field
                 }
             };
+        case UPDATE_DATA_FIELD_NAME:
+            const {id: fieldId, name} = action.payload;
+            return{
+                ...state,
+                dataFields: {
+                    ...state.dataFields,
+                    [fieldId]: {
+                        ...state.dataFields[fieldId],
+                        fieldName: name
+                    }
+                }
+            }
         case SORT_DATA_FIELDS:
             return {
                 ...state,
@@ -105,6 +124,7 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
             const {id, dataType, options} = action.payload;
             const field = {
                 ...state.dataFields[id],
+                isDraft: false,
                 dataType,
                 dataTypeOptions: options
             };
@@ -125,6 +145,35 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
                 ...state,
                 previewData: generateSpecificFieldData(state.dataFields, state.dataFieldsSortableIdsList, state.previewData, action.payload)
             };
+        case SET_NUMBER_OF_EXPORT_ROWS:
+            return {
+                ...state,
+                numberOfExportRows: action.payload
+            };
+        case SET_EXPORT_FORMAT:
+            return {
+                ...state,
+                exportFormat: action.payload.type,
+                formatterConfig: action.payload.defaultConfig
+            };
+        case SET_FORMATTER_CONFIG:
+            return {
+                ...state,
+                formatterConfig: action.payload
+            };
+        case FORMAT_PREVIEW_DATA:
+            const request: FormatRequest = {
+                fields: state.dataFields,
+                sortedFieldIds: state.dataFieldsSortableIdsList,
+                format: state.exportFormat,
+                config: state.formatterConfig,
+                values: state.previewData
+            }
+            return {
+                ...state,
+                previewFormattedData: formatData(request)
+            }
+
         default:
             return state;
     }

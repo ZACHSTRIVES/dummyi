@@ -1,6 +1,7 @@
 import React from "react";
 import {ExportType, ExportTypeCategory} from "@/constants/enums";
 import {JsonObject} from "@/types/system";
+import {DataFieldList} from "@/types/generator";
 
 export interface Formatter {
     type: ExportType;
@@ -17,7 +18,8 @@ export interface FormatterConfigComponentInterface {
 
 export interface FormatRequest {
     format: ExportType;
-    fields: DataField[];
+    fields: DataFieldList;
+    sortedFieldIds: string[];
     values: any[];
     config: JsonObject;
 }

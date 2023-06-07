@@ -35,3 +35,8 @@ export const selectCurrentDataTypeOptionsModalTargetField = createSelector(
 // preview data
 export const selectPreviewData = (state: Store) => state.workspace.previewData;
 export const selectPreviewFormattedData = (state: Store) => state.workspace.previewFormattedData;
+
+// export
+export const selectExportFormat = (state: Store) => state.workspace.exportFormat;
+export const selectNumberOfExportRows = (state: Store) => state.workspace.numberOfExportRows;
+export const selectFormatterConfig = (state: Store) => state.workspace.formatterConfig;

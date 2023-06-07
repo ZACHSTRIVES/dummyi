@@ -7,7 +7,7 @@ import {Store} from "@/types/system";
 import {ColorMode} from "@/constants/enums";
 import {darkTheme, lightTheme} from "@/components/PreviewPanel/src/components/RawPreviewer/RawPreviewer.themes";
 import {Extension} from "@codemirror/state";
-import {selectPreviewFormattedData} from "@/reducers/workspace/workspaceSelectors";
+import {selectPreviewData, selectPreviewFormattedData} from "@/reducers/workspace/workspaceSelectors";
 import {selectColorMode} from "@/reducers/app/appSelectors";
 
 
@@ -31,7 +31,7 @@ export const RawPreviewer: React.FunctionComponent<RawPreviewerProps> = ({...pro
     const previewFormattedData = useSelector(selectPreviewFormattedData);
 
     React.useEffect(() => {
-        const extensions: Extension[] = [langs.sql()];
+        const extensions: Extension[] = [langs.xml()];
 
         if (rawViewLineWrap) {
             extensions.push(EditorView.lineWrapping);

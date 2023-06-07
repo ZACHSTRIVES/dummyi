@@ -14,6 +14,6 @@ export const DEFAULT_PANELS_ORIENTATION = PanelsOrientation.HORIZONTAL;
 
 // preview
 export const DEFAULT_PREVIEW_TYPE = PreviewType.RAW;
-export const DEFAULT_FONT_SIZE = 12;
+export const DEFAULT_FONT_SIZE = 14;
 export const DEFAULT_SHOW_ROW_NUMBERS = true;
 export const DEFAULT_LINE_WRAP = false;

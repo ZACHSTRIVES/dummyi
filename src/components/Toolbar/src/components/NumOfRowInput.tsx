@@ -2,10 +2,10 @@ import React from "react";
 import {InputNumber} from "@douyinfe/semi-ui";
 import {useIntl} from "@/locale";
 import {useDispatch, useSelector} from "react-redux";
-import {Store} from "@/types/system";
-import {doSetNumberOfExportRows} from "@/reducers/exporter/exporterActions";
+import {doSetNumberOfExportRows} from "@/reducers/workspace/workspaceActions";
 import {MAX_NUMBER_EXPORT_ROWS, MIN_NUMBER_EXPORT_ROWS} from "@/constants/core";
 import {ComponentSize} from "@/constants/enums";
+import {selectNumberOfExportRows} from "@/reducers/workspace/workspaceSelectors";
 
 
 export type NumbOfRowInputProps = {
@@ -18,7 +18,7 @@ export const NumbOfRowInput: React.FC<NumbOfRowInputProps> = ({...props}) => {
     const dispatch = useDispatch();
 
     // stores
-    const numOfExportRows = useSelector((state: Store) => state.exporter.numberOfExportRows);
+    const numOfExportRows = useSelector(selectNumberOfExportRows);
 
     // actions
     const handleInputNumberChange = (value: number) => {

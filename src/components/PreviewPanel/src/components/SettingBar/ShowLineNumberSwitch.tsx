@@ -4,7 +4,7 @@ import {useIntl} from "@/locale";
 import {IconOrderedList} from "@douyinfe/semi-icons";
 import {useDispatch, useSelector} from "react-redux";
 import {doSetRawViewShowLineNumbers} from "@/reducers/preview/previewActions";
-import {selectRawViewLineWrap} from "@/reducers/preview/previewSelectors";
+import {selectRawViewLineWrap, selectRawViewShowLineNumber} from "@/reducers/preview/previewSelectors";
 
 
 export type LineWarpSwitchProps = {}
@@ -14,7 +14,7 @@ export const ShowLineNumberSwitch: React.FunctionComponent<LineWarpSwitchProps> 
     const dispatch = useDispatch();
 
     // store
-    const showLineNumber = useSelector(selectRawViewLineWrap);
+    const showLineNumber = useSelector(selectRawViewShowLineNumber);
 
     // action
     const toggleShowLineNumber = () => {

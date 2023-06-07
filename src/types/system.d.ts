@@ -18,7 +18,6 @@ export interface Action {
 
 export interface Store {
     app: AppReducerState;
-    exporter: ExporterReducerState;
     workspace: WorkspaceReducerState;
     preview: PreviewReducerState;
 }
@@ -28,15 +27,12 @@ export interface AppReducerState {
     colorMode: ColorMode;
 }
 
-export interface ExporterReducerState {
-    exportFormat: ExportFormat;
-    numberOfExportRows: number;
-    formatterConfig: any;
-}
-
 export interface WorkspaceReducerState {
     dataFields: DataFieldList;
     dataFieldsSortableIdsList: string[];
+    exportFormat: ExportFormat;
+    numberOfExportRows: number;
+    formatterConfig: any;
     previewData: any;
     previewFormattedData: string;
     panelsOrientation: PanelsOrientation;

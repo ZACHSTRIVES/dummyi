@@ -39,6 +39,6 @@ export const darkTheme = createTheme({
         {tag: t.keyword, color: 'rgb(128,211,218)', fontWeight: 'strong'},
         {tag: t.string, color: 'rgba(240,246,252,0.6)'},
         {tag: t.typeName, color: '#86b5ea'},
-        {tag: t.tagName, color: '#008a02'},
+        {tag: t.tagName, color: '#0fa2a2'},
         {tag: t.variableName, color: '#1a00db'}]
 });
