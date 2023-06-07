@@ -58,7 +58,7 @@ export const en = {
     "dataType.boolean.format.label": "Format",
 
     // full name
-    "dataType.fullName": "Full name",
+    "dataType.fullName": "Full Name",
     "dataType.fullName.sex.label": "Sex",
     "dataType.fullName.sex.selectOptions.all": "Male, Female",
     "dataType.fullName.sex.selectOptions.male": "Male",
@@ -71,8 +71,11 @@ export const en = {
     "dataType.email.provider.label": "Provider",
     "dataType.email.allowSpecialCharacters.label": "Special characters",
 
+    // company name
+    "dataType.companyName": "Company Name",
+
     // account number
-    "dataType.accountNumber": "Account number",
+    "dataType.accountNumber": "Account Number",
 
     // -------------------------------------------------------------------------------------------------------------
     // pages

@@ -1,5 +1,3 @@
-// -------------------------------------------------------------------------------------------------------------
-// types
 import {isNullOrWhiteSpace} from "@/utils/stringUtils";
 import {faker} from "@faker-js/faker";
 import {ExportValueType} from "@/constants/enums";
@@ -9,6 +7,9 @@ import {OptionsSwitch} from "@/components/Utils/src/OptionsSwitch";
 import {FormattedMessage} from "@/locale";
 import {OptionsInput} from "@/components/Utils";
 
+
+// -------------------------------------------------------------------------------------------------------------
+// types
 export interface EmailGeneratorOptions {
     allowSpecialCharacters: boolean;
     provider: string;
@@ -30,7 +31,7 @@ export const generate = (options: any): GenerateResult => {
     if (!isNullOrWhiteSpace(provider)) {
         config['provider'] = provider;
     }
-    const value = faker.internet.email(config);
+    const value = faker.internet.email(config).toLowerCase();
 
     return {
         value: value,

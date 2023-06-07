@@ -70,6 +70,9 @@ export const zhCN = {
     "dataType.email.provider.label": "邮箱提供商",
     "dataType.email.allowSpecialCharacters.label": "允许特殊字符",
 
+    // company name
+    "dataType.companyName": "公司名称",
+
     // account mi,ner
     "dataType.accountNumber": "账号",
 

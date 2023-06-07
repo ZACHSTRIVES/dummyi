@@ -44,7 +44,7 @@ export const generateSpecificFieldData = (fields: DataFieldList, sortableList: s
             if (!field.isDraft) {
                 if (id === specificFieldId) {
                     if (!isEmptyField(field.emptyRate)) {
-                        try{
+                        try {
                             row[id] = generators[field.dataType].generate(field.dataTypeOptions);
                         } catch {
                             row[id] = {
@@ -72,17 +72,13 @@ export const generateSpecificFieldData = (fields: DataFieldList, sortableList: s
 // delete specific field data
 export const deleteSpecificFieldData = (fields: DataFieldList, sortableList: string[], currentData: any[], specificFieldId: string): any[] => {
     return currentData.map((rowData) => {
-        const row: any = {};
-        sortableList.forEach((id) => {
-            const field = fields[id];
-            if (id !== specificFieldId) {
-                row[field.fieldName] = rowData[field.fieldName];
-            }
-        });
-        return row;
+        return Object.fromEntries(
+            sortableList
+                .filter(id => id !== specificFieldId)
+                .map(id => [id, rowData[id]])
+        );
     });
 }
-
 
 // get is empty line
 export const isEmptyField = (emptyProb: number): boolean => {

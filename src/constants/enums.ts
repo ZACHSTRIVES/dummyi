@@ -36,6 +36,7 @@ export enum DataType {
     // ACCOUNT_NUMBER = "accountNumber",
     BOOLEAN = "boolean",
     FULL_NAME = "fullName",
+    COMPANY_NAME = "companyName",
 }
 
 // systems
