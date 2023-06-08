@@ -1,5 +1,5 @@
 import {isNullOrWhiteSpace} from "@/utils/stringUtils";
-import {faker} from "@faker-js/faker/locale/zh_CN";
+import {faker} from "@faker-js/faker";
 import {ExportValueType} from "@/constants/enums";
 import {GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
 import React from "react";
