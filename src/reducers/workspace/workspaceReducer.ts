@@ -18,6 +18,8 @@ import {ExportFormat} from "@/constants/enums";
 import {CsvFormatter} from "@/core/formatters/Csv";
 import {FormatRequest} from "@/types/formatter";
 import {formatData} from "@/utils/formatterUtils";
+import {isNullOrWhiteSpace} from "@/utils/stringUtils";
+import {generateDefaultFieldName} from "@/utils/dataFieldUtils";
 
 
 export const initStates: WorkspaceReducerState = {
@@ -128,6 +130,11 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
                 dataType,
                 dataTypeOptions: options
             };
+
+            if(isNullOrWhiteSpace(field.fieldName)){
+                field.fieldName = generateDefaultFieldName(dataType,state.dataFields, state.dataFieldsSortableIdsList)
+            }
+
             return {
                 ...state,
                 dataFields: {
