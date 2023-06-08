@@ -41,7 +41,7 @@ export const Footer: FunctionComponent<FooterProps> = ({className}) => {
                 >
                     <Image width={100} height={30} alt={"Dummy"} src={"/images/logo-grey.svg"}/>
                     <Tag color={'grey'} type={colorMode === ColorMode.DARK ? 'solid' : 'ghost'}
-                         size={"small"}>Beta v{projectVersion}</Tag>
+                         size={"small"}>Alpha v{projectVersion}</Tag>
                 </span>
 
             <span>

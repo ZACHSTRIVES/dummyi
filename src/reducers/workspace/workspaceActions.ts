@@ -60,6 +60,7 @@ export const doAddNewDataField = (): any =>
 export const doDeleteDataField = (id: string): any =>
     async dispatch => {
         dispatch({type: DELETE_DATA_FIELD, payload: id});
+        dispatch(doFormatPreviewData());
     };
 
 // update data field
@@ -73,14 +74,14 @@ export const doUpdateDataField = (id: string, field: DataField): any =>
 export const doUpdateDataFieldName = (id: string, name: string): any =>
     async dispatch => {
         dispatch({type: UPDATE_DATA_FIELD_NAME, payload: {id: id, name: name}});
-        dispatch(doFormatData());
+        dispatch(doFormatPreviewData());
     }
 
 // sort data fields
 export const doSortDataFields = (sortableIdsList: string[]): any =>
     async dispatch => {
         dispatch({type: SORT_DATA_FIELDS, payload: sortableIdsList});
-        dispatch(doFormatData());
+        dispatch(doFormatPreviewData());
     };
 
 // change data type
@@ -95,14 +96,14 @@ export const doChangeDataType = (id: string, dataType: DataType): any =>
 export const doGeneratePreviewData = (): any =>
     async dispatch => {
         dispatch({type: GENERATE_PREVIEW_DATA});
-        dispatch(doFormatData());
+        dispatch(doFormatPreviewData());
     };
 
 // generate specific field data
 export const doGenerateSpecificFieldPreviewData = (id: string): any =>
     async dispatch => {
         dispatch({type: GENERATE_SPECIFIC_FIELD_PREVIEW_DATA, payload: id});
-        dispatch(doFormatData());
+        dispatch(doFormatPreviewData());
     };
 
 // set number of exporter rows
@@ -117,18 +118,18 @@ export const doChangeExportFormat = (type: ExportFormat): any =>
         const formatter = getFormatterByFormat(type);
         const defaultConfig = formatter.defaultConfig;
         dispatch({type: SET_EXPORT_FORMAT, payload: {type, defaultConfig}});
-        dispatch(doFormatData());
+        dispatch(doFormatPreviewData());
     };
 
 // update formatter config
 export const doUpdateFormatterConfig = (config: any): any =>
     async dispatch => {
         dispatch({type: SET_FORMATTER_CONFIG, payload: config});
-        dispatch(doFormatData());
+        dispatch(doFormatPreviewData());
     }
 
 // format data
-export const doFormatData = (): any =>
+export const doFormatPreviewData = (): any =>
     async dispatch => {
         dispatch({type: FORMAT_PREVIEW_DATA});
     }
