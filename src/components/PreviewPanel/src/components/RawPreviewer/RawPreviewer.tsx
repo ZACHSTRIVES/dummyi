@@ -7,7 +7,11 @@ import {Store} from "@/types/system";
 import {ColorMode} from "@/constants/enums";
 import {darkTheme, lightTheme} from "@/components/PreviewPanel/src/components/RawPreviewer/RawPreviewer.themes";
 import {Extension} from "@codemirror/state";
-import {selectPreviewFormattedData} from "@/reducers/workspace/workspaceSelectors";
+import {
+    selectDataFieldsSortableIdsList,
+    selectPreviewData,
+    selectPreviewFormattedData
+} from "@/reducers/workspace/workspaceSelectors";
 import {selectColorMode} from "@/reducers/app/appSelectors";
 
 
@@ -29,9 +33,10 @@ export const RawPreviewer: React.FunctionComponent<RawPreviewerProps> = ({...pro
     } = useSelector((state: Store) => state.preview);
 
     const previewFormattedData = useSelector(selectPreviewFormattedData);
+    const sortableIdsList = useSelector(selectDataFieldsSortableIdsList);
 
     React.useEffect(() => {
-        const extensions: Extension[] = [langs.sql()];
+        const extensions: Extension[] = [langs.xml()];
 
         if (rawViewLineWrap) {
             extensions.push(EditorView.lineWrapping);
@@ -41,22 +46,25 @@ export const RawPreviewer: React.FunctionComponent<RawPreviewerProps> = ({...pro
     }, [rawViewLineWrap]);
 
     return (
-        <CodeMirror
-            editable={false}
-            readOnly={true}
-            theme={colorMode === ColorMode.DARK ? darkTheme : lightTheme}
-            basicSetup={{
-                lineNumbers: rawViewShowLineNumber,
-                foldGutter: false,
-                history: false,
-                highlightActiveLine: false,
-                highlightActiveLineGutter: false,
-            }}
-            height={`${height}px`}
-            value={previewFormattedData}
-            style={{
-                fontSize: rawViewFontSize,
-            }}
-            extensions={codeMirrorExtensions}/>
+        <>
+        {sortableIdsList.length !== 0 ?  <CodeMirror
+                editable={false}
+                readOnly={true}
+                theme={colorMode === ColorMode.DARK ? darkTheme : lightTheme}
+                basicSetup={{
+                    lineNumbers: rawViewShowLineNumber,
+                    foldGutter: false,
+                    history: false,
+                    highlightActiveLine: false,
+                    highlightActiveLineGutter: false,
+                }}
+                height={`${height}px`}
+                value={previewFormattedData}
+                style={{
+                    fontSize: rawViewFontSize,
+                }}
+                extensions={codeMirrorExtensions}/>:<></>
+        }
+        </>
     )
 };

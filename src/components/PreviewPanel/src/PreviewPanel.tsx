@@ -21,7 +21,8 @@ export const PreviewPanel: React.FunctionComponent<PreviewPanelProps> = () => {
         const resizeObserver = new ResizeObserver((entries) => {
             const containerHeight = entries[0].contentRect.height;
             const containerWidth = entries[0].contentRect.width;
-            if (containerWidth < 430) {
+
+            if (containerWidth < 450) {
                 setComponentsSize(ComponentSize.SMALL);
             } else {
                 setComponentsSize(ComponentSize.LARGE);

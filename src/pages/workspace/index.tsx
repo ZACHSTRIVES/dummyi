@@ -5,11 +5,11 @@ import {InputPanel} from "@/components/InputPanel";
 import {PreviewPanel} from "@/components/PreviewPanel";
 import {useDispatch, useSelector} from "react-redux";
 import {ColorMode, PanelsOrientation} from "@/constants/enums";
-import {doSetPanelsOrientation} from "@/reducers/workspace/workspaceActions";
+import {doGeneratePreviewData, doSetPanelsOrientation} from "@/reducers/workspace/workspaceActions";
 import Head from "next/head";
 import {useIntl} from "@/locale";
 import {FilesPanel} from "@/components/FilesPanel/src";
-import {selectPanelsOrientation} from "@/reducers/workspace/workspaceSelectors";
+import {selectPanelsOrientation, selectPreviewData} from "@/reducers/workspace/workspaceSelectors";
 import {selectColorMode} from "@/reducers/app/appSelectors";
 
 export default function Workspace() {
@@ -19,6 +19,13 @@ export default function Workspace() {
     // store
     const panelsDirection = useSelector(selectPanelsOrientation);
     const colorMode = useSelector(selectColorMode);
+    const previewData = useSelector(selectPreviewData);
+
+    React.useEffect(() => {
+        if(previewData.length==0){
+            dispatch(doGeneratePreviewData())
+        }
+    })
 
     const files = [
         {

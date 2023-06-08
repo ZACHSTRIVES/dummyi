@@ -1,8 +1,8 @@
 import React from 'react';
 import {Button} from "@douyinfe/semi-ui";
 import {useSelector} from "react-redux";
-import {Store} from "@/types/system";
 import {ExportFormatConfiguratorModal} from "@/components/ExportFormatConfigurator/src/components";
+import {selectExportFormat} from "@/reducers/workspace/workspaceSelectors";
 
 export interface ExportFormatConfiguratorProps {
 }
@@ -12,7 +12,7 @@ export const ExportFormatConfigurator: React.FunctionComponent<ExportFormatConfi
     const [isSelectModalOpen, setIsSelectModalOpen] = React.useState(false);
 
     // store
-    const exportFormat = useSelector((state: Store) => state.exporter.exportFormat);
+    const exportFormat = useSelector(selectExportFormat);
 
     return (
         <>

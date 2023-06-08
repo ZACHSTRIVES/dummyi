@@ -17,6 +17,12 @@ export const zhCN = {
     "export.configurator.csv.includeHeader": "包含表头",
     "export.configurator.csv.endLineChar": "行结束符",
 
+    // xml
+    "export.configurator.xml.rootNodeName": "根节点",
+    "export.configurator.xml.childNodeName": "子节点",
+    "export.configurator.xml.encoding": "编码",
+    "export.configurator.xml.indentSize": "缩进大小",
+
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
@@ -25,6 +31,7 @@ export const zhCN = {
     "dataType.category.basic": "基础",
     "dataType.category.person": "人物",
     "dataType.category.commerce": "商业",
+    "dataType.category.network": "网络",
 
     // number
     "dataType.number": "数字",
@@ -50,7 +57,21 @@ export const zhCN = {
     "dataType.boolean.format.label": "格式",
 
     // full name
-    "dataType.fullName": "全名",
+    "dataType.fullName": "人物全名",
+    "dataType.fullName.sex.label": "性别",
+    "dataType.fullName.sex.selectOptions.all": "男性, 女性",
+    "dataType.fullName.sex.selectOptions.male": "男性",
+    "dataType.fullName.sex.selectOptions.female": "女性",
+    "dataType.fullName.firstName.label": "名",
+    "dataType.fullName.lastName.label": "姓",
+
+    // email
+    "dataType.email": "邮箱",
+    "dataType.email.provider.label": "邮箱提供商",
+    "dataType.email.allowSpecialCharacters.label": "允许特殊字符",
+
+    // company name
+    "dataType.companyName": "公司名称",
 
     // account mi,ner
     "dataType.accountNumber": "账号",
@@ -89,6 +110,8 @@ export const zhCN = {
     "preview.setting.rawView.text": "原始",
     "preview.setting.tableView.text": "表格",
     "dataFields.list.addNewFieldButton.text": "添加字段",
+    "dataFields.list.noDataFields.text": "还没有字段",
+    "dataFields.list.createFirstField.text": "从创建第一个字段开始吧！",
     "dataFields.input.fieldName.label": "字段名",
     "dataFields.input.fieldName.errorMessage.empty": "字段名不能为空",
     "dataFields.input.type.label": "类型",

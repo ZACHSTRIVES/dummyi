@@ -1,13 +1,14 @@
 import React, {useMemo} from 'react';
 import {Select, Typography} from "@douyinfe/semi-ui";
-import {getFormatterByFormat, getFormattersGroupedByCategory} from "@/utils/formatterUtils";
+import {getFormattersGroupedByCategory} from "@/utils/formatterUtils";
 import {Formatter} from "@/types/formatter";
 import Image from "next/image";
 import {useIntl} from "@/locale";
 import {useDispatch, useSelector} from "react-redux";
-import {Store} from "@/types/system";
 import styles from './ExportFormatSelect.module.css';
-import {doChangeExportFormat} from "@/reducers/exporter/exporterActions";
+import {doChangeExportFormat} from "@/reducers/workspace/workspaceActions";
+import {selectExportFormat} from "@/reducers/workspace/workspaceSelectors";
+import {selectColorMode} from "@/reducers/app/appSelectors";
 
 
 export interface ExportFormatSelectProps {
@@ -20,8 +21,8 @@ export const ExportFormatSelect: React.FunctionComponent<ExportFormatSelectProps
     const dispatch = useDispatch();
 
     // store
-    const colorMode = useSelector((state: Store) => state.app.colorMode);
-    const exportFormat = useSelector((state: Store) => state.exporter.exportFormat);
+    const colorMode = useSelector(selectColorMode);
+    const exportFormat = useSelector(selectExportFormat);
 
     // actions
     const handleSelectChange = (value) => {

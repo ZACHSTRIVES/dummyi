@@ -3,6 +3,8 @@
     border-radius: var(--semi-border-radius-small);
     padding: 12px;
     background-color: rgba(var(--semi-grey-0), 1);
+    position: relative;
+    z-index: 2;
 }
 
 .generateButton{

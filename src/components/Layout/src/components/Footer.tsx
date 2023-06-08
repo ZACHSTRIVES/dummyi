@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from "react";
-import {Divider, Layout, Tag, Typography} from "@douyinfe/semi-ui";
+import {Layout, Tag, Typography} from "@douyinfe/semi-ui";
 import Image from 'next/image';
 import packageJson from '../../../../../package.json';
 import {useSelector} from "react-redux";
@@ -41,7 +41,7 @@ export const Footer: FunctionComponent<FooterProps> = ({className}) => {
                 >
                     <Image width={100} height={30} alt={"Dummy"} src={"/images/logo-grey.svg"}/>
                     <Tag color={'grey'} type={colorMode === ColorMode.DARK ? 'solid' : 'ghost'}
-                         size={"small"}>Beta v{projectVersion}</Tag>
+                         size={"small"}>Alpha v{projectVersion}</Tag>
                 </span>
 
             <span>

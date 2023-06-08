@@ -6,7 +6,7 @@
     top: 0;
     filter: blur(130px);
     opacity: .6;
-
+    z-index: 1;
 }
 
 .background:before, .background:after {
@@ -15,6 +15,7 @@
     width: 60%;
     height: 60%;
     border-radius: 50%;
+    z-index: 1;
 }
 
 body[theme-mode="light"] .background:before {
@@ -40,5 +41,6 @@ body[theme-mode="dark"] .background:after {
 .inputPanel{
     padding: 12px 24px;
     height: 95%;
+    position: relative;
 }
 

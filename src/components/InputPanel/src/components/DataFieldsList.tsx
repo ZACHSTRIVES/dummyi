@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {Button, Empty, List} from "@douyinfe/semi-ui";
+import {Button, Empty} from "@douyinfe/semi-ui";
 import {DataFieldsListItem} from "./DataFieldsListItem";
 import styles from './DataFieldsList.module.scss';
 import {reorder} from "@/utils/listUtils";
@@ -7,7 +7,7 @@ import {IconPlus} from "@douyinfe/semi-icons";
 import {DragDropContext, Droppable} from "react-beautiful-dnd";
 import {useDispatch, useSelector} from "react-redux";
 import {doAddNewDataField, doSortDataFields} from "@/reducers/workspace/workspaceActions";
-import {useIntl} from "@/locale";
+import {FormattedMessage} from "@/locale";
 import {ComponentSize} from "@/constants/enums";
 import {DataTypeSelectModal} from "@/components/InputPanel/src/components/DataTypeSelectModal";
 import {DataTypeOptionsModal} from "@/components/InputPanel/src/components/DataTypeOptionsModal";
@@ -26,7 +26,6 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
     const {height, size} = props;
     const dispatch = useDispatch();
     const containerRef = useRef<HTMLDivElement>(null);
-    const intl = useIntl();
 
     // store
     const dataFields = useSelector(selectDataFields);
@@ -57,33 +56,31 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
                         <Droppable droppableId="droppable">
                             {provided => (
                                 <div ref={provided.innerRef} {...provided.droppableProps}>
-                                    <List>
-                                        {sortableDataFieldsIds.map((id, index) => {
-                                                const dataField = dataFields[id];
-                                                return <DataFieldsListItem size={size} key={id} index={index} id={id}
-                                                                           dataField={dataField}/>
-                                            }
-                                        )}
-                                        {provided.placeholder}
-                                        <div className={styles.dataFieldList__bottomButton}>
-                                            <Button onClick={handleAddField} icon={<IconPlus/>}>
-                                                {intl.formatMessage({id: "dataFields.list.addNewFieldButton.text"})}
-                                            </Button>
-                                        </div>
-                                    </List>
+                                    {sortableDataFieldsIds.map((id, index) => {
+                                            const dataField = dataFields[id];
+                                            return <DataFieldsListItem size={size} key={id} index={index} id={id}
+                                                                       dataField={dataField}/>
+                                        }
+                                    )}
+                                    {provided.placeholder}
+                                    <div className={styles.dataFieldList__bottomButton}>
+                                        <Button onClick={handleAddField} icon={<IconPlus/>}>
+                                            <FormattedMessage id={"dataFields.list.addNewFieldButton.text"}/>
+                                        </Button>
+                                    </div>
                                 </div>
                             )}
                         </Droppable>
                     </DragDropContext> :
                     <>
                         <Empty
-                            title="No fields"
-                            description="Let's start by creating your first field!"
+                            title={<FormattedMessage id={"dataFields.list.noDataFields.text"}/>}
+                            description={<FormattedMessage id={"dataFields.list.createFirstField.text"}/>}
                             style={{marginBottom: 24, textAlign: "center"}}
                         >
 
                             <Button onClick={handleAddField} icon={<IconPlus/>}>
-                                {intl.formatMessage({id: "dataFields.list.addNewFieldButton.text"})}
+                                <FormattedMessage id={"dataFields.list.addNewFieldButton.text"}/>
                             </Button>
                         </Empty>
                     </>
