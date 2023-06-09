@@ -37,7 +37,11 @@ export const format = (request: FormatRequest): string => {
 
         sortedFieldIds.forEach(column => {
             if (!fields[column].isDraft) {
-                const value = item[column].value;
+                let value = item[column].value;
+
+                if(typeof value === 'bigint'){
+                    value = value.toString();
+                }
 
                 if (includeNullValues || (item[column].type !== ExportValueType.NULL && value !== null)) {
                     row[fields[column].fieldName] = value;

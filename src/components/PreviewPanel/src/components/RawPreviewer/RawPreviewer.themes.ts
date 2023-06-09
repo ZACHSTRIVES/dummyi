@@ -14,10 +14,17 @@ export const lightTheme = createTheme({
     styles: [{tag: t.comment, color: '#dedede'},
         {tag: t.definition(t.typeName), color: '#482f4f'},
         {tag: t.keyword, color: 'hsl(185, 90%, 30%)', fontWeight: 'bold'},
-        {tag: t.string, color: 'hsl(120, 50%, 45%)'},
+        {tag: t.string, color: 'hsl(120,24%,26%)'},
         {tag: t.typeName, color: 'hsl(185, 90%, 40%)'},
         {tag: t.tagName, color: '#008a02'},
-        {tag: t.variableName, color: '#5b529b'}]
+        {tag: t.variableName, color: '#5b529b'},
+
+        // for json
+        {tag: t.propertyName, color: '#218c10'},
+        {tag: t.null, color: '#c9495a'},
+        {tag: t.bool, color: '#264aad'},
+        {tag: t.number, color: '#88b7f3'},
+    ]
 });
 
 export const darkTheme = createTheme({
@@ -37,8 +44,14 @@ export const darkTheme = createTheme({
     styles: [{tag: t.comment, color: '#dedede'},
         {tag: t.definition(t.typeName), color: '#2eabe1'},
         {tag: t.keyword, color: 'rgb(128,211,218)', fontWeight: 'strong'},
-        {tag: t.string, color: 'rgba(240,246,252,0.6)'},
+        {tag: t.string, color: 'rgb(211,211,209)'},
         {tag: t.typeName, color: '#86b5ea'},
         {tag: t.tagName, color: '#0fa2a2'},
-        {tag: t.variableName, color: '#1a00db'}]
+
+        // for json
+        {tag: t.propertyName, color: '#0fa2a2'},
+        {tag: t.null, color: '#c9495a'},
+        {tag: t.bool, color: '#62986c'},
+        {tag: t.number, color: '#88b7f3'},
+    ]
 });
