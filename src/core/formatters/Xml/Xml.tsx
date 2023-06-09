@@ -2,6 +2,7 @@ import React from "react";
 import {FormatRequest, FormatterConfigComponentInterface} from "@/types/formatter";
 import {OptionsInput, OptionsSelect, SelectOption} from "@/components/Utils";
 import {FormattedMessage} from "@/locale";
+import {ExportValueType} from "@/constants/enums";
 
 
 // -------------------------------------------------------------------------------------------------------------
@@ -41,12 +42,15 @@ export const format = (request: FormatRequest): string => {
 
         sortedFieldIds.forEach(column => {
             if (!fields[column].isDraft) {
-                let value = item[column].stringValue;
-                if (value.includes('\n')) {
-                    value = `"${value}"`;
+                if(item[column].type !== ExportValueType.NULL) {
+                    let value = item[column].stringValue;
+                    if (value.includes('\n')) {
+                        value = `"${value}"`;
+                    }
+                    const fieldName = fields[column].fieldName ? fields[column].fieldName : "";
+                    xml += indent.repeat(2) + `<${fieldName}>${value}</${fieldName}>\n`;
                 }
-                const fieldName = fields[column].fieldName ? fields[column].fieldName : "";
-                xml += indent.repeat(2) + `<${fieldName}>${value}</${fieldName}>\n`;
+
             }
         });
 

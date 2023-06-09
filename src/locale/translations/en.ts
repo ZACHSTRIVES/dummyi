@@ -24,6 +24,10 @@ export const en = {
     "export.configurator.xml.encoding": "Encoding",
     "export.configurator.xml.indentSize": "Indent size",
 
+    // json
+    "export.configurator.json.insideArray": "Inside array",
+    "export.configurator.json.includeNullValues": "Include null values",
+
     // -------------------------------------------------------------------------------------------------------------
     // data types
 

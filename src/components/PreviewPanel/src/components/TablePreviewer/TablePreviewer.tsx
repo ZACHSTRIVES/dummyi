@@ -67,7 +67,7 @@ export const TablePreviewer: React.FunctionComponent<TablePreviewerProps> = ({..
 
     return (
         <div className={styles.tablePreview}>
-            <Table scroll={scroll} dataSource={data} pagination={false} bordered={true}>
+            <Table scroll={scroll} dataSource={data} pagination={false}>
                 {dataFieldsSortableList.map((fieldId: string) => {
                     const field: DataField = dataFields[fieldId];
                     return field.isDraft ? null : <Table.Column
