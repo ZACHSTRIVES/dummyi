@@ -1,5 +1,5 @@
 import {combineReducers} from "redux";
-import {Store, Action} from "@/types/system";
+import {RootState, Action} from "@/types/system";
 import storage from "@/store/storage";
 
 // reducers

@@ -16,7 +16,7 @@ export interface Action {
     payload?: any;
 }
 
-export interface Store {
+export interface RootState {
     app: AppReducerState;
     workspace: WorkspaceReducerState;
     preview: PreviewReducerState;

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import packageJson from '../../../../../package.json';
 import {useSelector} from "react-redux";
 import {ColorMode} from "@/constants/enums";
-import {Store} from "@/types/system";
+import {RootState} from "@/types/system";
 import Link from "next/link";
 import {GITHUB_URL} from "@/constants/links";
 
@@ -18,7 +18,7 @@ export const Footer: FunctionComponent<FooterProps> = ({className}) => {
     const {Text} = Typography;
 
     // store
-    const colorMode = useSelector((state: Store) => state.app.colorMode);
+    const colorMode = useSelector((state: RootState) => state.app.colorMode);
 
     const projectVersion = packageJson.version;
 

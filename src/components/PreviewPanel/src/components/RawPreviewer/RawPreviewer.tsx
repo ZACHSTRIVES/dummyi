@@ -3,7 +3,7 @@ import CodeMirror from "@uiw/react-codemirror";
 import {langs} from '@uiw/codemirror-extensions-langs';
 import {EditorView} from '@codemirror/view';
 import {useSelector} from "react-redux";
-import {Store} from "@/types/system";
+import {RootState} from "@/types/system";
 import {ColorMode} from "@/constants/enums";
 import {darkTheme, lightTheme} from "@/components/PreviewPanel/src/components/RawPreviewer/RawPreviewer.themes";
 import {Extension} from "@codemirror/state";
@@ -30,7 +30,7 @@ export const RawPreviewer: React.FunctionComponent<RawPreviewerProps> = ({...pro
         rawViewShowLineNumber,
         rawViewLineWrap,
         rawViewFontSize
-    } = useSelector((state: Store) => state.preview);
+    } = useSelector((state: RootState) => state.preview);
 
     const previewFormattedData = useSelector(selectPreviewFormattedData);
     const sortableIdsList = useSelector(selectDataFieldsSortableIdsList);
