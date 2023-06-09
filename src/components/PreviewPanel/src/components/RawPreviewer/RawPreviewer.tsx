@@ -8,11 +8,11 @@ import {ColorMode} from "@/constants/enums";
 import {darkTheme, lightTheme} from "@/components/PreviewPanel/src/components/RawPreviewer/RawPreviewer.themes";
 import {Extension} from "@codemirror/state";
 import {
-    selectDataFieldsSortableIdsList,
-    selectPreviewData,
+    selectDataFieldsSortableIdsList, selectExportFormat,
     selectPreviewFormattedData
 } from "@/reducers/workspace/workspaceSelectors";
 import {selectColorMode} from "@/reducers/app/appSelectors";
+import {getCodemirrorLanguagePluginByFormat} from "@/utils/formatterUtils";
 
 
 export type RawPreviewerProps = {
@@ -34,16 +34,19 @@ export const RawPreviewer: React.FunctionComponent<RawPreviewerProps> = ({...pro
 
     const previewFormattedData = useSelector(selectPreviewFormattedData);
     const sortableIdsList = useSelector(selectDataFieldsSortableIdsList);
+    const format = useSelector(selectExportFormat);
 
     React.useEffect(() => {
-        const extensions: Extension[] = [langs.xml()];
+        const extensions: Extension[] = [];
+
+        extensions.push(getCodemirrorLanguagePluginByFormat(format));
 
         if (rawViewLineWrap) {
             extensions.push(EditorView.lineWrapping);
         }
 
         setCodeMirrorExtensions(extensions);
-    }, [rawViewLineWrap]);
+    }, [rawViewLineWrap, format]);
 
     return (
         <>
