@@ -1,0 +1,13 @@
+.tablePreview {
+    padding: 0 10px;
+}
+
+.tablePreview_column {
+    display: flex;
+    align-items: center;
+
+    .tablePreview_column__iconButton{
+        margin-left: 10px;
+        height: 18px;
+    }
+}
