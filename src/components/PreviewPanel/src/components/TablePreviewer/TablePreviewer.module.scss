@@ -3,11 +3,9 @@
 }
 
 .tablePreview_column {
-    display: flex;
-    align-items: center;
+    cursor: pointer;
+}
 
-    .tablePreview_column__iconButton{
-        margin-left: 10px;
-        height: 18px;
-    }
+.tablePreview_column:hover{
+    font-weight: 600;
 }

@@ -35,8 +35,8 @@ export const TablePreviewer: React.FunctionComponent<TablePreviewerProps> = ({..
         setHoveredRowIndex(null);
     };
 
-    const copyToClipboard = (text:string) => {
-        navigator.clipboard.writeText(text).then(()=>{
+    const copyToClipboard = (text: string) => {
+        navigator.clipboard.writeText(text).then(() => {
             Toast.success(intl.formatMessage({id: "preview.setting.copyToClipboard.notification.content"}));
         });
     }
@@ -45,22 +45,14 @@ export const TablePreviewer: React.FunctionComponent<TablePreviewerProps> = ({..
     const renderTableColumn = (value, index, fieldId) => {
         const displayValue = value ? value.stringValue : "";
         return (
-            <div className={styles.tablePreview_column} onMouseEnter={() => handleMouseEnter(fieldId, index)}
+            <div
+                onClick={() => copyToClipboard(displayValue)}
+                className={styles.tablePreview_column} onMouseEnter={() => handleMouseEnter(fieldId, index)}
                  onMouseLeave={handleMouseLeave}>
                 <div>
-                    {displayValue}
+                    {displayValue} {hoveredFieldId === fieldId && hoveredRowIndex === index && (
+                    <IconCopy size={'small'} style={{color: 'gray'}}/>)}
                 </div>
-
-                {hoveredFieldId === fieldId && hoveredRowIndex === index && (
-                    <div>
-                        <Button
-                            onClick={() => copyToClipboard(displayValue)}
-                            className={styles.tablePreview_column__iconButton}
-                            theme={'borderless'}
-                            icon={<IconCopy size={'small'} style={{color:'gray'}}/>}
-                            size={'small'}/>
-                    </div>
-                )}
             </div>
         )
     }
