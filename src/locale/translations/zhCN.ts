@@ -23,6 +23,10 @@ export const zhCN = {
     "export.configurator.xml.encoding": "编码",
     "export.configurator.xml.indentSize": "缩进大小",
 
+    // json
+    "export.configurator.json.insideArray": "数组",
+    "export.configurator.json.includeNullValues": "包含空值",
+
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
