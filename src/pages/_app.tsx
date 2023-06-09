@@ -12,7 +12,7 @@ import SEO from '../../next-seo.config.json';
 
 // state management
 import {Provider} from "react-redux";
-import {store, persistor} from "@/store";
+import {store, persist} from "@/store";
 import {useRouter} from "next/router";
 import {PersistGate} from 'redux-persist/integration/react'
 
@@ -28,7 +28,7 @@ export default function MyApp({Component, pageProps}: AppProps) {
 
     return (
         <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
+            <PersistGate loading={null} persistor={persist}>
                 <IntlProvider locale={locale} messages={translations[locale].app} defaultLocale={Locales.EN}>
                     <LocaleProvider locale={translations[locale].semi}>
                         <NextNProgress options={{showSpinner: false}} height={2} color={"var(--semi-color-text-0)"}/>
