@@ -1,12 +1,13 @@
 import {RootState} from "@/types/system";
 import {createSelector} from "reselect";
 import {
-    selectCurrentDataTypeSelectModalTargetFieldId,
-    selectDataFields, selectNumberOfExportRows,
+    selectNumberOfExportRows,
     selectPreviewFormattedData
 } from "@/reducers/workspace/workspaceSelectors";
 
 export const selectShowExportModal = (state: RootState) => state.export.showExportModal;
+
+export const selectExportFileName = (state: RootState) => state.export.exportFileName;
 
 export const selectEstimatedFileSize = createSelector(
     selectPreviewFormattedData,

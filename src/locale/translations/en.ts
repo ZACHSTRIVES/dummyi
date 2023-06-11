@@ -16,9 +16,11 @@ export const en = {
     // export modal
     "export.modal.title": "Generate",
     "export.modal.exportNumOfRows.label": "Rows to generate",
+    "export.modal.exportNumOfRows.empty": "Rows to generate cannot be empty",
     "export.modal.exportFormat.label": "Export format",
     "export.modal.estimatedSize.label": "Estimated size",
     "export.modal.exportFileName.label": "File name",
+    "export.modal.exportFileName.empty": "File name cannot be empty",
 
     // csv
     "export.configurator.csv.delimiter": "Delimiter",

@@ -31,9 +31,14 @@ export const getFormatterByFormat = (format: ExportFormat): Formatter => {
     return formatters[format];
 }
 
-// Gey formatter config component by format
+// Get formatter config component by format
 export const getFormatterConfigComponentByFormat = (format: ExportFormat): any => {
     return formatters[format].configComponent;
+}
+
+// Get file extension by format
+export const getFileExtensionByFormat = (format: ExportFormat): string => {
+    return formatters[format].fileExtension;
 }
 
 // Get codemirror language plugin by format

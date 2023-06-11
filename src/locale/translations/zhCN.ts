@@ -15,9 +15,11 @@ export const zhCN = {
     // export modal
     "export.modal.title": "生成数据",
     "export.modal.exportNumOfRows.label": "生成数据行数",
+    "export.modal.exportNumOfRows.empty": "生成数据行数不能为空",
     "export.modal.exportFormat.label": "生成格式",
     "export.modal.estimatedSize.label": "预计大小",
     "export.modal.exportFileName.label": "文件名",
+    "export.modal.exportFileName.empty": "文件名不能为空",
 
     // csv
     "export.configurator.csv.delimiter": "分隔符",

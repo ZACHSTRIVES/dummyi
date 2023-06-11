@@ -54,6 +54,7 @@ export interface PreviewReducerState {
 
 export interface  ExportReducerState {
     showExportModal: boolean;
+    exportFileName: string;
 }
 
 // locales

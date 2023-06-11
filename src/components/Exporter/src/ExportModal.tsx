@@ -1,27 +1,24 @@
 import React from 'react';
-import {Descriptions, Divider, Modal, Typography} from "@douyinfe/semi-ui";
-import {NumbOfRowInput} from "@/components/Toolbar/src/components/NumOfRowInput";
+import {Modal} from "@douyinfe/semi-ui";
 import {useDispatch, useSelector} from "react-redux";
-import {selectEstimatedFileSize, selectShowExportModal} from "@/reducers/export/exportSelectors";
+import {selectEstimatedFileSize, selectExportFileName, selectShowExportModal} from "@/reducers/export/exportSelectors";
 import {doSetShowExportModal} from "@/reducers/export/exportActions";
-import {ComponentSize} from "@/constants/enums";
-import {ExportFormatConfigurator} from "@/components/ExportFormatConfigurator";
-import style from './ExportModal.module.scss';
 import {FormattedMessage} from "@/locale";
-import {OptionsInput} from "@/components/Utils";
+import {selectExportFormat, selectNumberOfExportRows} from "@/reducers/workspace/workspaceSelectors";
+import {ExportPreview} from "@/components/Exporter/src/ExportPreview";
 
 
-export interface ExportModalProps {
-
-}
+export interface ExportModalProps {}
 
 export const ExportModal: React.FunctionComponent<ExportModalProps> = () => {
     const dispatch = useDispatch();
-    const {Numeral} = Typography;
 
     // state
     const visible = useSelector(selectShowExportModal);
     const estimatedSize = useSelector(selectEstimatedFileSize);
+    const format = useSelector(selectExportFormat);
+    const exportFileName = useSelector(selectExportFileName);
+    const exportNumOfRows = useSelector(selectNumberOfExportRows);
 
     // action
     const onCancel = () => {
@@ -37,42 +34,12 @@ export const ExportModal: React.FunctionComponent<ExportModalProps> = () => {
             onOk={() => {
             }}
         >
-            <div className={style.exportModal__inputs}>
-                <div className="generatorConfig_column">
-                    <div className='generatorConfig_column__label'>
-                        <FormattedMessage id={'export.modal.exportNumOfRows.label'}/>
-                    </div>
-                    <NumbOfRowInput size={ComponentSize.LARGE}/>
-                </div>
-                <div className="generatorConfig_column">
-                    <div className='generatorConfig_column__label'>
-                        <FormattedMessage id={'export.modal.exportFormat.label'}/>
-                    </div>
-                    <ExportFormatConfigurator/>
-                </div>
-            </div>
-
-            <OptionsInput
-                label={<FormattedMessage id={'export.modal.exportFileName.label'}/>}
-                value={'exportFileName'}
-                onChange={() => {
-                }}
-                style={{width: '260px'}}
+            <ExportPreview
+                exportNumOfRows={exportNumOfRows}
+                exportFileName={exportFileName}
+                estimatedSize={estimatedSize}
+                format={format}
             />
-
-            <Divider margin={22}/>
-
-            <div className="generatorConfig_column">
-                <div className='generatorConfig_column__label'>
-                    <FormattedMessage id={'export.modal.estimatedSize.label'}/>
-                </div>
-                <div className={style.exportModal__estimated_number}>
-                    <Numeral rule={'bytes-decimal'} precision={2}>
-                        {estimatedSize}
-                    </Numeral>
-                </div>
-            </div>
-
 
             {/*<ExportProgressDash/>*/}
         </Modal>
