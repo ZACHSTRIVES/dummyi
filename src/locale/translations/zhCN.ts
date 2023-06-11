@@ -8,9 +8,16 @@ export const zhCN = {
 
     // export format modal
     "export.configurator.modal.title": "导出格式",
-    "export.configurator.modal.closeButton.text": "关闭",
+    "export.configurator.modal.confirmButton.text": "确认",
     "export.configurator.config.label": "配置",
     "export.configurator.config.empty": "该输出格式的配置暂时还不可用",
+
+    // export modal
+    "export.modal.title": "生成数据",
+    "export.modal.exportNumOfRows.label": "生成数据行数",
+    "export.modal.exportFormat.label": "生成格式",
+    "export.modal.estimatedSize.label": "预计大小",
+    "export.modal.exportFileName.label": "文件名",
 
     // csv
     "export.configurator.csv.delimiter": "分隔符",

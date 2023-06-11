@@ -6,7 +6,7 @@ export const DEFAULT_COLOR_MODE = ColorMode.DARK;
 
 // exporter
 export const DEFAULT_NUMBER_EXPORT_ROWS = 100;
-export const MAX_NUMBER_EXPORT_ROWS = 1000;
+export const MAX_NUMBER_EXPORT_ROWS = 10000;
 export const MIN_NUMBER_EXPORT_ROWS = 1;
 
 // workspace

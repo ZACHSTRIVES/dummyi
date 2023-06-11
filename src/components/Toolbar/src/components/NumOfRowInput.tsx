@@ -36,7 +36,7 @@ export const NumbOfRowInput: React.FC<NumbOfRowInputProps> = ({...props}) => {
             placeholder={size === 'small' ? intl.formatMessage({id: 'toolbar.numOfRowInput.suffix'}) : null}
             style={{
                 width: size === 'large' ?
-                    '120px' : '80px', marginRight: '9px'
+                    '150px' : '100px', marginRight: '9px'
             }}
         />
     )

@@ -1,12 +1,12 @@
 import {combineReducers} from "redux";
-import {RootState, Action} from "@/types/system";
 import storage from "@/store/storage";
 
 // reducers
+import {persistReducer} from "redux-persist";
 import app from "@/reducers/app/appReducer";
 import workspace from "@/reducers/workspace/workspaceReducer";
 import preview from "@/reducers/preview/previewReducer";
-import {persistReducer} from "redux-persist";
+import exportReducer from "@/reducers/export/exportReducer";
 
 // persist
 const appPersistConfig = {
@@ -24,10 +24,17 @@ const previewPersistConfig = {
     storage: storage
 }
 
+const exportPersistConfig = {
+    key: 'export',
+    storage: storage,
+    blacklist: ['showExportModal']
+}
+
 const rootReducer = combineReducers({
     app: persistReducer(appPersistConfig, app),
     workspace: persistReducer(workspacePersistConfig, workspace),
-    preview: persistReducer(previewPersistConfig, preview)
+    preview: persistReducer(previewPersistConfig, preview),
+    export: persistReducer(exportPersistConfig, exportReducer),
 });
 
 

@@ -9,9 +9,16 @@ export const en = {
 
     // export format modal
     "export.configurator.modal.title": "Export Format",
-    "export.configurator.modal.closeButton.text": "Close",
+    "export.configurator.modal.confirmButton.text": "Confirm",
     "export.configurator.config.label": "Configurations",
     "export.configurator.config.empty": "Configuration of this export format is currently not available.",
+
+    // export modal
+    "export.modal.title": "Generate",
+    "export.modal.exportNumOfRows.label": "Rows to generate",
+    "export.modal.exportFormat.label": "Export format",
+    "export.modal.estimatedSize.label": "Estimated size",
+    "export.modal.exportFileName.label": "File name",
 
     // csv
     "export.configurator.csv.delimiter": "Delimiter",

@@ -20,6 +20,7 @@ export interface RootState {
     app: AppReducerState;
     workspace: WorkspaceReducerState;
     preview: PreviewReducerState;
+    export: ExportReducerState;
 }
 
 export interface AppReducerState {
@@ -49,6 +50,10 @@ export interface PreviewReducerState {
     rawViewShowLineNumber: boolean;
     rawViewLineWrap: boolean;
     rawViewFontSize: number;
+}
+
+export interface  ExportReducerState {
+    showExportModal: boolean;
 }
 
 // locales
