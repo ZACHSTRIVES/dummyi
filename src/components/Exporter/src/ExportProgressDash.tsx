@@ -5,6 +5,7 @@ import {Sparklines, SparklinesLine} from 'react-sparklines';
 import {useSelector} from "react-redux";
 import {selectColorMode} from "@/reducers/app/appSelectors";
 import {ColorMode} from "@/constants/enums";
+import {FormattedMessage} from "@/locale";
 
 export interface ExportProgressDashProps {
 }
@@ -47,16 +48,16 @@ export const ExportProgressDash: React.FunctionComponent<ExportProgressDashProps
 
             <Divider layout={'vertical'} className={styles.divider}/>
 
-            <div className={styles.exportDescription}>
+            <div className={`${styles.exportDescription} no-select-area`}>
 
                 <Descriptions align="center" row size={'small'}>
-                    <Descriptions.Item itemKey={'Rows'}>
+                    <Descriptions.Item itemKey={<FormattedMessage id={'export.modal.generating.rows.text'}/>}>
                         <Numeral parser={parserTCH} rule={'numbers'}>
                             643888
                         </Numeral>
                     </Descriptions.Item>
 
-                    <Descriptions.Item itemKey={'Time'}>
+                    <Descriptions.Item itemKey={<FormattedMessage id={'export.modal.generating.time.text'}/>}>
                         <Numeral parser={parserTime} rule={'numbers'}>
                             647836
                         </Numeral>

@@ -145,7 +145,7 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
                                                 label={<FormattedMessage id="dataFields.input.options.label"/>}
                                                 onClick={handleOpenDataTypeOptionsModal}
                                                 style={{width: 80}}
-                                                icon={<IconSetting style={{color: 'grey'}}/>}
+                                                icon={<IconSetting/>}
                                             />}
                                     </>
                                 )}

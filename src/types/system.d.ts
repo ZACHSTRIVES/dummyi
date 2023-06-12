@@ -1,4 +1,4 @@
-import {ColorMode, ExportFormat, Locales, PanelsOrientation, PreviewType} from "@/constants/enums";
+import {ColorMode, ExportFormat, ExportProcessStage, Locales, PanelsOrientation, PreviewType} from "@/constants/enums";
 import enTranslations from "@/locales/en.json";
 import type {IntlFormatters} from 'react-intl';
 import {DataField, DataFieldList} from "@/types/generator";
@@ -55,6 +55,7 @@ export interface PreviewReducerState {
 export interface  ExportReducerState {
     showExportModal: boolean;
     exportFileName: string;
+    exportProcessStage: ExportProcessStage;
 }
 
 // locales

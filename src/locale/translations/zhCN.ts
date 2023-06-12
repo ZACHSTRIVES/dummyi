@@ -18,8 +18,13 @@ export const zhCN = {
     "export.modal.exportNumOfRows.empty": "生成数据行数不能为空",
     "export.modal.exportFormat.label": "生成格式",
     "export.modal.estimatedSize.label": "预计大小",
+    "export.modal.estimatedTime.label": "预计时间",
     "export.modal.exportFileName.label": "文件名",
     "export.modal.exportFileName.empty": "文件名不能为空",
+    "export.modal.cancel.button.text": "取消",
+    "export.modal.generate.button.text": "生成",
+    "export.modal.generating.rows.text": "行数",
+    "export.modal.generating.time.text": "时间",
 
     // csv
     "export.configurator.csv.delimiter": "分隔符",

@@ -3,7 +3,7 @@ import {InputNumber} from "@douyinfe/semi-ui";
 import {useIntl} from "@/locale";
 import {useDispatch, useSelector} from "react-redux";
 import {doSetNumberOfExportRows} from "@/reducers/workspace/workspaceActions";
-import {MAX_NUMBER_EXPORT_ROWS, MIN_NUMBER_EXPORT_ROWS} from "@/constants/core";
+import {MAX_NUMBER_EXPORT_ROWS, MIN_NUMBER_EXPORT_ROWS} from "@/constants/config";
 import {ComponentSize} from "@/constants/enums";
 import {selectNumberOfExportRows} from "@/reducers/workspace/workspaceSelectors";
 import {ErrorTooltip} from "@/components/Utils";

@@ -80,15 +80,16 @@ export const ExportPreview: React.FunctionComponent<ExportPreviewProps> = ({...p
             />
 
             <Divider margin={22}/>
-
-            <div className="generatorConfig_column">
-                <div className='generatorConfig_column__label'>
-                    <FormattedMessage id={'export.modal.estimatedSize.label'}/>
-                </div>
-                <div className={style.exportModal__estimated_number}>
-                    <Numeral rule={'bytes-decimal'} precision={2}>
-                        {estimatedSize}
-                    </Numeral>
+            <div className={style.exportModal__inputs}>
+                <div className="generatorConfig_column">
+                    <div className='generatorConfig_column__label'>
+                        <FormattedMessage id={'export.modal.estimatedSize.label'}/>
+                    </div>
+                    <div className={style.exportModal__estimated_number}>
+                        <Numeral rule={'bytes-decimal'} precision={2}>
+                            {estimatedSize}
+                        </Numeral>
+                    </div>
                 </div>
             </div>
         </div>

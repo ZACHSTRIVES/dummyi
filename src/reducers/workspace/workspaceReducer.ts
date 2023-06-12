@@ -11,7 +11,7 @@ import {
     SORT_DATA_FIELDS,
     UPDATE_DATA_FIELD, UPDATE_DATA_FIELD_NAME
 } from "@/constants/actions";
-import {DEFAULT_NUMBER_EXPORT_ROWS, DEFAULT_PANELS_ORIENTATION} from "@/constants/core";
+import {DEFAULT_NUMBER_EXPORT_ROWS, DEFAULT_PANELS_ORIENTATION} from "@/constants/config";
 import {mockFields} from "@/reducers/mock";
 import {deleteSpecificFieldData, generateData, generateSpecificFieldData} from "@/utils/generatorUtils";
 import {ExportFormat} from "@/constants/enums";
@@ -37,8 +37,7 @@ export const initStates: WorkspaceReducerState = {
     currentDataTypeOptionsModalTargetFieldId: null,
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default (state: WorkspaceReducerState = initStates, action: Action) => {
+const workspaceReducer = (state: WorkspaceReducerState = initStates, action: Action) => {
     switch (action.type) {
         case SET_PANELS_DIRECTION:
             return {
@@ -107,7 +106,7 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
             };
         case UPDATE_DATA_FIELD_NAME:
             const {id: fieldId, name} = action.payload;
-            return{
+            return {
                 ...state,
                 dataFields: {
                     ...state.dataFields,
@@ -131,8 +130,8 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
                 dataTypeOptions: options
             };
 
-            if(isNullOrWhiteSpace(field.fieldName)){
-                field.fieldName = generateDefaultFieldName(dataType,state.dataFields, state.dataFieldsSortableIdsList)
+            if (isNullOrWhiteSpace(field.fieldName)) {
+                field.fieldName = generateDefaultFieldName(dataType, state.dataFields, state.dataFieldsSortableIdsList)
             }
 
             return {
@@ -186,4 +185,4 @@ export default (state: WorkspaceReducerState = initStates, action: Action) => {
     }
 }
 
-
+export default workspaceReducer;
