@@ -2,7 +2,7 @@
     border: 1px solid var(--semi-color-border);
     border-radius: var(--semi-border-radius-small);
     padding: 12px;
-    background-color: rgba(var(--semi-grey-0), 1);
+    background-color: rgba(var(--semi-grey-0), 0.3);
     position: relative;
     z-index: 2;
 }
