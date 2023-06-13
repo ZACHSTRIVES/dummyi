@@ -30,13 +30,6 @@ export const zhCN = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
-    // data type category
-    "dataType.category.all": "全部",
-    "dataType.category.basic": "基础",
-    "dataType.category.person": "人物",
-    "dataType.category.commerce": "商业",
-    "dataType.category.network": "网络",
-
     // number
     "dataType.number": "数字",
     "dataType.number.kind.label": "种类",
@@ -79,6 +72,13 @@ export const zhCN = {
 
     // account mi,ner
     "dataType.accountNumber": "账号",
+
+    // data type category
+    "dataType.category.all": "全部",
+    "dataType.category.basic": "基础",
+    "dataType.category.person": "人物",
+    "dataType.category.commerce": "商业",
+    "dataType.category.network": "网络",
 
     // -------------------------------------------------------------------------------------------------------------
     // pages
