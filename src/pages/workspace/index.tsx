@@ -1,16 +1,18 @@
-import React, {useEffect} from "react";
-import {ReflexContainer, ReflexElement, ReflexSplitter} from 'react-reflex';
+import React, { useEffect, useState } from "react";
+import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
 import styles from './workspace.module.css';
-import {InputPanel} from "@/components/InputPanel";
-import {PreviewPanel} from "@/components/PreviewPanel";
-import {useDispatch, useSelector} from "react-redux";
-import {ColorMode, PanelsOrientation} from "@/constants/enums";
-import {doGeneratePreviewData, doSetPanelsOrientation} from "@/reducers/workspace/workspaceActions";
+import { InputPanel } from "@/components/InputPanel";
+import { PreviewPanel } from "@/components/PreviewPanel";
+import { useDispatch, useSelector } from "react-redux";
+import { ColorMode, PanelsOrientation } from "@/constants/enums";
+import { doGeneratePreviewData, doSetPanelsOrientation } from "@/reducers/workspace/workspaceActions";
 import Head from "next/head";
-import {useIntl} from "@/locale";
-import {FilesPanel} from "@/components/FilesPanel/src";
-import {selectPanelsOrientation, selectPreviewData} from "@/reducers/workspace/workspaceSelectors";
-import {selectColorMode} from "@/reducers/app/appSelectors";
+import { useIntl } from "@/locale";
+import { FilesPanel } from "@/components/FilesPanel/src";
+import { selectPanelsOrientation, selectPreviewData } from "@/reducers/workspace/workspaceSelectors";
+import { selectColorMode } from "@/reducers/app/appSelectors";
+
+const MOBILE_VIEW_MAX_WIDTH = 768;
 
 export default function Workspace() {
     const intl = useIntl();
@@ -21,8 +23,10 @@ export default function Workspace() {
     const colorMode = useSelector(selectColorMode);
     const previewData = useSelector(selectPreviewData);
 
+    const [isMobileView, setIsMobileView] = useState(window.innerWidth < MOBILE_VIEW_MAX_WIDTH);
+
     React.useEffect(() => {
-        if(previewData.length==0){
+        if (previewData.length == 0) {
             dispatch(doGeneratePreviewData())
         }
     })
@@ -63,9 +67,8 @@ export default function Workspace() {
     ];
 
     useEffect(() => {
-        setOrientation(getOrientation());
-
         function handleResize() {
+            setIsMobileView(window.innerWidth < MOBILE_VIEW_MAX_WIDTH);
             const newOrientation = getOrientation();
             setOrientation(newOrientation);
         }
@@ -81,35 +84,39 @@ export default function Workspace() {
     }
 
     function getOrientation(): PanelsOrientation {
-        return window.innerWidth < 750 ?
-            PanelsOrientation.HORIZONTAL : PanelsOrientation.VERTICAL;
+        return isMobileView ? PanelsOrientation.HORIZONTAL : PanelsOrientation.VERTICAL;
     }
 
     return (
         <>
             <Head>
-                <title>{intl.formatMessage({id: "nav.item.workspace"})} - Duymmi</title>
+                <title>{intl.formatMessage({ id: "nav.item.workspace" })} - Duymmi</title>
             </Head>
 
             <ReflexContainer orientation={PanelsOrientation.VERTICAL}>
-                {/*<ReflexElement size={200} minSize={200} maxSize={300}>*/}
-                {/*    <FilesPanel files={files}/>*/}
-                {/*</ReflexElement>*/}
+                {!isMobileView && (
+                    <ReflexElement size={200} minSize={200} maxSize={300}>
+                        <FilesPanel files={files} />
+                    </ReflexElement>
+                )}
 
-                {/*<ReflexSplitter*/}
-                {/*    style={{*/}
-                {/*        backgroundColor: colorMode === ColorMode.DARK ? 'rgba(153,153,153,0.44)' : '#d5d3d3',*/}
-                {/*        borderColor: 'transparent',*/}
-                {/*        borderWidth: '1px'*/}
-                {/*    }}*/}
-                {/*    className={`${styles.splitter} ${PanelsOrientation.VERTICAL}`}*/}
-                {/*/>*/}
+                {!isMobileView && (
+                    <ReflexSplitter
+                        style={{
+                            backgroundColor: colorMode === ColorMode.DARK ? 'rgba(153,153,153,0.44)' : '#d5d3d3',
+                            borderColor: 'transparent',
+                            borderWidth: '1px'
+                        }}
+                        className={`${styles.splitter} ${PanelsOrientation.VERTICAL}`}
+                    />
+                )}
+
 
                 <ReflexElement>
                     <ReflexContainer orientation={panelsDirection}>
                         <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 200 : 400}
-                                       className={styles.leftReflexElement}>
-                            <InputPanel/>
+                            className={styles.leftReflexElement}>
+                            <InputPanel isMobile={isMobileView}/>
                         </ReflexElement>
 
                         <ReflexSplitter
@@ -122,7 +129,7 @@ export default function Workspace() {
                         />
 
                         <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 100 : 400}>
-                            <PreviewPanel/>
+                            <PreviewPanel />
                         </ReflexElement>
                     </ReflexContainer>
                 </ReflexElement>

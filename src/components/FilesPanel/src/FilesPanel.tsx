@@ -1,4 +1,4 @@
-import { Tree } from '@douyinfe/semi-ui';
+import { Tree, TreeSelect } from '@douyinfe/semi-ui';
 import React, { ReactNode, useState } from 'react';
 import styles from "./FilesPanel.module.css";
 import { Emoji, EmojiStyle } from 'emoji-picker-react';
@@ -28,29 +28,28 @@ export const convertToUnifiedCode = (code: string) => {
     return unifiedParts.join('-');
 };
 
+export const convertToTreeData = (data: FilesPanelProps['files'], parentKey: string): TreeNode[] => {
+    return data.map((node, index) => {
+        const key = parentKey ? `${parentKey}-${index}` : `${index}`;
+        const treeNode: TreeNode = {
+            label: node.label,
+            value: node.label,
+            key: key
+        };
+
+        if (node.children) {
+            treeNode.children = convertToTreeData(node.children, key);
+        }
+
+        if (node.emoji) {
+            treeNode.icon = <div className={styles.emojiIcon}><Emoji unified={convertToUnifiedCode(node.emoji.code)} emojiStyle={EmojiStyle.APPLE} size={16} /></div>
+        }
+
+        return treeNode;
+    });
+};
+
 export const FilesPanel: React.FunctionComponent<FilesPanelProps> = ({files}) => {
-    const convertToTreeData = (data: FilesPanelProps['files'], parentKey: string): TreeNode[] => {
-        return data.map((node, index) => {
-            const key = parentKey ? `${parentKey}-${index}` : `${index}`;
-            const treeNode: TreeNode = {
-                label: node.label,
-                value: node.label,
-                key: key
-            };
-
-            if (node.children) {
-                treeNode.children = convertToTreeData(node.children, key);
-            }
-
-            if (node.emoji) {
-                console.log(convertToUnifiedCode(node.emoji.code));
-                treeNode.icon = <div className={styles.emojiIcon}><Emoji unified={convertToUnifiedCode(node.emoji.code)} emojiStyle={EmojiStyle.APPLE} size={16} /></div>
-            }
-
-            return treeNode;
-        });
-    };
-
     const initTreeData = convertToTreeData(files, '');
 
     const [treeData, setTreeData] = useState(initTreeData);
