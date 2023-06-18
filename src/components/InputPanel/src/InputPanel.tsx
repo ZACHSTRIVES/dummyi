@@ -85,7 +85,7 @@ export const InputPanel: React.FunctionComponent<InputPanelProps> = ({isMobile, 
         <div className={styles.inputPanel} ref={containerRef}>
             <div className={styles.background}/>
             {isMobile &&
-                <TreeSelect className='w-100' treeData={treeData}/>
+                <TreeSelect expandAll={true} className={`${styles.treeSelect} w-100`} treeData={treeData}/>
             }
             <Toolbar/>
             <DataFieldsList size={componentSize} height={containerHeight - 64}/>

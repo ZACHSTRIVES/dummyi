@@ -50,7 +50,7 @@ export const DataFieldsList: React.FunctionComponent<InputFieldListProps> = ({..
     }
 
     return (
-        <div className={styles.dataFieldsList} style={{height: height}} ref={containerRef}>
+        <div className={styles.dataFieldsList} ref={containerRef}>
             {
                 numberOfDataFields !== 0 ? <DragDropContext onDragEnd={handleOnDragEnd}>
                         <Droppable droppableId="droppable">
