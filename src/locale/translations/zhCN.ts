@@ -30,6 +30,10 @@ export const zhCN = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
+    
+    // sex
+    "dataType.sex": "性别（生物学）",
+
     // number
     "dataType.number": "数字",
     "dataType.number.kind.label": "种类",

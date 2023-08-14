@@ -30,6 +30,7 @@ export enum DataTypeCategory {
 }
 
 export enum DataType {
+    SEX = "sex",
     NUMBER = "number",
     EMAIL = "email",
     // DATE_TIME = "dateTime",

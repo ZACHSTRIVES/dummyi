@@ -31,6 +31,10 @@ export const en = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
+    
+    // sex
+    "dataType.sex": "Sex",
+
     // number
     "dataType.number": "Number",
     "dataType.number.kind.label": "Kind",

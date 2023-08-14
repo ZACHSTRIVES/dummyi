@@ -1,3 +1,4 @@
+import {SexGenerator} from "@/core/generators/Sex";
 import {BooleanGenerator} from "@/core/generators/Boolean";
 import {NumberGenerator} from "@/core/generators/Number";
 import {FullNameGenerator} from "@/core/generators/FullName";
@@ -6,6 +7,7 @@ import {CompanyNameGenerator} from "@/core/generators/CompanyName";
 import {DataType} from "@/constants/enums";
 
 export const generators = {
+  [DataType.SEX]: SexGenerator,
     [DataType.BOOLEAN]: BooleanGenerator,
     [DataType.NUMBER]: NumberGenerator,
     [DataType.FULL_NAME]: FullNameGenerator,

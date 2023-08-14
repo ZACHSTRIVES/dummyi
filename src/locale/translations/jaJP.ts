@@ -22,6 +22,10 @@ export const jaJP = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
+    
+    // sex
+    "dataType.sex": "Sex",
+
     // data type category
     "dataType.category.all": "全て",
     "dataType.category.basic": "基本",
