@@ -31,13 +31,6 @@ export const en = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
-    // data type category
-    "dataType.category.all": "All",
-    "dataType.category.basic": "Basic",
-    "dataType.category.person": "Person",
-    "dataType.category.commerce": "Commerce",
-    "dataType.category.network": "Network",
-
     // number
     "dataType.number": "Number",
     "dataType.number.kind.label": "Kind",
@@ -80,6 +73,13 @@ export const en = {
 
     // account number
     "dataType.accountNumber": "Account Number",
+
+    // data type category
+    "dataType.category.all": "All",
+    "dataType.category.basic": "Basic",
+    "dataType.category.person": "Person",
+    "dataType.category.commerce": "Commerce",
+    "dataType.category.network": "Network",
 
     // -------------------------------------------------------------------------------------------------------------
     // pages
