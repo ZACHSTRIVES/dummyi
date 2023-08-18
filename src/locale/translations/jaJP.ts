@@ -22,6 +22,26 @@ export const jaJP = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
+    
+    
+    
+    
+    
+    // persontitle
+    "dataType.persontitle": "PersonTitle",
+
+    // middlename
+    "dataType.middlename": "MiddleName",
+
+    // lastname
+    "dataType.lastname": "LastName",
+
+    // firstname
+    "dataType.firstname": "FirstName",
+
+    // sex
+    "dataType.sex": "Sex",
+
     // data type category
     "dataType.category.all": "全て",
     "dataType.category.basic": "基本",

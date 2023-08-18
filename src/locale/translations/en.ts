@@ -31,6 +31,26 @@ export const en = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
+    
+    
+    
+    
+    
+    // persontitle
+    "dataType.persontitle": "Person Title",
+
+    // middlename
+    "dataType.middlename": "Middle Name",
+
+    // lastname
+    "dataType.lastname": "Last Name",
+
+    // firstname
+    "dataType.firstname": "First Name",
+
+    // sex
+    "dataType.sex": "Sex",
+
     // number
     "dataType.number": "Number",
     "dataType.number.kind.label": "Kind",
@@ -55,7 +75,7 @@ export const en = {
     "dataType.boolean.format.label": "Format",
 
     // full name
-    "dataType.fullName": "Person Full Name",
+    "dataType.fullName": "Full Name",
     "dataType.fullName.sex.label": "Sex",
     "dataType.fullName.sex.selectOptions.all": "Male, Female",
     "dataType.fullName.sex.selectOptions.male": "Male",
