@@ -6,33 +6,30 @@ import {useSelector} from "react-redux";
 import {selectColorMode} from "@/reducers/app/appSelectors";
 import {ColorMode} from "@/constants/enums";
 import {FormattedMessage} from "@/locale";
+import {parseTCH, parseTimeCount} from "@/utils/stringUtils";
+import {selectCurrentNumOfRowsGenerated} from "@/reducers/export/exportSelectors";
 
 export interface ExportProgressDashProps {
+    exportRows: number;
+    currentExportedRows: number;
+    sparkLineData: number[];
+    timeElapsed: number;
 }
 
-export const ExportProgressDash: React.FunctionComponent<ExportProgressDashProps> = () => {
+export const ExportProgressDash: React.FunctionComponent<ExportProgressDashProps> = ({...props}) => {
+    const {exportRows, currentExportedRows, sparkLineData, timeElapsed} = props;
     const {Numeral} = Typography;
 
     // selectors
     const colorMode = useSelector(selectColorMode);
+    const r = useSelector(selectCurrentNumOfRowsGenerated);
+    const percent = r / exportRows * 100;
 
-    // parser
-    function parserTCH(oldVal) {
-        return oldVal.split(' ').map(item =>
-            Number(item) ? `${item.replace(/(\d)(?=(?:\d{3})+(?:\.|$))/g, '$1,')}` : item
-        ).join(' ');
-    }
 
-    function parserTime(milliseconds) {
-        const seconds = Math.floor(milliseconds / 1000);
-        const minutes = Math.floor(seconds / 60);
-        const secondsLeft = seconds - minutes * 60;
-        return `${minutes}:${secondsLeft}`;
-    }
 
     return (
         <div className={styles.exportProgressDash}>
-            <Progress percent={55} type="circle"
+            <Progress percent={percent} type="circle"
                       width={120}
                       className={styles.exportProgress}
                       strokeWidth={8}
@@ -49,23 +46,22 @@ export const ExportProgressDash: React.FunctionComponent<ExportProgressDashProps
             <Divider layout={'vertical'} className={styles.divider}/>
 
             <div className={`${styles.exportDescription} no-select-area`}>
-
                 <Descriptions align="center" row size={'small'}>
                     <Descriptions.Item itemKey={<FormattedMessage id={'export.modal.generating.rows.text'}/>}>
-                        <Numeral parser={parserTCH} rule={'numbers'}>
-                            643888
+                        <Numeral parser={parseTCH} rule={'numbers'}>
+                            {currentExportedRows}
                         </Numeral>
                     </Descriptions.Item>
 
                     <Descriptions.Item itemKey={<FormattedMessage id={'export.modal.generating.time.text'}/>}>
-                        <Numeral parser={parserTime} rule={'numbers'}>
-                            647836
+                        <Numeral parser={parseTimeCount} rule={'numbers'}>
+                            {timeElapsed}
                         </Numeral>
                     </Descriptions.Item>
                 </Descriptions>
 
                 <div className={styles.exportDescription__sparkline}>
-                    <Sparklines height={60} data={[5, 10, 5, 20, 5, 6, 12, 16, 7, 8, 34]}>
+                    <Sparklines height={60} data={sparkLineData}>
                         <SparklinesLine color={colorMode === ColorMode.LIGHT ? 'black' : 'white'}/>
                     </Sparklines>
                 </div>

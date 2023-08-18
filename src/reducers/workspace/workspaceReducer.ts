@@ -13,7 +13,7 @@ import {
 } from "@/constants/actions";
 import {DEFAULT_NUMBER_EXPORT_ROWS, DEFAULT_PANELS_ORIENTATION} from "@/constants/config";
 import {mockFields} from "@/reducers/mock";
-import {deleteSpecificFieldData, generateData, generateSpecificFieldData} from "@/utils/generatorUtils";
+import {deleteSpecificFieldData, generateData, generateSpecificFieldPreviewData} from "@/utils/generatorUtils";
 import {ExportFormat} from "@/constants/enums";
 import {CsvFormatter} from "@/core/formatters/Csv";
 import {FormatRequest} from "@/types/formatter";
@@ -149,7 +149,7 @@ const workspaceReducer = (state: WorkspaceReducerState = initStates, action: Act
         case GENERATE_SPECIFIC_FIELD_PREVIEW_DATA:
             return {
                 ...state,
-                previewData: generateSpecificFieldData(state.dataFields, state.dataFieldsSortableIdsList, state.previewData, action.payload)
+                previewData: generateSpecificFieldPreviewData(state.dataFields, state.dataFieldsSortableIdsList, state.previewData, action.payload)
             };
         case SET_NUMBER_OF_EXPORT_ROWS:
             return {

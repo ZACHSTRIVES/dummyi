@@ -52,10 +52,15 @@ export interface PreviewReducerState {
     rawViewFontSize: number;
 }
 
-export interface  ExportReducerState {
+export interface ExportReducerState {
     showExportModal: boolean;
     exportFileName: string;
     exportProcessStage: ExportProcessStage;
+    isCanceled: boolean;
+    currentNumOfRowsGenerated: number;
+    sparkLineData: number[];
+    formattedExportData: string;
+    timeElapsed: number;
 }
 
 // locales

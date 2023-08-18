@@ -133,7 +133,7 @@ export const en = {
     "dataFields.list.createFirstField.text": "Let's start by creating the first field!",
     "dataFields.input.fieldName.label": "Field name",
     "dataFields.input.fieldName.errorMessage.empty": "Field name cannot be empty",
-    "dataFields.input.type.label": "Type",
+    "dataFields.input.type.label": "Data type",
     "dataFields.input.type.placeholder": "Select type",
     "dataFields.input.emptyRate.label": "Empty %",
     "dataFields.input.emptyRate.tooltip": "Probability of generating empty value",

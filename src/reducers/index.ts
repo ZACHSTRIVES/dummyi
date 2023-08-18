@@ -27,7 +27,13 @@ const previewPersistConfig = {
 const exportPersistConfig = {
     key: 'export',
     storage: storage,
-    blacklist: ['exportProcessStage', 'exportFileName', 'exportProcessStage']
+    blacklist: ['exportProcessStage',
+        'exportFileName',
+        'exportProcessStage',
+        'currentNumOfRowsGenerated',
+        'sparkLineData',
+        'timeElapsed'
+    ]
 }
 
 const rootReducer = combineReducers({

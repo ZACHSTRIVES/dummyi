@@ -12,6 +12,12 @@ import {formatData} from "@/utils/formatterUtils";
 export const selectShowExportModal = (state: RootState) => state.export.showExportModal;
 export const selectExportFileName = (state: RootState) => state.export.exportFileName;
 export const selectExportProcessStage = (state: RootState) => state.export.exportProcessStage;
+export const selectIsCanceled = (state: RootState) => state.export.isCanceled;
+export const selectCurrentNumOfRowsGenerated = (state: RootState) => state.export.currentNumOfRowsGenerated;
+export const selectSparkLineData = (state: RootState) => state.export.sparkLineData;
+export const selectFormattedExportData = (state: RootState) => state.export.formattedExportData;
+export const selectTimeElapsed = (state: RootState) => state.export.timeElapsed;
+
 export const selectEstimatedFileSize = createSelector(
     selectPreviewFormattedData,
     selectNumberOfExportRows,
@@ -23,6 +29,7 @@ export const selectEstimatedFileSize = createSelector(
         return averageSize * numberOfExportRows;
     }
 );
+
 export const selectPreviewEstimatedTime = createSelector(
     selectDataFields,
     selectDataFieldsSortableIdsList,

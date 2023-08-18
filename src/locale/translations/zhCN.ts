@@ -132,7 +132,7 @@ export const zhCN = {
     "dataFields.list.createFirstField.text": "从创建第一个字段开始吧！",
     "dataFields.input.fieldName.label": "字段名",
     "dataFields.input.fieldName.errorMessage.empty": "字段名不能为空",
-    "dataFields.input.type.label": "类型",
+    "dataFields.input.type.label": "数据类型",
     "dataFields.input.type.placeholder": "选择类型...",
     "dataFields.input.emptyRate.label": "空值概率",
     "dataFields.input.emptyRate.tooltip": "生成空值(null)的概率",
