@@ -74,7 +74,7 @@ const checkIfGeneratorExists = (generatorName: string): boolean => {
 
 const formatFolderName = (folderName: string): string => {
     const firstLetter = folderName.charAt(0).toUpperCase();
-    const restLetters = folderName.slice(1).toLowerCase();
+    const restLetters = folderName.slice(1);
     return `${firstLetter}${restLetters}`;
 };
 
@@ -114,19 +114,25 @@ export const generate = (options: any): GenerateResult => {
         value: 'NOT IMPLEMENTED',
         stringValue: 'NOT IMPLEMENTED',
         type: ExportValueType.STRING
-    }
+    };
 }
 
 // -------------------------------------------------------------------------------------------------------------
 // options component
 export const ${generatorName}GeneratorOptionsComponent: React.FunctionComponent<GeneratorOptionsComponentInterface> = ({...props}) => {
     const {options, onOptionsChange} = props;
+    
+    const handleOptionsChange = (changedFieldName: string, value: any) => {
+        let newOptions = {...options, [changedFieldName]: value};
+        onOptionsChange(newOptions);
+    };
+    
     // TODO: implement your own options component here
     return (
         <div>
             NOT IMPLEMENTED
         </div>
-    )
+    );
 }`;
 }
 

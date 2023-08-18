@@ -8,6 +8,6 @@ export const SexGenerator: Generator = {
     generate: generate,
     optionsComponent: SexGeneratorOptionsComponent,
     defaultOptions: SexGeneratorDefaultOptions,
-    exampleLines: ['"male"', '"female"']
+    exampleLines: ['male', 'female']
 }
     

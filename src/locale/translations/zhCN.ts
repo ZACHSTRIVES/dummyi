@@ -31,8 +31,24 @@ export const zhCN = {
     // data types
 
     
+    
+    
+    
+    
+    // persontitle
+    "dataType.persontitle": "人物称谓",
+
+    // middlename
+    "dataType.middlename": "中间名",
+
+    // lastname
+    "dataType.lastname": "姓氏",
+
+    // firstname
+    "dataType.firstname": "名字",
+
     // sex
-    "dataType.sex": "性别（生物学）",
+    "dataType.sex": "性别",
 
     // number
     "dataType.number": "数字",

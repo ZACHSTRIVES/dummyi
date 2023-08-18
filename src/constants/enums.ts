@@ -30,11 +30,13 @@ export enum DataTypeCategory {
 }
 
 export enum DataType {
+    PERSONTITLE = "persontitle",
+    MIDDLENAME = "middlename",
+    LASTNAME = "lastname",
+    FIRSTNAME = "firstname",
     SEX = "sex",
     NUMBER = "number",
     EMAIL = "email",
-    // DATE_TIME = "dateTime",
-    // ACCOUNT_NUMBER = "accountNumber",
     BOOLEAN = "boolean",
     FULL_NAME = "fullName",
     COMPANY_NAME = "companyName",
