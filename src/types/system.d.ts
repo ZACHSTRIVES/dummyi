@@ -1,4 +1,4 @@
-import {ColorMode, ExportFormat, Locales, PanelsOrientation, PreviewType} from "@/constants/enums";
+import {ColorMode, ExportFormat, ExportProcessStage, Locales, PanelsOrientation, PreviewType} from "@/constants/enums";
 import enTranslations from "@/locales/en.json";
 import type {IntlFormatters} from 'react-intl';
 import {DataField, DataFieldList} from "@/types/generator";
@@ -16,10 +16,11 @@ export interface Action {
     payload?: any;
 }
 
-export interface Store {
+export interface RootState {
     app: AppReducerState;
     workspace: WorkspaceReducerState;
     preview: PreviewReducerState;
+    export: ExportReducerState;
 }
 
 export interface AppReducerState {
@@ -49,6 +50,17 @@ export interface PreviewReducerState {
     rawViewShowLineNumber: boolean;
     rawViewLineWrap: boolean;
     rawViewFontSize: number;
+}
+
+export interface ExportReducerState {
+    showExportModal: boolean;
+    exportFileName: string;
+    exportProcessStage: ExportProcessStage;
+    isCanceled: boolean;
+    currentNumOfRowsGenerated: number;
+    sparkLineData: number[];
+    formattedExportData: string;
+    timeElapsed: number;
 }
 
 // locales

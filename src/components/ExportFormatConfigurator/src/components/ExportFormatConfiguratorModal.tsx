@@ -48,7 +48,7 @@ export const ExportFormatConfiguratorModal: React.FC<ExportFormatConfiguratorMod
             style={{width: '95vw', maxWidth: '500px', height: '500px'}}
             footer={
                 <Button onClick={onClose} style={{width: '100px'}}>
-                    <FormattedMessage id='export.configurator.modal.closeButton.text'/>
+                    <FormattedMessage id='export.configurator.modal.confirmButton.text'/>
                 </Button>
             }
             onCancel={onClose}>

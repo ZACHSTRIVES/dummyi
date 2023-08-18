@@ -1,16 +1,47 @@
 import {combineReducers} from "redux";
-import {Store, Action} from "@/types/system";
+import storage from "@/store/storage";
 
 // reducers
+import {persistReducer} from "redux-persist";
 import app from "@/reducers/app/appReducer";
 import workspace from "@/reducers/workspace/workspaceReducer";
 import preview from "@/reducers/preview/previewReducer";
+import exportReducer from "@/reducers/export/exportReducer";
+
+// persist
+const appPersistConfig = {
+    key: 'app',
+    storage: storage
+}
+
+const workspacePersistConfig = {
+    key: 'workspace',
+    storage: storage
+}
+
+const previewPersistConfig = {
+    key: 'preview',
+    storage: storage
+}
+
+const exportPersistConfig = {
+    key: 'export',
+    storage: storage,
+    blacklist: ['exportProcessStage',
+        'exportFileName',
+        'exportProcessStage',
+        'currentNumOfRowsGenerated',
+        'sparkLineData',
+        'timeElapsed'
+    ]
+}
 
 const rootReducer = combineReducers({
-    app,
-    workspace,
-    preview
+    app: persistReducer(appPersistConfig, app),
+    workspace: persistReducer(workspacePersistConfig, workspace),
+    preview: persistReducer(previewPersistConfig, preview),
+    export: persistReducer(exportPersistConfig, exportReducer),
 });
 
 
-export default (state: Store, action: Action) => rootReducer(state, action);
+export default rootReducer;

@@ -9,9 +9,23 @@ export const en = {
 
     // export format modal
     "export.configurator.modal.title": "Export Format",
-    "export.configurator.modal.closeButton.text": "Close",
+    "export.configurator.modal.confirmButton.text": "Confirm",
     "export.configurator.config.label": "Configurations",
     "export.configurator.config.empty": "Configuration of this export format is currently not available.",
+
+    // export modal
+    "export.modal.title": "Generate",
+    "export.modal.exportNumOfRows.label": "Rows to generate",
+    "export.modal.exportNumOfRows.empty": "Rows to generate cannot be empty",
+    "export.modal.exportFormat.label": "Export format",
+    "export.modal.estimatedSize.label": "Estimated size",
+    "export.modal.estimatedTime.label": "Estimated time",
+    "export.modal.exportFileName.label": "File name",
+    "export.modal.exportFileName.empty": "File name cannot be empty",
+    "export.modal.cancel.button.text": "Cancel",
+    "export.modal.generate.button.text": "Generate",
+    "export.modal.generating.rows.text": "Rows",
+    "export.modal.generating.time.text": "Time",
 
     // csv
     "export.configurator.csv.delimiter": "Delimiter",
@@ -139,7 +153,7 @@ export const en = {
     "dataFields.list.createFirstField.text": "Let's start by creating the first field!",
     "dataFields.input.fieldName.label": "Field name",
     "dataFields.input.fieldName.errorMessage.empty": "Field name cannot be empty",
-    "dataFields.input.type.label": "Type",
+    "dataFields.input.type.label": "Data type",
     "dataFields.input.type.placeholder": "Select type",
     "dataFields.input.emptyRate.label": "Empty %",
     "dataFields.input.emptyRate.tooltip": "Probability of generating empty value",

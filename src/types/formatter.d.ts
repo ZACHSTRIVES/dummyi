@@ -7,6 +7,7 @@ export interface Formatter {
     type: ExportType;
     category: ExportTypeCategory;
     format: (request: FormatRequest) => string;
+    fileExtension: string;
     configComponent?: React.FunctionComponent<FormatterConfigComponentInterface>;
     defaultConfig?: any;
 }

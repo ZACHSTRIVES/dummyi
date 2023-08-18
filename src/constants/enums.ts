@@ -1,5 +1,5 @@
 
-// format data
+// export format
 export enum ExportFormatCategory {
     FILE_TYPES = "fileTypes",
     PROGRAMMING_LANGUAGES = "programmingLanguages",
@@ -18,6 +18,12 @@ export enum ExportValueType {
     BOOLEAN = "boolean",
     DATE_TIME = "dateTime",
     NULL = "null"
+}
+
+export enum ExportProcessStage{
+    PREVIEW = "preview",
+    GENERATING = "generating",
+    COMPLETED = "completed",
 }
 
 // data types
