@@ -1,3 +1,4 @@
+import {EmojiGenerator} from "@/core/generators/Emoji";
 import {PersonTitleGenerator} from "@/core/generators/PersonTitle";
 import {MiddleNameGenerator} from "@/core/generators/MiddleName";
 import {LastNameGenerator} from "@/core/generators/LastName";
@@ -11,6 +12,7 @@ import {CompanyNameGenerator} from "@/core/generators/CompanyName";
 import {DataType} from "@/constants/enums";
 
 export const generators = {
+  [DataType.EMOJI]: EmojiGenerator,
   [DataType.PERSONTITLE]: PersonTitleGenerator,
   [DataType.MIDDLENAME]: MiddleNameGenerator,
   [DataType.LASTNAME]: LastNameGenerator,

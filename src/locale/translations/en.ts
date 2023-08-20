@@ -44,12 +44,22 @@ export const en = {
 
     // -------------------------------------------------------------------------------------------------------------
     // data types
+    
+    // emoji
+    "dataType.emoji": "Emoji",
+    "dataType.emoji.type": "Type",
+    "dataType.emoji.type.all": "All",
+    "dataType.emoji.type.smiley": "Smiley",
+    "dataType.emoji.type.body" : "Body",
+    "dataType.emoji.type.person" : "Person",
+    "dataType.emoji.type.nature" : "Nature",
+    "dataType.emoji.type.food" : "Food",
+    "dataType.emoji.type.travel" : "Travel",
+    "dataType.emoji.type.activity" : "Activity",
+    "dataType.emoji.type.object" : "Object",
+    "dataType.emoji.type.symbol" : "Symbol",
+    "dataType.emoji.type.flag" : "Flag",
 
-    
-    
-    
-    
-    
     // persontitle
     "dataType.persontitle": "Person Title",
 

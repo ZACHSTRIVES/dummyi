@@ -15,11 +15,13 @@ export interface OptionsSelectProps {
     errorMessage?: string;
     value: any;
     onChange: (value: any) => void;
+    multiple?: boolean;
+    maxTagCount?: number;
     style?: React.CSSProperties;
 }
 
 export const OptionsSelect: React.FunctionComponent<OptionsSelectProps> = ({...props}) => {
-    const {label, selectOptions, infoTooltip, errorMessage, value, style, onChange} = props;
+    const {label, selectOptions, infoTooltip, errorMessage, value, style, multiple, maxTagCount, onChange} = props;
     return (
         <div className="generatorConfig_column">
             <div className='generatorConfig_column__label'>
@@ -29,9 +31,12 @@ export const OptionsSelect: React.FunctionComponent<OptionsSelectProps> = ({...p
                 </InfoTooltip>}
             </div>
             <ErrorTooltip message={errorMessage}>
-                <Select value={value}
-                        style={style}
-                        onChange={(value) => onChange(value)}>
+                <Select
+                    multiple={multiple}
+                    maxTagCount={maxTagCount}
+                    value={value}
+                    style={style}
+                    onChange={(value) => onChange(value)}>
                     {selectOptions.map((option, index) => {
                         return (
                             <Select.Option key={index} value={option.value}>
