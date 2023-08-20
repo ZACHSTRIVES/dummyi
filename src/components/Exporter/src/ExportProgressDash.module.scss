@@ -1,0 +1,27 @@
+.exportProgressDash {
+  display: flex;
+  align-items: center;
+}
+
+.exportProgress {
+  width: 120px;
+  margin: 9px;
+
+  .exportProgress__percent {
+    font-size: 18px;
+    font-weight: 800;
+  }
+}
+
+.exportDescription {
+  margin: 9px;
+
+  .exportDescription__sparkline {
+    margin-top: 15px;
+  }
+}
+
+.divider {
+  height: 120px;
+  margin: 6px;
+}

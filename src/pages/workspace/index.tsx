@@ -11,8 +11,9 @@ import { useIntl } from "@/locale";
 import { FilesPanel } from "@/components/FilesPanel/src";
 import { selectPanelsOrientation, selectPreviewData } from "@/reducers/workspace/workspaceSelectors";
 import { selectColorMode } from "@/reducers/app/appSelectors";
-
+import {ExportModal} from "@/components/Exporter";
 const MOBILE_VIEW_MAX_WIDTH = 768;
+
 
 export default function Workspace() {
     const intl = useIntl();
@@ -96,6 +97,7 @@ export default function Workspace() {
                     </ReflexContainer>
                 </ReflexElement>
             </ReflexContainer>
+            <ExportModal/>
         </>
     );
 }

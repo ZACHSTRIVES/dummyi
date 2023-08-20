@@ -5,7 +5,7 @@ import {
     SET_RAW_VIEW_LINE_WRAP,
     SET_RAW_VIEW_SHOW_LINE_NUMBERS
 } from "@/constants/actions";
-import {PanelsOrientation, PreviewType} from "@/constants/enums";
+import {PreviewType} from "@/constants/enums";
 
 
 // set rawPreview show line numbers

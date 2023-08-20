@@ -1,5 +1,5 @@
 
-// format data
+// export format
 export enum ExportFormatCategory {
     FILE_TYPES = "fileTypes",
     PROGRAMMING_LANGUAGES = "programmingLanguages",
@@ -20,6 +20,12 @@ export enum ExportValueType {
     NULL = "null"
 }
 
+export enum ExportProcessStage{
+    PREVIEW = "preview",
+    GENERATING = "generating",
+    COMPLETED = "completed",
+}
+
 // data types
 export enum DataTypeCategory {
     ALL= "all",
@@ -30,10 +36,13 @@ export enum DataTypeCategory {
 }
 
 export enum DataType {
+    PERSONTITLE = "persontitle",
+    MIDDLENAME = "middlename",
+    LASTNAME = "lastname",
+    FIRSTNAME = "firstname",
+    SEX = "sex",
     NUMBER = "number",
     EMAIL = "email",
-    // DATE_TIME = "dateTime",
-    // ACCOUNT_NUMBER = "accountNumber",
     BOOLEAN = "boolean",
     FULL_NAME = "fullName",
     COMPANY_NAME = "companyName",

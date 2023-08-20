@@ -4,7 +4,7 @@ import styles from './NavBar.module.css';
 import {ColorModeSwitchButton} from "@/components/Layout/src/components/ColorModeSwitchButton";
 import {ColorMode} from "@/constants/enums";
 import {useSelector} from "react-redux";
-import {Store} from "@/types/system";
+import {RootState} from "@/types/system";
 import {LocaleSwitchButton} from "@/components/Layout/src/components/LocaleSwitchButton";
 import {navBarRoutes} from "@/routes";
 import {useIntl} from "@/locale";
@@ -19,7 +19,7 @@ export type NavBarProps = {}
 
 export const NavBar: FunctionComponent<NavBarProps> = () => {
 
-    const colorMode: ColorMode = useSelector((state: Store) => state.app.colorMode);
+    const colorMode: ColorMode = useSelector((state: RootState) => state.app.colorMode);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [defaultSelectedKeys, setSelectedKeys] = useState([]);
     const intl = useIntl();

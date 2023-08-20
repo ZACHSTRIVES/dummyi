@@ -8,9 +8,23 @@ export const zhCN = {
 
     // export format modal
     "export.configurator.modal.title": "导出格式",
-    "export.configurator.modal.closeButton.text": "关闭",
+    "export.configurator.modal.confirmButton.text": "确认",
     "export.configurator.config.label": "配置",
     "export.configurator.config.empty": "该输出格式的配置暂时还不可用",
+
+    // export modal
+    "export.modal.title": "生成数据",
+    "export.modal.exportNumOfRows.label": "生成数据行数",
+    "export.modal.exportNumOfRows.empty": "生成数据行数不能为空",
+    "export.modal.exportFormat.label": "生成格式",
+    "export.modal.estimatedSize.label": "预计大小",
+    "export.modal.estimatedTime.label": "预计时间",
+    "export.modal.exportFileName.label": "文件名",
+    "export.modal.exportFileName.empty": "文件名不能为空",
+    "export.modal.cancel.button.text": "取消",
+    "export.modal.generate.button.text": "生成",
+    "export.modal.generating.rows.text": "行数",
+    "export.modal.generating.time.text": "时间",
 
     // csv
     "export.configurator.csv.delimiter": "分隔符",
@@ -29,6 +43,26 @@ export const zhCN = {
 
     // -------------------------------------------------------------------------------------------------------------
     // data types
+
+    
+    
+    
+    
+    
+    // persontitle
+    "dataType.persontitle": "人物称谓",
+
+    // middlename
+    "dataType.middlename": "中间名",
+
+    // lastname
+    "dataType.lastname": "姓氏",
+
+    // firstname
+    "dataType.firstname": "名字",
+
+    // sex
+    "dataType.sex": "性别",
 
     // number
     "dataType.number": "数字",
@@ -118,7 +152,7 @@ export const zhCN = {
     "dataFields.list.createFirstField.text": "从创建第一个字段开始吧！",
     "dataFields.input.fieldName.label": "字段名",
     "dataFields.input.fieldName.errorMessage.empty": "字段名不能为空",
-    "dataFields.input.type.label": "类型",
+    "dataFields.input.type.label": "数据类型",
     "dataFields.input.type.placeholder": "选择类型...",
     "dataFields.input.emptyRate.label": "空值概率",
     "dataFields.input.emptyRate.tooltip": "生成空值(null)的概率",

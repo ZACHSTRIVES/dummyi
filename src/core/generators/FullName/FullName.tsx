@@ -5,6 +5,7 @@ import {FormattedMessage} from "@/locale";
 import {ExportValueType, Sex} from "@/constants/enums";
 import {faker} from "@faker-js/faker";
 import {isNullOrWhiteSpace} from "@/utils/stringUtils";
+import {SexSelectOptions} from "@/core/common/selectOptions/SexSelectOptions";
 
 
 // -------------------------------------------------------------------------------------------------------------
@@ -63,7 +64,7 @@ export const FullNameGeneratorOptionsComponent: React.FunctionComponent<Generato
         <>
             <OptionsSelect
                 label={<FormattedMessage id={"dataType.fullName.sex.label"}/>}
-                selectOptions={sexSelectOptions}
+                selectOptions={SexSelectOptions}
                 value={fullNameOptions.sex}
                 style={{width: '150px'}}
                 onChange={(v) => handleOptionsChange("sex", v)}/>
@@ -84,18 +85,3 @@ export const FullNameGeneratorOptionsComponent: React.FunctionComponent<Generato
         </>
     )
 };
-
-export const sexSelectOptions: SelectOption[] = [
-    {
-        label: <FormattedMessage id={"dataType.fullName.sex.selectOptions.all"}/>,
-        value: Sex.ALL
-    },
-    {
-        label: <FormattedMessage id={"dataType.fullName.sex.selectOptions.male"}/>,
-        value: Sex.MALE,
-    },
-    {
-        label: <FormattedMessage id={"dataType.fullName.sex.selectOptions.female"}/>,
-        value: Sex.FEMALE
-    }
-]
