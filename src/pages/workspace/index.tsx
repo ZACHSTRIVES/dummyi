@@ -68,8 +68,10 @@ export default function Workspace() {
 
     useEffect(() => {
         function handleResize() {
-            setIsMobileView(window.innerWidth < MOBILE_VIEW_MAX_WIDTH);
-            const newOrientation = getOrientation();
+            const currentIsMobileView = window.innerWidth < MOBILE_VIEW_MAX_WIDTH;
+            setIsMobileView(currentIsMobileView);
+
+            const newOrientation = currentIsMobileView ? PanelsOrientation.HORIZONTAL : PanelsOrientation.VERTICAL;
             setOrientation(newOrientation);
         }
 
@@ -81,10 +83,6 @@ export default function Workspace() {
 
     function setOrientation(orientation: PanelsOrientation) {
         dispatch(doSetPanelsOrientation(orientation));
-    }
-
-    function getOrientation(): PanelsOrientation {
-        return isMobileView ? PanelsOrientation.HORIZONTAL : PanelsOrientation.VERTICAL;
     }
 
     return (
@@ -111,12 +109,11 @@ export default function Workspace() {
                     />
                 )}
 
-
                 <ReflexElement>
                     <ReflexContainer orientation={panelsDirection}>
                         <ReflexElement minSize={panelsDirection === PanelsOrientation.HORIZONTAL ? 200 : 400}
                             className={styles.leftReflexElement}>
-                            <InputPanel isMobile={isMobileView}/>
+                            <InputPanel isMobile={isMobileView} />
                         </ReflexElement>
 
                         <ReflexSplitter
