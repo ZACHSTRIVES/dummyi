@@ -1,13 +1,12 @@
 import React from 'react';
 import {Descriptions, Divider, Progress, Typography} from "@douyinfe/semi-ui";
-import styles from './ExportProgressDash.module.scss';
+import styles from './ExportDash.module.scss';
 import {Sparklines, SparklinesLine} from 'react-sparklines';
 import {useSelector} from "react-redux";
 import {selectColorMode} from "@/reducers/app/appSelectors";
 import {ColorMode} from "@/constants/enums";
 import {FormattedMessage} from "@/locale";
 import {parseTCH, parseTimeCount} from "@/utils/stringUtils";
-import {selectCurrentNumOfRowsGenerated} from "@/reducers/export/exportSelectors";
 
 export interface ExportProgressDashProps {
     exportRows: number;
@@ -16,20 +15,19 @@ export interface ExportProgressDashProps {
     timeElapsed: number;
 }
 
-export const ExportProgressDash: React.FunctionComponent<ExportProgressDashProps> = ({...props}) => {
+export const ExportDash: React.FunctionComponent<ExportProgressDashProps> = ({...props}) => {
     const {exportRows, currentExportedRows, sparkLineData, timeElapsed} = props;
     const {Numeral} = Typography;
 
+    // percent
+    let percent = currentExportedRows / 99999999999;
+
     // selectors
     const colorMode = useSelector(selectColorMode);
-    const r = useSelector(selectCurrentNumOfRowsGenerated);
-    const percent = r / exportRows * 100;
-
-
 
     return (
         <div className={styles.exportProgressDash}>
-            <Progress percent={percent} type="circle"
+            <Progress percent={percent*100} type="circle"
                       width={120}
                       className={styles.exportProgress}
                       strokeWidth={8}
@@ -37,9 +35,8 @@ export const ExportProgressDash: React.FunctionComponent<ExportProgressDashProps
                       stroke={'var(--semi-color-secondary-active)'}
                       aria-label="progress circle"
                       format={per =>
-                          <div className={styles.exportProgress__percent}>
-                              {per} %
-                          </div>
+                          <Numeral className={styles.exportProgress__percent} rule="percentages"
+                                   precision={2}>{percent}</Numeral>
                       }
             />
 
@@ -61,7 +58,7 @@ export const ExportProgressDash: React.FunctionComponent<ExportProgressDashProps
                 </Descriptions>
 
                 <div className={styles.exportDescription__sparkline}>
-                    <Sparklines height={60} data={sparkLineData}>
+                    <Sparklines height={60} data={sparkLineData} limit={100}>
                         <SparklinesLine color={colorMode === ColorMode.LIGHT ? 'black' : 'white'}/>
                     </Sparklines>
                 </div>

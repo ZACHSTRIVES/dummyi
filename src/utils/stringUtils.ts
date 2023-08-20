@@ -17,7 +17,7 @@ export const parseTimeCount = (value) => {
     if (value < 1000) {
         return '< 1s';
     }
-    const seconds = Math.floor(value / 1000);
+    const seconds = Math.ceil(value / 1000);
     const minutes = Math.floor(seconds / 60);
     const secondsLeft = seconds - minutes * 60;
     return `${String(minutes).padStart(2, '0')}:${String(secondsLeft).padStart(2, '0')}`;

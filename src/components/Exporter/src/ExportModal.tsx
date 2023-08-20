@@ -6,7 +6,11 @@ import {
     selectExportFileName, selectExportProcessStage, selectShowExportModal,
     selectSparkLineData, selectTimeElapsed
 } from "@/reducers/export/exportSelectors";
-import {doOnBatchComplete, doSetExportProcessStage, doSetShowExportModal} from "@/reducers/export/exportActions";
+import {
+    doOnBatchComplete,
+    doSetExportProcessStage,
+    doSetShowExportModal,
+} from "@/reducers/export/exportActions";
 import {FormattedMessage} from "@/locale";
 import {
     selectDataFields,
@@ -16,7 +20,7 @@ import {
 } from "@/reducers/workspace/workspaceSelectors";
 import {ExportPreview} from "@/components/Exporter/src/ExportPreview";
 import {ExportProcessStage} from "@/constants/enums";
-import {ExportProgressDash} from "@/components/Exporter/src/ExportProgressDash";
+import {ExportDash} from "@/components/Exporter/src/ExportDash";
 import {batchGenerateData} from "@/utils/generatorUtils";
 import {GenerateDataBatchCompletedCallbackResponse} from "@/types/generator";
 
@@ -24,8 +28,7 @@ export const ExportModal: React.FunctionComponent = () => {
     const dispatch = useDispatch();
 
     // state
-    const [totalNumOfRowsGenerated, setTotalNumOfRowsGenerated] = React.useState(0);
-    const [timeElapsed, setTimeElapsed] = React.useState(0);
+    const [loading, setLoading] = React.useState(false);
 
     // selectors
     const visible = useSelector(selectShowExportModal);
@@ -38,6 +41,8 @@ export const ExportModal: React.FunctionComponent = () => {
     const sparkLineData = useSelector(selectSparkLineData);
     const sortableIdList = useSelector(selectDataFieldsSortableIdsList);
     const dataFields = useSelector(selectDataFields);
+    const totalNumOfRowsGenerated = useSelector(selectCurrentNumOfRowsGenerated);
+    const timeElapsed = useSelector(selectTimeElapsed);
 
     // render
     const renderModalContent = () => {
@@ -47,11 +52,11 @@ export const ExportModal: React.FunctionComponent = () => {
                                       exportFileName={exportFileName}
                                       estimatedSize={estimatedSize}
                                       format={format}/>
-            case ExportProcessStage.GENERATING:
-                return <ExportProgressDash currentExportedRows={totalNumOfRowsGenerated}
-                                           exportRows={exportRows}
-                                           sparkLineData={sparkLineData}
-                                           timeElapsed={timeElapsed}/>
+            case ExportProcessStage.COMPLETED:
+                return <ExportDash currentExportedRows={totalNumOfRowsGenerated}
+                                   exportRows={exportRows}
+                                   sparkLineData={sparkLineData}
+                                   timeElapsed={timeElapsed}/>
         }
     }
 
@@ -61,15 +66,12 @@ export const ExportModal: React.FunctionComponent = () => {
     }
 
     // generate
-    const onGenerate = () => {
-        dispatch(doSetExportProcessStage(ExportProcessStage.GENERATING));
-
-            batchGenerateData(dataFields, sortableIdList, 9999999999999999999, onBatchCompleteCallback);
+    const onGenerate = async () => {
+        dispatch(doSetExportProcessStage(ExportProcessStage.COMPLETED));
+        await batchGenerateData(dataFields, sortableIdList, 99999999999, onBatchCompleteCallback);
     }
 
-    const onBatchCompleteCallback = async (data:GenerateDataBatchCompletedCallbackResponse) => {
-        // setTimeElapsed(data.totalTimeElapsed);
-        // setTotalNumOfRowsGenerated(data.totalNumOfRowsGenerated);
+    const onBatchCompleteCallback = async (data: GenerateDataBatchCompletedCallbackResponse) => {
         dispatch(doOnBatchComplete(data))
     }
 
@@ -81,7 +83,7 @@ export const ExportModal: React.FunctionComponent = () => {
                     <Button onClick={onCloseModal}>
                         <FormattedMessage id={'export.modal.cancel.button.text'}/>
                     </Button>
-                    <Button theme={'solid'} onClick={onGenerate}>
+                    <Button theme={'solid'} onClick={onGenerate} loading={loading}>
                         <FormattedMessage id={'export.modal.generate.button.text'}/>
                     </Button>
                 </>
@@ -101,6 +103,7 @@ export const ExportModal: React.FunctionComponent = () => {
         <>
             <Modal
                 style={{width: '90%', maxWidth: '420px'}}
+                className={'no-select-area'}
                 visible={visible}
                 title={<FormattedMessage id={'export.modal.title'}/>}
                 onCancel={onCloseModal}
