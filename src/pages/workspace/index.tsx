@@ -31,41 +31,6 @@ export default function Workspace() {
         }
     })
 
-    const files = [
-        {
-            label: 'Asia',
-            emoji: {
-                background: "#123456",
-                code: "U+1F600"
-            },
-
-            children: [
-                {
-                    label: 'China',
-                    emoji: {
-                        background: "#123456",
-                        code: "U+1F1E8 U+1F1F3",
-                    },
-                    children: [
-                        {
-                            label: 'Beijing',
-                        },
-                        {
-                            label: 'Guangzhou',
-                        },
-                    ],
-                },
-                {
-                    label: 'Japan',
-                    emoji: {
-                        background: "#123456",
-                        code: "U+1F1EF U+1F1F5",
-                    },
-                },
-            ],
-        },
-    ];
-
     useEffect(() => {
         function handleResize() {
             const currentIsMobileView = window.innerWidth < MOBILE_VIEW_MAX_WIDTH;
@@ -94,7 +59,7 @@ export default function Workspace() {
             <ReflexContainer orientation={PanelsOrientation.VERTICAL}>
                 {!isMobileView && (
                     <ReflexElement size={200} minSize={200} maxSize={300}>
-                        <FilesPanel files={files} />
+                        <FilesPanel />
                     </ReflexElement>
                 )}
 

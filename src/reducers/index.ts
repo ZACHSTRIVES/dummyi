@@ -5,11 +5,13 @@ import {Store, Action} from "@/types/system";
 import app from "@/reducers/app/appReducer";
 import workspace from "@/reducers/workspace/workspaceReducer";
 import preview from "@/reducers/preview/previewReducer";
+import collection from "@/reducers/collection/collectionReducer";
 
 const rootReducer = combineReducers({
     app,
     workspace,
-    preview
+    preview,
+    collection
 });
 
 

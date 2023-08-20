@@ -67,6 +67,11 @@ export enum PreviewType{
     RAW = "raw"
 }
 
+export enum CollectionNodeType{
+    COLLECTION = "collection",
+    SCHEMA = "schema"
+}
+
 export enum EndOfLineChars {
     LF = '\n',
     CRLF = '\r\n'
