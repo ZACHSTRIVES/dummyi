@@ -1,18 +1,15 @@
-import {Tree, TreeSelect} from '@douyinfe/semi-ui';
-import React, {ReactNode, useState} from 'react';
-import styles from "./FilesPanel.module.css";
-import {Emoji, EmojiStyle} from 'emoji-picker-react';
-import {useSelector} from "react-redux";
+import {Tree} from '@douyinfe/semi-ui';
+import React, {} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import {selectCollections} from "@/reducers/collection/collectionSelectors";
-import {SchemasCollection} from "@/types/system";
-import {convertToTreeData} from "@/utils/collectionUtils";
-
-
+import { doDropTreeNode } from '@/reducers/collection/collectionActions';
+import { cloneDeep } from 'lodash';
 
 export const FilesPanel: React.FunctionComponent = () => {
 
     // state
     const collections = useSelector(selectCollections);
+    const dispatch = useDispatch();
 
     const onDrop = (info) => {
         const {dropToGap, node, dragNode} = info;
@@ -20,7 +17,7 @@ export const FilesPanel: React.FunctionComponent = () => {
         const dragKey = dragNode.key;
         const dropPos = node.pos.split('-');
         const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1]);
-        const data = [...collections];
+        const data = cloneDeep(collections);
         const loop = (data, key, callback) => {
             data.forEach((item, index, arr) => {
                 if (item.key === key) return callback(item, index, arr);
@@ -63,8 +60,7 @@ export const FilesPanel: React.FunctionComponent = () => {
             }
         }
 
-        console.log(data);
-        // setTreeData(data);
+        dispatch(doDropTreeNode(data));
     }
 
     return (
