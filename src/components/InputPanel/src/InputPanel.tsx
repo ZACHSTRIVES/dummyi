@@ -52,8 +52,6 @@ export const InputPanel: React.FunctionComponent<InputPanelProps> = ({isMobile, 
     ];
 
     const initTreeData = convertToTreeData(files, '');
-
-    console.log("init tree data: ", initTreeData);
     const [treeData, setTreeData] = useState(initTreeData);
 
     useEffect(() => {
