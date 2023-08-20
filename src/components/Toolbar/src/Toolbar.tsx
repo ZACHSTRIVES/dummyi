@@ -92,7 +92,6 @@ export const Toolbar: React.FC<ToolbarProps> = () => {
                 </Col>
 
                 <Col>
-                    <NumbOfRowInput size={componentsSize}/>
                     <GenerateButton size={componentsSize}/>
                 </Col>
             </Row>

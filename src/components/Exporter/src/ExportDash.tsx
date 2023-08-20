@@ -20,7 +20,7 @@ export const ExportDash: React.FunctionComponent<ExportProgressDashProps> = ({..
     const {Numeral} = Typography;
 
     // percent
-    let percent = currentExportedRows / 99999999999;
+    let percent = currentExportedRows / exportRows;
 
     // selectors
     const colorMode = useSelector(selectColorMode);
@@ -58,7 +58,7 @@ export const ExportDash: React.FunctionComponent<ExportProgressDashProps> = ({..
                 </Descriptions>
 
                 <div className={styles.exportDescription__sparkline}>
-                    <Sparklines height={60} data={sparkLineData} limit={100}>
+                    <Sparklines height={60} data={sparkLineData} limit={50}>
                         <SparklinesLine color={colorMode === ColorMode.LIGHT ? 'black' : 'white'}/>
                     </Sparklines>
                 </div>

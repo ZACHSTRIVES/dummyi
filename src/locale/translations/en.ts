@@ -130,7 +130,7 @@ export const en = {
 
     // workspace
     "toolbar.numOfRowInput.suffix": "Rows",
-    "toolbar.generateButton.text": "Generate",
+    "toolbar.generateButton.text": "Batch Generate",
     "toolbar.panelsOrientationButton.tooltip.switchToColumn": "Switch panels to column",
     "toolbar.panelsOrientationButton.tooltip.switchToRow": "Switch panels to row",
     "toolbar.emptyPageButton.tooltip": "Empty workplace",

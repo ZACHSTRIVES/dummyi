@@ -11,14 +11,9 @@ export const parseTCH = (value) => {
     ).join(' ');
 }
 
-// parse milliseconds to a time count string
-export const parseTimeCount = (value) => {
-    value = parseFloat(value);
-    if (value < 1000) {
-        return '< 1s';
-    }
-    const seconds = Math.ceil(value / 1000);
+// parse time count string
+export const parseTimeCount = (seconds) => {
     const minutes = Math.floor(seconds / 60);
-    const secondsLeft = seconds - minutes * 60;
-    return `${String(minutes).padStart(2, '0')}:${String(secondsLeft).padStart(2, '0')}`;
+    const secondsRemaining = seconds % 60;
+    return `${String(minutes).padStart(2, '0')}:${String(secondsRemaining).padStart(2, '0')}`;
 }

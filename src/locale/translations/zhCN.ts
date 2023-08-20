@@ -129,7 +129,7 @@ export const zhCN = {
 
     // workspace
     "toolbar.numOfRowInput.suffix": "行",
-    "toolbar.generateButton.text": "生成",
+    "toolbar.generateButton.text": "批量生成",
     "toolbar.panelsOrientationButton.tooltip.switchToColumn": "切换面板为横向",
     "toolbar.panelsOrientationButton.tooltip.switchToRow": "切换面板为竖向",
     "toolbar.emptyPageButton.tooltip": "清空工作台",
