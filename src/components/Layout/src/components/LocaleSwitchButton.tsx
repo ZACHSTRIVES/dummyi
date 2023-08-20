@@ -6,7 +6,8 @@ import {useRouter} from 'next/router';
 import {Locales} from '@/constants/enums';
 import {useIntl} from "@/locale";
 import { Emoji, EmojiStyle } from 'emoji-picker-react';
-import { convertToUnifiedCode } from '@/components/FilesPanel/src/FilesPanel';
+import {convertToUnifiedCode} from "@/utils/collectionUtils";
+
 
 const localeMap = {
     [Locales.EN]: {

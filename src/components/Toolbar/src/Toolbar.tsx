@@ -74,7 +74,7 @@ export const Toolbar: React.FC<ToolbarProps> = () => {
                                         <EmptyPageButton onClick={() => {
                                             setIsEmptyPageConfirmationModalOpen(true)
                                         }}/>
-                                        {window.innerWidth < 700 ? null : <PanelsOrientationButton/>}
+                                        {window.innerWidth < 750 ? null : <PanelsOrientationButton/>}
                                     </>
                                 }>
                                 <Button theme={"borderless"} type='tertiary'
