@@ -36,6 +36,7 @@ export enum DataTypeCategory {
 }
 
 export enum DataType {
+    PHONE = "phone",
     EMOJI = "emoji",
     PERSONTITLE = "persontitle",
     MIDDLENAME = "middlename",

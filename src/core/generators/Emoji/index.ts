@@ -8,6 +8,6 @@ export const EmojiGenerator: Generator = {
     generate: generate,
     optionsComponent: EmojiGeneratorOptionsComponent,
     defaultOptions: EmojiGeneratorDefaultOptions,
-    exampleLines: ["NOT IMPLEMENTED", "NOT IMPLEMENTED", "NOT IMPLEMENTED"]
+    exampleLines: ["🤜", "📖", "👰"]
 }
     

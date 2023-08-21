@@ -44,6 +44,12 @@ export const zhCN = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
     
+    
+    // phone
+    "dataType.phone": "电话号码",
+    "dataType.phone.formats.label": "格式",
+    "dataType.phone.formats.tooltips": "电话号码格式，请使用“#”代表数字，回车键确认输入",
+
     // emoji
     "dataType.emoji": "表情符号",
     "dataType.emoji.type": "类型",
