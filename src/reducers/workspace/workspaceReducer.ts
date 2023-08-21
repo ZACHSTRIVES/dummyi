@@ -1,15 +1,24 @@
 import {Action, WorkspaceReducerState} from "@/types/system";
 import {
-    ADD_NEW_DATA_FIELD, CHANGE_DATA_TYPE,
+    ADD_NEW_DATA_FIELD,
+    CHANGE_DATA_TYPE,
     CLOSE_DATA_TYPE_OPTIONS_MODAL,
     CLOSE_DATA_TYPE_SELECT_MODAL,
-    DELETE_DATA_FIELD, FORMAT_PREVIEW_DATA, GENERATE_PREVIEW_DATA, GENERATE_SPECIFIC_FIELD_PREVIEW_DATA,
+    DELETE_DATA_FIELD,
+    EMPTY_WORKSPACE,
+    FORMAT_PREVIEW_DATA,
+    GENERATE_PREVIEW_DATA,
+    GENERATE_SPECIFIC_FIELD_PREVIEW_DATA,
     OPEN_DATA_TYPE_OPTIONS_MODAL,
     OPEN_DATA_TYPE_SELECT_MODAL,
-    SET_DATA_FIELDS, SET_EXPORT_FORMAT, SET_FORMATTER_CONFIG, SET_NUMBER_OF_EXPORT_ROWS,
+    SET_DATA_FIELDS,
+    SET_EXPORT_FORMAT,
+    SET_FORMATTER_CONFIG,
+    SET_NUMBER_OF_EXPORT_ROWS,
     SET_PANELS_DIRECTION,
     SORT_DATA_FIELDS,
-    UPDATE_DATA_FIELD, UPDATE_DATA_FIELD_NAME
+    UPDATE_DATA_FIELD,
+    UPDATE_DATA_FIELD_NAME
 } from "@/constants/actions";
 import {DEFAULT_NUMBER_EXPORT_ROWS, DEFAULT_PANELS_ORIENTATION} from "@/constants/config";
 import {mockFields} from "@/reducers/mock";
@@ -179,7 +188,14 @@ const workspaceReducer = (state: WorkspaceReducerState = initStates, action: Act
                 ...state,
                 previewFormattedData: formatData(request)
             }
-
+        case EMPTY_WORKSPACE:
+            return {
+                ...state,
+                dataFields: {},
+                dataFieldsSortableIdsList: [],
+                previewData: [],
+                previewFormattedData: '',
+            }
         default:
             return state;
     }

@@ -1,12 +1,22 @@
 import {
-    ADD_NEW_DATA_FIELD, CHANGE_DATA_TYPE,
+    ADD_NEW_DATA_FIELD,
+    CHANGE_DATA_TYPE,
     CLOSE_DATA_TYPE_OPTIONS_MODAL,
     CLOSE_DATA_TYPE_SELECT_MODAL,
-    DELETE_DATA_FIELD, FORMAT_PREVIEW_DATA, GENERATE_PREVIEW_DATA, GENERATE_SPECIFIC_FIELD_PREVIEW_DATA,
+    DELETE_DATA_FIELD,
+    EMPTY_WORKSPACE,
+    FORMAT_PREVIEW_DATA,
+    GENERATE_PREVIEW_DATA,
+    GENERATE_SPECIFIC_FIELD_PREVIEW_DATA,
     OPEN_DATA_TYPE_OPTIONS_MODAL,
-    OPEN_DATA_TYPE_SELECT_MODAL, SET_EXPORT_FORMAT, SET_FORMATTER_CONFIG, SET_NUMBER_OF_EXPORT_ROWS,
-    SET_PANELS_DIRECTION, SORT_DATA_FIELDS,
-    UPDATE_DATA_FIELD, UPDATE_DATA_FIELD_NAME
+    OPEN_DATA_TYPE_SELECT_MODAL,
+    SET_EXPORT_FORMAT,
+    SET_FORMATTER_CONFIG,
+    SET_NUMBER_OF_EXPORT_ROWS,
+    SET_PANELS_DIRECTION,
+    SORT_DATA_FIELDS,
+    UPDATE_DATA_FIELD,
+    UPDATE_DATA_FIELD_NAME
 } from "@/constants/actions";
 import {DataType, ExportFormat, PanelsOrientation} from "@/constants/enums";
 import {DataField} from "@/types/generator";
@@ -126,11 +136,18 @@ export const doUpdateFormatterConfig = (config: any): any =>
     async dispatch => {
         dispatch({type: SET_FORMATTER_CONFIG, payload: config});
         dispatch(doFormatPreviewData());
-    }
+    };
 
 // format data
 export const doFormatPreviewData = (): any =>
     async dispatch => {
         dispatch({type: FORMAT_PREVIEW_DATA});
-    }
+    };
+
+// empty workspace
+export const doEmptyWorkspace = (): any =>
+    async dispatch => {
+        dispatch({type: EMPTY_WORKSPACE});
+    };
+
 
