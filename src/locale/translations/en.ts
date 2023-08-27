@@ -28,6 +28,9 @@ export const en = {
     "export.modal.terminate.button.text": "Terminate",
     "export.modal.generating.rows.text": "Rows",
     "export.modal.generating.time.text": "Time",
+    "export.modal.generating.done.text": "Done",
+    "export.modal.toast.details.button.text": "Details",
+    "export.modal.toast.download.button.text": "Download",
 
     // csv
     "export.configurator.csv.delimiter": "Delimiter",

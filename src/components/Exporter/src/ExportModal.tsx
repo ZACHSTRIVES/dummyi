@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Modal, Notification, Progress, Spin, Toast, Typography} from "@douyinfe/semi-ui";
+import {Button, Modal, Progress, Toast, Typography} from "@douyinfe/semi-ui";
 import {useDispatch, useSelector} from "react-redux";
 import {
     selectCurrentNumOfRowsGenerated,
@@ -8,15 +8,12 @@ import {
     selectExportProcessStage,
     selectShowExportModal,
     selectSparkLineData,
-    selectExportNotificationId
 } from "@/reducers/export/exportSelectors";
 import {
     doOnBatchComplete,
-    doSetExportNotificationId,
     doSetExportProcessStage,
     doSetShowExportModal,
 } from "@/reducers/export/exportActions";
-import {FormattedMessage} from "@/locale";
 import {
     selectDataFields,
     selectDataFieldsSortableIdsList,
@@ -28,9 +25,9 @@ import {ExportProcessStage} from "@/constants/enums";
 import {ExportDash} from "@/components/Exporter/src/ExportDash";
 import {batchGenerateData} from "@/utils/generatorUtils";
 import {GenerateDataBatchCompletedCallbackResponse} from "@/types/generator";
-import styles from "@/components/Exporter/src/ExportDash.module.scss";
-import {IconTickCircle} from "@douyinfe/semi-icons";
+import {IconExpand, IconTickCircle} from "@douyinfe/semi-icons";
 import {getFileExtensionByFormat} from "@/utils/formatterUtils";
+import {FormattedMessage} from "@/locale";
 
 export const ExportModal: React.FunctionComponent = () => {
     const dispatch = useDispatch();
@@ -44,15 +41,14 @@ export const ExportModal: React.FunctionComponent = () => {
     const estimatedSize = useSelector(selectEstimatedFileSize);
     const format = useSelector(selectExportFormat);
     const exportFileName = useSelector(selectExportFileName);
-    const exportNumOfRows = useSelector(selectNumberOfExportRows);
+    const numOfExportRows = useSelector(selectNumberOfExportRows);
     const exportProcessStage = useSelector(selectExportProcessStage);
-    const exportRows = useSelector(selectNumberOfExportRows);
     const sparkLineData = useSelector(selectSparkLineData);
     const sortableIdList = useSelector(selectDataFieldsSortableIdsList);
     const dataFields = useSelector(selectDataFields);
     const totalNumOfRowsGenerated = useSelector(selectCurrentNumOfRowsGenerated);
 
-    let percent = totalNumOfRowsGenerated / exportRows;
+    let percent = totalNumOfRowsGenerated / numOfExportRows;
 
     // effects
     useEffect(() => {
@@ -72,52 +68,59 @@ export const ExportModal: React.FunctionComponent = () => {
     }, [exportProcessStage]);
 
     useEffect(() => {
+        const generateExportToast = () => (
+            <span>
+            <Text>{exportFileName}.{getFileExtensionByFormat(format)}</Text>
+            <Text link style={{marginLeft: 12}} onClick={onOpenModal}>
+                <IconExpand size={'small'}/>
+            </Text>
+        </span>
+        );
+
+        const EXPORT_TOAST_ID = 'EXPORT_TOAST';
+
         if (!modalVisible) {
-            if (exportProcessStage == ExportProcessStage.GENERATING) {
+            if (exportProcessStage === ExportProcessStage.GENERATING) {
                 Toast.info({
-                    id: 'exportNotification',
-                    content:
-                        <span>
-                          <Text>{exportFileName}.{getFileExtensionByFormat(format)}</Text>
-                          <Text link style={{marginLeft: 12}} onClick={onOpenModal}>详情</Text>
-                        </span>,
+                    id: EXPORT_TOAST_ID,
+                    content: generateExportToast(),
                     duration: 0,
                     showClose: false,
-                    icon: <Progress percent={percent * 100}
-                                    width={20}
-                                    type="circle"
-                                    stroke={'var(--semi-color-secondary-active)'}
-                                    aria-label="progress circle"/>
-                })
-            } else if (exportProcessStage == ExportProcessStage.COMPLETED) {
-                Toast.success(
-                    {
-                        id: 'exportNotification',
-                        content:
-                            <span>
-                              <Text>{exportFileName}.{getFileExtensionByFormat(format)}</Text>
-                              <Text link style={{marginLeft: 12}} onClick={onOpenModal}>详情</Text>
-                            </span>,
-                        icon: <IconTickCircle/>
-                    })
+                    icon: (
+                        <Progress
+                            percent={percent * 100}
+                            width={20}
+                            type="circle"
+                            stroke={'var(--semi-color-secondary-active)'}
+                            aria-label="progress circle"
+                        />
+                    ),
+                });
+            } else if (exportProcessStage === ExportProcessStage.COMPLETED) {
+                Toast.success({
+                    id: EXPORT_TOAST_ID,
+                    content: generateExportToast(),
+                    icon: <IconTickCircle/>,
+                });
             } else {
-
+                // Handle other cases if needed
             }
         } else {
-            Toast.close('exportNotification');
+            Toast.close(EXPORT_TOAST_ID);
         }
     }, [exportProcessStage, modalVisible, percent, exportFileName, format]);
 
     // render
     const renderModalContent = () => {
         if (exportProcessStage == ExportProcessStage.PREVIEW) {
-            return <ExportPreview exportNumOfRows={exportNumOfRows}
+            return <ExportPreview exportNumOfRows={numOfExportRows}
                                   exportFileName={exportFileName}
                                   estimatedSize={estimatedSize}
                                   format={format}/>
         } else {
-            return <ExportDash currentExportedRows={totalNumOfRowsGenerated}
-                               exportRows={exportRows}
+            return <ExportDash exportStage={exportProcessStage}
+                               currentExportedRows={totalNumOfRowsGenerated}
+                               exportRows={numOfExportRows}
                                sparkLineData={sparkLineData}
                                timeElapsed={totalTimerSeconds}/>
         }
@@ -135,7 +138,7 @@ export const ExportModal: React.FunctionComponent = () => {
     // generate
     const onGenerate = async () => {
         dispatch(doSetExportProcessStage(ExportProcessStage.GENERATING));
-        await batchGenerateData(dataFields, sortableIdList, exportRows, onBatchCompleteCallback);
+        await batchGenerateData(dataFields, sortableIdList, numOfExportRows, onBatchCompleteCallback);
         dispatch(doSetExportProcessStage(ExportProcessStage.COMPLETED));
     }
 

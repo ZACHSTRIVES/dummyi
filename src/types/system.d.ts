@@ -60,8 +60,6 @@ export interface ExportReducerState {
     currentNumOfRowsGenerated: number;
     sparkLineData: number[];
     formattedExportData: string;
-    timeElapsed: number;
-    exportNotificationId: string
 }
 
 // locales

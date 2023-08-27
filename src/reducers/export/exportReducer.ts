@@ -1,7 +1,7 @@
 import {Action, ExportReducerState} from "@/types/system";
 import {
     ON_BATCH_GENERATE_COMPLETE,
-    SET_EXPORT_FILE_NAME, SET_EXPORT_NOTIFICATION_ID,
+    SET_EXPORT_FILE_NAME,
     SET_EXPORT_PROCESS_STAGE,
     SET_SHOW_EXPORT_MODAL
 } from "@/constants/actions";
@@ -16,8 +16,6 @@ export const initStates: ExportReducerState = {
     currentNumOfRowsGenerated: 0,
     sparkLineData: [0, 0, 0, 0, 0, 0, 0],
     formattedExportData: "",
-    timeElapsed: 0,
-    exportNotificationId: null
 }
 
 const exportReducer = (state: ExportReducerState = initStates, action: Action) => {
@@ -44,11 +42,6 @@ const exportReducer = (state: ExportReducerState = initStates, action: Action) =
                 currentNumOfRowsGenerated: action.payload.totalNumOfRowsGenerated,
                 timeElapsed: action.payload.totalTimeElapsed,
                 sparkLineData: newSparkLineData
-            };
-        case SET_EXPORT_NOTIFICATION_ID:
-            return {
-                ...state,
-                exportNotificationId: action.payload
             };
         default:
             return state;

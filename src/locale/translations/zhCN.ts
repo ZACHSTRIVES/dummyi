@@ -27,6 +27,9 @@ export const zhCN = {
     "export.modal.terminate.button.text": "终止",
     "export.modal.generating.rows.text": "行数",
     "export.modal.generating.time.text": "时间",
+    "export.modal.generating.done.text": "完成",
+    "export.modal.toast.details.button.text": "详情",
+    "export.modal.toast.download.button.text": "下载",
 
     // csv
     "export.configurator.csv.delimiter": "分隔符",
