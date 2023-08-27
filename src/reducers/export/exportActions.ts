@@ -1,6 +1,6 @@
 import {
     ON_BATCH_GENERATE_COMPLETE,
-    SET_EXPORT_FILE_NAME, SET_EXPORT_NOTIFICATION_ID,
+    SET_EXPORT_FILE_NAME,
     SET_EXPORT_PROCESS_STAGE,
     SET_SHOW_EXPORT_MODAL
 } from "@/constants/actions";
@@ -30,9 +30,3 @@ export const doOnBatchComplete = (response: GenerateDataBatchCompletedCallbackRe
     async dispatch => {
         dispatch({type: ON_BATCH_GENERATE_COMPLETE, payload: response});
     };
-
-// set export notification id
-export const doSetExportNotificationId = (id: string): any =>
-    async dispatch => {
-        dispatch({type: SET_EXPORT_NOTIFICATION_ID, payload: id})
-    }
