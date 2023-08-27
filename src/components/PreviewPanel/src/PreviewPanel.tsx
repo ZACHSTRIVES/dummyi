@@ -41,7 +41,7 @@ export const PreviewPanel: React.FunctionComponent<PreviewPanelProps> = () => {
     }, [containerRef]);
 
     return (
-        <div className={styles.previewPanel} ref={containerRef}>
+        <div className={`${styles.previewPanel} no-select-area`} ref={containerRef}>
             <SettingBar size={componentsSize}/>
 
             {previewType === PreviewType.RAW ?

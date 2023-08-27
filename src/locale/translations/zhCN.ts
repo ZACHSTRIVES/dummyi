@@ -13,7 +13,7 @@ export const zhCN = {
     "export.configurator.config.empty": "该输出格式的配置暂时还不可用",
 
     // export modal
-    "export.modal.title": "生成数据",
+    "export.modal.title": "批量生成数据",
     "export.modal.exportNumOfRows.label": "生成数据行数",
     "export.modal.exportNumOfRows.empty": "生成数据行数不能为空",
     "export.modal.exportFormat.label": "生成格式",
@@ -23,6 +23,8 @@ export const zhCN = {
     "export.modal.exportFileName.empty": "文件名不能为空",
     "export.modal.cancel.button.text": "取消",
     "export.modal.generate.button.text": "生成",
+    "export.modal.hide.button.text": "隐藏",
+    "export.modal.terminate.button.text": "终止",
     "export.modal.generating.rows.text": "行数",
     "export.modal.generating.time.text": "时间",
 

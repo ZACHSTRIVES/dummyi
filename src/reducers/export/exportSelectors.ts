@@ -17,6 +17,7 @@ export const selectCurrentNumOfRowsGenerated = (state: RootState) => state.expor
 export const selectSparkLineData = (state: RootState) => state.export.sparkLineData;
 export const selectFormattedExportData = (state: RootState) => state.export.formattedExportData;
 export const selectTimeElapsed = (state: RootState) => state.export.timeElapsed;
+export const selectExportNotificationId = (state: RootState) => state.export.exportNotificationId;
 
 export const selectEstimatedFileSize = createSelector(
     selectPreviewFormattedData,
@@ -42,7 +43,7 @@ export const selectPreviewEstimatedTime = createSelector(
         const endTime = performance.now();
         const executionTime = endTime - startTime;
         const averageTime = executionTime / 20;
-        console.log(averageTime*numberOfExportRows);
+        console.log(averageTime * numberOfExportRows);
         return averageTime * numberOfExportRows;
     }
 );

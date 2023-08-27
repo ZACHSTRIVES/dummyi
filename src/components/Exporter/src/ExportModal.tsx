@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Modal} from "@douyinfe/semi-ui";
+import {Button, Modal, Notification, Progress, Spin, Toast, Typography} from "@douyinfe/semi-ui";
 import {useDispatch, useSelector} from "react-redux";
 import {
     selectCurrentNumOfRowsGenerated,
@@ -8,9 +8,14 @@ import {
     selectExportProcessStage,
     selectShowExportModal,
     selectSparkLineData,
-    selectTimeElapsed
+    selectExportNotificationId
 } from "@/reducers/export/exportSelectors";
-import {doOnBatchComplete, doSetExportProcessStage, doSetShowExportModal,} from "@/reducers/export/exportActions";
+import {
+    doOnBatchComplete,
+    doSetExportNotificationId,
+    doSetExportProcessStage,
+    doSetShowExportModal,
+} from "@/reducers/export/exportActions";
 import {FormattedMessage} from "@/locale";
 import {
     selectDataFields,
@@ -23,15 +28,19 @@ import {ExportProcessStage} from "@/constants/enums";
 import {ExportDash} from "@/components/Exporter/src/ExportDash";
 import {batchGenerateData} from "@/utils/generatorUtils";
 import {GenerateDataBatchCompletedCallbackResponse} from "@/types/generator";
+import styles from "@/components/Exporter/src/ExportDash.module.scss";
+import {IconTickCircle} from "@douyinfe/semi-icons";
+import {getFileExtensionByFormat} from "@/utils/formatterUtils";
 
 export const ExportModal: React.FunctionComponent = () => {
     const dispatch = useDispatch();
+    const {Text} = Typography;
 
     // state
     const [totalTimerSeconds, setTotalTimerSeconds] = useState(0);
 
     // selectors
-    const visible = useSelector(selectShowExportModal);
+    const modalVisible = useSelector(selectShowExportModal);
     const estimatedSize = useSelector(selectEstimatedFileSize);
     const format = useSelector(selectExportFormat);
     const exportFileName = useSelector(selectExportFileName);
@@ -42,9 +51,10 @@ export const ExportModal: React.FunctionComponent = () => {
     const sortableIdList = useSelector(selectDataFieldsSortableIdsList);
     const dataFields = useSelector(selectDataFields);
     const totalNumOfRowsGenerated = useSelector(selectCurrentNumOfRowsGenerated);
-    const timeElapsed = useSelector(selectTimeElapsed);
 
-    // effect
+    let percent = totalNumOfRowsGenerated / exportRows;
+
+    // effects
     useEffect(() => {
         let interval = null;
 
@@ -60,6 +70,43 @@ export const ExportModal: React.FunctionComponent = () => {
             clearInterval(interval);
         };
     }, [exportProcessStage]);
+
+    useEffect(() => {
+        if (!modalVisible) {
+            if (exportProcessStage == ExportProcessStage.GENERATING) {
+                Toast.info({
+                    id: 'exportNotification',
+                    content:
+                        <span>
+                          <Text>{exportFileName}.{getFileExtensionByFormat(format)}</Text>
+                          <Text link style={{marginLeft: 12}} onClick={onOpenModal}>详情</Text>
+                        </span>,
+                    duration: 0,
+                    showClose: false,
+                    icon: <Progress percent={percent * 100}
+                                    width={20}
+                                    type="circle"
+                                    stroke={'var(--semi-color-secondary-active)'}
+                                    aria-label="progress circle"/>
+                })
+            } else if (exportProcessStage == ExportProcessStage.COMPLETED) {
+                Toast.success(
+                    {
+                        id: 'exportNotification',
+                        content:
+                            <span>
+                              <Text>{exportFileName}.{getFileExtensionByFormat(format)}</Text>
+                              <Text link style={{marginLeft: 12}} onClick={onOpenModal}>详情</Text>
+                            </span>,
+                        icon: <IconTickCircle/>
+                    })
+            } else {
+
+            }
+        } else {
+            Toast.close('exportNotification');
+        }
+    }, [exportProcessStage, modalVisible, percent, exportFileName, format]);
 
     // render
     const renderModalContent = () => {
@@ -79,6 +126,10 @@ export const ExportModal: React.FunctionComponent = () => {
     // action
     const onCloseModal = () => {
         dispatch(doSetShowExportModal(false));
+    }
+
+    const onOpenModal = () => {
+        dispatch(doSetShowExportModal(true));
     }
 
     // generate
@@ -107,10 +158,17 @@ export const ExportModal: React.FunctionComponent = () => {
             case ExportProcessStage.GENERATING:
                 return <>
                     <Button onClick={onCloseModal}>
-                        <FormattedMessage id={'export.modal.cancel.button.text'}/>
+                        <FormattedMessage id={'export.modal.hide.button.text'}/>
                     </Button>
-                    <Button theme={'solid'}>
-                        <FormattedMessage id={'export.modal.generate.button.text'}/>
+                    <Button>
+                        <FormattedMessage id={'export.modal.terminate.button.text'}/>
+                    </Button>
+                </>
+
+            case ExportProcessStage.COMPLETED:
+                return <>
+                    <Button onClick={onCloseModal}>
+                        <FormattedMessage id={'export.modal.cancel.button.text'}/>
                     </Button>
                 </>
         }
@@ -121,7 +179,7 @@ export const ExportModal: React.FunctionComponent = () => {
             <Modal
                 style={{width: '90%', maxWidth: '460px'}}
                 className={'no-select-area'}
-                visible={visible}
+                visible={modalVisible}
                 title={<FormattedMessage id={'export.modal.title'}/>}
                 onCancel={onCloseModal}
                 footer={renderModalFooter()}

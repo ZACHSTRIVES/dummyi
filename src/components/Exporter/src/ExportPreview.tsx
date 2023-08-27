@@ -60,7 +60,7 @@ export const ExportPreview: React.FunctionComponent<ExportPreviewProps> = ({...p
                     <div className='generatorConfig_column__label'>
                         <FormattedMessage id={'export.modal.exportNumOfRows.label'}/>
                     </div>
-                    <NumbOfRowInput size={ComponentSize.LARGE} errorMessage={errorMessages.exportNumOfRows}/>
+                    <NumbOfRowInput errorMessage={errorMessages.exportNumOfRows}/>
                 </div>
                 <div className="generatorConfig_column">
                     <div className='generatorConfig_column__label'>

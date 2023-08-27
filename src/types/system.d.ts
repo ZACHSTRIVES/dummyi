@@ -61,6 +61,7 @@ export interface ExportReducerState {
     sparkLineData: number[];
     formattedExportData: string;
     timeElapsed: number;
+    exportNotificationId: string
 }
 
 // locales
