@@ -11,7 +11,7 @@
     "add:generator": "tsx ./scripts/addNewGenerator.ts"
   },
   "dependencies": {
-    "@douyinfe/semi-next": "^2.41.2",
+    "@douyinfe/semi-next": "^2.45.1",
     "@douyinfe/semi-ui": "^2.41.3",
     "@faker-js/faker": "^8.0.2",
     "@reduxjs/toolkit": "^1.9.5",
