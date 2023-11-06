@@ -23,10 +23,26 @@ export const jaJP = {
     // data types
 
     
-    
-    
-    
-    
+    // phone
+    "dataType.phone": "Phone Number",
+    "dataType.phone.formats.label": "Formats",
+    "dataType.phone.formats.tooltips": "Phone number format, please use \"#\" to represent digits, press Enter key to confirm",
+
+    // emoji
+    "dataType.emoji": "Emoji",
+    "dataType.emoji.type": "Type",
+    "dataType.emoji.type.all": "All",
+    "dataType.emoji.type.smiley": "Smiley",
+    "dataType.emoji.type.body" : "Body",
+    "dataType.emoji.type.person" : "Person",
+    "dataType.emoji.type.nature" : "Nature",
+    "dataType.emoji.type.food" : "Food",
+    "dataType.emoji.type.travel" : "Travel",
+    "dataType.emoji.type.activity" : "Activity",
+    "dataType.emoji.type.object" : "Object",
+    "dataType.emoji.type.symbol" : "Symbol",
+    "dataType.emoji.type.flag" : "Flag",
+
     // persontitle
     "dataType.persontitle": "PersonTitle",
 

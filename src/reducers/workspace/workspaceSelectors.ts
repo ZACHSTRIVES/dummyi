@@ -40,3 +40,5 @@ export const selectPreviewFormattedData = (state: RootState) => state.workspace.
 export const selectExportFormat = (state: RootState) => state.workspace.exportFormat;
 export const selectNumberOfExportRows = (state: RootState) => state.workspace.numberOfExportRows;
 export const selectFormatterConfig = (state: RootState) => state.workspace.formatterConfig;
+
+

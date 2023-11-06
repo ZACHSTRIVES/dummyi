@@ -36,6 +36,8 @@ export enum DataTypeCategory {
 }
 
 export enum DataType {
+    PHONE = "phone",
+    EMOJI = "emoji",
     PERSONTITLE = "persontitle",
     MIDDLENAME = "middlename",
     LASTNAME = "lastname",
@@ -74,6 +76,11 @@ export enum ComponentSize{
 export enum PreviewType{
     TABLE = "table",
     RAW = "raw"
+}
+
+export enum CollectionNodeType{
+    COLLECTION = "collection",
+    SCHEMA = "schema"
 }
 
 export enum EndOfLineChars {

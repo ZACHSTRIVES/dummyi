@@ -6,6 +6,7 @@ import {persistReducer} from "redux-persist";
 import app from "@/reducers/app/appReducer";
 import workspace from "@/reducers/workspace/workspaceReducer";
 import preview from "@/reducers/preview/previewReducer";
+import collection from "@/reducers/collection/collectionReducer";
 import exportReducer from "@/reducers/export/exportReducer";
 
 // persist
@@ -36,11 +37,17 @@ const exportPersistConfig = {
     ]
 }
 
+const collectionPersistConfig = {
+    key: 'collection',
+    storage: storage
+}
+
 const rootReducer = combineReducers({
     app: persistReducer(appPersistConfig, app),
     workspace: persistReducer(workspacePersistConfig, workspace),
     preview: persistReducer(previewPersistConfig, preview),
     export: persistReducer(exportPersistConfig, exportReducer),
+    collection: persistReducer(collectionPersistConfig, collection),
 });
 
 

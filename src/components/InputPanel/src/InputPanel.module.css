@@ -39,8 +39,14 @@ body[theme-mode="dark"] .background:after {
 }
 
 .inputPanel{
-    padding: 12px 24px;
-    height: 95%;
+    padding: 0 24px;
+    height: 100%;
     position: relative;
+    width: 100%;
+}
+
+.treeSelect {
+    margin-top: 12px;
+    z-index: 3;
 }
 

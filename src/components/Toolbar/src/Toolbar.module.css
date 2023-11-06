@@ -5,6 +5,7 @@
     background-color: rgba(var(--semi-grey-0), 0.3);
     position: relative;
     z-index: 2;
+    margin-top: 12px;
 }
 
 .generateButton{

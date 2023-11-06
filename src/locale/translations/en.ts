@@ -50,11 +50,27 @@ export const en = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
-    
-    
-    
-    
-    
+
+    // phone
+    "dataType.phone": "Phone Number",
+    "dataType.phone.formats.label": "Formats",
+    "dataType.phone.formats.tooltips": "Phone number format, please use \"#\" to represent digits, press Enter key to confirm",
+
+    // emoji
+    "dataType.emoji": "Emoji",
+    "dataType.emoji.type": "Type",
+    "dataType.emoji.type.all": "All",
+    "dataType.emoji.type.smiley": "Smiley",
+    "dataType.emoji.type.body": "Body",
+    "dataType.emoji.type.person": "Person",
+    "dataType.emoji.type.nature": "Nature",
+    "dataType.emoji.type.food": "Food",
+    "dataType.emoji.type.travel": "Travel",
+    "dataType.emoji.type.activity": "Activity",
+    "dataType.emoji.type.object": "Object",
+    "dataType.emoji.type.symbol": "Symbol",
+    "dataType.emoji.type.flag": "Flag",
+
     // persontitle
     "dataType.persontitle": "Person Title",
 
@@ -75,11 +91,11 @@ export const en = {
     "dataType.number.kind.label": "Kind",
     "dataType.number.precision.label": "Precision",
     "dataType.number.min.label": "Min.",
-    "dataType.number.min.tooltip":"Lower bound for generated numbers",
+    "dataType.number.min.tooltip": "Lower bound for generated numbers",
     "dataType.number.min.errorMessage.empty": "Min. value cannot be empty",
     "dataType.number.min.errorMessage.greaterThanMax": "Min. value cannot be greater than max. value",
     "dataType.number.max.label": "Max.",
-    "dataType.number.max.tooltip":"Upper bound for generated numbers",
+    "dataType.number.max.tooltip": "Upper bound for generated numbers",
     "dataType.number.max.errorMessage.empty": "Max. value cannot be empty",
     "dataType.number.max.errorMessage.lessThanMin": "Max. value cannot be less than min. value",
 

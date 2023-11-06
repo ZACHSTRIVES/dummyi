@@ -48,12 +48,28 @@ export const zhCN = {
 
     // -------------------------------------------------------------------------------------------------------------
     // data types
+    
+    
+    // phone
+    "dataType.phone": "电话号码",
+    "dataType.phone.formats.label": "格式",
+    "dataType.phone.formats.tooltips": "电话号码格式，请使用“#”代表数字，回车键确认输入",
 
-    
-    
-    
-    
-    
+    // emoji
+    "dataType.emoji": "表情符号",
+    "dataType.emoji.type": "类型",
+    "dataType.emoji.type.all": "全部",
+    "dataType.emoji.type.smiley": "笑脸",
+    "dataType.emoji.type.body" : "人体",
+    "dataType.emoji.type.person" : "人物",
+    "dataType.emoji.type.nature" : "自然",
+    "dataType.emoji.type.food" : "食物",
+    "dataType.emoji.type.travel" : "旅行",
+    "dataType.emoji.type.activity" : "活动",
+    "dataType.emoji.type.object" : "物品",
+    "dataType.emoji.type.symbol" : "符号",
+    "dataType.emoji.type.flag" : "国旗",
+
     // persontitle
     "dataType.persontitle": "人物称谓",
 
