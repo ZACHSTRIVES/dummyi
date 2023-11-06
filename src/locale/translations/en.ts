@@ -14,7 +14,7 @@ export const en = {
     "export.configurator.config.empty": "Configuration of this export format is currently not available.",
 
     // export modal
-    "export.modal.title": "Generate",
+    "export.modal.title": "Batch Generate",
     "export.modal.exportNumOfRows.label": "Rows to generate",
     "export.modal.exportNumOfRows.empty": "Rows to generate cannot be empty",
     "export.modal.exportFormat.label": "Export format",
@@ -24,8 +24,13 @@ export const en = {
     "export.modal.exportFileName.empty": "File name cannot be empty",
     "export.modal.cancel.button.text": "Cancel",
     "export.modal.generate.button.text": "Generate",
+    "export.modal.hide.button.text": "Hide",
+    "export.modal.terminate.button.text": "Terminate",
     "export.modal.generating.rows.text": "Rows",
     "export.modal.generating.time.text": "Time",
+    "export.modal.generating.done.text": "Done",
+    "export.modal.toast.details.button.text": "Details",
+    "export.modal.toast.download.button.text": "Download",
 
     // csv
     "export.configurator.csv.delimiter": "Delimiter",
@@ -146,7 +151,7 @@ export const en = {
 
     // workspace
     "toolbar.numOfRowInput.suffix": "Rows",
-    "toolbar.generateButton.text": "Generate",
+    "toolbar.generateButton.text": "Batch Generate",
     "toolbar.panelsOrientationButton.tooltip.switchToColumn": "Switch panels to column",
     "toolbar.panelsOrientationButton.tooltip.switchToRow": "Switch panels to row",
     "toolbar.emptyPageButton.tooltip": "Empty workplace",

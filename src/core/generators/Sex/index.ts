@@ -6,7 +6,6 @@ export const SexGenerator: Generator = {
     type: DataType.SEX,
     category: DataTypeCategory.PERSON,
     generate: generate,
-    optionsComponent: SexGeneratorOptionsComponent,
     defaultOptions: SexGeneratorDefaultOptions,
     exampleLines: ['male', 'female']
 }

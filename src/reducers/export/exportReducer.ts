@@ -16,7 +16,6 @@ export const initStates: ExportReducerState = {
     currentNumOfRowsGenerated: 0,
     sparkLineData: [0, 0, 0, 0, 0, 0, 0],
     formattedExportData: "",
-    timeElapsed: 0
 }
 
 const exportReducer = (state: ExportReducerState = initStates, action: Action) => {
@@ -35,15 +34,15 @@ const exportReducer = (state: ExportReducerState = initStates, action: Action) =
             return {
                 ...state,
                 exportProcessStage: action.payload
-            }
+            };
         case ON_BATCH_GENERATE_COMPLETE:
-            console.log(action)
+            const newSparkLineData = [...state.sparkLineData, action.payload.batchTimeElapsed]; // 创建新的数组副本，包含新值
             return {
                 ...state,
-                currentNumOfRowsGenerated:action.payload.totalNumOfRowsGenerated,
-                timeElapsed:action.payload.totalTimeElapsed,
-
-            }
+                currentNumOfRowsGenerated: action.payload.totalNumOfRowsGenerated,
+                timeElapsed: action.payload.totalTimeElapsed,
+                sparkLineData: newSparkLineData
+            };
         default:
             return state;
     }

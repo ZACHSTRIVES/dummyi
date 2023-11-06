@@ -98,7 +98,7 @@ export const jaJP = {
 
     // workspace
     "toolbar.numOfRowInput.suffix": "行",
-    "toolbar.generateButton.text": "生成",
+    "toolbar.generateButton.text": "批量生成",
     "toolbar.panelsOrientationButton.tooltip.switchToColumn": "パネルを列に切り替え",
     "toolbar.panelsOrientationButton.tooltip.switchToRow": "パネルを行に切り替え",
     "toolbar.emptyPageButton.tooltip": "ワークスペースを空にする",

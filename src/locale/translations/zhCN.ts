@@ -13,7 +13,7 @@ export const zhCN = {
     "export.configurator.config.empty": "该输出格式的配置暂时还不可用",
 
     // export modal
-    "export.modal.title": "生成数据",
+    "export.modal.title": "批量生成数据",
     "export.modal.exportNumOfRows.label": "生成数据行数",
     "export.modal.exportNumOfRows.empty": "生成数据行数不能为空",
     "export.modal.exportFormat.label": "生成格式",
@@ -23,8 +23,13 @@ export const zhCN = {
     "export.modal.exportFileName.empty": "文件名不能为空",
     "export.modal.cancel.button.text": "取消",
     "export.modal.generate.button.text": "生成",
+    "export.modal.hide.button.text": "隐藏",
+    "export.modal.terminate.button.text": "终止",
     "export.modal.generating.rows.text": "行数",
     "export.modal.generating.time.text": "时间",
+    "export.modal.generating.done.text": "完成",
+    "export.modal.toast.details.button.text": "详情",
+    "export.modal.toast.download.button.text": "下载",
 
     // csv
     "export.configurator.csv.delimiter": "分隔符",
@@ -145,7 +150,7 @@ export const zhCN = {
 
     // workspace
     "toolbar.numOfRowInput.suffix": "行",
-    "toolbar.generateButton.text": "生成",
+    "toolbar.generateButton.text": "批量生成",
     "toolbar.panelsOrientationButton.tooltip.switchToColumn": "切换面板为横向",
     "toolbar.panelsOrientationButton.tooltip.switchToRow": "切换面板为竖向",
     "toolbar.emptyPageButton.tooltip": "清空工作台",

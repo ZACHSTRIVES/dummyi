@@ -26,7 +26,6 @@ export const GenerateButton: React.FC<GenerateButtonProps> = ({...props}) => {
             loading={false}
             icon={<IconPlayCircle/>}
             className={Styles.generateButton}
-            style={{width: size === 'large' ? '100px' : '50px'}}
             theme={'solid'}>
             {size === 'large' ? <FormattedMessage id={'toolbar.generateButton.text'}/> : null}
         </Button>

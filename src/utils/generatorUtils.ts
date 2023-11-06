@@ -124,30 +124,32 @@ export const generateDataByDataType = (dataType: DataType, options: any): Genera
 }
 
 // Batch generation
-export const batchGenerateData = (fields: DataFieldList, sortableList: string[], count: number, callback:  (data: any) => void): void => {
+export const batchGenerateData = async (fields: DataFieldList, sortableList: string[], count: number, callback: (data: any) => void): Promise<void> => {
     const batchSize = 100000;
     const batchCount = Math.ceil(count / batchSize);
-    const data = [];
     let totalTime = 0;
     let totalNumOfRowsGenerated = 0;
+
     for (let i = 0; i < batchCount; i++) {
         const startTime = performance.now();
         let generateCount = batchSize;
         if (i === batchCount - 1) {
             generateCount = count - batchSize * i;
         }
-        data.push(...generateData(fields, sortableList, generateCount));
+        const batchData = generateData(fields, sortableList, generateCount);
         const endTime = performance.now();
         const batchTimeElapsed = endTime - startTime;
         totalTime += batchTimeElapsed;
         totalNumOfRowsGenerated += generateCount;
+
         const response: GenerateDataBatchCompletedCallbackResponse = {
             batchIndex: i,
             batchCount: generateCount,
             batchTimeElapsed: batchTimeElapsed,
             totalTimeElapsed: totalTime,
             totalNumOfRowsGenerated: totalNumOfRowsGenerated
-        }
+        };
         callback(response);
+        await new Promise(resolve => setTimeout(resolve, 100));
     }
-}
+};
