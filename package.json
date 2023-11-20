@@ -29,7 +29,7 @@
     "eslint-config-next": "13.5.5",
     "hamburger-react": "^2.5.0",
     "loadash": "^1.0.0",
-    "next": "13.4.13",
+    "next": "14.0.3",
     "next-redux-wrapper": "^8.1.0",
     "next-seo": "^6.1.0",
     "nextjs-progressbar": "^0.0.16",
