@@ -30,6 +30,7 @@ export enum DataTypeCategory {
 }
 
 export enum DataType {
+    COLOR = "color",
     PERSONTITLE = "persontitle",
     MIDDLENAME = "middlename",
     LASTNAME = "lastname",

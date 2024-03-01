@@ -27,6 +27,10 @@ export const jaJP = {
     
     
     
+    
+    // color
+    "dataType.color": "Color",
+
     // persontitle
     "dataType.persontitle": "PersonTitle",
 

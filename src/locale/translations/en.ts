@@ -36,6 +36,11 @@ export const en = {
     
     
     
+    
+    // color
+    "dataType.color": "Color",
+    
+
     // persontitle
     "dataType.persontitle": "Person Title",
 
