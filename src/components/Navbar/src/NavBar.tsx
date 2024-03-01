@@ -1,19 +1,19 @@
-import {Button, Nav} from "@douyinfe/semi-ui";
+import {Nav} from "@douyinfe/semi-ui";
 import React, {FunctionComponent, useState} from "react";
 import styles from './NavBar.module.css';
-import {ColorModeSwitchButton} from "@/components/Layout/src/components/ColorModeSwitchButton";
+import {ColorModeSwitchButton} from "@/components/Navbar/src/components/ColorModeSwitchButton";
 import {ColorMode} from "@/constants/enums";
 import {useSelector} from "react-redux";
 import {RootState} from "@/types/system";
-import {LocaleSwitchButton} from "@/components/Layout/src/components/LocaleSwitchButton";
-import {navBarRoutes} from "@/routes";
+import {LocaleSwitchButton} from "@/components/Navbar/src/components/LocaleSwitchButton";
 import {useIntl} from "@/locale";
 import {useRouter} from "next/router";
-import {GithubButton} from "@/components/Layout/src/components/GithubButton";
+import {GithubButton} from "@/components/Navbar/src/components/GithubButton";
 import Hamburger from 'hamburger-react'
-import {Logo} from "@/components/Layout/src/components/Logo";
-import { LoginButton } from "./LoginButton";
-import { User, UserLogin } from "./UserLogin";
+import {Logo} from "@/components/Navbar/src/components/Logo";
+import {LoginButton} from "./components/LoginButton";
+import {User, UserLogin} from "./components/UserLogin";
+import {SchemaSelector} from "@/components/SchemaSelector";
 
 export type NavBarProps = {}
 
@@ -55,7 +55,7 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
         setIsLoggedIn(false);
     }
 
-    const user : User = {
+    const user: User = {
         id: "ID123",
         name: "John"
     }
@@ -69,12 +69,6 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                 onSelect={(key) => onSelectItem(key)}>
 
                 <Nav.Header className={styles.navHeader}>
-                    {
-                        isLoggedIn
-                            ? <UserLogin user={user} className={styles.loginButtonMobile} onLogout={handleLogout} />
-                            : <LoginButton className={styles.loginButtonMobile} onLogin={handleLogin}/>
-                    }
-                    
                     <Logo/>
                     <div className={styles.hamburgerIcon}>
                         <Hamburger toggled={isMenuOpen}
@@ -82,20 +76,25 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                                    color={colorMode === ColorMode.DARK ? 'white' : "black"}
                                    size={22} duration={0.6}/>
                     </div>
+
+                    <SchemaSelector/>
+
                 </Nav.Header>
 
-                {
-                    navBarRoutes.map((route, index) => {
-                        return (
-                            <Nav.Item
-                                key={route.path}
-                                className={styles.navItems}
-                                itemKey={route.path}
-                                text={intl.formatMessage({id: route.localeId})}
-                            />
-                        )
-                    })
-                }
+
+                {/*{*/}
+                {/*    navBarRoutes.map((route, index) => {*/}
+                {/*        return (*/}
+                {/*            <Nav.Item*/}
+                {/*                key={route.path}*/}
+                {/*                className={styles.navItems}*/}
+                {/*                itemKey={route.path}*/}
+                {/*                text={intl.formatMessage({id: route.localeId})}*/}
+                {/*            />*/}
+                {/*        )*/}
+                {/*    })*/}
+                {/*}*/}
+
 
                 <Nav.Footer className="gap-2">
                     <GithubButton size={isMenuOpen ? "large" : 'extra-large'}/>
@@ -103,7 +102,7 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                     <LocaleSwitchButton size={isMenuOpen ? "large" : 'extra-large'}/>
                     {
                         isLoggedIn
-                            ? <UserLogin user={user} className={styles.loginButton} onLogout={handleLogout} />
+                            ? <UserLogin user={user} className={styles.loginButton} onLogout={handleLogout}/>
                             : <LoginButton className={styles.loginButton} onLogin={handleLogin}/>
                     }
                 </Nav.Footer>

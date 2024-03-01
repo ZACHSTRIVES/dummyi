@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Modal, Progress, Toast, Typography} from "@douyinfe/semi-ui";
+import {Button, Modal, Progress, Space, Tag, Toast, Typography} from "@douyinfe/semi-ui";
 import {useDispatch, useSelector} from "react-redux";
 import {
     selectCurrentNumOfRowsGenerated,
@@ -21,13 +21,14 @@ import {
     selectNumberOfExportRows
 } from "@/reducers/workspace/workspaceSelectors";
 import {ExportPreview} from "@/components/Exporter/src/ExportPreview";
-import {ExportProcessStage} from "@/constants/enums";
+import {ColorMode, ExportProcessStage} from "@/constants/enums";
 import {ExportDash} from "@/components/Exporter/src/ExportDash";
 import {batchGenerateData} from "@/utils/generatorUtils";
 import {GenerateDataBatchCompletedCallbackResponse} from "@/types/generator";
 import {IconExpand, IconTickCircle} from "@douyinfe/semi-icons";
 import {getFileExtensionByFormat} from "@/utils/formatterUtils";
 import {FormattedMessage} from "@/locale";
+import {RootState} from "@/types/system";
 
 export const ExportModal: React.FunctionComponent = () => {
     const dispatch = useDispatch();
@@ -47,7 +48,7 @@ export const ExportModal: React.FunctionComponent = () => {
     const sortableIdList = useSelector(selectDataFieldsSortableIdsList);
     const dataFields = useSelector(selectDataFields);
     const totalNumOfRowsGenerated = useSelector(selectCurrentNumOfRowsGenerated);
-
+    const colorMode = useSelector((state: RootState) => state.app.colorMode);
     let percent = totalNumOfRowsGenerated / numOfExportRows;
 
     // effects
@@ -183,7 +184,12 @@ export const ExportModal: React.FunctionComponent = () => {
                 style={{width: '90%', maxWidth: '460px'}}
                 className={'no-select-area'}
                 visible={modalVisible}
-                title={<FormattedMessage id={'export.modal.title'}/>}
+                title={
+                    <Space>
+                        <FormattedMessage id={'export.modal.title'}/>
+                        <Tag color={'grey'} type={colorMode === ColorMode.DARK ? 'solid' : 'ghost'} > Beta </Tag>
+                    </Space>
+                }
                 onCancel={onCloseModal}
                 footer={renderModalFooter()}
             >

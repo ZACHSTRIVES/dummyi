@@ -3,15 +3,12 @@ import {Toolbar} from "@/components/Toolbar";
 import styles from "./InputPanel.module.css";
 import {DataFieldsList} from "@/components/InputPanel/src/components";
 import {ComponentSize} from "@/constants/enums";
-import {TreeSelect} from '@douyinfe/semi-ui';
 import {useSelector} from "react-redux";
 import {selectCollections} from "@/reducers/collection/collectionSelectors";
 
-export type InputPanelProps = {
-    isMobile: boolean
-}
+export type InputPanelProps = {}
 
-export const InputPanel: React.FunctionComponent<InputPanelProps> = ({isMobile, ...props}) => {
+export const InputPanel: React.FunctionComponent<InputPanelProps> = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [containerHeight, setPanelHeight] = React.useState(800);
     const [componentSize, setComponentSize] = React.useState(ComponentSize.LARGE);
@@ -47,9 +44,6 @@ export const InputPanel: React.FunctionComponent<InputPanelProps> = ({isMobile, 
     return (
         <div className={styles.inputPanel} ref={containerRef}>
             <div className={styles.background}/>
-            {isMobile &&
-                <TreeSelect expandAll={true} className={`${styles.treeSelect} w-100`} treeData={collections}/>
-            }
             <Toolbar/>
             <DataFieldsList size={componentSize} height={containerHeight - 64}/>
         </div>

@@ -78,6 +78,8 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
                 suffix={"%"}
                 infoTooltip={<FormattedMessage id={'dataFields.input.emptyRate.tooltip'}/>}
                 errorMessage={errorMessages.emptyRate}
+                min={0}
+                max={100}
             />)
     };
 
