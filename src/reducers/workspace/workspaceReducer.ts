@@ -153,7 +153,7 @@ const workspaceReducer = (state: WorkspaceReducerState = initStates, action: Act
         case GENERATE_PREVIEW_DATA:
             return {
                 ...state,
-                previewData: generateData(state.dataFields, state.dataFieldsSortableIdsList, 20)
+                previewData: generateData(state.dataFields, state.dataFieldsSortableIdsList, 80)
             };
         case GENERATE_SPECIFIC_FIELD_PREVIEW_DATA:
             return {
