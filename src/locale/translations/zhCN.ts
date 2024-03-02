@@ -4,6 +4,7 @@ export const zhCN = {
 
     // export category
     "export.category.fileTypes": "常见格式",
+    "export.category.databases" : "数据库",
     "export.category.programmingLanguages": "编程语言",
 
     // export format modal

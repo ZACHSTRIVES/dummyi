@@ -23,6 +23,8 @@ export const getFormattersGroupedByCategory = (): {} => {
             categorizedFormatters[category] = [formatter];
         }
     }
+
+
     return categorizedFormatters;
 }
 

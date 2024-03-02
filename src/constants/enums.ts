@@ -2,6 +2,7 @@
 // export format
 export enum ExportFormatCategory {
     FILE_TYPES = "fileTypes",
+    DATABASE = "database",
     PROGRAMMING_LANGUAGES = "programmingLanguages",
 }
 

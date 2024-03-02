@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "cypress": "cypress open",
-    "add:generator": "tsx ./scripts/addNewGenerator.ts"
+    "add:generator": "tsx ./scripts/addNewGenerator.ts",
+    "add:formatter": "tsx ./scripts/addNewFormatter.ts"
   },
   "dependencies": {
     "@douyinfe/semi-ui": "^2.51.0",

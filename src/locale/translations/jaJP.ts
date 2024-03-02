@@ -6,6 +6,7 @@ export const jaJP = {
 
     // export category
     "export.category.fileTypes": "一般的なファイルタイプ",
+    "export.category.databases" : "Databases",
     "export.category.programmingLanguages": "プログラミング言語",
 
     // export format modal

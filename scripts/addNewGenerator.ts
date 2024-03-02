@@ -96,7 +96,7 @@ import {ExportValueType} from "@/constants/enums";
 // -------------------------------------------------------------------------------------------------------------
 // types
 export interface ${generatorName}GeneratorOptions {
- // TODO: add your own options type here   
+   // TODO: add your own option types here   
 }
 
 // -------------------------------------------------------------------------------------------------------------

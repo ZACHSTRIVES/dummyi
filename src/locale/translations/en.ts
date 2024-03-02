@@ -5,6 +5,7 @@ export const en = {
 
     // export category
     "export.category.fileTypes": "General file types",
+    "export.category.databases" : "Databases",
     "export.category.programmingLanguages": "Programming languages",
 
     // export format modal
