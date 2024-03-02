@@ -49,6 +49,10 @@ export const getCodemirrorLanguagePluginByFormat = (format: ExportFormat): any =
         case ExportFormat.XML:
             return langs.xml();
         case ExportFormat.CSV:
+            return langs.spreadsheet();
+        case ExportFormat.JAVA_SCRIPT:
+            return langs.javascript();
+        default:
             return langs.mathematica();
     }
 }

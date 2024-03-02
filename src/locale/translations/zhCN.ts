@@ -33,6 +33,7 @@ export const zhCN = {
 
     // csv
     "export.configurator.csv.delimiter": "分隔符",
+    "export.configurator.csv.delimiter.required" : "分隔符不可为空",
     "export.configurator.csv.includeHeader": "包含表头",
     "export.configurator.csv.endLineChar": "行结束符",
 
@@ -45,6 +46,15 @@ export const zhCN = {
     // json
     "export.configurator.json.insideArray": "数组",
     "export.configurator.json.includeNullValues": "包含空值",
+
+    // javascript
+    "export.configurator.javascript.format": "格式",
+    "export.configurator.javascript.format.variable": "变量",
+    "export.configurator.javascript.format.export": "导出",
+    "export.configurator.javascript.varName": "变量名",
+    "export.configurator.javascript.varName.required": "变量名不可为空",
+    "export.configurator.javascript.declarationKeyword": "声明类型",
+    "export.configurator.javascript.module": "模块",
 
     // -------------------------------------------------------------------------------------------------------------
     // data types

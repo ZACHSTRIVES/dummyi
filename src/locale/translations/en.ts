@@ -34,8 +34,10 @@ export const en = {
 
     // csv
     "export.configurator.csv.delimiter": "Delimiter",
+    "export.configurator.csv.delimiter.required" : "Delimiter cannot be empty",
     "export.configurator.csv.includeHeader": "Include header",
     "export.configurator.csv.endLineChar": "End of line characters",
+
 
     // xml
     "export.configurator.xml.rootNodeName": "Root node",
@@ -46,6 +48,15 @@ export const en = {
     // json
     "export.configurator.json.insideArray": "Inside array",
     "export.configurator.json.includeNullValues": "Include null values",
+
+    // javascript
+    "export.configurator.javascript.format": "Format",
+    "export.configurator.javascript.format.variable": "Variable",
+    "export.configurator.javascript.format.export": "Export",
+    "export.configurator.javascript.varName": "Variable Name",
+    "export.configurator.javascript.varName.required": "Variable name cannot be empty",
+    "export.configurator.javascript.declarationKeyword": "Declaration Keyword",
+    "export.configurator.javascript.module": "Module",
 
     // -------------------------------------------------------------------------------------------------------------
     // data types
