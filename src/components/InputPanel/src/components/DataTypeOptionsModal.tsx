@@ -91,6 +91,8 @@ export const DataTypeOptionsModal: React.FunctionComponent<DataTypeOptionsModalP
                     suffix={"%"}
                     infoTooltip={<FormattedMessage id={'dataFields.input.emptyRate.tooltip'}/>}
                     errorMessage={emptyRateError}
+                    min={0}
+                    max={100}
                 />}
                 {renderDataTypeOptions()}
             </div>

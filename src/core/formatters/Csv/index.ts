@@ -8,5 +8,6 @@ export const CsvFormatter: Formatter = {
     category: ExportFormatCategory.FILE_TYPES,
     format: format,
     configComponent: CsvConfigComponent,
-    defaultConfig: defaultCsvFormatterConfig
+    defaultConfig: defaultCsvFormatterConfig,
+    fileExtension: 'csv'
 };

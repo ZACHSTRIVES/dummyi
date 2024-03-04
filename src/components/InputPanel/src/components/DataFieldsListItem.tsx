@@ -78,6 +78,8 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
                 suffix={"%"}
                 infoTooltip={<FormattedMessage id={'dataFields.input.emptyRate.tooltip'}/>}
                 errorMessage={errorMessages.emptyRate}
+                min={0}
+                max={100}
             />)
     };
 
@@ -122,20 +124,20 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
                                     <IconHandle size="large" style={{cursor: 'move'}}/>
                                     <div>#{index + 1}</div>
                                 </div>
+                                <OptionsButton
+                                    label={<FormattedMessage id="dataFields.input.type.label"/>}
+                                    onClick={handleOpenDataTypeSelectModal}
+                                    style={{width: 140, fontSize: '13px', fontWeight: 'normal', justifyContent: 'left'}}
+                                    text={dataField.dataType ?
+                                        <FormattedMessage id={`dataType.${dataField.dataType}`}/> :
+                                        <FormattedMessage id={`dataFields.input.type.placeholder`}/>}
+                                />
                                 <OptionsInput
                                     label={<FormattedMessage id="dataFields.input.fieldName.label"/>}
                                     value={dataField.fieldName}
                                     onChange={(value) => handleUpdateDataField('fieldName', value)}
                                     style={{width: '100px'}}
                                     errorMessage={errorMessages.fieldName}
-                                />
-                                <OptionsButton
-                                    label={<FormattedMessage id="dataFields.input.type.label"/>}
-                                    onClick={handleOpenDataTypeSelectModal}
-                                    style={{width: 140, fontSize: '13px', fontWeight: 'normal'}}
-                                    text={dataField.dataType ?
-                                        <FormattedMessage id={`dataType.${dataField.dataType}`}/> :
-                                        <FormattedMessage id={`dataFields.input.type.placeholder`}/>}
                                 />
                                 {size !== ComponentSize.SMALL && (
                                     <>
@@ -145,7 +147,7 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
                                                 label={<FormattedMessage id="dataFields.input.options.label"/>}
                                                 onClick={handleOpenDataTypeOptionsModal}
                                                 style={{width: 80}}
-                                                icon={<IconSetting style={{color: 'grey'}}/>}
+                                                icon={<IconSetting/>}
                                             />}
                                     </>
                                 )}

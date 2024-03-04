@@ -1,10 +1,12 @@
 import {Formatter} from "@/types/formatter";
 import {ExportFormat, ExportFormatCategory} from "@/constants/enums";
-import {format} from "@/core/formatters/JavaScript/JavaScript.format";
-import {JavaScriptConfig} from "@/core/formatters/JavaScript/JavaScript.config";
+import {JavascriptConfigComponent, format, defaultJavascriptFormatterConfig} from "@/core/formatters/JavaScript/Javascript";
 
 export const JavaScriptFormatter: Formatter = {
     type: ExportFormat.JAVA_SCRIPT,
     category: ExportFormatCategory.PROGRAMMING_LANGUAGES,
-    format: format
+    format: format,
+    fileExtension: 'js',
+    configComponent: JavascriptConfigComponent,
+    defaultConfig: defaultJavascriptFormatterConfig
 }

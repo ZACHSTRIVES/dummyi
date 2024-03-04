@@ -14,7 +14,8 @@ import {
 
 const persistConfig = {
     key: 'root',
-    storage: storage
+    storage: storage,
+    blacklist: ['export']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

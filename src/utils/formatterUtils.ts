@@ -23,6 +23,8 @@ export const getFormattersGroupedByCategory = (): {} => {
             categorizedFormatters[category] = [formatter];
         }
     }
+
+
     return categorizedFormatters;
 }
 
@@ -31,9 +33,14 @@ export const getFormatterByFormat = (format: ExportFormat): Formatter => {
     return formatters[format];
 }
 
-// Gey formatter config component by format
+// Get formatter config component by format
 export const getFormatterConfigComponentByFormat = (format: ExportFormat): any => {
     return formatters[format].configComponent;
+}
+
+// Get file extension by format
+export const getFileExtensionByFormat = (format: ExportFormat): string => {
+    return formatters[format].fileExtension;
 }
 
 // Get codemirror language plugin by format
@@ -44,6 +51,10 @@ export const getCodemirrorLanguagePluginByFormat = (format: ExportFormat): any =
         case ExportFormat.XML:
             return langs.xml();
         case ExportFormat.CSV:
+            return langs.spreadsheet();
+        case ExportFormat.JAVA_SCRIPT:
+            return langs.javascript();
+        default:
             return langs.mathematica();
     }
 }

@@ -1,0 +1,28 @@
+.schemaSelector{
+  display: flex;
+  height: 40px;
+  align-items: center;
+}
+
+.schemaSelectorTag{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+.schemaSelectorTagIcon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+  border-radius: 20%;
+  background-color: lightslategray;
+}
+
+.schemaSelectorButton{
+  width: 25px;
+  height: 25px;
+  margin-left: 6px;
+}

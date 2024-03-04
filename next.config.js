@@ -9,7 +9,6 @@ const nextConfig = semi({
     i18n: {
         locales: ['en', 'zh-CN', 'ja-JP'],
         defaultLocale: 'en',
-        localeDetection: false,
     },
     transpilePackages: ['@douyinfe/semi-ui', '@douyinfe/semi-icons', '@douyinfe/semi-illustrations'],
     webpack(config) {

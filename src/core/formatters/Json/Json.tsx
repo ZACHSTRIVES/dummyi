@@ -1,6 +1,5 @@
 import React from "react";
 import {FormatRequest, FormatterConfigComponentInterface} from "@/types/formatter";
-import {CsvConfigComponent} from "@/core/formatters/Csv/Csv";
 import {OptionsSwitch} from "@/components/Utils/src/OptionsSwitch";
 import {FormattedMessage} from "@/locale";
 import {ExportValueType} from "@/constants/enums";

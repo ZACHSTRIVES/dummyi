@@ -38,3 +38,11 @@ export interface GenerateResult {
     type: ExportValueType
 }
 
+export interface GenerateDataBatchCompletedCallbackResponse {
+    batchIndex: number;
+    batchCount: number;
+    batchTimeElapsed: number;
+    totalTimeElapsed: number;
+    totalNumOfRowsGenerated: number;
+}
+

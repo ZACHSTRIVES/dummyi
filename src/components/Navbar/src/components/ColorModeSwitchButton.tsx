@@ -3,7 +3,7 @@ import {Button, Tooltip} from '@douyinfe/semi-ui';
 import {FunctionComponent, useEffect} from 'react';
 import {ColorMode} from "@/constants/enums";
 import {useDispatch, useSelector} from "react-redux";
-import {Store} from "@/types/system";
+import {RootState} from "@/types/system";
 import {doSetColorMode} from "@/reducers/app/appActions";
 import {useIntl} from "@/locale";
 
@@ -17,7 +17,7 @@ export const ColorModeSwitchButton: FunctionComponent<ColorModeSwitchButtonProps
     const intl = useIntl();
 
     // stores
-    const colorMode: ColorMode = useSelector((state: Store) => state.app.colorMode);
+    const colorMode: ColorMode = useSelector((state: RootState) => state.app.colorMode);
 
     const updateThemeToBody = (mode: ColorMode) => {
         const {body} = document;

@@ -1,3 +1,3 @@
 export * from './Content'
 export * from './Footer'
-export * from './NavBar'
+export * from '../../../Navbar/src/NavBar'

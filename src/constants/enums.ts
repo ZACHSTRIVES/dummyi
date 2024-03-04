@@ -1,7 +1,8 @@
 
-// format data
+// export format
 export enum ExportFormatCategory {
     FILE_TYPES = "fileTypes",
+    DATABASE = "database",
     PROGRAMMING_LANGUAGES = "programmingLanguages",
 }
 
@@ -23,6 +24,12 @@ export enum ExportValueType {
     HEX = "hex",
 }
 
+export enum ExportProcessStage{
+    PREVIEW = "preview",
+    GENERATING = "generating",
+    COMPLETED = "completed",
+}
+
 // data types
 export enum DataTypeCategory {
     ALL= "all",
@@ -34,6 +41,8 @@ export enum DataTypeCategory {
 
 export enum DataType {
     COLOR = "color",
+    PHONE = "phone",
+    EMOJI = "emoji",
     PERSONTITLE = "persontitle",
     MIDDLENAME = "middlename",
     LASTNAME = "lastname",
@@ -72,6 +81,11 @@ export enum ComponentSize{
 export enum PreviewType{
     TABLE = "table",
     RAW = "raw"
+}
+
+export enum CollectionNodeType{
+    COLLECTION = "collection",
+    SCHEMA = "schema"
 }
 
 export enum EndOfLineChars {

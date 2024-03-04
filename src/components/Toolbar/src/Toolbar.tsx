@@ -12,6 +12,8 @@ import {ComponentSize} from "@/constants/enums";
 import {ConfirmationModal} from "@/components/Modals";
 import {useIntl} from "@/locale";
 import {ExportFormatConfigurator} from "../../ExportFormatConfigurator";
+import {doEmptyWorkspace} from "@/reducers/workspace/workspaceActions";
+import {useDispatch} from "react-redux";
 
 
 export type ToolbarProps = {}
@@ -19,6 +21,7 @@ export type ToolbarProps = {}
 export const Toolbar: React.FC<ToolbarProps> = () => {
     const intl = useIntl();
     const containerRef = useRef<HTMLDivElement>(null);
+    const dispatch = useDispatch();
     const [showMoreButton, setShowMoreButton] = React.useState(false);
     const [componentsSize, setComponentsSize] = React.useState(ComponentSize.LARGE);
     const [isEmptyPageConfirmationModalOpen, setIsEmptyPageConfirmationModalOpen] = React.useState(false);
@@ -50,7 +53,8 @@ export const Toolbar: React.FC<ToolbarProps> = () => {
     }, [containerRef]);
 
     function handleEmptyPage() {
-        // TODO: empty page
+        dispatch(doEmptyWorkspace());
+        setIsEmptyPageConfirmationModalOpen(false);
     }
 
     return (
@@ -74,7 +78,7 @@ export const Toolbar: React.FC<ToolbarProps> = () => {
                                         <EmptyPageButton onClick={() => {
                                             setIsEmptyPageConfirmationModalOpen(true)
                                         }}/>
-                                        {window.innerWidth < 700 ? null : <PanelsOrientationButton/>}
+                                        {window.innerWidth < 750 ? null : <PanelsOrientationButton/>}
                                     </>
                                 }>
                                 <Button theme={"borderless"} type='tertiary'
@@ -92,7 +96,6 @@ export const Toolbar: React.FC<ToolbarProps> = () => {
                 </Col>
 
                 <Col>
-                    <NumbOfRowInput size={componentsSize}/>
                     <GenerateButton size={componentsSize}/>
                 </Col>
             </Row>
