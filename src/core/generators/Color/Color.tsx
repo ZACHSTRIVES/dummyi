@@ -15,7 +15,7 @@ export enum ColorGeneratorFormat {
 }
 
 export enum ColorGeneratorKind {
-    HUMAN = "HUMAN",
+    HUMAN = "W",
     RGB = "RGB",
     HSL = "HSL",
 }
@@ -110,7 +110,7 @@ export const ColorGeneratorOptionsComponent: React.FunctionComponent<GeneratorOp
             />
 
             {colorOptions.kind === ColorGeneratorKind.RGB && <OptionsSelect
-                label={<FormattedMessage id='dataType.number.precision.label' />}
+                label={<FormattedMessage id='dataType.color.format.label' />}
                 selectOptions={formatSelectOptions}
                 value={colorOptions.format}
                 onChange={(v) => handleOptionsChange('format', v)}
@@ -129,15 +129,15 @@ const kindSelectOptions: SelectOption[] = Object.values(ColorGeneratorKind).map(
 const formatSelectOptions: SelectOption[] = [
     {
         value: ColorGeneratorFormat.BINARY,
-        label: <><Tag type={'light'} className={style.formatSelectOption}>bin</Tag>Binary Format</>
+        label: <><Tag type={'light'} className={style.formatSelectOption}>binary</Tag>Binary Format</>
     },
     {
         value: ColorGeneratorFormat.CSS,
-        label: <><Tag type={'light'} className={style.formatSelectOption}>css</Tag>CSS Format</>
+        label: <><Tag type={'light'} className={style.formatSelectOption}>string</Tag>CSS Format</>
     },
     {
         value: ColorGeneratorFormat.DECIMAL,
-        label: <><Tag type={'light'} className={style.formatSelectOption}>int</Tag>Integer Format</>
+        label: <><Tag type={'light'} className={style.formatSelectOption}>string</Tag>Integer Format</>
     }
 ]
 

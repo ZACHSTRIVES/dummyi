@@ -39,7 +39,7 @@ export const en = {
     
     // color
     "dataType.color": "Color",
-    
+    "dataType.color.format.label": "Format",
 
     // persontitle
     "dataType.persontitle": "Person Title",

@@ -38,6 +38,7 @@ export const zhCN = {
     
     // color
     "dataType.color": "颜色",
+    "dataType.color.format.label": "格式",
 
     // persontitle
     "dataType.persontitle": "人物称谓",
