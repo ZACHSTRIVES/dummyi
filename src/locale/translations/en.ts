@@ -62,6 +62,9 @@ export const en = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
+    // color
+    "dataType.color": "Color",
+    "dataType.color.format.label": "Format",
 
     // phone
     "dataType.phone": "Phone Number",

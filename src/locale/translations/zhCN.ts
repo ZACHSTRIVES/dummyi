@@ -59,8 +59,11 @@ export const zhCN = {
 
     // -------------------------------------------------------------------------------------------------------------
     // data types
-    
-    
+      
+    // color
+    "dataType.color": "颜色",
+    "dataType.color.format.label": "格式",
+
     // phone
     "dataType.phone": "电话号码",
     "dataType.phone.formats.label": "格式",

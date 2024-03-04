@@ -1,3 +1,4 @@
+import {ColorGenerator} from "@/core/generators/Color";
 import {PhoneGenerator} from "@/core/generators/Phone";
 import {EmojiGenerator} from "@/core/generators/Emoji";
 import {PersonTitleGenerator} from "@/core/generators/PersonTitle";
@@ -13,6 +14,7 @@ import {CompanyNameGenerator} from "@/core/generators/CompanyName";
 import {DataType} from "@/constants/enums";
 
 export const generators = {
+    [DataType.COLOR]: ColorGenerator,
     [DataType.PHONE]: PhoneGenerator,
     [DataType.EMOJI]: EmojiGenerator,
     [DataType.PERSONTITLE]: PersonTitleGenerator,

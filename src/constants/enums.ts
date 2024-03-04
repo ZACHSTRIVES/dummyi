@@ -18,7 +18,10 @@ export enum ExportValueType {
     NUMBER = "number",
     BOOLEAN = "boolean",
     DATE_TIME = "dateTime",
-    NULL = "null"
+    NULL = "null",
+    CSS = "css",
+    BINARY = "binary",
+    HEX = "hex",
 }
 
 export enum ExportProcessStage{
@@ -37,6 +40,7 @@ export enum DataTypeCategory {
 }
 
 export enum DataType {
+    COLOR = "color",
     PHONE = "phone",
     EMOJI = "emoji",
     PERSONTITLE = "persontitle",

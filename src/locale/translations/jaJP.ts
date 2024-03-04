@@ -22,8 +22,10 @@ export const jaJP = {
 
     // -------------------------------------------------------------------------------------------------------------
     // data types
-
     
+    // color
+    "dataType.color": "Color",
+
     // phone
     "dataType.phone": "Phone Number",
     "dataType.phone.formats.label": "Formats",
