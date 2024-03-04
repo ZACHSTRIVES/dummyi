@@ -17,7 +17,10 @@ export enum ExportValueType {
     NUMBER = "number",
     BOOLEAN = "boolean",
     DATE_TIME = "dateTime",
-    NULL = "null"
+    NULL = "null",
+    CSS = "css",
+    BINARY = "binary",
+    HEX = "hex",
 }
 
 // data types
