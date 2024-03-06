@@ -45,7 +45,7 @@ export const ExportFormatConfiguratorModal: React.FC<ExportFormatConfiguratorMod
         <Modal
             visible={open}
             title={intl.formatMessage({id: 'export.configurator.modal.title'})}
-            style={{width: '95vw', maxWidth: '500px', height: '500px'}}
+            style={{width: '95vw', maxWidth: '500px', minHeight: '450px'}}
             footer={
                 <Button onClick={onClose} style={{width: '100px'}}>
                     <FormattedMessage id='export.configurator.modal.confirmButton.text'/>

@@ -2,26 +2,29 @@
 // export format
 export enum ExportFormatCategory {
     FILE_TYPES = "fileTypes",
-    DATABASE = "database",
+    DATABASES = "databases",
     PROGRAMMING_LANGUAGES = "programmingLanguages",
 }
 
 export enum ExportFormat {
+    SQL = "SQL",
     CSV = "CSV",
     JSON = "JSON",
     JAVA_SCRIPT = "Javascript",
     XML = "XML",
 }
 
-export enum ExportValueType {
+export enum ValueType {
     STRING = "string",
-    NUMBER = "number",
+    TEXT= "text",
+    ONE_BIT = "1bit",
+    INT = "integer",
+    BIGINT = "bigint",
+    FLOAT = "float",
+    DOUBLE = "double",
     BOOLEAN = "boolean",
-    DATE_TIME = "dateTime",
-    NULL = "null",
-    CSS = "css",
-    BINARY = "binary",
-    HEX = "hex",
+    INT_LIST = "int_list",
+    STRING_LIST = "string_list"
 }
 
 export enum ExportProcessStage{

@@ -6,7 +6,7 @@ import {
     Generator,
     GeneratorOptionsComponentInterface
 } from "@/types/generator";
-import {DataType, DataTypeCategory, ExportValueType} from "@/constants/enums";
+import {DataType, DataTypeCategory} from "@/constants/enums";
 import React from "react";
 
 // Generate data
@@ -109,12 +109,17 @@ export const getGeneratorDefaultOptionsByDataType = (dataType: DataType): any =>
     return generators[dataType].defaultOptions;
 }
 
+// Get generator default value type by data type
+export const getGeneratorDefaultValueTypeByDataType = (dataType: DataType): any => {
+    console.log(generators[dataType].defaultValueType);
+    return generators[dataType].defaultValueType;
+}
+
 // Get empty data row
 export const getEmptyDataRow = (): GenerateResult => {
     return {
         value: null,
-        stringValue: null,
-        type: ExportValueType.NULL
+        stringValue: null
     }
 }
 

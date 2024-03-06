@@ -1,5 +1,5 @@
 import React from "react";
-import {EndOfLineChars, ExportValueType} from "@/constants/enums";
+import {EndOfLineChars} from "@/constants/enums";
 import {FormatRequest, FormatterConfigComponentInterface} from "@/types/formatter";
 import {FormattedMessage, useIntl} from "@/locale";
 import {OptionsInput, OptionsSelect, SelectOption} from "@/components/Utils";
@@ -45,7 +45,7 @@ export const format = (request: FormatRequest): string => {
         sortedFieldIds
             .filter(column => !fields[column].isDraft)
             .map(column => {
-                if(item[column].type !== ExportValueType.NULL) {
+                if (item[column].value !== null) {
                     let value = item[column].stringValue;
                     value = value.replace(/"/g, '""'); // Escape double quotes
                     if (value.includes(delimiter) || value.includes(endOfLineChar)) {
@@ -53,7 +53,7 @@ export const format = (request: FormatRequest): string => {
                     }
 
                     return value;
-                }else{
+                } else {
                     return "";
                 }
             }));

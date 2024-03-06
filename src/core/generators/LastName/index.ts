@@ -1,6 +1,6 @@
 import {Generator} from "@/types/generator";
-import {DataType, DataTypeCategory} from "@/constants/enums";
-import {LastNameGeneratorDefaultOptions, LastNameGeneratorOptionsComponent, generate} from "./LastName";
+import {DataType, DataTypeCategory, ValueType} from "@/constants/enums";
+import {generate, LastNameGeneratorDefaultOptions, LastNameGeneratorOptionsComponent} from "./LastName";
 
 export const LastNameGenerator: Generator = {
     type: DataType.LASTNAME,
@@ -8,6 +8,7 @@ export const LastNameGenerator: Generator = {
     generate: generate,
     optionsComponent: LastNameGeneratorOptionsComponent,
     defaultOptions: LastNameGeneratorDefaultOptions,
+    defaultValueType: ValueType.STRING,
     exampleLines: ["Hegmann", "Parker", "Wang"]
 }
     

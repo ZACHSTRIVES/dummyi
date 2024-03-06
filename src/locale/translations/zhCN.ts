@@ -8,7 +8,7 @@ export const zhCN = {
     "export.category.programmingLanguages": "编程语言",
 
     // export format modal
-    "export.configurator.modal.title": "导出格式",
+    "export.configurator.modal.title": "生成格式",
     "export.configurator.modal.confirmButton.text": "确认",
     "export.configurator.config.label": "配置",
     "export.configurator.config.empty": "该输出格式的配置暂时还不可用",
@@ -59,9 +59,11 @@ export const zhCN = {
 
     // -------------------------------------------------------------------------------------------------------------
     // data types
-      
+
     // color
     "dataType.color": "颜色",
+    "dataType.color.kind.label": "类型",
+    "dataType.color.format.humanWord":"词语",
     "dataType.color.format.label": "格式",
 
     // phone

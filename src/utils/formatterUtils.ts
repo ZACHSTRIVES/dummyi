@@ -54,6 +54,8 @@ export const getCodemirrorLanguagePluginByFormat = (format: ExportFormat): any =
             return langs.spreadsheet();
         case ExportFormat.JAVA_SCRIPT:
             return langs.javascript();
+        case ExportFormat.SQL:
+            return langs.sql();
         default:
             return langs.mathematica();
     }

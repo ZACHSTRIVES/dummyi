@@ -1,8 +1,8 @@
 import React from 'react';
-import {GenerateRequest, GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
-import {OptionsInput, OptionsSelect, SelectOption} from "@/components/Utils";
+import {GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
+import {OptionsInput, OptionsSelect} from "@/components/Utils";
 import {FormattedMessage} from "@/locale";
-import {ExportValueType, Sex} from "@/constants/enums";
+import {Sex} from "@/constants/enums";
 import {faker} from "@faker-js/faker";
 import {isNullOrWhiteSpace} from "@/utils/stringUtils";
 import {SexSelectOptions} from "@/core/common/selectOptions/SexSelectOptions";
@@ -44,7 +44,6 @@ export const generate = (options): GenerateResult => {
     return {
         value:value,
         stringValue: value,
-        type: ExportValueType.STRING
     }
 }
 
@@ -52,34 +51,31 @@ export const generate = (options): GenerateResult => {
 // options component
 
 export const FullNameGeneratorOptionsComponent: React.FunctionComponent<GeneratorOptionsComponentInterface> = ({...props}) => {
-    const {options, onOptionsChange} = props;
-    const fullNameOptions: FullNameGeneratorOptions = options;
-
-    const handleOptionsChange = (changedFieldName: string, value: any) => {
-        let newOptions = {...fullNameOptions, [changedFieldName]: value};
-        onOptionsChange(newOptions);
-    }
+    const {options, handleOptionValueChange} = props as {
+        options: FullNameGeneratorOptions,
+        handleOptionValueChange: typeof props.handleOptionValueChange
+    };
 
     return (
         <>
             <OptionsSelect
                 label={<FormattedMessage id={"dataType.fullName.sex.label"}/>}
                 selectOptions={SexSelectOptions}
-                value={fullNameOptions.sex}
+                value={options.sex}
                 style={{width: '150px'}}
-                onChange={(v) => handleOptionsChange("sex", v)}/>
+                onChange={(v) => handleOptionValueChange("sex", v)}/>
 
             <OptionsInput
                 label={<FormattedMessage id={"dataType.fullName.firstName.label"}/>}
-                value={fullNameOptions.firstName}
-                onChange={(v) => handleOptionsChange("firstName", v)}
+                value={options.firstName}
+                onChange={(v) => handleOptionValueChange("firstName", v)}
                 style={{width: '100px'}}
             />
 
             <OptionsInput
                 label={<FormattedMessage id={"dataType.fullName.lastName.label"}/>}
-                value={fullNameOptions.lastName}
-                onChange={(v) => handleOptionsChange("lastName", v)}
+                value={options.lastName}
+                onChange={(v) => handleOptionValueChange("lastName", v)}
                 style={{width: '100px'}}
             />
         </>

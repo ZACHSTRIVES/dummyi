@@ -2,8 +2,6 @@ import React from "react";
 import {FormatRequest, FormatterConfigComponentInterface} from "@/types/formatter";
 import {OptionsInput, OptionsSelect, SelectOption} from "@/components/Utils";
 import {FormattedMessage} from "@/locale";
-import {ExportValueType} from "@/constants/enums";
-
 
 // -------------------------------------------------------------------------------------------------------------
 // types
@@ -42,7 +40,7 @@ export const format = (request: FormatRequest): string => {
 
         sortedFieldIds.forEach(column => {
             if (!fields[column].isDraft) {
-                if(item[column].type !== ExportValueType.NULL) {
+                if (item[column].value !== null) {
                     let value = item[column].stringValue;
                     if (value.includes('\n')) {
                         value = `"${value}"`;

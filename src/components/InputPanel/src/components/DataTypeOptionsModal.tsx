@@ -8,7 +8,7 @@ import {
 } from "@/reducers/workspace/workspaceSelectors";
 import {getGeneratorOptionsComponentByDataType} from "@/utils/generatorUtils";
 import {doCloseDataTypeOptionsModal, doUpdateDataField} from "@/reducers/workspace/workspaceActions";
-import {ComponentSize} from "@/constants/enums";
+import {ComponentSize, ValueType} from "@/constants/enums";
 import {FormattedMessage, useIntl} from "@/locale";
 import {OptionsNumberInput} from "@/components/Utils";
 import {isNullOrWhiteSpace} from "@/utils/stringUtils";
@@ -39,6 +39,7 @@ export const DataTypeOptionsModal: React.FunctionComponent<DataTypeOptionsModalP
         const OptionsComponent = getGeneratorOptionsComponentByDataType(dataField.dataType);
         return OptionsComponent ?
             <OptionsComponent options={dataField.dataTypeOptions}
+                              onValueTypeChange={handleDataFieldValueTypeChange}
                               onOptionsChange={handleDataFieldOptionsChange}/> : null;
     };
 
@@ -48,6 +49,14 @@ export const DataTypeOptionsModal: React.FunctionComponent<DataTypeOptionsModalP
             ...dataField,
             dataTypeOptions: options
         };
+        dispatch(doUpdateDataField(dataFieldId, newDataField));
+    }
+
+    const handleDataFieldValueTypeChange = (valueType: ValueType) =>{
+        const newDataField = {
+            ...dataField,
+            valueType:valueType
+        }
         dispatch(doUpdateDataField(dataFieldId, newDataField));
     }
 

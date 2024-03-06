@@ -1,6 +1,6 @@
 import {Generator} from "@/types/generator";
-import {DataType, DataTypeCategory} from "@/constants/enums";
-import {PersonTitleGeneratorDefaultOptions, PersonTitleGeneratorOptionsComponent, generate} from "./PersonTitle";
+import {DataType, DataTypeCategory, ValueType} from "@/constants/enums";
+import {generate, PersonTitleGeneratorDefaultOptions, PersonTitleGeneratorOptionsComponent} from "./PersonTitle";
 
 export const PersonTitleGenerator: Generator = {
     type: DataType.PERSONTITLE,
@@ -8,6 +8,7 @@ export const PersonTitleGenerator: Generator = {
     generate: generate,
     optionsComponent: PersonTitleGeneratorOptionsComponent,
     defaultOptions: PersonTitleGeneratorDefaultOptions,
+    defaultValueType: ValueType.STRING,
     exampleLines: ["Miss", "Mr.", "Dr."]
 }
     

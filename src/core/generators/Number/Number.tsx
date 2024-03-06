@@ -3,7 +3,7 @@ import {GenerateResult, GeneratorOptionsComponentInterface} from "@/types/genera
 import {FormattedMessage, useIntl} from "@/locale";
 import {OptionsNumberInput, OptionsSelect, SelectOption} from "@/components/Utils";
 import {faker} from "@faker-js/faker";
-import {ExportValueType} from "@/constants/enums";
+import {ValueType} from "@/constants/enums";
 import {isNullOrWhiteSpace} from "@/utils/stringUtils";
 
 // -------------------------------------------------------------------------------------------------------------
@@ -31,6 +31,15 @@ export const NumberGeneratorDefaultOptions: NumberGeneratorOptions = {
     min: 0,
     max: 9999,
 }
+
+const kindToValueTypeMap = {
+    [NumberGeneratorKind.INTEGER]: ValueType.INT,
+    [NumberGeneratorKind.BINARY]: ValueType.INT,
+    [NumberGeneratorKind.HEX]: ValueType.STRING,
+    [NumberGeneratorKind.BIGINT]: ValueType.BIGINT,
+    [NumberGeneratorKind.FLOAT]: ValueType.DOUBLE,
+    [NumberGeneratorKind.OCTAL]: ValueType.STRING,
+};
 
 // -------------------------------------------------------------------------------------------------------------
 // generate method
@@ -63,7 +72,6 @@ export const generate = (options): GenerateResult => {
     return {
         value: result,
         stringValue: result.toString(),
-        type: kind === NumberGeneratorKind.BINARY || kind === NumberGeneratorKind.OCTAL || kind === NumberGeneratorKind.HEX ? ExportValueType.STRING : ExportValueType.NUMBER
     };
 }
 
@@ -71,14 +79,12 @@ export const generate = (options): GenerateResult => {
 // options component
 
 export const NumberGeneratorOptionsComponent: React.FunctionComponent<GeneratorOptionsComponentInterface> = ({...props}) => {
-    const {options, onOptionsChange} = props;
-    const numberOptions: NumberGeneratorOptions = options;
-    const intl = useIntl();
+    const {options, handleOptionValueChange} = props as {
+        options: NumberGeneratorOptions,
+        handleOptionValueChange: typeof props.handleOptionValueChange
+    };
 
-    const handleOptionsChange = (changedFieldName: string, value: any) => {
-        let newOptions = {...numberOptions, [changedFieldName]: value};
-        onOptionsChange(newOptions);
-    }
+    const intl = useIntl();
 
     // error validation
     const [errorMessages, setErrorMessages] = React.useState({
@@ -89,57 +95,69 @@ export const NumberGeneratorOptionsComponent: React.FunctionComponent<GeneratorO
     React.useEffect(() => {
         const newErrorMessages = {...errorMessages};
         // min
-        if (isNullOrWhiteSpace(numberOptions.min.toString())) {
+        if (isNullOrWhiteSpace(options.min.toString())) {
             newErrorMessages.min = intl.formatMessage({id: 'dataType.number.min.errorMessage.empty'})
-        } else if (numberOptions.min > numberOptions.max) {
+        } else if (options.min > options.max) {
             newErrorMessages.min = intl.formatMessage({id: 'dataType.number.min.errorMessage.greaterThanMax'})
         } else {
             newErrorMessages.min = '';
         }
 
         // max
-        if (isNullOrWhiteSpace(numberOptions.max.toString())) {
+        if (isNullOrWhiteSpace(options.max.toString())) {
             newErrorMessages.max = intl.formatMessage({id: 'dataType.number.max.errorMessage.empty'})
-        } else if (numberOptions.max < numberOptions.min) {
+        } else if (options.max < options.min) {
             newErrorMessages.max = intl.formatMessage({id: 'dataType.number.max.errorMessage.lessThanMin'})
         } else {
             newErrorMessages.max = '';
         }
 
         setErrorMessages(newErrorMessages);
-    }, [numberOptions.min, numberOptions.max]);
+    }, [options.min, options.max]);
+
+
+    const handleKindChange = (kind: NumberGeneratorKind) => {
+        const valueType = kindToValueTypeMap[kind];
+        if (valueType) {
+            handleOptionValueChange("kind", kind, valueType);
+        }
+    };
 
     return (
         <>
             <OptionsSelect
                 label={<FormattedMessage id='dataType.number.kind.label'/>}
                 selectOptions={kindSelectOptions}
-                value={numberOptions.kind}
-                onChange={(v) => handleOptionsChange('kind', v)}
+                value={options.kind}
+                onChange={(v) => handleKindChange(v)}
                 style={{width: '100px'}}
             />
 
-            {numberOptions.kind === NumberGeneratorKind.FLOAT && <OptionsSelect
+            {options.kind === NumberGeneratorKind.FLOAT && <OptionsSelect
                 label={<FormattedMessage id='dataType.number.precision.label'/>}
                 selectOptions={precisionSelectOptions}
-                value={numberOptions.precision}
-                onChange={(v) => handleOptionsChange('precision', v)}
+                value={options.precision}
+                onChange={(v) => handleOptionValueChange('precision', v)}
             />}
 
             <div className='flex'>
                 <OptionsNumberInput
                     label={<FormattedMessage id='dataType.number.min.label'/>}
-                    value={numberOptions.min}
-                    onChange={(v) => handleOptionsChange('min', v)}
+                    value={options.min}
+                    onChange={(v) => handleOptionValueChange('min', v)}
                     style={{width: '120px'}}
                     errorMessage={errorMessages.min}
+                    min={-2147483647}
+                    max={2147483647}
                 />
                 <OptionsNumberInput
                     label={<FormattedMessage id='dataType.number.max.label'/>}
-                    value={numberOptions.max}
-                    onChange={(v) => handleOptionsChange('max', v)}
+                    value={options.max}
+                    onChange={(v) => handleOptionValueChange('max', v)}
                     style={{width: '120px'}}
                     errorMessage={errorMessages.max}
+                    max={2147483647}
+                    min={-2147483647}
                 />
             </div>
         </>

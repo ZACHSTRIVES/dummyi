@@ -9,3 +9,8 @@ export const calculateByteSize = (str: string) => {
     const encodedData = encoder.encode(str);
     return encodedData.length;
 }
+
+// check variable has value
+export function hasValue(variable: any): boolean {
+    return variable !== null && variable !== undefined;
+}
