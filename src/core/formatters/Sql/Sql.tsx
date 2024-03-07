@@ -128,11 +128,14 @@ const generateInsertStatements = (sqlType: SqlType, tableName: string, sortedFie
 
         batchValues.forEach((item, index) => {
             const valueString = sortedFieldIds.map(id => {
+                if (fields[id].isDraft) {
+                    return ""
+                }
                 let result = item[id]; // Assuming direct use of value; adapt as necessary
                 return formatValueForSQL(result.value, sqlType); // Apply formatting function
             }).join(', ');
 
-            inserts += `  (${valueString})${index < batchValues.length - 1 ? ',' : ';'}\n`;
+            inserts += `  (${valueString})${index < batchValues.length - 1 ? ',' : ';\n'}\n`;
         });
     }
     return inserts;
@@ -140,10 +143,13 @@ const generateInsertStatements = (sqlType: SqlType, tableName: string, sortedFie
 
 // Modify the format function to adapt to different SQL dialects
 export const format = (request: FormatRequest): string => {
+    console.log(request)
+
     const {fields, values, config, sortedFieldIds} = request;
     const {type, tableName, batchSize, dropTable, createTable, primaryKey, primaryKeyColumnName} = config;
 
     let sql = '';
+
 
     if (values.length === 0) {
         return sql;
