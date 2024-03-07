@@ -111,7 +111,6 @@ export const getGeneratorDefaultOptionsByDataType = (dataType: DataType): any =>
 
 // Get generator default value type by data type
 export const getGeneratorDefaultValueTypeByDataType = (dataType: DataType): any => {
-    console.log(generators[dataType].defaultValueType);
     return generators[dataType].defaultValueType;
 }
 

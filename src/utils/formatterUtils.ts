@@ -33,6 +33,11 @@ export const getFormatterByFormat = (format: ExportFormat): Formatter => {
     return formatters[format];
 }
 
+// Get formatter default config by format
+export const getFormatterDefaultConfigByFormat = (format: ExportFormat): any => {
+    return formatters[format].defaultConfig;
+}
+
 // Get formatter config component by format
 export const getFormatterConfigComponentByFormat = (format: ExportFormat): any => {
     return formatters[format].configComponent;
