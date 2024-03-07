@@ -20,7 +20,6 @@ export enum ValueType {
     ONE_BIT = "1bit",
     INT = "integer",
     BIGINT = "bigint",
-    FLOAT = "float",
     DOUBLE = "double",
     BOOLEAN = "boolean",
     INT_LIST = "int_list",

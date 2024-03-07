@@ -30,10 +30,6 @@ export interface GeneratorOptionsComponentInterface {
     handleOptionValueChange: (fieldName: string, value: any, valueType?: ValueType) => void;
 }
 
-export interface GenerateRequest {
-    field: DataField;
-}
-
 export interface GenerateResult {
     value: any;
     stringValue: string;

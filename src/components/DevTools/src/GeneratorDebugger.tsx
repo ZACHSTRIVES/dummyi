@@ -33,7 +33,7 @@ export const GeneratorDebugger: React.FunctionComponent<GeneratorDebuggerProps> 
     // mock data
     const dataFieldList: DataFieldList = {[id]: dataField}
     const sortedFieldIds = [id]
-    const values = generateData(dataFieldList, sortedFieldIds, 3);
+    const values = generateData(dataFieldList, sortedFieldIds, 10);
 
     // store
     const colorMode = useSelector(selectColorMode);

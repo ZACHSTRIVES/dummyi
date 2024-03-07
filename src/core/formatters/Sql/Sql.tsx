@@ -22,6 +22,7 @@ export enum SqlType {
     SAPHANA = "SAPHANA"
 }
 
+
 export type SqlFormatterConfig = {
     type: SqlType,
     tableName: string,
@@ -48,10 +49,99 @@ export const defaultSqlFormatterConfig: SqlFormatterConfig = {
 // -------------------------------------------------------------------------------------------------------------
 // format method
 
+// Extend the addCreateTableColumn function to support different SQL dialects
+const addCreateTableColumn = (field: DataField, sqlType: SqlType) => {
+    let fieldType = "VARCHAR(255)"; // Default data type
+    switch (field.valueType) {
+        case ValueType.INT:
+            fieldType = "INT";
+            break;
+        case ValueType.DOUBLE:
+            fieldType = "DOUBLE(18,4)";
+            break;
+        case ValueType.TEXT:
+            fieldType = (sqlType === SqlType.ORACLE || sqlType === SqlType.IBMDB2) ? "CLOB" : "TEXT";
+            break;
+        case ValueType.ONE_BIT:
+            fieldType = "TINYINT(1)";
+            break;
+        case ValueType.BOOLEAN:
+            fieldType = "TINYINT(1)";
+            break;
+        case ValueType.BIGINT:
+            fieldType = "BIGINT";
+            break;
+        default:
+            fieldType = "VARCHAR(255)";
+            break;
+    }
+
+    // Apply SQL type-specific modifications
+    switch (sqlType) {
+        case SqlType.ORACLE:
+            // Oracle-specific adaptations, e.g., use NUMBER instead of INT
+            if (fieldType === "INT") {
+                fieldType = "NUMBER";
+            } else if (fieldType === "TINYINT(1)") {
+                fieldType = "NUMBER(1)";
+            }
+            break;
+        case SqlType.POSTGRES:
+            // Postgres-specific adaptations, e.g., use BOOLEAN instead of TINYINT(1)
+            if (fieldType === "TINYINT(1)") {
+                fieldType = "BOOLEAN";
+            }
+            break;
+        case SqlType.SQLITE:
+            // SQLite uses a more dynamic type system
+            if (fieldType === "TINYINT(1)") {
+                fieldType = "INTEGER";
+            }
+            break;
+        // Add cases for other SQL types as necessary
+    }
+
+    return `  ${field.fieldName} ${fieldType} DEFAULT NULL`;
+};
+
+const formatValueForSQL = (value: any, sqlType: SqlType): string => {
+    if (typeof value === 'string') {
+        // String values need to be enclosed in single quotes, and single quotes within the value escaped
+        return `'${value.replace(/'/g, "''")}'`;
+    } else if (typeof value === 'boolean') {
+        return (value ? "1" : "0");
+    } else if (value === null) {
+        // Handle null values
+        return 'NULL';
+    }
+    // Adapt this function for other data types and SQL dialects as needed
+    return value;
+};
+
+const generateInsertStatements = (sqlType: SqlType, tableName: string, sortedFieldIds: string[], values: any[], fields: {
+    [key: string]: any
+}, batchSize: number): string => {
+    let inserts = '';
+    for (let i = 0; i < values.length; i += batchSize) {
+        const batchValues = values.slice(i, i + batchSize);
+        inserts += `INSERT INTO ${tableName} (${sortedFieldIds.map(id => fields[id].fieldName).join(', ')}) VALUES\n`;
+
+        batchValues.forEach((item, index) => {
+            const valueString = sortedFieldIds.map(id => {
+                let result = item[id]; // Assuming direct use of value; adapt as necessary
+                return formatValueForSQL(result.value, sqlType); // Apply formatting function
+            }).join(', ');
+
+            inserts += `  (${valueString})${index < batchValues.length - 1 ? ',' : ';'}\n`;
+        });
+    }
+    return inserts;
+};
+
+// Modify the format function to adapt to different SQL dialects
 export const format = (request: FormatRequest): string => {
     const {fields, values, config, sortedFieldIds} = request;
     const {type, tableName, batchSize, dropTable, createTable, primaryKey, primaryKeyColumnName} = config;
-    console.log(values)
 
     let sql = '';
 
@@ -68,10 +158,18 @@ export const format = (request: FormatRequest): string => {
     if (createTable) {
         sql += `CREATE TABLE ${tableName} (\n`;
         if (primaryKey) {
-            sql += `  ${primaryKeyColumnName} INT AUTO_INCREMENT PRIMARY KEY,\n`;
+            if (type === SqlType.ORACLE) {
+                sql += `  ${primaryKeyColumnName} NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n`;
+            } else if (type === SqlType.POSTGRES) {
+                sql += `  ${primaryKeyColumnName} SERIAL PRIMARY KEY,\n`;
+            } else if (type === SqlType.SQLITE) {
+                sql += `  ${primaryKeyColumnName} INTEGER PRIMARY KEY AUTOINCREMENT,\n`;
+            } else { // Default, also covers MYSQL and others
+                sql += `  ${primaryKeyColumnName} INT AUTO_INCREMENT PRIMARY KEY,\n`;
+            }
         }
         sortedFieldIds.forEach((id, index) => {
-            sql += addCreateTableColumn(fields[id])
+            sql += addCreateTableColumn(fields[id], type) // Pass SQL type to function
             sql += index < sortedFieldIds.length - 1 ? ',\n' : '\n';
         });
         sql += `);\n\n`;
@@ -79,44 +177,12 @@ export const format = (request: FormatRequest): string => {
 
     // Insert data
     if (values.length > 0) {
-        for (let i = 0; i < values.length; i += batchSize) {
-            const batchValues = values.slice(i, i + batchSize);
-            sql += `INSERT INTO ${tableName} (`;
-            sql += sortedFieldIds.map(id => fields[id].fieldName).join(', ');
-            sql += `) VALUES \n`;
-
-            batchValues.forEach((item, index) => {
-                const valueString = sortedFieldIds.map(id => {
-                    const value = item[id].stringValue; // Assuming stringValue is the appropriate property for SQL value
-                    return typeof value === 'string' ? `'${value.replace(/'/g, "''")}'` : value; // Handle string values and escape single quotes
-                }).join(', ');
-                sql += `  (${valueString})`;
-                sql += index < batchValues.length - 1 ? ',\n' : ';\n\n'; // End the line with a comma or a semicolon depending on the batch
-            });
-        }
+        sql += generateInsertStatements(type, tableName, sortedFieldIds, values, fields, batchSize);
     }
 
     return sql;
-}
+};
 
-const addCreateTableColumn = (field: DataField) => {
-    let sql = `  ${field.fieldName} `;
-    switch (field.valueType) {
-        case ValueType.STRING:
-            sql += "VARCHAR(255) DEFAULT NULL"
-            return sql;
-        case ValueType.INT:
-            sql += "INT DEFAULT NULL"
-            return sql;
-        case ValueType.DOUBLE:
-            sql += "DOUBLE DEFAULT NULL"
-            return sql;
-        case ValueType.STRING_LIST:
-            sql += "VARCHAR(255) DEFAULT NULL"
-        default:
-            return sql;
-    }
-}
 
 // -------------------------------------------------------------------------------------------------------------
 // config component

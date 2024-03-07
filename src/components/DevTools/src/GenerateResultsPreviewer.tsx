@@ -10,7 +10,7 @@ import {
 import CodeMirror from "@uiw/react-codemirror";
 import {darkTheme, lightTheme} from "@/components/PreviewPanel/src/components/RawPreviewer/RawPreviewer.themes";
 import {EditorView} from "@codemirror/view";
-import {Card, Tag, Typography} from "@douyinfe/semi-ui";
+import {Card, Tag} from "@douyinfe/semi-ui";
 import {useSelector} from "react-redux";
 import {selectColorMode} from "@/reducers/app/appSelectors";
 import {Extension} from "@codemirror/state";
@@ -24,7 +24,7 @@ export interface GenerateResultsPreviewerProps {
 
 export const GenerateResultsPreviewer: React.FunctionComponent<GenerateResultsPreviewerProps> = ({...props}) => {
     const {values, fields, sortedFieldIds, formatType} = props;
-    const {Text} = Typography;
+
     // store
     const colorMode = useSelector(selectColorMode);
 
@@ -46,6 +46,13 @@ export const GenerateResultsPreviewer: React.FunctionComponent<GenerateResultsPr
     // actions
     const getPreviewData = (values: any[], fields: DataFieldList, sortedFieldIds: string[], formatType: ExportFormat) => {
         try {
+            let config = getFormatterDefaultConfigByFormat(formatType);
+
+            if (formatType === ExportFormat.SQL) {
+                config.createTable = true;
+                config.primaryKey = false;
+            }
+
             const formatRequest: FormatRequest = {
                 values: values,
                 fields: fields,
@@ -63,8 +70,8 @@ export const GenerateResultsPreviewer: React.FunctionComponent<GenerateResultsPr
 
     return (
         <div>
-            <Card style={{width: "400px",height:"250px"}}>
-                <Tag size={'small'}  type={colorMode === ColorMode.DARK ? 'solid' : 'ghost'}>{formatType}</Tag>
+            <Card style={{width: "400px", height: "250px"}}>
+                <Tag size={'small'} type={colorMode === ColorMode.DARK ? 'solid' : 'ghost'}>{formatType}</Tag>
                 <CodeMirror
                     editable={false}
                     readOnly={true}
