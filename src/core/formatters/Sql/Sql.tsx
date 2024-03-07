@@ -5,7 +5,7 @@ import {FormattedMessage, useIntl} from "@/locale";
 import {isNullOrWhiteSpace} from "@/utils/stringUtils";
 import {OptionsSwitch} from "@/components/Utils/src/OptionsSwitch";
 import {Divider} from "@douyinfe/semi-ui";
-import {DataField, GenerateResult} from "@/types/generator";
+import {DataField} from "@/types/generator";
 import {ValueType} from "@/constants/enums";
 
 

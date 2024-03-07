@@ -23,6 +23,14 @@ export const jaJP = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
+    
+    
+    // accountnumber
+    "dataType.accountnumber": "AccountNumber",
+
+    // accountname
+    "dataType.accountname": "AccountName",
+
     // color
     "dataType.color": "Color",
 

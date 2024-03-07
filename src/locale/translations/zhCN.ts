@@ -60,6 +60,16 @@ export const zhCN = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
+    
+    
+    // accountnumber
+    "dataType.accountnumber": "银行账号",
+    "dataType.accountnumber.length": "长度",
+    "dataType.accountnumber.empty": "长度不能为空",
+
+    // accountname
+    "dataType.accountname": "账户名",
+
     // color
     "dataType.color": "颜色",
     "dataType.color.kind.label": "类型",

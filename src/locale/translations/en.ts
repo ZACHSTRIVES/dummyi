@@ -74,6 +74,16 @@ export const en = {
     // data types
 
 
+    
+    
+    // accountnumber
+    "dataType.accountnumber": "Account Number",
+    "dataType.accountnumber.length": "Length",
+    "dataType.accountnumber.empty": "Length cannot be empty",
+
+    // accountname
+    "dataType.accountname": "Account Name",
+
     // color
     "dataType.color": "Color",
     "dataType.color.kind.label": "Kind",

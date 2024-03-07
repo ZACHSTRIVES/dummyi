@@ -43,6 +43,8 @@ export enum DataTypeCategory {
 }
 
 export enum DataType {
+    ACCOUNTNUMBER = "accountnumber",
+    ACCOUNTNAME = "accountname",
     COLOR = "color",
     PHONE = "phone",
     EMOJI = "emoji",

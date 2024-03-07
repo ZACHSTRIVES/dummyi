@@ -53,7 +53,6 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
         if (hasValue(valueType)) {
             field.valueType = valueType;
         }
-        console.log(valueType)
         dispatch(doUpdateDataField(id, field));
     };
 

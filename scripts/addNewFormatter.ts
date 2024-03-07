@@ -46,16 +46,16 @@ const createFormatter = (formatterName: string, fileExtension: string) => {
     });
 }
 
-rl.question('💥 Please enter the name of the new formatter: ', (generatorName: string) => {
+rl.question('💥 Please enter the name of the new formatter: ', (formatterName: string) => {
     const folderPath = `./src/core/generators`;
-    generatorName = formatFolderName(generatorName);
-    if (checkIfFormatExists(generatorName)) {
+    formatterName = formatFolderName(formatterName);
+    if (checkIfFormatExists(formatterName)) {
         rl.close();
         return;
     }
 
-    rl.question('➡️ Please enter the file extension for the formatter: ',(fileExtension: string) => {
-        createFormatter(generatorName, fileExtension);
+    rl.question('➡️ Please enter the file extension for the formatter: ', (fileExtension: string) => {
+        createFormatter(formatterName , fileExtension);
     });
 });
 
@@ -87,8 +87,6 @@ const addFormatterToIndex = (formatterName: string) => {
 const writeFormatterTsxFile = (formatterName: string) => {
     return `import React from "react";
 import {FormatRequest, FormatterConfigComponentInterface} from "@/types/formatter";
-import {ExportValueType} from "@/constants/enums";
-
 
 // -------------------------------------------------------------------------------------------------------------
 // types

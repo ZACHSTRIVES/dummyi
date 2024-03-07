@@ -12,6 +12,7 @@ import {ComponentSize, ValueType} from "@/constants/enums";
 import {FormattedMessage, useIntl} from "@/locale";
 import {OptionsNumberInput} from "@/components/Utils";
 import {isNullOrWhiteSpace} from "@/utils/stringUtils";
+import {hasValue} from "@/utils/typeUtils";
 
 export interface DataTypeOptionsModalProps {
     size: ComponentSize;
@@ -39,26 +40,17 @@ export const DataTypeOptionsModal: React.FunctionComponent<DataTypeOptionsModalP
         const OptionsComponent = getGeneratorOptionsComponentByDataType(dataField.dataType);
         return OptionsComponent ?
             <OptionsComponent options={dataField.dataTypeOptions}
-                              onValueTypeChange={handleDataFieldValueTypeChange}
-                              onOptionsChange={handleDataFieldOptionsChange}/> : null;
+                              handleOptionValueChange={handleOptionValueChange}/> : null;
     };
 
     // actions
-    const handleDataFieldOptionsChange = (options) => {
-        const newDataField = {
-            ...dataField,
-            dataTypeOptions: options
-        };
-        dispatch(doUpdateDataField(dataFieldId, newDataField));
-    }
-
-    const handleDataFieldValueTypeChange = (valueType: ValueType) =>{
-        const newDataField = {
-            ...dataField,
-            valueType:valueType
+    const handleOptionValueChange = (fieldName: string, value: any, valueType?: ValueType) => {
+        let field = {...dataField, dataTypeOptions: {...dataField.dataTypeOptions, [fieldName]: value}};
+        if (hasValue(valueType)) {
+            field.valueType = valueType;
         }
-        dispatch(doUpdateDataField(dataFieldId, newDataField));
-    }
+        dispatch(doUpdateDataField(dataFieldId, field));
+    };
 
     const handleEmptyRateChange = (value) => {
         const newDataField = {
