@@ -61,6 +61,10 @@ export const zhCN = {
     // data types
       
     
+    
+    // domainsuffix
+    "dataType.domainsuffix": "DomainSuffix",
+
     // domainname
     "dataType.domainname": "DomainName",
 

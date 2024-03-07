@@ -63,6 +63,10 @@ export const en = {
     // data types
 
     
+    
+    // domainsuffix
+    "dataType.domainsuffix": "DomainSuffix",
+
     // domainname
     "dataType.domainname": "DomainName",
 

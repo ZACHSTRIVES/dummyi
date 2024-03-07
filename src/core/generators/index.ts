@@ -1,3 +1,4 @@
+import {DomainSuffixGenerator} from "@/core/generators/DomainSuffix";
 import {DomainNameGenerator} from "@/core/generators/DomainName";
 import {ColorGenerator} from "@/core/generators/Color";
 import {PhoneGenerator} from "@/core/generators/Phone";
@@ -15,6 +16,7 @@ import {CompanyNameGenerator} from "@/core/generators/CompanyName";
 import {DataType} from "@/constants/enums";
 
 export const generators = {
+  [DataType.DOMAINSUFFIX]: DomainSuffixGenerator,
   [DataType.DOMAINNAME]: DomainNameGenerator,
     [DataType.COLOR]: ColorGenerator,
     [DataType.PHONE]: PhoneGenerator,
