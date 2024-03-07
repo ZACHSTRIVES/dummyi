@@ -40,6 +40,7 @@ export enum DataTypeCategory {
 }
 
 export enum DataType {
+    DOMAINNAME = "domainname",
     COLOR = "color",
     PHONE = "phone",
     EMOJI = "emoji",

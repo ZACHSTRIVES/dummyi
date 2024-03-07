@@ -62,6 +62,10 @@ export const en = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
+    
+    // domainname
+    "dataType.domainname": "DomainName",
+
     // color
     "dataType.color": "Color",
     "dataType.color.format.label": "Format",

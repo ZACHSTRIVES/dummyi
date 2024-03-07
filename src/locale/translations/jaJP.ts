@@ -23,6 +23,10 @@ export const jaJP = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
     
+    
+    // domainname
+    "dataType.domainname": "DomainName",
+
     // color
     "dataType.color": "Color",
 

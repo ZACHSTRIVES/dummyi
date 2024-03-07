@@ -60,6 +60,10 @@ export const zhCN = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
       
+    
+    // domainname
+    "dataType.domainname": "DomainName",
+
     // color
     "dataType.color": "颜色",
     "dataType.color.format.label": "格式",
