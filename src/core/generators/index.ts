@@ -1,5 +1,7 @@
 import {DomainSuffixGenerator} from "@/core/generators/DomainSuffix";
 import {DomainNameGenerator} from "@/core/generators/DomainName";
+import {AccountNumberGenerator} from "@/core/generators/AccountNumber";
+import {AccountNameGenerator} from "@/core/generators/AccountName";
 import {ColorGenerator} from "@/core/generators/Color";
 import {PhoneGenerator} from "@/core/generators/Phone";
 import {EmojiGenerator} from "@/core/generators/Emoji";
@@ -16,8 +18,10 @@ import {CompanyNameGenerator} from "@/core/generators/CompanyName";
 import {DataType} from "@/constants/enums";
 
 export const generators = {
-  [DataType.DOMAINSUFFIX]: DomainSuffixGenerator,
-  [DataType.DOMAINNAME]: DomainNameGenerator,
+   [DataType.DOMAINSUFFIX]: DomainSuffixGenerator,
+   [DataType.DOMAINNAME]: DomainNameGenerator,
+   [DataType.ACCOUNTNUMBER]: AccountNumberGenerator,
+   [DataType.ACCOUNTNAME]: AccountNameGenerator,
     [DataType.COLOR]: ColorGenerator,
     [DataType.PHONE]: PhoneGenerator,
     [DataType.EMOJI]: EmojiGenerator,

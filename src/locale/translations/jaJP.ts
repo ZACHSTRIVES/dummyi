@@ -23,13 +23,17 @@ export const jaJP = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
     
-    
-    
     // domainsuffix
     "dataType.domainsuffix": "DomainSuffix",
 
     // domainname
     "dataType.domainname": "DomainName",
+
+    // accountnumber
+    "dataType.accountnumber": "AccountNumber",
+
+    // accountname
+    "dataType.accountname": "AccountName",
 
     // color
     "dataType.color": "Color",

@@ -1,6 +1,5 @@
 import React from "react";
 import {GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
-import {ExportValueType, Sex} from "@/constants/enums";
 import {OptionsSelect, SelectOption} from "@/components/Utils";
 import {FormattedMessage} from "@/locale";
 import {faker} from "@faker-js/faker";
@@ -35,24 +34,20 @@ export const generate = (options: any): GenerateResult => {
     const config = {};
     config['types'] = options.type;
 
-
     const value = faker.internet.emoji(config);
 
     return {
         value: value,
         stringValue: value,
-        type: ExportValueType.STRING
     };
 }
 
 // -------------------------------------------------------------------------------------------------------------
 // options component
 export const EmojiGeneratorOptionsComponent: React.FunctionComponent<GeneratorOptionsComponentInterface> = ({...props}) => {
-    const {options, onOptionsChange} = props;
-
-    const handleOptionsChange = (changedFieldName: string, value: any) => {
-        let newOptions = {...options, [changedFieldName]: value};
-        onOptionsChange(newOptions);
+    const {options, handleOptionValueChange} = props as {
+        options: EmojiGeneratorOptions,
+        handleOptionValueChange: typeof props.handleOptionValueChange
     };
 
     return (
@@ -63,7 +58,7 @@ export const EmojiGeneratorOptionsComponent: React.FunctionComponent<GeneratorOp
                 label={<FormattedMessage id='dataType.emoji.type'/>}
                 selectOptions={EmojiTypeSelectOptions}
                 value={options.type}
-                onChange={(v) => handleOptionsChange("type", v)}
+                onChange={(v) => handleOptionValueChange("type", v)}
                 style={{width: '200px'}}
             />
         </div>

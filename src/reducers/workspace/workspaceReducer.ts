@@ -131,11 +131,12 @@ const workspaceReducer = (state: WorkspaceReducerState = initStates, action: Act
                 dataFieldsSortableIdsList: action.payload,
             };
         case CHANGE_DATA_TYPE:
-            const {id, dataType, options} = action.payload;
+            const {id, dataType, valueType, options} = action.payload;
             const field = {
                 ...state.dataFields[id],
                 isDraft: false,
                 dataType,
+                valueType,
                 dataTypeOptions: options
             };
 

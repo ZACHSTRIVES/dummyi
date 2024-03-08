@@ -1,6 +1,6 @@
 import React from "react";
 import {GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
-import {ExportValueType, Sex} from "@/constants/enums";
+import {Sex} from "@/constants/enums";
 import {faker} from "@faker-js/faker";
 import {FormattedMessage} from "@/locale";
 import {OptionsSelect} from "@/components/Utils";
@@ -30,19 +30,16 @@ export const generate = (options: any): GenerateResult => {
 
     return {
         value: value,
-        stringValue: value,
-        type: ExportValueType.STRING
+        stringValue: value
     };
 }
 
 // -------------------------------------------------------------------------------------------------------------
 // options component
 export const FirstNameGeneratorOptionsComponent: React.FunctionComponent<GeneratorOptionsComponentInterface> = ({...props}) => {
-    const {options, onOptionsChange} = props;
-
-    const handleOptionsChange = (changedFieldName: string, value: any) => {
-        let newOptions = {...options, [changedFieldName]: value};
-        onOptionsChange(newOptions);
+    const {options, handleOptionValueChange} = props as {
+        options:FirstNameGeneratorOptions,
+        handleOptionValueChange: typeof props.handleOptionValueChange
     };
 
     return (
@@ -52,7 +49,7 @@ export const FirstNameGeneratorOptionsComponent: React.FunctionComponent<Generat
                 selectOptions={SexSelectOptions}
                 value={options.sex}
                 style={{width: '150px'}}
-                onChange={(v) => handleOptionsChange("sex", v)}/>
+                onChange={(v) => handleOptionValueChange("sex", v)}/>
         </>
     );
 }

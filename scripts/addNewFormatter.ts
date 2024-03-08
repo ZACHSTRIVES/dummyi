@@ -24,7 +24,7 @@ const createFormatter = (formatterName: string, fileExtension: string) => {
         } else {
             const path = `./src/core/formatters/${formatterName}`;
 
-            // add DataType enum option
+            // add formatter enum option
             enumUtils('./src/constants/enums.ts', 'ExportFormat', formatterName.toUpperCase(), formatterName.toLowerCase());
 
             // create directory
@@ -33,18 +33,12 @@ const createFormatter = (formatterName: string, fileExtension: string) => {
             // create index.ts
             fs.writeFileSync(`${path}/index.ts`, writeFormatterIndexFile(formatterName, categories[selectedIndex], fileExtension), 'utf8');
 
-            // create GENERATOR_NAME.tsx
+            // create FORMATTER_NAME.tsx
             const fileName = `${formatterName}.tsx`;
             fs.writeFileSync(`${path}/${fileName}`, writeFormatterTsxFile(formatterName), 'utf8');
 
-            // add generator
+            // add formatter
             addFormatterToIndex(formatterName);
-
-            // add generator name to locale
-            addLinesToLocal(/\/\/\s+data\s+types\s*/,
-                [`// ${formatterName.toLowerCase()}`,
-                    `"dataType.${formatterName.toLowerCase()}": "${formatterName}",`]
-            );
 
             console.log(`✨ Successfully created formatter ${formatterName}!\n See ${path} for details.`);
             rl.close();
@@ -52,16 +46,16 @@ const createFormatter = (formatterName: string, fileExtension: string) => {
     });
 }
 
-rl.question('💥 Please enter the name of the new formatter: ', (generatorName: string) => {
+rl.question('💥 Please enter the name of the new formatter: ', (formatterName: string) => {
     const folderPath = `./src/core/generators`;
-    generatorName = formatFolderName(generatorName);
-    if (checkIfFormatExists(generatorName)) {
+    formatterName = formatFolderName(formatterName);
+    if (checkIfFormatExists(formatterName)) {
         rl.close();
         return;
     }
 
-    rl.question('➡️ Please enter the file extension for the formatter: ',(fileExtension: string) => {
-        createFormatter(generatorName, fileExtension);
+    rl.question('➡️ Please enter the file extension for the formatter: ', (fileExtension: string) => {
+        createFormatter(formatterName , fileExtension);
     });
 });
 
@@ -85,17 +79,14 @@ const addFormatterToIndex = (formatterName: string) => {
     const formattersIndexFilePath = './src/core/formatters/index.ts';
     const fileContent = fs.readFileSync(formattersIndexFilePath, 'utf8');
     const contentAfterImport = `${`import {${formatterName}Formatter} from "@/core/formatters/${formatterName}";`}\n${fileContent}`;
-    const generatorLine = `  [ExportFormat.${formatterName.toUpperCase()}]: ${formatterName}Formatter,`;
-    const updatedContent = contentAfterImport.replace(/export\s+const\s+formatters\s*=\s*{/, `export const formatters = {\n${generatorLine}`);
+    const formatterLine = `  [ExportFormat.${formatterName.toUpperCase()}]: ${formatterName}Formatter,`;
+    const updatedContent = contentAfterImport.replace(/export\s+const\s+formatters\s*=\s*{/, `export const formatters = {\n${formatterLine}`);
     fs.writeFileSync(formattersIndexFilePath, updatedContent, 'utf8');
-
 }
 
 const writeFormatterTsxFile = (formatterName: string) => {
     return `import React from "react";
 import {FormatRequest, FormatterConfigComponentInterface} from "@/types/formatter";
-import {ExportValueType} from "@/constants/enums";
-
 
 // -------------------------------------------------------------------------------------------------------------
 // types

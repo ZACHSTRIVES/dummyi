@@ -1,11 +1,10 @@
 import {Generator} from "@/types/generator";
-import {DataType, DataTypeCategory} from "@/constants/enums";
+import {DataType, DataTypeCategory, ValueType} from "@/constants/enums";
 import {
     FullNameGeneratorDefaultOptions,
     FullNameGeneratorOptionsComponent,
     generate
 } from "@/core/generators/FullName/FullName";
-
 
 
 export const FullNameGenerator : Generator = {
@@ -14,5 +13,6 @@ export const FullNameGenerator : Generator = {
     generate: generate,
     optionsComponent: FullNameGeneratorOptionsComponent,
     defaultOptions: FullNameGeneratorDefaultOptions,
+    defaultValueType: ValueType.STRING,
     exampleLines:["Zach Smith", "Peggy Hackett", "Mr. Elmer Nienow"]
 }

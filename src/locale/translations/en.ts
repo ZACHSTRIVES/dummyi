@@ -9,7 +9,7 @@ export const en = {
     "export.category.programmingLanguages": "Programming languages",
 
     // export format modal
-    "export.configurator.modal.title": "Export Format",
+    "export.configurator.modal.title": "Generation Format",
     "export.configurator.modal.confirmButton.text": "Confirm",
     "export.configurator.config.label": "Configurations",
     "export.configurator.config.empty": "Configuration of this export format is currently not available.",
@@ -18,7 +18,7 @@ export const en = {
     "export.modal.title": "Batch Generate",
     "export.modal.exportNumOfRows.label": "Rows to generate",
     "export.modal.exportNumOfRows.empty": "Rows to generate cannot be empty",
-    "export.modal.exportFormat.label": "Export format",
+    "export.modal.exportFormat.label": "Format",
     "export.modal.estimatedSize.label": "Estimated size",
     "export.modal.estimatedTime.label": "Estimated time",
     "export.modal.exportFileName.label": "File name",
@@ -54,25 +54,44 @@ export const en = {
     "export.configurator.javascript.format": "Format",
     "export.configurator.javascript.format.variable": "Variable",
     "export.configurator.javascript.format.export": "Export",
-    "export.configurator.javascript.varName": "Variable Name",
+    "export.configurator.javascript.varName": "Variable name",
     "export.configurator.javascript.varName.required": "Variable name cannot be empty",
     "export.configurator.javascript.declarationKeyword": "Declaration Keyword",
     "export.configurator.javascript.module": "Module",
 
+    // sql
+    "export.configurator.sql.type": "Database type",
+    "export.configurator.sql.tableName": "Table name",
+    "export.configurator.sql.tableName.required": "Table name cannot be empty",
+    "export.configurator.sql.statement": "SQL statement",
+    "export.configurator.sql.batchSize": "Batch size",
+    "export.configurator.sql.includeDropTable": "Include `DROP TABLE`",
+    "export.configurator.sql.includeCreateTable": "Include `CREATE TABLE`",
+    "export.configurator.sql.includePrimaryKey": "Include primary key",
+    "export.configurator.sql.primaryKeyColumnName": "Primary key column",
+
     // -------------------------------------------------------------------------------------------------------------
     // data types
-
-    
     
     // domainsuffix
     "dataType.domainsuffix": "DomainSuffix",
 
     // domainname
     "dataType.domainname": "DomainName",
+        
+    // accountnumber
+    "dataType.accountnumber": "Account Number",
+    "dataType.accountnumber.length": "Length",
+    "dataType.accountnumber.empty": "Length cannot be empty",
+
+    // accountname
+    "dataType.accountname": "Account Name",
 
     // color
     "dataType.color": "Color",
+    "dataType.color.kind.label": "Kind",
     "dataType.color.format.label": "Format",
+    "dataType.color.format.humanWord":"Human Word",
 
     // phone
     "dataType.phone": "Phone Number",

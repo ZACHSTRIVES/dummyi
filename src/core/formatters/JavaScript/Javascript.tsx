@@ -1,23 +1,23 @@
 import React from "react";
-import {EndOfLineChars, ExportValueType} from "@/constants/enums";
 import {FormatRequest, FormatterConfigComponentInterface} from "@/types/formatter";
 import {FormattedMessage, useIntl} from "@/locale";
 import {OptionsInput, OptionsSelect, SelectOption} from "@/components/Utils";
-import {OptionsSwitch} from "@/components/Utils/src/OptionsSwitch";
 import {isNullOrWhiteSpace} from "@/utils/stringUtils";
 
 // -------------------------------------------------------------------------------------------------------------
 // types
 
 export enum JavascriptFormatterFormat { VARIABLE = "VARIABLE", EXPORT = "EXPORT"}
+
 export enum JavascriptDeclarationKeyword { VAR = "var", CONST = "const", LET = "let" }
+
 export enum JavascriptModuleType { ES6 = "ES6", CommonJS = "CommonJS"}
 
 export type JavascriptFormatterConfig = {
-    format:JavascriptFormatterFormat,
+    format: JavascriptFormatterFormat,
     variableName?: string,
     declarationKeyword: JavascriptDeclarationKeyword,
-    module:JavascriptModuleType
+    module: JavascriptModuleType
 }
 
 export const defaultJavascriptFormatterConfig: JavascriptFormatterConfig = {
@@ -31,8 +31,8 @@ export const defaultJavascriptFormatterConfig: JavascriptFormatterConfig = {
 // format method
 
 export const format = (request: FormatRequest): string => {
-    const { fields, values, config, sortedFieldIds } = request;
-    const { format: formatType, variableName, declarationKeyword, module } = config;
+    const {fields, values, config, sortedFieldIds} = request;
+    const {format: formatType, variableName, declarationKeyword, module} = config;
 
     if (values.length === 0) {
         return '';
@@ -42,11 +42,11 @@ export const format = (request: FormatRequest): string => {
         const row: Record<string, string | null> = {};
         for (const column of sortedFieldIds) {
             const field = fields[column];
-            const { isDraft, fieldName } = field;
+            const {isDraft, fieldName} = field;
             const itemValue = item[column];
-            let { value } = itemValue;
+            let {value} = itemValue;
 
-            if (!isDraft && itemValue.type !== ExportValueType.NULL && value !== null) {
+            if (!isDraft && value !== null) {
                 if (typeof value === 'bigint') {
                     value = value.toString();
                 }
@@ -104,13 +104,13 @@ export const JavascriptConfigComponent: React.FC<FormatterConfigComponentInterfa
     }
 
     // error validation
-    const [errorMessages, setErrorMessages] = React.useState({delimiter: ''});
+    const [errorMessages, setErrorMessages] = React.useState({varName: ''});
     React.useEffect(() => {
         const newErrorMessages = {...errorMessages};
         if (isNullOrWhiteSpace(jsConfig.variableName) && jsConfig.format === JavascriptFormatterFormat.VARIABLE) {
-            newErrorMessages.delimiter = intl.formatMessage({id: 'export.configurator.javascript.varName.required'});
+            newErrorMessages.varName = intl.formatMessage({id: 'export.configurator.javascript.varName.required'});
         } else {
-            newErrorMessages.delimiter = '';
+            newErrorMessages.varName = '';
         }
         setErrorMessages(newErrorMessages);
     }, [jsConfig.format, jsConfig.variableName]);
@@ -130,15 +130,15 @@ export const JavascriptConfigComponent: React.FC<FormatterConfigComponentInterfa
             {
                 jsConfig.format === JavascriptFormatterFormat.VARIABLE &&
                 <>
-                <OptionsInput
-                    label={<FormattedMessage id="export.configurator.javascript.varName"/>}
-                    value={jsConfig.variableName}
-                    onChange={(value) => {
-                        handleValueChange('variableName', value)
-                    }}
-                    style={{width: '150px'}}
-                    errorMessage={errorMessages.delimiter}
-                />
+                    <OptionsInput
+                        label={<FormattedMessage id="export.configurator.javascript.varName"/>}
+                        value={jsConfig.variableName}
+                        onChange={(value) => {
+                            handleValueChange('variableName', value)
+                        }}
+                        style={{width: '150px'}}
+                        errorMessage={errorMessages.varName}
+                    />
                     <OptionsSelect
                         label={<FormattedMessage id="export.configurator.javascript.declarationKeyword"/>}
                         selectOptions={keywordsOptions}
@@ -169,8 +169,14 @@ export const JavascriptConfigComponent: React.FC<FormatterConfigComponentInterfa
 }
 
 const formatOptions: SelectOption[] = [
-    {label: <FormattedMessage id={"export.configurator.javascript.format.variable"}/>, value: JavascriptFormatterFormat.VARIABLE},
-    {label: <FormattedMessage id={"export.configurator.javascript.format.export"}/>, value: JavascriptFormatterFormat.EXPORT}
+    {
+        label: <FormattedMessage id={"export.configurator.javascript.format.variable"}/>,
+        value: JavascriptFormatterFormat.VARIABLE
+    },
+    {
+        label: <FormattedMessage id={"export.configurator.javascript.format.export"}/>,
+        value: JavascriptFormatterFormat.EXPORT
+    }
 ]
 
 const keywordsOptions: SelectOption[] = [

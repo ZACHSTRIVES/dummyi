@@ -12,10 +12,13 @@ import {
     doUpdateDataField, doUpdateDataFieldName,
 } from "@/reducers/workspace/workspaceActions";
 import {FormattedMessage, useIntl} from "@/locale";
-import {ComponentSize} from "@/constants/enums";
+import {ComponentSize, ValueType} from "@/constants/enums";
 import {getGeneratorOptionsComponentByDataType} from "@/utils/generatorUtils";
 import {OptionsButton, OptionsInput, OptionsNumberInput} from "@/components/Utils";
 import {isNullOrWhiteSpace} from "@/utils/stringUtils";
+import {GeneratorDebugger} from "@/components/DevTools";
+import {inDevEnvironment} from "@/utils/devUtils";
+import {hasValue} from "@/utils/typeUtils";
 
 export interface DataFieldsListItemItemProps {
     id: string;
@@ -45,9 +48,13 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
         }
     };
 
-    const handleOptionsChange = (options: any) => {
-        handleUpdateDataField('dataTypeOptions', options);
-    }
+    const handleOptionValueChange = (fieldName: string, value: any, valueType?: ValueType) => {
+        let field = {...dataField, dataTypeOptions: {...dataField.dataTypeOptions, [fieldName]: value}};
+        if (hasValue(valueType)) {
+            field.valueType = valueType;
+        }
+        dispatch(doUpdateDataField(id, field));
+    };
 
     const handleDelete = () => {
         dispatch(doDeleteDataField(id));
@@ -65,7 +72,10 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
     const renderDataTypeOptions = () => {
         if (!dataField.dataType) return null;
         return OptionsComponent ?
-            <OptionsComponent options={dataField.dataTypeOptions} onOptionsChange={handleOptionsChange}/> : null;
+            <OptionsComponent
+                options={dataField.dataTypeOptions}
+                handleOptionValueChange={handleOptionValueChange}
+            /> : null
     };
 
     const renderEmptyRateInput = () => {
@@ -127,7 +137,12 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
                                 <OptionsButton
                                     label={<FormattedMessage id="dataFields.input.type.label"/>}
                                     onClick={handleOpenDataTypeSelectModal}
-                                    style={{width: 140, fontSize: '13px', fontWeight: 'normal', justifyContent: 'left'}}
+                                    style={{
+                                        width: 140,
+                                        fontSize: '13px',
+                                        fontWeight: 'normal',
+                                        justifyContent: 'left'
+                                    }}
                                     text={dataField.dataType ?
                                         <FormattedMessage id={`dataType.${dataField.dataType}`}/> :
                                         <FormattedMessage id={`dataFields.input.type.placeholder`}/>}
@@ -154,6 +169,7 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
                                 {size === ComponentSize.LARGE && renderDataTypeOptions()}
                             </div>
                         </div>
+
                         <div>
                             <div className="generatorConfig_column">
                                 <Button
@@ -166,6 +182,15 @@ export const DataFieldsListItem: React.FunctionComponent<DataFieldsListItemItemP
                                     <Button onClick={handleOpenDataTypeOptionsModal}
                                             style={{color: '#c7c4c4'}} theme="borderless" icon={<IconSetting/>}/>
                                 )}
+
+                                {
+                                    inDevEnvironment &&
+                                    <GeneratorDebugger
+                                        id={id}
+                                        dataField={dataField}
+                                        renderDataTypeOptions={renderDataTypeOptions}/>
+                                }
+
                             </div>
                         </div>
                     </div>

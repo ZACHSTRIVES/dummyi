@@ -1,6 +1,5 @@
 import React from "react";
 import {GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
-import {ExportValueType} from "@/constants/enums";
 import {faker} from "@faker-js/faker";
 import {FormattedMessage} from "@/locale";
 import {OptionsTagInput} from "@/components/Utils/src/OptionsTagInput";
@@ -27,29 +26,25 @@ export const generate = (options: PhoneGeneratorOptions): GenerateResult => {
     const value = faker.phone.number(format);
     return {
         value: value,
-        stringValue: value,
-        type: ExportValueType.STRING
+        stringValue: value
     };
 }
 
 // -------------------------------------------------------------------------------------------------------------
 // options component
 export const PhoneGeneratorOptionsComponent: React.FunctionComponent<GeneratorOptionsComponentInterface> = ({...props}) => {
-    const {options, onOptionsChange} = props;
-
-    const handleOptionsChange = (changedFieldName: string, value: any) => {
-        let newOptions = {...options, [changedFieldName]: value};
-        onOptionsChange(newOptions);
+    const {options, handleOptionValueChange} = props as {
+        options: PhoneGeneratorOptions,
+        handleOptionValueChange: typeof props.handleOptionValueChange
     };
 
-    // TODO: implement your own options component here
     return (
         <div>
             <OptionsTagInput
                 label={<FormattedMessage id={"dataType.phone.formats.label"}/>}
                 infoTooltip={<FormattedMessage id={'dataType.phone.formats.tooltips'}/>}
                 value={options.formats}
-                onChange={(v) => handleOptionsChange("formats", v)}
+                onChange={(v) => handleOptionValueChange("formats", v)}
                 style={{width: '350px'}}
             />
         </div>

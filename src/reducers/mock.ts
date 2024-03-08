@@ -1,5 +1,5 @@
-import {DataField, DataFieldList} from "@/types/generator";
-import {CollectionNodeType, DataType} from "@/constants/enums";
+import {DataFieldList} from "@/types/generator";
+import {CollectionNodeType, DataType, ValueType} from "@/constants/enums";
 import {NumberGeneratorDefaultOptions} from "@/core/generators/Number/Number";
 import {BooleanGeneratorDefaultOptions} from "@/core/generators/Boolean/Boolean";
 import {SchemasCollection} from "@/types/system";
@@ -11,15 +11,9 @@ export const mockFields: DataFieldList =
             isDraft: false,
             dataType: DataType.NUMBER,
             dataTypeOptions: NumberGeneratorDefaultOptions,
+            valueType: ValueType.INT,
             emptyRate: 0,
         },
-        "2": {
-            fieldName: 'boolean',
-            isDraft: false,
-            dataType: DataType.BOOLEAN,
-            dataTypeOptions: BooleanGeneratorDefaultOptions,
-            emptyRate: 0,
-        }
     };
 
 export const mockCollections: SchemasCollection[] =

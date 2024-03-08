@@ -91,7 +91,6 @@ const addGeneratorToIndex = (generatorName: string) => {
 const writeGeneratorTsxFile = (generatorName: string) => {
     return `import React from "react";
 import {GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
-import {ExportValueType} from "@/constants/enums";
 
 // -------------------------------------------------------------------------------------------------------------
 // types
@@ -112,19 +111,16 @@ export const generate = (options: any): GenerateResult => {
    
     return {
         value: 'NOT IMPLEMENTED',
-        stringValue: 'NOT IMPLEMENTED',
-        type: ExportValueType.STRING
+        stringValue: 'NOT IMPLEMENTED'
     };
 }
 
 // -------------------------------------------------------------------------------------------------------------
 // options component
 export const ${generatorName}GeneratorOptionsComponent: React.FunctionComponent<GeneratorOptionsComponentInterface> = ({...props}) => {
-    const {options, onOptionsChange} = props;
-    
-    const handleOptionsChange = (changedFieldName: string, value: any) => {
-        let newOptions = {...options, [changedFieldName]: value};
-        onOptionsChange(newOptions);
+    const {options, handleOptionValueChange} = props as {
+        options: ${generatorName}GeneratorOptions,
+        handleOptionValueChange: typeof props.handleOptionValueChange
     };
     
     // TODO: implement your own options component here
@@ -138,7 +134,7 @@ export const ${generatorName}GeneratorOptionsComponent: React.FunctionComponent<
 
 const writeGeneratorIndexFile = (generatorName: string, category: string) => {
     return `import {Generator} from "@/types/generator";
-import {DataType, DataTypeCategory} from "@/constants/enums";
+import {DataType, DataTypeCategory, ValueType} from "@/constants/enums";
 import {${generatorName}GeneratorDefaultOptions, ${generatorName}GeneratorOptionsComponent, generate} from "./${generatorName}";
 
 export const ${generatorName}Generator: Generator = {
@@ -147,8 +143,8 @@ export const ${generatorName}Generator: Generator = {
     generate: generate,
     optionsComponent: ${generatorName}GeneratorOptionsComponent,
     defaultOptions: ${generatorName}GeneratorDefaultOptions,
+    defaultValueType: ValueType.STRING,
     exampleLines: ["NOT IMPLEMENTED", "NOT IMPLEMENTED", "NOT IMPLEMENTED"]
 }
     `;
-
 }

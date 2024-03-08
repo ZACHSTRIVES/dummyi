@@ -1,5 +1,5 @@
 import {Generator} from "@/types/generator";
-import {DataType, DataTypeCategory} from "@/constants/enums";
+import {DataType, DataTypeCategory, ValueType} from "@/constants/enums";
 import {EmojiGeneratorDefaultOptions, EmojiGeneratorOptionsComponent, generate} from "./Emoji";
 
 export const EmojiGenerator: Generator = {
@@ -8,6 +8,7 @@ export const EmojiGenerator: Generator = {
     generate: generate,
     optionsComponent: EmojiGeneratorOptionsComponent,
     defaultOptions: EmojiGeneratorDefaultOptions,
+    defaultValueType: ValueType.STRING,
     exampleLines: ["🤜", "📖", "👰"]
 }
     
