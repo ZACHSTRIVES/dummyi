@@ -6,6 +6,7 @@ import {FormattedMessage} from "@/locale";
 import {ComponentSize} from "@/constants/enums";
 import {useDispatch} from "react-redux";
 import {doSetShowExportModal} from "@/reducers/export/exportActions";
+import {inDevEnvironment} from "@/utils/devUtils";
 
 export type GenerateButtonProps = {
     size: ComponentSize;
@@ -22,6 +23,7 @@ export const GenerateButton: React.FC<GenerateButtonProps> = ({...props}) => {
 
     return (
         <Button
+            disabled={!inDevEnvironment}
             onClick={openGenerateModal}
             loading={false}
             icon={<IconPlayCircle/>}

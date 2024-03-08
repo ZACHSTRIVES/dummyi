@@ -14,6 +14,7 @@ import {Logo} from "@/components/Navbar/src/components/Logo";
 import {LoginButton} from "./components/LoginButton";
 import {User, UserLogin} from "./components/UserLogin";
 import {SchemaSelector} from "@/components/SchemaSelector";
+import {inDevEnvironment} from "@/utils/devUtils";
 
 export type NavBarProps = {}
 
@@ -77,7 +78,7 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                                    size={22} duration={0.6}/>
                     </div>
 
-                    <SchemaSelector/>
+                    {inDevEnvironment &&  <SchemaSelector/>}
 
                 </Nav.Header>
 

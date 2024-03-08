@@ -8,7 +8,6 @@ import {ColorMode, PanelsOrientation} from "@/constants/enums";
 import {doGeneratePreviewData, doSetPanelsOrientation} from "@/reducers/workspace/workspaceActions";
 import Head from "next/head";
 import {useIntl} from "@/locale";
-import {FilesPanel} from "@/components/FilesPanel/src";
 import {selectPanelsOrientation, selectPreviewData} from "@/reducers/workspace/workspaceSelectors";
 import {selectColorMode} from "@/reducers/app/appSelectors";
 import {ExportModal} from "@/components/Exporter";
