@@ -61,6 +61,8 @@ export const getCodemirrorLanguagePluginByFormat = (format: ExportFormat): any =
             return langs.javascript();
         case ExportFormat.SQL:
             return langs.sql();
+        case ExportFormat.CSHARP:
+            return langs.csharp();
         default:
             return langs.mathematica();
     }

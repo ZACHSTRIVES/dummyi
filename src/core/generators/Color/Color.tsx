@@ -91,7 +91,9 @@ export const ColorGeneratorOptionsComponent: React.FunctionComponent<GeneratorOp
     const handleChangeKind = (kind: ColorGeneratorKind) => {
         if (kind === ColorGeneratorKind.RGB) {
             handleOptionValueChange("kind", kind, options.format === ColorGeneratorFormat.DECIMAL ? ValueType.INT_LIST : ValueType.STRING);
-        } else {
+        } else if (kind === ColorGeneratorKind.HSL) {
+            handleOptionValueChange("kind", kind, ValueType.INT_LIST);
+        } else if (kind === ColorGeneratorKind.HUMAN) {
             handleOptionValueChange("kind", kind, ValueType.STRING);
         }
     }

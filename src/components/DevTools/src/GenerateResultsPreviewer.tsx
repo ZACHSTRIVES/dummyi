@@ -10,7 +10,7 @@ import {
 import CodeMirror from "@uiw/react-codemirror";
 import {darkTheme, lightTheme} from "@/components/PreviewPanel/src/components/RawPreviewer/RawPreviewer.themes";
 import {EditorView} from "@codemirror/view";
-import {Card, Tag} from "@douyinfe/semi-ui";
+import {Card, Space, Tag} from "@douyinfe/semi-ui";
 import {useSelector} from "react-redux";
 import {selectColorMode} from "@/reducers/app/appSelectors";
 import {Extension} from "@codemirror/state";
@@ -30,6 +30,7 @@ export const GenerateResultsPreviewer: React.FunctionComponent<GenerateResultsPr
 
     // state
     const [previewData, setPreviewData] = React.useState("");
+    const [isError, setIsError] = React.useState(false);
     const [codeMirrorExtensions, setCodeMirrorExtensions] = React.useState<any[]>([]);
 
     React.useEffect(() => {
@@ -53,6 +54,10 @@ export const GenerateResultsPreviewer: React.FunctionComponent<GenerateResultsPr
                 config.primaryKey = false;
             }
 
+            if (formatType === ExportFormat.CSHARP) {
+                config.dtoClass = true;
+            }
+
             const formatRequest: FormatRequest = {
                 values: values,
                 fields: fields,
@@ -61,17 +66,22 @@ export const GenerateResultsPreviewer: React.FunctionComponent<GenerateResultsPr
                 config: getFormatterDefaultConfigByFormat(formatType)
             }
             const data = formatData(formatRequest);
+            setIsError(false);
             setPreviewData(data);
 
         } catch (err) {
             setPreviewData(err.toString())
+            setIsError(true);
         }
     }
 
     return (
         <div>
             <Card style={{width: "400px", height: "250px"}}>
-                <Tag size={'small'} type={colorMode === ColorMode.DARK ? 'solid' : 'ghost'}>{formatType}</Tag>
+                <Space>
+                    <Tag size={'small'} type={colorMode === ColorMode.DARK ? 'solid' : 'ghost'}>{formatType}</Tag>
+                    {isError && <Tag size={'small'} style={{color: 'red'}}>ERROR</Tag>}
+                </Space>
                 <CodeMirror
                     editable={false}
                     readOnly={true}

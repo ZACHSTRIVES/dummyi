@@ -104,18 +104,24 @@ const addCreateTableColumn = (field: DataField, sqlType: SqlType) => {
     return `  ${field.fieldName} ${fieldType} DEFAULT NULL`;
 };
 
-const formatValueForSQL = (value: any, sqlType: SqlType): string => {
-    if (typeof value === 'string') {
-        // String values need to be enclosed in single quotes, and single quotes within the value escaped
-        return `'${value.replace(/'/g, "''")}'`;
-    } else if (typeof value === 'boolean') {
-        return (value ? "1" : "0");
-    } else if (value === null) {
+const formatValueForSQL = (value: any, sqlType: SqlType, valueType: ValueType): string => {
+    if (value === null) {
         // Handle null values
         return 'NULL';
     }
-    // Adapt this function for other data types and SQL dialects as needed
-    return value;
+
+    switch (valueType) {
+        case ValueType.STRING:
+            return `'${value.replace(/'/g, "''")}'`;
+        case ValueType.BOOLEAN:
+            return (value ? "1" : "0");
+        case ValueType.INT_LIST:
+            return `'${value.join(", ")}'`
+        case ValueType.STRING_LIST:
+            return `'${value.map(item => `"${item}"`).join(', ')}'`
+        default:
+            return value;
+    }
 };
 
 const generateInsertStatements = (sqlType: SqlType, tableName: string, sortedFieldIds: string[], values: any[], fields: {
@@ -128,11 +134,12 @@ const generateInsertStatements = (sqlType: SqlType, tableName: string, sortedFie
 
         batchValues.forEach((item, index) => {
             const valueString = sortedFieldIds.map(id => {
-                if (fields[id].isDraft) {
+                const field = fields[id];
+                if (field.isDraft) {
                     return ""
                 }
                 let result = item[id]; // Assuming direct use of value; adapt as necessary
-                return formatValueForSQL(result.value, sqlType); // Apply formatting function
+                return formatValueForSQL(result.value, sqlType, field.valueType); // Apply formatting function
             }).join(', ');
 
             inserts += `  (${valueString})${index < batchValues.length - 1 ? ',' : ';\n'}\n`;

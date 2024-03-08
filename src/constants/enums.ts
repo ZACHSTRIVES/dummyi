@@ -7,6 +7,7 @@ export enum ExportFormatCategory {
 }
 
 export enum ExportFormat {
+    CSHARP = "C#",
     SQL = "SQL",
     CSV = "CSV",
     JSON = "JSON",

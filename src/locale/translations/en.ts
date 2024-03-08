@@ -9,7 +9,7 @@ export const en = {
     "export.category.programmingLanguages": "Programming languages",
 
     // export format modal
-    "export.configurator.modal.title": "Generation Format",
+    "export.configurator.modal.title": "Format",
     "export.configurator.modal.confirmButton.text": "Confirm",
     "export.configurator.config.label": "Configurations",
     "export.configurator.config.empty": "Configuration of this export format is currently not available.",
@@ -69,6 +69,12 @@ export const en = {
     "export.configurator.sql.includeCreateTable": "Include `CREATE TABLE`",
     "export.configurator.sql.includePrimaryKey": "Include primary key",
     "export.configurator.sql.primaryKeyColumnName": "Primary key column",
+
+    // c#
+    "export.configurator.csharp.collectionType": "Collection type",
+    "export.configurator.csharp.collectionName": "Collection name",
+    "export.configurator.csharp.dtoClass": "Create DTO class",
+    "export.configurator.csharp.dtoClassName": "Class name",
 
     // -------------------------------------------------------------------------------------------------------------
     // data types
