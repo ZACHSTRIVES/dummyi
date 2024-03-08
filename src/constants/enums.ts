@@ -42,6 +42,8 @@ export enum DataTypeCategory {
 }
 
 export enum DataType {
+    DOMAINSUFFIX = "domainsuffix",
+    DOMAINNAME = "domainname",
     ACCOUNTNUMBER = "accountnumber",
     ACCOUNTNAME = "accountname",
     COLOR = "color",

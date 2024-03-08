@@ -59,9 +59,13 @@ export const zhCN = {
 
     // -------------------------------------------------------------------------------------------------------------
     // data types
+    
+    // domainsuffix
+    "dataType.domainsuffix": "域名后缀",
 
-    
-    
+    // domainname
+    "dataType.domainname": "域名",
+
     // accountnumber
     "dataType.accountnumber": "银行账号",
     "dataType.accountnumber.length": "长度",
