@@ -11,7 +11,7 @@ import {
     DEFAULT_SHOW_ROW_NUMBERS,
     DEFAULT_FONT_SIZE,
     DEFAULT_PREVIEW_TYPE
-} from "@/constants/core";
+} from "@/constants/config";
 
 export const initState: PreviewReducerState = {
     previewType: DEFAULT_PREVIEW_TYPE,
@@ -21,7 +21,7 @@ export const initState: PreviewReducerState = {
 }
 
 
-export default (state: PreviewReducerState = initState, action: any) => {
+const previewReducer = (state: PreviewReducerState = initState, action: any) => {
     switch (action.type) {
         case SET_PREVIEW_TYPE:
             return {
@@ -51,6 +51,7 @@ export default (state: PreviewReducerState = initState, action: any) => {
         default:
             return state;
     }
-}
+};
 
+export default previewReducer;
 

@@ -1,23 +1,36 @@
 
-// format data
+// export format
 export enum ExportFormatCategory {
     FILE_TYPES = "fileTypes",
+    DATABASES = "databases",
     PROGRAMMING_LANGUAGES = "programmingLanguages",
 }
 
 export enum ExportFormat {
+    CSHARP = "C#",
+    SQL = "SQL",
     CSV = "CSV",
     JSON = "JSON",
     JAVA_SCRIPT = "Javascript",
     XML = "XML",
 }
 
-export enum ExportValueType {
+export enum ValueType {
     STRING = "string",
-    NUMBER = "number",
+    TEXT= "text",
+    ONE_BIT = "1bit",
+    INT = "integer",
+    BIGINT = "bigint",
+    DOUBLE = "double",
     BOOLEAN = "boolean",
-    DATE_TIME = "dateTime",
-    NULL = "null"
+    INT_LIST = "int_list",
+    STRING_LIST = "string_list"
+}
+
+export enum ExportProcessStage{
+    PREVIEW = "preview",
+    GENERATING = "generating",
+    COMPLETED = "completed",
 }
 
 // data types
@@ -30,6 +43,13 @@ export enum DataTypeCategory {
 }
 
 export enum DataType {
+    DOMAINSUFFIX = "domainsuffix",
+    DOMAINNAME = "domainname",
+    ACCOUNTNUMBER = "accountnumber",
+    ACCOUNTNAME = "accountname",
+    COLOR = "color",
+    PHONE = "phone",
+    EMOJI = "emoji",
     PERSONTITLE = "persontitle",
     MIDDLENAME = "middlename",
     LASTNAME = "lastname",
@@ -68,6 +88,11 @@ export enum ComponentSize{
 export enum PreviewType{
     TABLE = "table",
     RAW = "raw"
+}
+
+export enum CollectionNodeType{
+    COLLECTION = "collection",
+    SCHEMA = "schema"
 }
 
 export enum EndOfLineChars {

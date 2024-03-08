@@ -1,6 +1,6 @@
 import {Generator} from "@/types/generator";
-import {DataType, DataTypeCategory} from "@/constants/enums";
-import {MiddleNameGeneratorDefaultOptions, MiddleNameGeneratorOptionsComponent, generate} from "./MiddleName";
+import {DataType, DataTypeCategory, ValueType} from "@/constants/enums";
+import {generate, MiddleNameGeneratorDefaultOptions, MiddleNameGeneratorOptionsComponent} from "./MiddleName";
 
 export const MiddleNameGenerator: Generator = {
     type: DataType.MIDDLENAME,
@@ -8,6 +8,7 @@ export const MiddleNameGenerator: Generator = {
     generate: generate,
     optionsComponent: MiddleNameGeneratorOptionsComponent,
     defaultOptions: MiddleNameGeneratorDefaultOptions,
+    defaultValueType: ValueType.STRING,
     exampleLines: ["Elliott", "Taylor", "Bailey"]
 }
     

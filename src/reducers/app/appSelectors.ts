@@ -1,3 +1,3 @@
-import {Store} from "@/types/system";
+import {RootState} from "@/types/system";
 
-export const selectColorMode = (state: Store) => state.app.colorMode;
+export const selectColorMode = (state: RootState) => state.app.colorMode;

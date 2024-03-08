@@ -3,7 +3,7 @@ import {Button, Tooltip} from "@douyinfe/semi-ui";
 import {IconSidebar} from "@douyinfe/semi-icons";
 import {useIntl} from "@/locale";
 import {useDispatch, useSelector} from "react-redux";
-import {Store} from "@/types/system";
+import {RootState} from "@/types/system";
 import {PanelsOrientation} from "@/constants/enums";
 import {doSetPanelsOrientation} from "@/reducers/workspace/workspaceActions";
 
@@ -17,7 +17,7 @@ export const PanelsOrientationButton: React.FC<PanelsOrientationButtonProps> = (
     const dispatch = useDispatch();
 
     // store
-    const direction = useSelector((state: Store) => state.workspace.panelsOrientation);
+    const direction = useSelector((state: RootState) => state.workspace.panelsOrientation);
 
     // actions
     const handlePanelDirectionChange = () => {

@@ -1,9 +1,7 @@
 import React from "react";
 import {FormatRequest, FormatterConfigComponentInterface} from "@/types/formatter";
-import {CsvConfigComponent} from "@/core/formatters/Csv/Csv";
 import {OptionsSwitch} from "@/components/Utils/src/OptionsSwitch";
 import {FormattedMessage} from "@/locale";
-import {ExportValueType} from "@/constants/enums";
 import {OptionsSelect, SelectOption} from "@/components/Utils";
 
 // -------------------------------------------------------------------------------------------------------------
@@ -25,8 +23,8 @@ export const defaultJsonFormatterConfig: JsonFormatterConfig = {
 // format method
 
 export const format = (request: FormatRequest): string => {
-    const { fields, values, sortedFieldIds, config } = request;
-    const { insideArray, includeNullValues, indentSize } = config;
+    const {fields, values, sortedFieldIds, config} = request;
+    const {insideArray, includeNullValues, indentSize} = config;
 
     if (values.length === 0) {
         return '';
@@ -39,11 +37,11 @@ export const format = (request: FormatRequest): string => {
             if (!fields[column].isDraft) {
                 let value = item[column].value;
 
-                if(typeof value === 'bigint'){
+                if (typeof value === 'bigint') {
                     value = value.toString();
                 }
 
-                if (includeNullValues || (item[column].type !== ExportValueType.NULL && value !== null)) {
+                if (includeNullValues || value !== null) {
                     row[fields[column].fieldName] = value;
                 }
             }

@@ -9,6 +9,7 @@ import styles from './ExportFormatSelect.module.css';
 import {doChangeExportFormat} from "@/reducers/workspace/workspaceActions";
 import {selectExportFormat} from "@/reducers/workspace/workspaceSelectors";
 import {selectColorMode} from "@/reducers/app/appSelectors";
+import {ExportFormat} from "@/constants/enums";
 
 
 export interface ExportFormatSelectProps {
@@ -34,7 +35,7 @@ export const ExportFormatSelect: React.FunctionComponent<ExportFormatSelectProps
         return (
             <Select.Option className={styles.selectOption} value={formatter.type} key={formatter.type} showTick={true}>
                 <Image alt={formatter.type}
-                       src={`/images/exportFormats/${colorMode}/${formatter.type}.svg`}
+                       src={`/images/exportFormats/${colorMode}/${formatter.type === ExportFormat.CSHARP ? "CSharp" : formatter.type}.svg`}
                        width={32} height={32}/>
                 <div className={styles.label}>
                     <Text>{formatter.type}</Text>
@@ -46,7 +47,7 @@ export const ExportFormatSelect: React.FunctionComponent<ExportFormatSelectProps
     const renderSelectedItem = (optionNode) => (
         <div className={styles.selectedItem}>
             <Image alt={optionNode.value}
-                   src={`/images/exportFormats/${colorMode}/${optionNode.value}.svg`}
+                   src={`/images/exportFormats/${colorMode}/${optionNode.value === ExportFormat.CSHARP ? "CSharp" : optionNode.value}.svg`}
                    width={32} height={32}/>
             <div className={styles.label}>
                 <Text>{optionNode.value}</Text>

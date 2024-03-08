@@ -8,10 +8,11 @@ import {
 } from "@/reducers/workspace/workspaceSelectors";
 import {getGeneratorOptionsComponentByDataType} from "@/utils/generatorUtils";
 import {doCloseDataTypeOptionsModal, doUpdateDataField} from "@/reducers/workspace/workspaceActions";
-import {ComponentSize} from "@/constants/enums";
+import {ComponentSize, ValueType} from "@/constants/enums";
 import {FormattedMessage, useIntl} from "@/locale";
 import {OptionsNumberInput} from "@/components/Utils";
 import {isNullOrWhiteSpace} from "@/utils/stringUtils";
+import {hasValue} from "@/utils/typeUtils";
 
 export interface DataTypeOptionsModalProps {
     size: ComponentSize;
@@ -39,17 +40,17 @@ export const DataTypeOptionsModal: React.FunctionComponent<DataTypeOptionsModalP
         const OptionsComponent = getGeneratorOptionsComponentByDataType(dataField.dataType);
         return OptionsComponent ?
             <OptionsComponent options={dataField.dataTypeOptions}
-                              onOptionsChange={handleDataFieldOptionsChange}/> : null;
+                              handleOptionValueChange={handleOptionValueChange}/> : null;
     };
 
     // actions
-    const handleDataFieldOptionsChange = (options) => {
-        const newDataField = {
-            ...dataField,
-            dataTypeOptions: options
-        };
-        dispatch(doUpdateDataField(dataFieldId, newDataField));
-    }
+    const handleOptionValueChange = (fieldName: string, value: any, valueType?: ValueType) => {
+        let field = {...dataField, dataTypeOptions: {...dataField.dataTypeOptions, [fieldName]: value}};
+        if (hasValue(valueType)) {
+            field.valueType = valueType;
+        }
+        dispatch(doUpdateDataField(dataFieldId, field));
+    };
 
     const handleEmptyRateChange = (value) => {
         const newDataField = {
@@ -91,6 +92,8 @@ export const DataTypeOptionsModal: React.FunctionComponent<DataTypeOptionsModalP
                     suffix={"%"}
                     infoTooltip={<FormattedMessage id={'dataFields.input.emptyRate.tooltip'}/>}
                     errorMessage={emptyRateError}
+                    min={0}
+                    max={100}
                 />}
                 {renderDataTypeOptions()}
             </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import {GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
-import {ExportValueType, Sex} from "@/constants/enums";
+import {Sex} from "@/constants/enums";
 import {faker} from "@faker-js/faker";
 import {OptionsSelect} from "@/components/Utils";
 import {FormattedMessage} from "@/locale";
@@ -14,7 +14,7 @@ export interface PersonTitleGeneratorOptions {
 
 // -------------------------------------------------------------------------------------------------------------
 // default options
-export const PersonTitleGeneratorDefaultOptions:PersonTitleGeneratorOptions = {
+export const PersonTitleGeneratorDefaultOptions: PersonTitleGeneratorOptions = {
     sex: Sex.ALL
 }
 
@@ -22,7 +22,7 @@ export const PersonTitleGeneratorDefaultOptions:PersonTitleGeneratorOptions = {
 // generate method
 export const generate = (options: any): GenerateResult => {
     let config = null;
-    if(options.sex !== Sex.ALL ){
+    if (options.sex !== Sex.ALL) {
         config = options.sex;
     }
 
@@ -31,21 +31,17 @@ export const generate = (options: any): GenerateResult => {
     return {
         value: value,
         stringValue: value,
-        type: ExportValueType.STRING
     };
 }
 
 // -------------------------------------------------------------------------------------------------------------
 // options component
 export const PersonTitleGeneratorOptionsComponent: React.FunctionComponent<GeneratorOptionsComponentInterface> = ({...props}) => {
-    const {options, onOptionsChange} = props;
-    
-    const handleOptionsChange = (changedFieldName: string, value: any) => {
-        let newOptions = {...options, [changedFieldName]: value};
-        onOptionsChange(newOptions);
+    const {options, handleOptionValueChange} = props as {
+        options: PersonTitleGeneratorOptions,
+        handleOptionValueChange: typeof props.handleOptionValueChange
     };
-    
-    // TODO: implement your own options component here
+
     return (
         <>
             <OptionsSelect
@@ -53,7 +49,7 @@ export const PersonTitleGeneratorOptionsComponent: React.FunctionComponent<Gener
                 selectOptions={SexSelectOptions}
                 value={options.sex}
                 style={{width: '150px'}}
-                onChange={(v) => handleOptionsChange("sex", v)}/>
+                onChange={(v) => handleOptionValueChange("sex", v)}/>
         </>
     );
 }

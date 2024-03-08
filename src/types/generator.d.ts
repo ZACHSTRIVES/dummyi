@@ -1,8 +1,9 @@
-import {DataType, DataTypeCategory, ExportValueType} from "@/constants/enums";
+import {DataType, DataTypeCategory, ValueType} from "@/constants/enums";
 import React from "react";
 
 export interface DataField {
     isDraft: boolean;
+    valueType: ValueType;
     fieldName?: string;
     dataType?: DataType;
     dataTypeOptions?: any;
@@ -16,7 +17,8 @@ export interface DataFieldList {
 export interface Generator {
     type: DataType;
     category: DataTypeCategory;
-    generate: (options:any) => any;
+    generate: (options: any) => any;
+    defaultValueType: ValueType;
     exampleLines?: string[];
     optionsComponent?: React.FunctionComponent<GeneratorOptionsComponentInterface>;
     defaultOptions?: any;
@@ -25,16 +27,19 @@ export interface Generator {
 
 export interface GeneratorOptionsComponentInterface {
     options: any;
-    onOptionsChange: (config: any) => void;
-}
-
-export interface GenerateRequest {
-    field: DataField;
+    handleOptionValueChange: (fieldName: string, value: any, valueType?: ValueType) => void;
 }
 
 export interface GenerateResult {
     value: any;
     stringValue: string;
-    type: ExportValueType
+}
+
+export interface GenerateDataBatchCompletedCallbackResponse {
+    batchIndex: number;
+    batchCount: number;
+    batchTimeElapsed: number;
+    totalTimeElapsed: number;
+    totalNumOfRowsGenerated: number;
 }
 

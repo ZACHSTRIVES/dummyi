@@ -1,32 +1,30 @@
 import {generators} from "@/core/generators";
-import {DataFieldList, Generator, GeneratorOptionsComponentInterface} from "@/types/generator";
-import {DataType, DataTypeCategory, ExportValueType} from "@/constants/enums";
+import {
+    DataFieldList,
+    GenerateDataBatchCompletedCallbackResponse,
+    GenerateResult,
+    Generator,
+    GeneratorOptionsComponentInterface
+} from "@/types/generator";
+import {DataType, DataTypeCategory} from "@/constants/enums";
 import React from "react";
 
-// generate data
+// Generate data
 export const generateData = (fields: DataFieldList, sortableList: string[], count: number): any => {
-    const data: any[] = [];
+    const data = [];
     for (let i = 0; i < count; i++) {
-        const row: any = {};
+        const row = {};
         sortableList.forEach((id) => {
             const field = fields[id];
             if (!field.isDraft) {
                 if (!isEmptyField(field.emptyRate)) {
                     try {
-                        row[id] = generators[field.dataType].generate(field.dataTypeOptions);
+                        row[id] = generateDataByDataType(field.dataType, field.dataTypeOptions);
                     } catch {
-                        row[id] = {
-                            value: null,
-                            stringValue: '',
-                            type: ExportValueType.NULL
-                        }
+                        row[id] = getEmptyDataRow();
                     }
                 } else {
-                    row[id] = {
-                        value: null,
-                        stringValue: '',
-                        type: ExportValueType.NULL
-                    }
+                    row[id] = getEmptyDataRow();
                 }
             }
         });
@@ -35,8 +33,8 @@ export const generateData = (fields: DataFieldList, sortableList: string[], coun
     return data;
 }
 
-// generate specific data
-export const generateSpecificFieldData = (fields: DataFieldList, sortableList: string[], currentData: any[], specificFieldId: string): any[] => {
+// Generate specific field data
+export const generateSpecificFieldPreviewData = (fields: DataFieldList, sortableList: string[], currentData: any[], specificFieldId: string): any[] => {
     return currentData.map((rowData) => {
         const row: any = {};
         sortableList.forEach((id) => {
@@ -47,18 +45,10 @@ export const generateSpecificFieldData = (fields: DataFieldList, sortableList: s
                         try {
                             row[id] = generators[field.dataType].generate(field.dataTypeOptions);
                         } catch {
-                            row[id] = {
-                                value: null,
-                                stringValue: null,
-                                type: ExportValueType.NULL
-                            }
+                            row[id] = getEmptyDataRow();
                         }
                     } else {
-                        row[id] = {
-                            value: null,
-                            stringValue: null,
-                            type: ExportValueType.NULL
-                        }
+                        row[id] = getEmptyDataRow();
                     }
                 } else {
                     row[id] = rowData[id];
@@ -69,7 +59,7 @@ export const generateSpecificFieldData = (fields: DataFieldList, sortableList: s
     });
 }
 
-// delete specific field data
+// Delete specific field data
 export const deleteSpecificFieldData = (fields: DataFieldList, sortableList: string[], currentData: any[], specificFieldId: string): any[] => {
     return currentData.map((rowData) => {
         return Object.fromEntries(
@@ -80,27 +70,32 @@ export const deleteSpecificFieldData = (fields: DataFieldList, sortableList: str
     });
 }
 
-// get is empty line
+// Get is empty line
 export const isEmptyField = (emptyProb: number): boolean => {
     return Math.random() < (emptyProb / 100);
 }
 
-// get generator grouped by category list with search and locale
+// Get generator grouped by category list with search and locale
 export const getGeneratorList = (search: string, intl: any): { [category: string]: Generator[] } => {
-    const categorizedGenerator: { [category: string]: Generator[] } = {};
-    categorizedGenerator[DataTypeCategory.ALL] = [];
-    Object.values(DataType).forEach((dataType) => {
+    const categorizedGenerator: { [category: string]: Generator[] } = {
+        [DataTypeCategory.ALL]: []
+    };
+
+    for (const dataType of Object.values(DataType)) {
         const generator = generators[dataType];
         generator.displayName = intl.formatMessage({id: `dataType.${dataType}`});
         const category = generator.category;
+
         if (!categorizedGenerator[category]) {
             categorizedGenerator[category] = [];
         }
+
         if (!search || generator.displayName.toLowerCase().includes(search.toLowerCase())) {
             categorizedGenerator[DataTypeCategory.ALL].push(generator);
             categorizedGenerator[category].push(generator);
         }
-    });
+    }
+
     return categorizedGenerator;
 }
 
@@ -113,3 +108,52 @@ export const getGeneratorOptionsComponentByDataType = (dataType: DataType): Reac
 export const getGeneratorDefaultOptionsByDataType = (dataType: DataType): any => {
     return generators[dataType].defaultOptions;
 }
+
+// Get generator default value type by data type
+export const getGeneratorDefaultValueTypeByDataType = (dataType: DataType): any => {
+    return generators[dataType].defaultValueType;
+}
+
+// Get empty data row
+export const getEmptyDataRow = (): GenerateResult => {
+    return {
+        value: null,
+        stringValue: null
+    }
+}
+
+// Generate data by data type
+export const generateDataByDataType = (dataType: DataType, options: any): GenerateResult => {
+    return generators[dataType].generate(options);
+}
+
+// Batch generation
+export const batchGenerateData = async (fields: DataFieldList, sortableList: string[], count: number, callback: (data: any) => void): Promise<void> => {
+    const batchSize = 100000;
+    const batchCount = Math.ceil(count / batchSize);
+    let totalTime = 0;
+    let totalNumOfRowsGenerated = 0;
+
+    for (let i = 0; i < batchCount; i++) {
+        const startTime = performance.now();
+        let generateCount = batchSize;
+        if (i === batchCount - 1) {
+            generateCount = count - batchSize * i;
+        }
+        const batchData = generateData(fields, sortableList, generateCount);
+        const endTime = performance.now();
+        const batchTimeElapsed = endTime - startTime;
+        totalTime += batchTimeElapsed;
+        totalNumOfRowsGenerated += generateCount;
+
+        const response: GenerateDataBatchCompletedCallbackResponse = {
+            batchIndex: i,
+            batchCount: generateCount,
+            batchTimeElapsed: batchTimeElapsed,
+            totalTimeElapsed: totalTime,
+            totalNumOfRowsGenerated: totalNumOfRowsGenerated
+        };
+        callback(response);
+        await new Promise(resolve => setTimeout(resolve, 100));
+    }
+};

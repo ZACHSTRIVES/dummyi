@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import {RawPreviewer, SettingBar, TablePreviewer} from "@/components/PreviewPanel/src/components";
 import styles from './PreviewPanel.module.css';
 import {ComponentSize, PreviewType} from "@/constants/enums";
-import {Store} from "@/types/system";
+import {RootState} from "@/types/system";
 import {useSelector} from "react-redux";
 
 
@@ -15,7 +15,7 @@ export const PreviewPanel: React.FunctionComponent<PreviewPanelProps> = () => {
     const [componentsSize, setComponentsSize] = React.useState(ComponentSize.LARGE);
 
     // store
-    const previewType = useSelector((state: Store) => state.preview.previewType);
+    const previewType = useSelector((state: RootState) => state.preview.previewType);
 
     useEffect(() => {
         const resizeObserver = new ResizeObserver((entries) => {
@@ -41,7 +41,7 @@ export const PreviewPanel: React.FunctionComponent<PreviewPanelProps> = () => {
     }, [containerRef]);
 
     return (
-        <div className={styles.previewPanel} ref={containerRef}>
+        <div className={`${styles.previewPanel} no-select-area`} ref={containerRef}>
             <SettingBar size={componentsSize}/>
 
             {previewType === PreviewType.RAW ?

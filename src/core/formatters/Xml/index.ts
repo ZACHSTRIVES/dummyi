@@ -7,6 +7,7 @@ export const XmlFormatter: Formatter = {
     type: ExportFormat.XML,
     category: ExportFormatCategory.FILE_TYPES,
     format: format,
+    fileExtension: 'xml',
     configComponent: XmlConfigComponent,
     defaultConfig: defaultXmlFormatterConfig,
 }

@@ -4,12 +4,14 @@ import {FormattedMessage, useIntl} from "@/locale";
 import {Tag} from "@douyinfe/semi-ui";
 import {OptionsNumberInput, OptionsSelect, SelectOption} from "@/components/Utils";
 import {faker} from "@faker-js/faker";
-import {ExportValueType} from "@/constants/enums";
+import {ValueType} from "@/constants/enums";
 import style from './Boolean.module.scss';
 import {isNullOrWhiteSpace} from "@/utils/stringUtils";
+import {ColorGeneratorOptions} from "@/core/generators/Color/Color";
 
 // -------------------------------------------------------------------------------------------------------------
-// types
+// typesx
+
 export enum BooleanGenerateFormat {
     TRUE_FALSE_BOOLEAN = "TRUE_FALSE_BOOLEAN",
     ONE_ZERO_NUMBER = "ONE_ZERO_NUMBER",
@@ -37,26 +39,22 @@ export const generate = (options: any): GenerateResult => {
         case BooleanGenerateFormat.TRUE_FALSE_BOOLEAN:
             return {
                 value: result,
-                stringValue: result ? 'true' : 'false',
-                type: ExportValueType.BOOLEAN
+                stringValue: result ? 'true' : 'false'
             };
         case BooleanGenerateFormat.ONE_ZERO_NUMBER:
             return {
                 value: result ? 1 : 0,
-                stringValue: result ? '1' : '0',
-                type: ExportValueType.NUMBER
+                stringValue: result ? '1' : '0'
             };
         case BooleanGenerateFormat.TRUE_FALSE_STRING:
             return {
                 value: result ? 'true' : 'false',
-                stringValue: result ? 'true' : 'false',
-                type: ExportValueType.STRING
+                stringValue: result ? 'true' : 'false'
             };
         case BooleanGenerateFormat.YES_NO_STRING:
             return {
                 value: result ? 'Yes' : 'No',
-                stringValue: result ? 'Yes' : 'No',
-                type: ExportValueType.STRING
+                stringValue: result ? 'Yes' : 'No'
             };
     }
 }
@@ -64,13 +62,24 @@ export const generate = (options: any): GenerateResult => {
 // -------------------------------------------------------------------------------------------------------------
 // options component
 export const BooleanGeneratorOptionsComponent: React.FunctionComponent<GeneratorOptionsComponentInterface> = ({...props}) => {
-    const {options, onOptionsChange} = props;
-    const booleanOptions: BooleanGeneratorOptions = options;
+    const {options, handleOptionValueChange} = props as {
+        options: BooleanGeneratorOptions,
+        handleOptionValueChange: typeof props.handleOptionValueChange
+    };
+
     const intl = useIntl();
 
-    const handleOptionsChange = (changedFieldName: string, value: any) => {
-        let newOptions = {...booleanOptions, [changedFieldName]: value};
-        onOptionsChange(newOptions);
+    // format
+    const handleFormatChange = (format: BooleanGenerateFormat) => {
+        if (format === BooleanGenerateFormat.TRUE_FALSE_BOOLEAN) {
+            handleOptionValueChange("format", BooleanGenerateFormat.TRUE_FALSE_BOOLEAN, ValueType.BOOLEAN);
+        } else if (format === BooleanGenerateFormat.ONE_ZERO_NUMBER) {
+            handleOptionValueChange("format", BooleanGenerateFormat.ONE_ZERO_NUMBER, ValueType.ONE_BIT);
+        } else if (format === BooleanGenerateFormat.TRUE_FALSE_STRING) {
+            handleOptionValueChange("format", BooleanGenerateFormat.TRUE_FALSE_STRING, ValueType.STRING);
+        } else if (format === BooleanGenerateFormat.YES_NO_STRING) {
+            handleOptionValueChange("format", BooleanGenerateFormat.YES_NO_STRING, ValueType.STRING);
+        }
     }
 
     // error validation
@@ -79,26 +88,26 @@ export const BooleanGeneratorOptionsComponent: React.FunctionComponent<Generator
     });
 
     React.useEffect(() => {
-        if(isNullOrWhiteSpace(booleanOptions.truePercentage.toString())) {
+        if (isNullOrWhiteSpace(options.truePercentage.toString())) {
             setErrorMessages({
                 ...errorMessages,
                 truePercentage: intl.formatMessage({id: 'dataType.boolean.true.errorMessage.empty'})
             })
-        }else{
+        } else {
             setErrorMessages({
                 ...errorMessages,
                 truePercentage: ''
             })
         }
-    }, [booleanOptions.truePercentage])
+    }, [options.truePercentage])
 
     return (
         <>
             <OptionsNumberInput
                 label={<FormattedMessage id='dataType.boolean.true.label'/>}
                 infoTooltip={<FormattedMessage id='dataType.boolean.true.tooltip'/>}
-                value={booleanOptions.truePercentage}
-                onChange={(v) => handleOptionsChange("truePercentage", v)}
+                value={options.truePercentage}
+                onChange={(v) => handleOptionValueChange("truePercentage", v)}
                 style={{width: '100px'}}
                 suffix={"%"}
                 min={0}
@@ -109,8 +118,8 @@ export const BooleanGeneratorOptionsComponent: React.FunctionComponent<Generator
             <OptionsSelect
                 label={<FormattedMessage id='dataType.boolean.format.label'/>}
                 selectOptions={formatOptions}
-                value={booleanOptions.format}
-                onChange={(v) => handleOptionsChange("format", v)}
+                value={options.format}
+                onChange={(v) => handleFormatChange(v)}
                 style={{width: '210px'}}
             />
         </>

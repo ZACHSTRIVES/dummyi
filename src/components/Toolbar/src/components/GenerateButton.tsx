@@ -1,9 +1,12 @@
 import React from "react";
 import {Button} from "@douyinfe/semi-ui";
-import {IconPlayCircle } from "@douyinfe/semi-icons";
+import {IconPlayCircle} from "@douyinfe/semi-icons";
 import Styles from "@/components/Toolbar/src/Toolbar.module.css";
-import {useIntl} from "@/locale";
+import {FormattedMessage} from "@/locale";
 import {ComponentSize} from "@/constants/enums";
+import {useDispatch} from "react-redux";
+import {doSetShowExportModal} from "@/reducers/export/exportActions";
+import {inDevEnvironment} from "@/utils/devUtils";
 
 export type GenerateButtonProps = {
     size: ComponentSize;
@@ -11,16 +14,22 @@ export type GenerateButtonProps = {
 
 export const GenerateButton: React.FC<GenerateButtonProps> = ({...props}) => {
     const {size} = props;
-    const intl = useIntl();
+    const dispatch = useDispatch();
+
+    // action
+    const openGenerateModal = () => {
+        dispatch(doSetShowExportModal(true));
+    }
 
     return (
         <Button
+            disabled={!inDevEnvironment}
+            onClick={openGenerateModal}
             loading={false}
-            icon={<IconPlayCircle />}
+            icon={<IconPlayCircle/>}
             className={Styles.generateButton}
-            style={{width: size === 'large' ? '100px' : '50px'}}
             theme={'solid'}>
-            {size === 'large' ? intl.formatMessage({id: 'toolbar.generateButton.text'}) :null }
+            {size === 'large' ? <FormattedMessage id={'toolbar.generateButton.text'}/> : null}
         </Button>
     )
 }

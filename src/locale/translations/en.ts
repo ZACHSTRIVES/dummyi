@@ -5,18 +5,40 @@ export const en = {
 
     // export category
     "export.category.fileTypes": "General file types",
+    "export.category.databases" : "Databases",
     "export.category.programmingLanguages": "Programming languages",
 
     // export format modal
-    "export.configurator.modal.title": "Export Format",
-    "export.configurator.modal.closeButton.text": "Close",
+    "export.configurator.modal.title": "Format",
+    "export.configurator.modal.confirmButton.text": "Confirm",
     "export.configurator.config.label": "Configurations",
     "export.configurator.config.empty": "Configuration of this export format is currently not available.",
 
+    // export modal
+    "export.modal.title": "Batch Generate",
+    "export.modal.exportNumOfRows.label": "Rows to generate",
+    "export.modal.exportNumOfRows.empty": "Rows to generate cannot be empty",
+    "export.modal.exportFormat.label": "Format",
+    "export.modal.estimatedSize.label": "Estimated size",
+    "export.modal.estimatedTime.label": "Estimated time",
+    "export.modal.exportFileName.label": "File name",
+    "export.modal.exportFileName.empty": "File name cannot be empty",
+    "export.modal.cancel.button.text": "Cancel",
+    "export.modal.generate.button.text": "Generate",
+    "export.modal.hide.button.text": "Hide",
+    "export.modal.terminate.button.text": "Terminate",
+    "export.modal.generating.rows.text": "Rows",
+    "export.modal.generating.time.text": "Time",
+    "export.modal.generating.done.text": "Done",
+    "export.modal.toast.details.button.text": "Details",
+    "export.modal.toast.download.button.text": "Download",
+
     // csv
     "export.configurator.csv.delimiter": "Delimiter",
+    "export.configurator.csv.delimiter.required" : "Delimiter cannot be empty",
     "export.configurator.csv.includeHeader": "Include header",
     "export.configurator.csv.endLineChar": "End of line characters",
+
 
     // xml
     "export.configurator.xml.rootNodeName": "Root node",
@@ -28,14 +50,75 @@ export const en = {
     "export.configurator.json.insideArray": "Inside array",
     "export.configurator.json.includeNullValues": "Include null values",
 
+    // javascript
+    "export.configurator.javascript.format": "Format",
+    "export.configurator.javascript.format.variable": "Variable",
+    "export.configurator.javascript.format.export": "Export",
+    "export.configurator.javascript.varName": "Variable name",
+    "export.configurator.javascript.varName.required": "Variable name cannot be empty",
+    "export.configurator.javascript.declarationKeyword": "Declaration Keyword",
+    "export.configurator.javascript.module": "Module",
+
+    // sql
+    "export.configurator.sql.type": "Database type",
+    "export.configurator.sql.tableName": "Table name",
+    "export.configurator.sql.tableName.required": "Table name cannot be empty",
+    "export.configurator.sql.statement": "SQL statement",
+    "export.configurator.sql.batchSize": "Batch size",
+    "export.configurator.sql.includeDropTable": "Include `DROP TABLE`",
+    "export.configurator.sql.includeCreateTable": "Include `CREATE TABLE`",
+    "export.configurator.sql.includePrimaryKey": "Include primary key",
+    "export.configurator.sql.primaryKeyColumnName": "Primary key column",
+
+    // c#
+    "export.configurator.csharp.collectionType": "Collection type",
+    "export.configurator.csharp.collectionName": "Collection name",
+    "export.configurator.csharp.dtoClass": "Create DTO class",
+    "export.configurator.csharp.dtoClassName": "Class name",
+
     // -------------------------------------------------------------------------------------------------------------
     // data types
+    
+    // domainsuffix
+    "dataType.domainsuffix": "Domain Suffix",
 
-    
-    
-    
-    
-    
+    // domainname
+    "dataType.domainname": "Domain Name",
+        
+    // accountnumber
+    "dataType.accountnumber": "Account Number",
+    "dataType.accountnumber.length": "Length",
+    "dataType.accountnumber.empty": "Length cannot be empty",
+
+    // accountname
+    "dataType.accountname": "Account Name",
+
+    // color
+    "dataType.color": "Color",
+    "dataType.color.kind.label": "Kind",
+    "dataType.color.format.label": "Format",
+    "dataType.color.format.humanWord":"Human Word",
+
+    // phone
+    "dataType.phone": "Phone Number",
+    "dataType.phone.formats.label": "Formats",
+    "dataType.phone.formats.tooltips": "Phone number format, please use \"#\" to represent digits, press Enter key to confirm",
+
+    // emoji
+    "dataType.emoji": "Emoji",
+    "dataType.emoji.type": "Type",
+    "dataType.emoji.type.all": "All",
+    "dataType.emoji.type.smiley": "Smiley",
+    "dataType.emoji.type.body": "Body",
+    "dataType.emoji.type.person": "Person",
+    "dataType.emoji.type.nature": "Nature",
+    "dataType.emoji.type.food": "Food",
+    "dataType.emoji.type.travel": "Travel",
+    "dataType.emoji.type.activity": "Activity",
+    "dataType.emoji.type.object": "Object",
+    "dataType.emoji.type.symbol": "Symbol",
+    "dataType.emoji.type.flag": "Flag",
+
     // persontitle
     "dataType.persontitle": "Person Title",
 
@@ -56,11 +139,11 @@ export const en = {
     "dataType.number.kind.label": "Kind",
     "dataType.number.precision.label": "Precision",
     "dataType.number.min.label": "Min.",
-    "dataType.number.min.tooltip":"Lower bound for generated numbers",
+    "dataType.number.min.tooltip": "Lower bound for generated numbers",
     "dataType.number.min.errorMessage.empty": "Min. value cannot be empty",
     "dataType.number.min.errorMessage.greaterThanMax": "Min. value cannot be greater than max. value",
     "dataType.number.max.label": "Max.",
-    "dataType.number.max.tooltip":"Upper bound for generated numbers",
+    "dataType.number.max.tooltip": "Upper bound for generated numbers",
     "dataType.number.max.errorMessage.empty": "Max. value cannot be empty",
     "dataType.number.max.errorMessage.lessThanMin": "Max. value cannot be less than min. value",
 
@@ -116,7 +199,7 @@ export const en = {
 
     // workspace
     "toolbar.numOfRowInput.suffix": "Rows",
-    "toolbar.generateButton.text": "Generate",
+    "toolbar.generateButton.text": "Batch Generate",
     "toolbar.panelsOrientationButton.tooltip.switchToColumn": "Switch panels to column",
     "toolbar.panelsOrientationButton.tooltip.switchToRow": "Switch panels to row",
     "toolbar.emptyPageButton.tooltip": "Empty workplace",
@@ -139,7 +222,7 @@ export const en = {
     "dataFields.list.createFirstField.text": "Let's start by creating the first field!",
     "dataFields.input.fieldName.label": "Field name",
     "dataFields.input.fieldName.errorMessage.empty": "Field name cannot be empty",
-    "dataFields.input.type.label": "Type",
+    "dataFields.input.type.label": "Data type",
     "dataFields.input.type.placeholder": "Select type",
     "dataFields.input.emptyRate.label": "Empty %",
     "dataFields.input.emptyRate.tooltip": "Probability of generating empty value",

@@ -1,21 +1,21 @@
-import {Store} from "@/types/system";
+import {RootState} from "@/types/system";
 import {createSelector} from "reselect";
 
 //panels orientation
-export const selectPanelsOrientation = (state: Store) => state.workspace.panelsOrientation;
+export const selectPanelsOrientation = (state: RootState) => state.workspace.panelsOrientation;
 
 
 // data fields
-export const selectDataFields = (state: Store) => state.workspace.dataFields;
-export const selectDataFieldsSortableIdsList = (state: Store) => state.workspace.dataFieldsSortableIdsList;
+export const selectDataFields = (state: RootState) => state.workspace.dataFields;
+export const selectDataFieldsSortableIdsList = (state: RootState) => state.workspace.dataFieldsSortableIdsList;
 export const selectNumbersOfDataFields = createSelector(
     selectDataFields,
     (dataFields) => Object.keys(dataFields).length);
 
 
 // data type select modal
-export const selectShowDataTypeSelectModal = (state: Store) => state.workspace.showDataTypeSelectModal;
-export const selectCurrentDataTypeSelectModalTargetFieldId = (state: Store) => state.workspace.currentDataTypeSelectModalTargetFieldId;
+export const selectShowDataTypeSelectModal = (state: RootState) => state.workspace.showDataTypeSelectModal;
+export const selectCurrentDataTypeSelectModalTargetFieldId = (state: RootState) => state.workspace.currentDataTypeSelectModalTargetFieldId;
 export const selectCurrentDataTypeSelectModalTargetField = createSelector(
     selectDataFields,
     selectCurrentDataTypeSelectModalTargetFieldId,
@@ -24,8 +24,8 @@ export const selectCurrentDataTypeSelectModalTargetField = createSelector(
 
 
 // data type options modal
-export const selectShowDataTypeOptionsModal = (state: Store) => state.workspace.showDataTypeOptionsModal;
-export const selectCurrentDataTypeOptionsModalTargetFieldId = (state: Store) => state.workspace.currentDataTypeOptionsModalTargetFieldId;
+export const selectShowDataTypeOptionsModal = (state: RootState) => state.workspace.showDataTypeOptionsModal;
+export const selectCurrentDataTypeOptionsModalTargetFieldId = (state: RootState) => state.workspace.currentDataTypeOptionsModalTargetFieldId;
 export const selectCurrentDataTypeOptionsModalTargetField = createSelector(
     selectDataFields,
     selectCurrentDataTypeOptionsModalTargetFieldId,
@@ -33,10 +33,12 @@ export const selectCurrentDataTypeOptionsModalTargetField = createSelector(
 )
 
 // preview data
-export const selectPreviewData = (state: Store) => state.workspace.previewData;
-export const selectPreviewFormattedData = (state: Store) => state.workspace.previewFormattedData;
+export const selectPreviewData = (state: RootState) => state.workspace.previewData;
+export const selectPreviewFormattedData = (state: RootState) => state.workspace.previewFormattedData;
 
 // export
-export const selectExportFormat = (state: Store) => state.workspace.exportFormat;
-export const selectNumberOfExportRows = (state: Store) => state.workspace.numberOfExportRows;
-export const selectFormatterConfig = (state: Store) => state.workspace.formatterConfig;
+export const selectExportFormat = (state: RootState) => state.workspace.exportFormat;
+export const selectNumberOfExportRows = (state: RootState) => state.workspace.numberOfExportRows;
+export const selectFormatterConfig = (state: RootState) => state.workspace.formatterConfig;
+
+

@@ -1,17 +1,27 @@
 import {
-    ADD_NEW_DATA_FIELD, CHANGE_DATA_TYPE,
+    ADD_NEW_DATA_FIELD,
+    CHANGE_DATA_TYPE,
     CLOSE_DATA_TYPE_OPTIONS_MODAL,
     CLOSE_DATA_TYPE_SELECT_MODAL,
-    DELETE_DATA_FIELD, FORMAT_PREVIEW_DATA, GENERATE_PREVIEW_DATA, GENERATE_SPECIFIC_FIELD_PREVIEW_DATA,
+    DELETE_DATA_FIELD,
+    EMPTY_WORKSPACE,
+    FORMAT_PREVIEW_DATA,
+    GENERATE_PREVIEW_DATA,
+    GENERATE_SPECIFIC_FIELD_PREVIEW_DATA,
     OPEN_DATA_TYPE_OPTIONS_MODAL,
-    OPEN_DATA_TYPE_SELECT_MODAL, SET_EXPORT_FORMAT, SET_FORMATTER_CONFIG, SET_NUMBER_OF_EXPORT_ROWS,
-    SET_PANELS_DIRECTION, SORT_DATA_FIELDS,
-    UPDATE_DATA_FIELD, UPDATE_DATA_FIELD_NAME
+    OPEN_DATA_TYPE_SELECT_MODAL,
+    SET_EXPORT_FORMAT,
+    SET_FORMATTER_CONFIG,
+    SET_NUMBER_OF_EXPORT_ROWS,
+    SET_PANELS_DIRECTION,
+    SORT_DATA_FIELDS,
+    UPDATE_DATA_FIELD,
+    UPDATE_DATA_FIELD_NAME
 } from "@/constants/actions";
-import {DataType, ExportFormat, PanelsOrientation} from "@/constants/enums";
+import {DataType, ExportFormat, PanelsOrientation, ValueType} from "@/constants/enums";
 import {DataField} from "@/types/generator";
 import {UUID} from "uuidjs";
-import {getGeneratorDefaultOptionsByDataType} from "@/utils/generatorUtils";
+import {getGeneratorDefaultOptionsByDataType, getGeneratorDefaultValueTypeByDataType} from "@/utils/generatorUtils";
 import {getFormatterByFormat} from "@/utils/formatterUtils";
 
 
@@ -51,6 +61,7 @@ export const doAddNewDataField = (): any =>
         const field: DataField = {
             isDraft: true,
             emptyRate: 0,
+            valueType: ValueType.STRING
         }
         const id = UUID.generate();
         dispatch({type: ADD_NEW_DATA_FIELD, payload: {id: id, field: field}});
@@ -88,7 +99,8 @@ export const doSortDataFields = (sortableIdsList: string[]): any =>
 export const doChangeDataType = (id: string, dataType: DataType): any =>
     async dispatch => {
         const defaultOptions = getGeneratorDefaultOptionsByDataType(dataType);
-        dispatch({type: CHANGE_DATA_TYPE, payload: {id: id, dataType: dataType, options: defaultOptions}});
+        const defaultValueType = getGeneratorDefaultValueTypeByDataType(dataType);
+        dispatch({type: CHANGE_DATA_TYPE, payload: {id: id, dataType: dataType, valueType:defaultValueType, options: defaultOptions}});
         dispatch(doGenerateSpecificFieldPreviewData(id));
     };
 
@@ -126,11 +138,18 @@ export const doUpdateFormatterConfig = (config: any): any =>
     async dispatch => {
         dispatch({type: SET_FORMATTER_CONFIG, payload: config});
         dispatch(doFormatPreviewData());
-    }
+    };
 
 // format data
 export const doFormatPreviewData = (): any =>
     async dispatch => {
         dispatch({type: FORMAT_PREVIEW_DATA});
-    }
+    };
+
+// empty workspace
+export const doEmptyWorkspace = (): any =>
+    async dispatch => {
+        dispatch({type: EMPTY_WORKSPACE});
+    };
+
 

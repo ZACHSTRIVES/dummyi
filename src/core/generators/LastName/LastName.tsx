@@ -1,6 +1,6 @@
 import React from "react";
 import {GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
-import {ExportValueType, Sex} from "@/constants/enums";
+import {Sex} from "@/constants/enums";
 import {faker} from "@faker-js/faker";
 import {OptionsSelect} from "@/components/Utils";
 import {FormattedMessage} from "@/locale";
@@ -14,7 +14,7 @@ export interface LastNameGeneratorOptions {
 
 // -------------------------------------------------------------------------------------------------------------
 // default options
-export const LastNameGeneratorDefaultOptions:LastNameGeneratorOptions = {
+export const LastNameGeneratorDefaultOptions: LastNameGeneratorOptions = {
     sex: Sex.ALL
 }
 
@@ -22,7 +22,7 @@ export const LastNameGeneratorDefaultOptions:LastNameGeneratorOptions = {
 // generate method
 export const generate = (options: any): GenerateResult => {
     let config = null;
-    if(options.sex !== Sex.ALL ){
+    if (options.sex !== Sex.ALL) {
         config = options.sex;
     }
 
@@ -31,19 +31,16 @@ export const generate = (options: any): GenerateResult => {
     return {
         value: value,
         stringValue: value,
-        type: ExportValueType.STRING
     };
 }
 
 // -------------------------------------------------------------------------------------------------------------
 // options component
 export const LastNameGeneratorOptionsComponent: React.FunctionComponent<GeneratorOptionsComponentInterface> = ({...props}) => {
-    const {options, onOptionsChange} = props;
-
-    const handleOptionsChange = (changedFieldName: string, value: any) => {
-        let newOptions = {...options, [changedFieldName]: value};
-        onOptionsChange(newOptions);
-    }
+    const {options, handleOptionValueChange} = props as {
+        options: LastNameGeneratorOptions,
+        handleOptionValueChange: typeof props.handleOptionValueChange
+    };
 
     return (
         <>
@@ -52,7 +49,7 @@ export const LastNameGeneratorOptionsComponent: React.FunctionComponent<Generato
                 selectOptions={SexSelectOptions}
                 value={options.sex}
                 style={{width: '150px'}}
-                onChange={(v) => handleOptionsChange("sex", v)}/>
+                onChange={(v) => handleOptionValueChange("sex", v)}/>
         </>
     );
 }

@@ -1,6 +1,5 @@
 import {GenerateResult} from "@/types/generator";
 import {faker} from "@faker-js/faker";
-import {ExportValueType} from "@/constants/enums";
 
 // -------------------------------------------------------------------------------------------------------------
 // types
@@ -15,7 +14,6 @@ export const generate = (options: any): GenerateResult => {
     return {
         value: value,
         stringValue: value,
-        type: ExportValueType.STRING
     }
 }
 

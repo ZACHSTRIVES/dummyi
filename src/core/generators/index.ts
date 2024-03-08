@@ -1,3 +1,10 @@
+import {DomainSuffixGenerator} from "@/core/generators/DomainSuffix";
+import {DomainNameGenerator} from "@/core/generators/DomainName";
+import {AccountNumberGenerator} from "@/core/generators/AccountNumber";
+import {AccountNameGenerator} from "@/core/generators/AccountName";
+import {ColorGenerator} from "@/core/generators/Color";
+import {PhoneGenerator} from "@/core/generators/Phone";
+import {EmojiGenerator} from "@/core/generators/Emoji";
 import {PersonTitleGenerator} from "@/core/generators/PersonTitle";
 import {MiddleNameGenerator} from "@/core/generators/MiddleName";
 import {LastNameGenerator} from "@/core/generators/LastName";
@@ -11,11 +18,18 @@ import {CompanyNameGenerator} from "@/core/generators/CompanyName";
 import {DataType} from "@/constants/enums";
 
 export const generators = {
-  [DataType.PERSONTITLE]: PersonTitleGenerator,
-  [DataType.MIDDLENAME]: MiddleNameGenerator,
-  [DataType.LASTNAME]: LastNameGenerator,
-  [DataType.FIRSTNAME]: FirstNameGenerator,
-  [DataType.SEX]: SexGenerator,
+   [DataType.DOMAINSUFFIX]: DomainSuffixGenerator,
+   [DataType.DOMAINNAME]: DomainNameGenerator,
+   [DataType.ACCOUNTNUMBER]: AccountNumberGenerator,
+   [DataType.ACCOUNTNAME]: AccountNameGenerator,
+    [DataType.COLOR]: ColorGenerator,
+    [DataType.PHONE]: PhoneGenerator,
+    [DataType.EMOJI]: EmojiGenerator,
+    [DataType.PERSONTITLE]: PersonTitleGenerator,
+    [DataType.MIDDLENAME]: MiddleNameGenerator,
+    [DataType.LASTNAME]: LastNameGenerator,
+    [DataType.FIRSTNAME]: FirstNameGenerator,
+    [DataType.SEX]: SexGenerator,
     [DataType.BOOLEAN]: BooleanGenerator,
     [DataType.NUMBER]: NumberGenerator,
     [DataType.FULL_NAME]: FullNameGenerator,

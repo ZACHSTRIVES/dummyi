@@ -6,6 +6,7 @@ export const jaJP = {
 
     // export category
     "export.category.fileTypes": "一般的なファイルタイプ",
+    "export.category.databases" : "Databases",
     "export.category.programmingLanguages": "プログラミング言語",
 
     // export format modal
@@ -21,12 +22,42 @@ export const jaJP = {
 
     // -------------------------------------------------------------------------------------------------------------
     // data types
+    
+    // domainsuffix
+    "dataType.domainsuffix": "DomainSuffix",
 
-    
-    
-    
-    
-    
+    // domainname
+    "dataType.domainname": "DomainName",
+
+    // accountnumber
+    "dataType.accountnumber": "AccountNumber",
+
+    // accountname
+    "dataType.accountname": "AccountName",
+
+    // color
+    "dataType.color": "Color",
+
+    // phone
+    "dataType.phone": "Phone Number",
+    "dataType.phone.formats.label": "Formats",
+    "dataType.phone.formats.tooltips": "Phone number format, please use \"#\" to represent digits, press Enter key to confirm",
+
+    // emoji
+    "dataType.emoji": "Emoji",
+    "dataType.emoji.type": "Type",
+    "dataType.emoji.type.all": "All",
+    "dataType.emoji.type.smiley": "Smiley",
+    "dataType.emoji.type.body" : "Body",
+    "dataType.emoji.type.person" : "Person",
+    "dataType.emoji.type.nature" : "Nature",
+    "dataType.emoji.type.food" : "Food",
+    "dataType.emoji.type.travel" : "Travel",
+    "dataType.emoji.type.activity" : "Activity",
+    "dataType.emoji.type.object" : "Object",
+    "dataType.emoji.type.symbol" : "Symbol",
+    "dataType.emoji.type.flag" : "Flag",
+
     // persontitle
     "dataType.persontitle": "PersonTitle",
 
@@ -82,7 +113,7 @@ export const jaJP = {
 
     // workspace
     "toolbar.numOfRowInput.suffix": "行",
-    "toolbar.generateButton.text": "生成",
+    "toolbar.generateButton.text": "批量生成",
     "toolbar.panelsOrientationButton.tooltip.switchToColumn": "パネルを列に切り替え",
     "toolbar.panelsOrientationButton.tooltip.switchToRow": "パネルを行に切り替え",
     "toolbar.emptyPageButton.tooltip": "ワークスペースを空にする",
