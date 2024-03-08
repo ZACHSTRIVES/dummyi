@@ -74,10 +74,10 @@ export const en = {
     // data types
     
     // domainsuffix
-    "dataType.domainsuffix": "DomainSuffix",
+    "dataType.domainsuffix": "Domain Suffix",
 
     // domainname
-    "dataType.domainname": "DomainName",
+    "dataType.domainname": "Domain Name",
         
     // accountnumber
     "dataType.accountnumber": "Account Number",

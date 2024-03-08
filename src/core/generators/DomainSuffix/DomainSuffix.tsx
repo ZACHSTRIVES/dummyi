@@ -1,5 +1,4 @@
 import {GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
-import {ExportValueType} from "@/constants/enums";
 import {faker} from "@faker-js/faker";
 
 // -------------------------------------------------------------------------------------------------------------
@@ -14,7 +13,6 @@ export const generate = (options: any): GenerateResult => {
     return {
         value: value,
         stringValue: value,
-        type: ExportValueType.STRING
     };
 }
 
