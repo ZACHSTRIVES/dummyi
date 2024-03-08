@@ -22,7 +22,6 @@ export enum SqlType {
     SAPHANA = "SAPHANA"
 }
 
-
 export type SqlFormatterConfig = {
     type: SqlType,
     tableName: string,

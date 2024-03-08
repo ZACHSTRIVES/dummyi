@@ -5,7 +5,30 @@ import {langs} from '@uiw/codemirror-extensions-langs';
 
 // format data
 export const formatData = (request: FormatRequest): string => {
-    return formatters[request.format].format(request);
+    const {fields, sortedFieldIds} = request;
+
+    // Filter out field IDs where the corresponding field is a draft
+    const filteredFieldIds = sortedFieldIds.filter(fieldId => !fields[fieldId].isDraft);
+
+    // Construct a new fields object without the draft fields
+    const filteredFields = {};
+    filteredFieldIds.forEach(fieldId => {
+        filteredFields[fieldId] = fields[fieldId];
+    });
+
+    // Replace the request fields with the filtered fields and sortedFieldIds with filteredFieldIds
+    const updatedRequest = {
+        ...request,
+        fields: filteredFields,
+        sortedFieldIds: filteredFieldIds,
+    };
+
+    if (filteredFieldIds.length === 0) {
+        return ""
+    } else {
+        return formatters[request.format].format(updatedRequest);
+    }
+
 }
 
 // Get formatters grouped by category
