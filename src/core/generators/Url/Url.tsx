@@ -1,12 +1,19 @@
 import React from "react";
 import {GenerateResult, GeneratorOptionsComponentInterface} from "@/types/generator";
 import {faker} from "@faker-js/faker";
+import {Tag} from "@douyinfe/semi-ui";
 import {OptionsSelect, SelectOption} from "@/components/Utils";
 import {FormattedMessage} from "@/locale";
+import style from '../Boolean/Boolean.module.scss';
 import {OptionsSwitch} from "@/components/Utils/src/OptionsSwitch";
+
 // -------------------------------------------------------------------------------------------------------------
 // types
 type HTTPProtocolType = 'http' | 'https';
+export enum ProtocolGeneratorFormat{
+    HTTP_PROTOCOL = 'http',
+    HTTPS_PROTOCOL = 'https'
+}
 export interface UrlGeneratorOptions {
      appendSlash: boolean;
      protocol:HTTPProtocolType;
@@ -16,7 +23,7 @@ export interface UrlGeneratorOptions {
 // default options
 export const UrlGeneratorDefaultOptions:UrlGeneratorOptions = {
     appendSlash:false,
-    protocol:'https'
+    protocol:ProtocolGeneratorFormat.HTTPS_PROTOCOL
 
 }
 
@@ -27,14 +34,14 @@ export const generate = (options: any): GenerateResult => {
     const { appendSlash, protocol } = options;
     const domain = faker.internet.domainName();
     // Construct URL
-    let url = `${protocol}://${domain}`;
+    let value = `${protocol}://${domain}`;
     if (appendSlash) {
-        url += '/';
+        value += '/';
     }
     //return random http or https
     return {
-        value: url,
-        stringValue: `'${url}'`,
+        value: value,
+        stringValue: value,
     }
    
 }
@@ -46,11 +53,10 @@ export const UrlGeneratorOptionsComponent: React.FunctionComponent<GeneratorOpti
         options: UrlGeneratorOptions,
         handleOptionValueChange: typeof props.handleOptionValueChange
     };
-
+    const handleFormatChange = (format: ProtocolGeneratorFormat) => {
+        handleOptionValueChange("protocol", format);
+    }
     
-    const handleProtocolToggle = () => {
-        handleOptionValueChange('protocol', options.protocol === 'http' ? 'https' : 'http');
-    };
 
     
     return (
@@ -66,13 +72,25 @@ export const UrlGeneratorOptionsComponent: React.FunctionComponent<GeneratorOpti
                 size={'large'}
             />
 
-            <OptionsSwitch
+            
+            <OptionsSelect
                 label={<FormattedMessage id="dataType.url.protocol.label" />}
-                value={options.protocol === 'https'}
-                onChange={handleProtocolToggle}
-                size={'large'}
-            />
-
+                selectOptions={protocolOptions}
+                value={options.protocol}
+                onChange={handleFormatChange} // This directly passes the selected value to handleFormatChange
+                style={{ width: '210px' }}
+/>
         </>
     );
 }
+
+const protocolOptions: SelectOption[] = [
+    {
+        value:ProtocolGeneratorFormat.HTTPS_PROTOCOL,
+        label: <><Tag type={'light'} className={style.formatSelectOption}></Tag>https</>
+    },
+    {
+        value:ProtocolGeneratorFormat.HTTP_PROTOCOL,
+        label: <><Tag type={'light'} className={style.formatSelectOption}></Tag>http</>
+    }
+]
