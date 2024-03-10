@@ -87,10 +87,10 @@ export const UrlGeneratorOptionsComponent: React.FunctionComponent<GeneratorOpti
 const protocolOptions: SelectOption[] = [
     {
         value:ProtocolGeneratorFormat.HTTPS_PROTOCOL,
-        label: <><Tag type={'light'} className={style.formatSelectOption}></Tag>https</>
+        label: <>https</>
     },
     {
         value:ProtocolGeneratorFormat.HTTP_PROTOCOL,
-        label: <><Tag type={'light'} className={style.formatSelectOption}></Tag>http</>
+        label: <>http</>
     }
 ]

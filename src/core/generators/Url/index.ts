@@ -9,6 +9,6 @@ export const UrlGenerator: Generator = {
     optionsComponent: UrlGeneratorOptionsComponent,
     defaultOptions: UrlGeneratorDefaultOptions,
     defaultValueType: ValueType.STRING,
-    exampleLines: ["https://remarkable-hackwork.info", "https://slow-timer.info/", "http://www.terrible-idea.com"]
+    exampleLines: ["https://slim-site.name", "https://tinyurl.com", "https://soft-snow.com"]
 }
     
