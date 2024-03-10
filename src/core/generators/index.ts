@@ -1,3 +1,4 @@
+import {UrlGenerator} from "@/core/generators/Url";
 import {DomainSuffixGenerator} from "@/core/generators/DomainSuffix";
 import {DomainNameGenerator} from "@/core/generators/DomainName";
 import {AccountNumberGenerator} from "@/core/generators/AccountNumber";
@@ -18,6 +19,7 @@ import {CompanyNameGenerator} from "@/core/generators/CompanyName";
 import {DataType} from "@/constants/enums";
 
 export const generators = {
+  [DataType.URL]: UrlGenerator,
    [DataType.DOMAINSUFFIX]: DomainSuffixGenerator,
    [DataType.DOMAINNAME]: DomainNameGenerator,
    [DataType.ACCOUNTNUMBER]: AccountNumberGenerator,

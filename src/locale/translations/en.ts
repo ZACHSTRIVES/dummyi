@@ -73,6 +73,12 @@ export const en = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
     
+    
+    // url
+    "dataType.url": "Url",
+    "dataType.url.appendSlash.label": "Slash",
+    "dataType.url.protocol.label":"Protocol",
+
     // domainsuffix
     "dataType.domainsuffix": "Domain Suffix",
 
