@@ -60,6 +60,12 @@ export const zhCN = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
     
+    
+    // url
+    "dataType.url": "网址",
+    "dataType.url.appendSlash.label":"斜线",
+    "dataType.url.protocol.label":"传输协议",
+
     // domainsuffix
     "dataType.domainsuffix": "域名后缀",
 

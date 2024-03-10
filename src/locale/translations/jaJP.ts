@@ -23,6 +23,10 @@ export const jaJP = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
     
+    
+    // url
+    "dataType.url": "Url",
+
     // domainsuffix
     "dataType.domainsuffix": "DomainSuffix",
 
