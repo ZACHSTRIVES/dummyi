@@ -4,8 +4,6 @@ import {OptionsInput, OptionsSelect, SelectOption} from "@/components/Utils";
 import {FormattedMessage} from "@/locale";
 import {OptionsSwitch} from "@/components/Utils/src/OptionsSwitch";
 import {ValueType} from "@/constants/enums";
-import {GenerateResult} from "@/types/generator";
-import {hasValue} from "@/utils/typeUtils";
 import {formatValueForCSharp} from "@/core/formatters/CSharp/CSharpFormatterUtils";
 
 // -------------------------------------------------------------------------------------------------------------
@@ -66,13 +64,13 @@ export const format = (request: FormatRequest): string => {
                     fieldType = `long${field.emptyRate !== 0 ? "?" : ""}`;
                     break;
                 case ValueType.INT_LIST:
-                    fieldType = 'List<int>'
+                    fieldType = 'List<int>';
                     break;
                 case ValueType.STRING_LIST:
-                    fieldType = 'List<string>'
+                    fieldType = 'List<string>';
                     break;
                 case ValueType.ONE_BIT:
-                    fieldType = `int${field.emptyRate !== 0 ? "?" : ""}`
+                    fieldType = `int${field.emptyRate !== 0 ? "?" : ""}`;
                     break;
                 // Add more cases as necessary
             }
@@ -110,20 +108,16 @@ export const format = (request: FormatRequest): string => {
 
     // Populate collection with values
     values.forEach((value, index) => {
+        let fieldAssignments = sortedFieldIds.map(id => {
+            return `    ${fields[id].fieldName} = ${formatValueForCSharp(value[id], fields[id].valueType)}`;
+        }).join(',\n'); // Ensure each field assignment is on a new line
+
         if (config.collectionType === CSharpCollectionType.ARRAY) {
             // Array value assignment
-            csharpCode += `${config.collectionName}[${index}] = new ${itemType} { `;
+            csharpCode += `${config.collectionName}[${index}] = new ${itemType} {\n${fieldAssignments}\n    };\n`;
         } else {
             // Other collections value addition
-            csharpCode += `${config.collectionName}.Add(new ${itemType} { `;
-        }
-
-        csharpCode += sortedFieldIds.map(id => `${fields[id].fieldName} = ${formatValueForCSharp(value[id], fields[id].valueType)}`).join(', ');
-
-        if (config.collectionType === CSharpCollectionType.ARRAY) {
-            csharpCode += ' };\n';
-        } else {
-            csharpCode += ' });\n';
+            csharpCode += `${config.collectionName}.Add(new ${itemType}\n{\n${fieldAssignments}\n});\n`;
         }
     });
 
@@ -156,6 +150,7 @@ export const CSharpConfigComponent: React.FC<FormatterConfigComponentInterface> 
             />
 
             <OptionsInput
+                required
                 label={<FormattedMessage id="export.configurator.csharp.collectionName"/>}
                 value={config.collectionName}
                 onChange={(v) => handleValueChange("collectionName", v)}
@@ -170,6 +165,7 @@ export const CSharpConfigComponent: React.FC<FormatterConfigComponentInterface> 
 
             {
                 config.dtoClass && <OptionsInput
+                    required
                     label={<FormattedMessage id="export.configurator.csharp.dtoClassName"/>}
                     value={config.dtoClassName}
                     onChange={(v) => handleValueChange("dtoClassName", v)}

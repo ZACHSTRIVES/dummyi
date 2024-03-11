@@ -101,11 +101,12 @@ export const NavBar: FunctionComponent<NavBarProps> = () => {
                     <GithubButton size={isMenuOpen ? "large" : 'extra-large'}/>
                     <ColorModeSwitchButton size={isMenuOpen ? "large" : 'extra-large'}/>
                     <LocaleSwitchButton size={isMenuOpen ? "large" : 'extra-large'}/>
-                    {
-                        isLoggedIn
-                            ? <UserLogin user={user} className={styles.loginButton} onLogout={handleLogout}/>
-                            : <LoginButton className={styles.loginButton} onLogin={handleLogin}/>
-                    }
+
+                    {/*{*/}
+                    {/*    isLoggedIn*/}
+                    {/*        ? <UserLogin user={user} className={styles.loginButton} onLogout={handleLogout}/>*/}
+                    {/*        : <LoginButton className={styles.loginButton} onLogin={handleLogin}/>*/}
+                    {/*}*/}
                 </Nav.Footer>
             </Nav>
         </div>

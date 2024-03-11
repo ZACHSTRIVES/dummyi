@@ -3,9 +3,9 @@ export const zhCN = {
     // export
 
     // export category
-    "export.category.fileTypes": "常见格式",
-    "export.category.databases" : "数据库",
-    "export.category.programmingLanguages": "编程语言",
+    "export.category.file_types": "常见格式",
+    "export.category.databases": "数据库",
+    "export.category.programming_languages": "编程语言",
 
     // export format modal
     "export.configurator.modal.title": "生成格式",
@@ -34,7 +34,7 @@ export const zhCN = {
 
     // csv
     "export.configurator.csv.delimiter": "分隔符",
-    "export.configurator.csv.delimiter.required" : "分隔符不可为空",
+    "export.configurator.csv.delimiter.required": "分隔符不可为空",
     "export.configurator.csv.includeHeader": "包含表头",
     "export.configurator.csv.endLineChar": "行结束符",
 
@@ -57,9 +57,38 @@ export const zhCN = {
     "export.configurator.javascript.declarationKeyword": "声明类型",
     "export.configurator.javascript.module": "模块",
 
+    // sql
+    "export.configurator.sql.type": "数据库类型",
+    "export.configurator.sql.tableName": "表名",
+    "export.configurator.sql.tableName.required": "表名不能为空",
+    "export.configurator.sql.statement": "SQL语句",
+    "export.configurator.sql.batchSize": "批量大小",
+    "export.configurator.sql.includeDropTable": "包含 `DROP TABLE`",
+    "export.configurator.sql.includeCreateTable": "包含 `CREATE TABLE`",
+    "export.configurator.sql.includePrimaryKey": "包含主键",
+    "export.configurator.sql.primaryKeyColumnName": "主键列名",
+
+    // c#
+    "export.configurator.csharp.collectionType": "集合类型",
+    "export.configurator.csharp.collectionName": "集合变量名",
+    "export.configurator.csharp.dtoClass": "创建DTO类",
+    "export.configurator.csharp.dtoClassName": "类名",
+
+    // typescript
+    "export.configurator.typescript.declarationType": "结构声明类型",
+    "export.configurator.typescript.declarationType.interface.name": "Interface命名",
+    "export.configurator.typescript.declarationType.type.name": "Type命名",
+    "export.configurator.typescript.variableName": "变量名",
+
     // -------------------------------------------------------------------------------------------------------------
     // data types
-    
+
+
+    // url
+    "dataType.url": "网址",
+    "dataType.url.appendSlash.label": "斜线",
+    "dataType.url.protocol.label": "传输协议",
+
     // domainsuffix
     "dataType.domainsuffix": "域名后缀",
 
@@ -77,7 +106,7 @@ export const zhCN = {
     // color
     "dataType.color": "颜色",
     "dataType.color.kind.label": "类型",
-    "dataType.color.format.humanWord":"词语",
+    "dataType.color.format.humanWord": "词语",
     "dataType.color.format.label": "格式",
 
     // phone
@@ -90,15 +119,15 @@ export const zhCN = {
     "dataType.emoji.type": "类型",
     "dataType.emoji.type.all": "全部",
     "dataType.emoji.type.smiley": "笑脸",
-    "dataType.emoji.type.body" : "人体",
-    "dataType.emoji.type.person" : "人物",
-    "dataType.emoji.type.nature" : "自然",
-    "dataType.emoji.type.food" : "食物",
-    "dataType.emoji.type.travel" : "旅行",
-    "dataType.emoji.type.activity" : "活动",
-    "dataType.emoji.type.object" : "物品",
-    "dataType.emoji.type.symbol" : "符号",
-    "dataType.emoji.type.flag" : "国旗",
+    "dataType.emoji.type.body": "人体",
+    "dataType.emoji.type.person": "人物",
+    "dataType.emoji.type.nature": "自然",
+    "dataType.emoji.type.food": "食物",
+    "dataType.emoji.type.travel": "旅行",
+    "dataType.emoji.type.activity": "活动",
+    "dataType.emoji.type.object": "物品",
+    "dataType.emoji.type.symbol": "符号",
+    "dataType.emoji.type.flag": "国旗",
 
     // persontitle
     "dataType.persontitle": "人物称谓",
@@ -120,11 +149,11 @@ export const zhCN = {
     "dataType.number.kind.label": "种类",
     "dataType.number.precision.label": "精度",
     "dataType.number.min.label": "最小值",
-    "dataType.number.min.tooltip":"生成数据的最小值",
+    "dataType.number.min.tooltip": "生成数据的最小值",
     "dataType.number.min.errorMessage.empty": "最小值不能为空",
     "dataType.number.min.errorMessage.greaterThanMax": "最小值不能大于最大值",
     "dataType.number.max.label": "最大值",
-    "dataType.number.max.tooltip":"生成数据的最大值",
+    "dataType.number.max.tooltip": "生成数据的最大值",
     "dataType.number.max.errorMessage.empty": "最大值不能为空",
     "dataType.number.max.errorMessage.lessThanMin": "最大值不能小于最小值",
 
@@ -213,6 +242,7 @@ export const zhCN = {
     "dataFields.type.modal.search.placeholder": "搜索类型...",
 
     // error pages
+    "error.input.isRequired": "此项不能为空",
     "error.404.description": "页面不存在",
     "error.404.button.text": "首页",
     "error.general.description": "Oops! 出错了！",

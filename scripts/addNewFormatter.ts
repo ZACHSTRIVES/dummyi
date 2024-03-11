@@ -25,7 +25,7 @@ const createFormatter = (formatterName: string, fileExtension: string) => {
             const path = `./src/core/formatters/${formatterName}`;
 
             // add formatter enum option
-            enumUtils('./src/constants/enums.ts', 'ExportFormat', formatterName.toUpperCase(), formatterName.toLowerCase());
+            enumUtils('./src/constants/enums.ts', 'ExportFormat', formatterName.toUpperCase(), formatterName);
 
             // create directory
             fs.mkdirSync(path, {recursive: true});

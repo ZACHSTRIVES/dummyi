@@ -2,6 +2,7 @@ import {FormatRequest, Formatter} from "@/types/formatter";
 import {ExportFormat} from "@/constants/enums";
 import {formatters} from "@/core/formatters";
 import {langs} from '@uiw/codemirror-extensions-langs';
+import {DataFieldList} from "@/types/generator";
 
 // format data
 export const formatData = (request: FormatRequest): string => {
@@ -86,7 +87,53 @@ export const getCodemirrorLanguagePluginByFormat = (format: ExportFormat): any =
             return langs.sql();
         case ExportFormat.CSHARP:
             return langs.csharp();
+        case ExportFormat.TYPESCRIPT:
+            return langs.typescript();
         default:
             return langs.mathematica();
     }
+}
+
+// Get json string without quotes in field names
+export function toJsonListStringWithoutQuotes(fields: DataFieldList, sortedFieldIds: string[], values: any[]): string {
+    const convert = (value: any, indent = 2): string => { // 改为直接处理任意值
+        const indentSpace = ' '.repeat(indent);
+        const nextIndentSpace = ' '.repeat(indent + 2);
+
+        if (Array.isArray(value)) { // 处理数组格式
+            const elements = value.map(element => convert(element, indent + 2));
+            return `[\n${nextIndentSpace}${elements.join(`,\n${nextIndentSpace}`)}\n${indentSpace}]`;
+        } else if (typeof value === 'object' && value !== null) { // 处理对象格式
+            const entries = Object.entries(value).map(([key, val]) => {
+                const formattedValue = convert(val, indent + 2);
+                return `${nextIndentSpace}${key}: ${formattedValue}`;
+            });
+            return `{\n${entries.join(',\n')}\n${indentSpace}}`;
+        } else { // 处理基础类型
+            return JSON.stringify(value);
+        }
+    };
+
+    let output = "[\n"; // 开始数组并添加换行符
+    values.forEach((item, index) => {
+        const row: Record<string, any> = {}; // 允许任何类型的值
+        for (const column of sortedFieldIds) {
+            const field = fields[column];
+            const {isDraft, fieldName} = field;
+            const itemValue = item[column];
+            let {value} = itemValue;
+
+            if (!isDraft && value !== null) {
+                if (typeof value === 'bigint') {
+                    value = value.toString(); // 处理 bigint 为字符串
+                }
+                row[fieldName] = value;
+            }
+        }
+        // 添加对象到数组，确保正确的缩进和换行
+        output += `  ${convert(row)}${index < values.length - 1 ? ',\n' : '\n'}`;
+    });
+
+    output += "]"; // 结束数组
+    return output;
 }

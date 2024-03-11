@@ -1,8 +1,7 @@
 import React from "react";
 import {FormatRequest, FormatterConfigComponentInterface} from "@/types/formatter";
 import {OptionsInput, OptionsNumberInput, OptionsSelect, SelectOption} from "@/components/Utils";
-import {FormattedMessage, useIntl} from "@/locale";
-import {isNullOrWhiteSpace} from "@/utils/stringUtils";
+import {FormattedMessage} from "@/locale";
 import {OptionsSwitch} from "@/components/Utils/src/OptionsSwitch";
 import {Divider} from "@douyinfe/semi-ui";
 import {DataField} from "@/types/generator";
@@ -149,8 +148,6 @@ const generateInsertStatements = (sqlType: SqlType, tableName: string, sortedFie
 
 // Modify the format function to adapt to different SQL dialects
 export const format = (request: FormatRequest): string => {
-    console.log(request)
-
     const {fields, values, config, sortedFieldIds} = request;
     const {type, tableName, batchSize, dropTable, createTable, primaryKey, primaryKeyColumnName} = config;
 
@@ -201,23 +198,11 @@ export const format = (request: FormatRequest): string => {
 
 export const SqlConfigComponent: React.FC<FormatterConfigComponentInterface> = ({...props}) => {
     const {config, onConfigChange} = props;
-    const intl = useIntl();
 
     // action
     const handleValueChange = (field: string, value: any) => {
         onConfigChange({...config, [field]: value})
     }
-
-    const [errorMessages, setErrorMessages] = React.useState({tableName: ''});
-    React.useEffect(() => {
-        const newErrorMessages = {...errorMessages};
-        if (isNullOrWhiteSpace(config.tableName)) {
-            newErrorMessages.tableName = intl.formatMessage({id: 'export.configurator.sql.tableName.required'});
-        } else {
-            newErrorMessages.tableName = '';
-        }
-        setErrorMessages(newErrorMessages);
-    }, [config.tableName]);
 
     return (
         <div>
@@ -239,7 +224,7 @@ export const SqlConfigComponent: React.FC<FormatterConfigComponentInterface> = (
                         handleValueChange('tableName', value)
                     }}
                     style={{width: '150px'}}
-                    errorMessage={errorMessages.tableName}
+                    required
                 />
 
                 <OptionsNumberInput
@@ -287,7 +272,7 @@ export const SqlConfigComponent: React.FC<FormatterConfigComponentInterface> = (
                             handleValueChange('primaryKeyColumnName', value)
                         }}
                         style={{width: '80px'}}
-                        errorMessage={errorMessages.tableName}
+                        required
                     />}
                 </div>
             }
