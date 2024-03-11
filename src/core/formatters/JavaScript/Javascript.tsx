@@ -3,6 +3,7 @@ import {FormatRequest, FormatterConfigComponentInterface} from "@/types/formatte
 import {FormattedMessage, useIntl} from "@/locale";
 import {OptionsInput, OptionsSelect, SelectOption} from "@/components/Utils";
 import {isNullOrWhiteSpace} from "@/utils/stringUtils";
+import {toJsonListStringWithoutQuotes} from "@/utils/formatterUtils";
 
 // -------------------------------------------------------------------------------------------------------------
 // types
@@ -38,30 +39,12 @@ export const format = (request: FormatRequest): string => {
         return '';
     }
 
-    const jsonData = values.map(item => {
-        const row: Record<string, string | null> = {};
-        for (const column of sortedFieldIds) {
-            const field = fields[column];
-            const {isDraft, fieldName} = field;
-            const itemValue = item[column];
-            let {value} = itemValue;
-
-            if (!isDraft && value !== null) {
-                if (typeof value === 'bigint') {
-                    value = value.toString();
-                }
-                row[fieldName] = value;
-            }
-        }
-        return row;
-    });
-
-    let output = JSON.stringify(jsonData, null, 3);
+    let output = toJsonListStringWithoutQuotes(fields, sortedFieldIds, values);
 
     return formatOutput(formatType, module, declarationKeyword, variableName, output);
 };
 
-function formatOutput(formatType, module, declarationKeyword, variableName, output) {
+function formatOutput(formatType: JavascriptFormatterFormat, module: JavascriptModuleType, declarationKeyword: JavascriptDeclarationKeyword, variableName: string, output: string) {
     switch (formatType) {
         case JavascriptFormatterFormat.VARIABLE:
             return formatVariableOutput(declarationKeyword, variableName, output);
@@ -72,14 +55,14 @@ function formatOutput(formatType, module, declarationKeyword, variableName, outp
     }
 }
 
-function formatVariableOutput(declarationKeyword, variableName, output) {
+function formatVariableOutput(declarationKeyword: JavascriptDeclarationKeyword, variableName: string, output: string) {
     if (isNullOrWhiteSpace(variableName)) {
         return '';
     }
     return `${declarationKeyword} ${variableName} = ${output};`;
 }
 
-function formatExportOutput(module, output) {
+function formatExportOutput(module: JavascriptModuleType, output: string) {
     switch (module) {
         case JavascriptModuleType.ES6:
             return `export default ${output};`;

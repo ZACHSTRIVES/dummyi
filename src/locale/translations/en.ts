@@ -4,9 +4,9 @@ export const en = {
     // export
 
     // export category
-    "export.category.fileTypes": "General file types",
+    "export.category.file_types": "General file types",
     "export.category.databases" : "Databases",
-    "export.category.programmingLanguages": "Programming languages",
+    "export.category.programming_languages": "Programming languages",
 
     // export format modal
     "export.configurator.modal.title": "Format",
@@ -75,6 +75,12 @@ export const en = {
     "export.configurator.csharp.collectionName": "Collection name",
     "export.configurator.csharp.dtoClass": "Create DTO class",
     "export.configurator.csharp.dtoClassName": "Class name",
+
+    // typescript
+    "export.configurator.typescript.declarationType":"Declaration type",
+    "export.configurator.typescript.declarationType.interface.name":"Interface name",
+    "export.configurator.typescript.declarationType.type.name":"Type name",
+    "export.configurator.typescript.variableName":"Variable name",
 
     // -------------------------------------------------------------------------------------------------------------
     // data types

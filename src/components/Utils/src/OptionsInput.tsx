@@ -11,10 +11,23 @@ export interface OptionsInputProps {
     value: string;
     onChange: (value: any) => void;
     style?: React.CSSProperties;
+    required?: boolean; // Add this line for the new required prop
 }
 
 export const OptionsInput: React.FunctionComponent<OptionsInputProps> = ({...props}) => {
-    const {label, infoTooltip, errorMessage, value, style, suffix, onChange} = props;
+    const {label, infoTooltip, errorMessage, value, style, suffix, onChange, required} = props;
+
+    // Add a new useState to manage the validation error message
+    const [validationError, setValidationError] = React.useState<string | undefined>();
+
+    // Add effect to validate value when it changes or when required status changes
+    React.useEffect(() => {
+        if (required && isNullOrWhiteSpace(value)) {
+            setValidationError('This field is required.'); // Set default required error message or use props.errorMessage
+        } else {
+            setValidationError(undefined); // Clear error message when input is valid
+        }
+    }, [value, required]);
 
     return (
         <div className="generatorConfig_column">
@@ -24,13 +37,13 @@ export const OptionsInput: React.FunctionComponent<OptionsInputProps> = ({...pro
                     {infoTooltip}
                 </InfoTooltip>}
             </div>
-            <ErrorTooltip message={errorMessage}>
+            <ErrorTooltip message={validationError || errorMessage}>
                 <Input
                     onChange={(value) => onChange(value)}
                     value={value}
                     style={style}
                     suffix={suffix}
-                    validateStatus={!isNullOrWhiteSpace(errorMessage) ? 'error' : 'default'}
+                    validateStatus={!isNullOrWhiteSpace(validationError || errorMessage) ? 'error' : 'default'}
                 />
             </ErrorTooltip>
         </div>

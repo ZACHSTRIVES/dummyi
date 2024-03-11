@@ -1,12 +1,13 @@
 
 // export format
 export enum ExportFormatCategory {
-    FILE_TYPES = "fileTypes",
+    FILE_TYPES = "file_types",
     DATABASES = "databases",
-    PROGRAMMING_LANGUAGES = "programmingLanguages",
+    PROGRAMMING_LANGUAGES = "programming_languages",
 }
 
 export enum ExportFormat {
+    TYPESCRIPT = "Typescript",
     CSHARP = "C#",
     SQL = "SQL",
     CSV = "CSV",
