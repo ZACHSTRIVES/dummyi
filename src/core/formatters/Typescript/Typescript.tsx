@@ -64,9 +64,9 @@ export const format = (request: FormatRequest): string => {
                 fieldType = 'string[]'
                 break;
         }
-        output+= `  ${field.fieldName}${field.emptyRate !== 0 ? "?" : ""}: ${fieldType};\n`;
+        output += `  ${field.fieldName}${field.emptyRate !== 0 ? "?" : ""}: ${fieldType};\n`;
     });
-    output+="}; \n\n"
+    output += "}; \n\n"
 
     // values
     output += `export const ${variableName}: ${declarationName}[] = ${toJsonListStringWithoutQuotes(fields, sortedFieldIds, values)};`;
@@ -101,6 +101,7 @@ export const TypescriptConfigComponent: React.FC<FormatterConfigComponentInterfa
             />
 
             <OptionsInput
+                required
                 label={<FormattedMessage
                     id={`export.configurator.typescript.declarationType.${config.declaration}.name`}/>}
                 value={config.declarationName}
@@ -109,6 +110,7 @@ export const TypescriptConfigComponent: React.FC<FormatterConfigComponentInterfa
             />
 
             <OptionsInput
+                required
                 label={<FormattedMessage id={"export.configurator.typescript.variableName"}/>}
                 value={config.variableName}
                 onChange={(v) => handleValueChange("variableName", v)}

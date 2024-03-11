@@ -5,7 +5,7 @@ export const en = {
 
     // export category
     "export.category.file_types": "General file types",
-    "export.category.databases" : "Databases",
+    "export.category.databases": "Databases",
     "export.category.programming_languages": "Programming languages",
 
     // export format modal
@@ -35,7 +35,7 @@ export const en = {
 
     // csv
     "export.configurator.csv.delimiter": "Delimiter",
-    "export.configurator.csv.delimiter.required" : "Delimiter cannot be empty",
+    "export.configurator.csv.delimiter.required": "Delimiter cannot be empty",
     "export.configurator.csv.includeHeader": "Include header",
     "export.configurator.csv.endLineChar": "End of line characters",
 
@@ -77,26 +77,26 @@ export const en = {
     "export.configurator.csharp.dtoClassName": "Class name",
 
     // typescript
-    "export.configurator.typescript.declarationType":"Declaration type",
-    "export.configurator.typescript.declarationType.interface.name":"Interface name",
-    "export.configurator.typescript.declarationType.type.name":"Type name",
-    "export.configurator.typescript.variableName":"Variable name",
+    "export.configurator.typescript.declarationType": "Declaration type",
+    "export.configurator.typescript.declarationType.interface.name": "Interface name",
+    "export.configurator.typescript.declarationType.type.name": "Type name",
+    "export.configurator.typescript.variableName": "Variable name",
 
     // -------------------------------------------------------------------------------------------------------------
     // data types
-    
-    
+
+
     // url
     "dataType.url": "Url",
     "dataType.url.appendSlash.label": "Slash",
-    "dataType.url.protocol.label":"Protocol",
+    "dataType.url.protocol.label": "Protocol",
 
     // domainsuffix
     "dataType.domainsuffix": "Domain Suffix",
 
     // domainname
     "dataType.domainname": "Domain Name",
-        
+
     // accountnumber
     "dataType.accountnumber": "Account Number",
     "dataType.accountnumber.length": "Length",
@@ -109,7 +109,7 @@ export const en = {
     "dataType.color": "Color",
     "dataType.color.kind.label": "Kind",
     "dataType.color.format.label": "Format",
-    "dataType.color.format.humanWord":"Human Word",
+    "dataType.color.format.humanWord": "Human Word",
 
     // phone
     "dataType.phone": "Phone Number",
@@ -244,6 +244,7 @@ export const en = {
     "dataFields.type.modal.search.placeholder": "Search data type...",
 
     // error pages
+    "error.input.isRequired": "This field is required",
     "error.404.description": "Page does not exist",
     "error.404.button.text": "Home page",
     "error.general.description": "Oops! An error has occurred!",

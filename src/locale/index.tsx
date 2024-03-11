@@ -58,6 +58,7 @@ export type FormattedMessageProps = ReactIntlFormattedMessageProps<Record<string
 };
 
 export function FormattedMessage({ id, ...props }: FormattedMessageProps) {
+
     // @ts-ignore
     return <ReactIntlFormattedMessage id={id} {...props} />;
 }

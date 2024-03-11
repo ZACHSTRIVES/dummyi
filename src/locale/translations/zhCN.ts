@@ -242,6 +242,7 @@ export const zhCN = {
     "dataFields.type.modal.search.placeholder": "搜索类型...",
 
     // error pages
+    "error.input.isRequired": "此项不能为空",
     "error.404.description": "页面不存在",
     "error.404.button.text": "首页",
     "error.general.description": "Oops! 出错了！",
