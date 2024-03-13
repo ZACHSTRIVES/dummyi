@@ -53,6 +53,6 @@
     "cypress": "^12.17.4",
     "mini-css-extract-plugin": "^2.7.6",
     "typescript": "^5.1.6",
-    "webpack": "^5.88.2"
+    "webpack": "^5.90.3"
   }
 }
