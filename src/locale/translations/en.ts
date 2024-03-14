@@ -79,14 +79,10 @@ export const en = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
     
-    
-    
+
     // ipaddress
-    "dataType.ipaddress": "IpAddress",
-    "dataType.ipaddress.type":"Type",
-    "dataType.ipaddress.type.ip": "Ip",
-    "dataType.ipaddress.type.ip4": "Ip4",
-    "dataType.ipaddress.type.ip6": "Ip6",
+    "dataType.ipaddress": "IP Address",
+    "dataType.ipaddress.types":"Types",
 
     // url
     "dataType.url": "Url",

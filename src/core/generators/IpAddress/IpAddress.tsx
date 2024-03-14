@@ -6,52 +6,36 @@ import {faker} from "@faker-js/faker";
 // -------------------------------------------------------------------------------------------------------------
 // types
 
-export type IpType = 
-    | 'ip'
-    | 'ip4'
-    | 'ip6'
-export interface IpAddressGeneratorOptions {
-   type:IpType[]   
-}
+export type IpType = 'IPv4' | 'IPv6'
 
+export interface IpAddressGeneratorOptions {
+    types: IpType[]
+}
 
 
 // -------------------------------------------------------------------------------------------------------------
 // default options
-export const IpAddressGeneratorDefaultOptions:IpAddressGeneratorOptions = {
-    type: ['ip', 'ip4', 'ip6']
+export const IpAddressGeneratorDefaultOptions: IpAddressGeneratorOptions = {
+    types: ["IPv4", "IPv6"]
 }
-
 
 
 // -------------------------------------------------------------------------------------------------------------
 // generate method
-export const generate = (options: any): GenerateResult => {
-  
+export const generate = (options: IpAddressGeneratorOptions): GenerateResult => {
+    let value: string;
 
-    let ips: string[] = [];
-    options.type.forEach((type) => {
-        switch (type) {
-            case 'ip4':
-                ips.push(faker.internet.ip());
-                break;
-            case 'ip6':
-                ips.push(faker.internet.ipv6());
-                break;
-            case 'ip':
-                ips.push(Math.random() < 0.5 ? faker.internet.ip() : faker.internet.ipv6());
-                break;
-            default:
-                break;
-        }
-    });
-
-    // Joining the IP addresses with a newline character to ensure each is on its own line
-    const stringValue = ips.join('\n');
+    if (options.types.length === 2) {
+        value = faker.internet.ip();
+    } else if (options.types.includes("IPv4")) {
+        value = faker.internet.ipv4();
+    } else if (options.types.includes("IPv6")){
+        value = faker.internet.ipv6();
+    }
 
     return {
-        value: ips, // This is now an array of IPs, one per selected type
-        stringValue: stringValue, // IPs separated by newline for display
+        value: value,
+        stringValue: value,
     };
 }
 
@@ -62,18 +46,17 @@ export const IpAddressGeneratorOptionsComponent: React.FunctionComponent<Generat
         options: IpAddressGeneratorOptions,
         handleOptionValueChange: typeof props.handleOptionValueChange
     };
-    
-    // TODO: implement your own options component here
+
     return (
         <div>
             <OptionsSelect
                 multiple
                 maxTagCount={2}
-                label={<FormattedMessage id='dataType.ipaddress.type'/>}
+                label={<FormattedMessage id='dataType.ipaddress.types'/>}
                 selectOptions={IpTypeSelectOptions}
-                value={options.type}
-                onChange={(v) => handleOptionValueChange("type", v)}
-                style={{width: '200px'}}
+                value={options.types}
+                onChange={(v) => handleOptionValueChange("types", v)}
+                style={{width: '160px'}}
             />
         </div>
     );
@@ -81,16 +64,6 @@ export const IpAddressGeneratorOptionsComponent: React.FunctionComponent<Generat
 
 
 export const IpTypeSelectOptions: SelectOption[] = [
-    {
-        label: <FormattedMessage id={"dataType.ipaddress.type.ip"}/>,
-        value: "ip",
-    },
-    {
-        label: <FormattedMessage id={"dataType.ipaddress.type.ip4"}/>,
-        value: "ip4"
-    },
-    {
-        label: <FormattedMessage id={"dataType.ipaddress.type.ip6"}/>,
-        value: "ip6"
-    }
+    {label: "IPv4", value: "IPv4",},
+    {label: "IPv6", value: "IPv6"}
 ]

@@ -4,7 +4,7 @@ export const zhCN = {
 
     // export category
     "export.category.fileTypes": "常见格式",
-    "export.category.databases" : "数据库",
+    "export.category.databases": "数据库",
     "export.category.programmingLanguages": "编程语言",
 
     // export format modal
@@ -34,7 +34,7 @@ export const zhCN = {
 
     // csv
     "export.configurator.csv.delimiter": "分隔符",
-    "export.configurator.csv.delimiter.required" : "分隔符不可为空",
+    "export.configurator.csv.delimiter.required": "分隔符不可为空",
     "export.configurator.csv.includeHeader": "包含表头",
     "export.configurator.csv.endLineChar": "行结束符",
 
@@ -59,20 +59,16 @@ export const zhCN = {
 
     // -------------------------------------------------------------------------------------------------------------
     // data types
-    
-    
-    
+
+
     // ipaddress
-    "dataType.ipaddress": "网络地址",
-    "dataType.ipaddress.type":"类型",
-    "dataType.ipaddress.type.ip": "Ip",
-    "dataType.ipaddress.type.ip4": "Ip4",
-    "dataType.ipaddress.type.ip6": "Ip6",
+    "dataType.ipaddress": "IP地址",
+    "dataType.ipaddress.types": "类型",
 
     // url
     "dataType.url": "网址",
-    "dataType.url.appendSlash.label":"斜线",
-    "dataType.url.protocol.label":"传输协议",
+    "dataType.url.appendSlash.label": "斜线",
+    "dataType.url.protocol.label": "传输协议",
 
     // domainsuffix
     "dataType.domainsuffix": "域名后缀",
@@ -91,7 +87,7 @@ export const zhCN = {
     // color
     "dataType.color": "颜色",
     "dataType.color.kind.label": "类型",
-    "dataType.color.format.humanWord":"词语",
+    "dataType.color.format.humanWord": "词语",
     "dataType.color.format.label": "格式",
 
     // phone
@@ -104,15 +100,15 @@ export const zhCN = {
     "dataType.emoji.type": "类型",
     "dataType.emoji.type.all": "全部",
     "dataType.emoji.type.smiley": "笑脸",
-    "dataType.emoji.type.body" : "人体",
-    "dataType.emoji.type.person" : "人物",
-    "dataType.emoji.type.nature" : "自然",
-    "dataType.emoji.type.food" : "食物",
-    "dataType.emoji.type.travel" : "旅行",
-    "dataType.emoji.type.activity" : "活动",
-    "dataType.emoji.type.object" : "物品",
-    "dataType.emoji.type.symbol" : "符号",
-    "dataType.emoji.type.flag" : "国旗",
+    "dataType.emoji.type.body": "人体",
+    "dataType.emoji.type.person": "人物",
+    "dataType.emoji.type.nature": "自然",
+    "dataType.emoji.type.food": "食物",
+    "dataType.emoji.type.travel": "旅行",
+    "dataType.emoji.type.activity": "活动",
+    "dataType.emoji.type.object": "物品",
+    "dataType.emoji.type.symbol": "符号",
+    "dataType.emoji.type.flag": "国旗",
 
     // persontitle
     "dataType.persontitle": "人物称谓",
@@ -134,11 +130,11 @@ export const zhCN = {
     "dataType.number.kind.label": "种类",
     "dataType.number.precision.label": "精度",
     "dataType.number.min.label": "最小值",
-    "dataType.number.min.tooltip":"生成数据的最小值",
+    "dataType.number.min.tooltip": "生成数据的最小值",
     "dataType.number.min.errorMessage.empty": "最小值不能为空",
     "dataType.number.min.errorMessage.greaterThanMax": "最小值不能大于最大值",
     "dataType.number.max.label": "最大值",
-    "dataType.number.max.tooltip":"生成数据的最大值",
+    "dataType.number.max.tooltip": "生成数据的最大值",
     "dataType.number.max.errorMessage.empty": "最大值不能为空",
     "dataType.number.max.errorMessage.lessThanMin": "最大值不能小于最小值",
 

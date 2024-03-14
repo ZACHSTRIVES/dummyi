@@ -9,6 +9,6 @@ export const IpAddressGenerator: Generator = {
     optionsComponent: IpAddressGeneratorOptionsComponent,
     defaultOptions: IpAddressGeneratorDefaultOptions,
     defaultValueType: ValueType.STRING,
-    exampleLines: ["245.108.222.0", "64.239.253.171", "246.18.59.18"]
+    exampleLines: ["245.108.222.0", "64.239.253.171", "e106:aa3c:59ac:6d0f:4c2c:bfef:86a3:62d7"]
 }
     
