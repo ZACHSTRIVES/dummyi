@@ -1,3 +1,8 @@
+import {IpAddressGenerator} from "@/core/generators/IpAddress";
+import {BirthdayGenerator} from "@/core/generators/Birthday";
+import {MonthGenerator} from "@/core/generators/Month";
+import {WeekdayGenerator} from "@/core/generators/Weekday";
+import {DateTimeGenerator} from "@/core/generators/DateTime";
 import {UrlGenerator} from "@/core/generators/Url";
 import {DomainSuffixGenerator} from "@/core/generators/DomainSuffix";
 import {DomainNameGenerator} from "@/core/generators/DomainName";
@@ -19,6 +24,11 @@ import {CompanyNameGenerator} from "@/core/generators/CompanyName";
 import {DataType} from "@/constants/enums";
 
 export const generators = {
+  [DataType.IPADDRESS]: IpAddressGenerator,
+  [DataType.BIRTHDAY]: BirthdayGenerator,
+  [DataType.MONTH]: MonthGenerator,
+  [DataType.WEEKDAY]: WeekdayGenerator,
+  [DataType.DATETIME]: DateTimeGenerator,
   [DataType.URL]: UrlGenerator,
    [DataType.DOMAINSUFFIX]: DomainSuffixGenerator,
    [DataType.DOMAINNAME]: DomainNameGenerator,

@@ -1,6 +1,6 @@
 {
   "name": "dummyi",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -23,7 +23,7 @@
     "@uiw/codemirror-extensions-langs": "^4.21.9",
     "@uiw/codemirror-themes": "^4.21.9",
     "@uiw/react-codemirror": "^4.21.20",
-    "@vercel/analytics": "^1.0.2",
+    "@vercel/analytics": "^1.2.2",
     "autoprefixer": "10.4.16",
     "emoji-picker-react": "^4.5.3",
     "eslint": "8.47.0",
@@ -53,6 +53,6 @@
     "cypress": "^12.17.4",
     "mini-css-extract-plugin": "^2.7.6",
     "typescript": "^5.1.6",
-    "webpack": "^5.88.2"
+    "webpack": "^5.90.3"
   }
 }

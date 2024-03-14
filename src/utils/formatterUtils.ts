@@ -1,5 +1,5 @@
 import {FormatRequest, Formatter} from "@/types/formatter";
-import {ExportFormat} from "@/constants/enums";
+import {ExportFormat, ValueType} from "@/constants/enums";
 import {formatters} from "@/core/formatters";
 import {langs} from '@uiw/codemirror-extensions-langs';
 import {DataFieldList} from "@/types/generator";
@@ -103,6 +103,8 @@ export function toJsonListStringWithoutQuotes(fields: DataFieldList, sortedField
         if (Array.isArray(value)) { // 处理数组格式
             const elements = value.map(element => convert(element, indent + 2));
             return `[\n${nextIndentSpace}${elements.join(`,\n${nextIndentSpace}`)}\n${indentSpace}]`;
+        } else if (value instanceof Date) {
+            return `new Date("${toISOString(value)}")`
         } else if (typeof value === 'object' && value !== null) { // 处理对象格式
             const entries = Object.entries(value).map(([key, val]) => {
                 const formattedValue = convert(val, indent + 2);
@@ -136,4 +138,20 @@ export function toJsonListStringWithoutQuotes(fields: DataFieldList, sortedField
 
     output += "]"; // 结束数组
     return output;
+}
+
+
+function toISOString(date) {
+    // 获取日期部分
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份是从0开始的
+    const day = String(date.getDate()).padStart(2, '0');
+
+    // 获取时间部分
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    // 拼接成 YYYY-MM-DDTHH:mm:ss 格式
+    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
 }

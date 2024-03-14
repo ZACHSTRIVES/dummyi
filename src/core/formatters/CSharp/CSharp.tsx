@@ -72,6 +72,9 @@ export const format = (request: FormatRequest): string => {
                 case ValueType.ONE_BIT:
                     fieldType = `int${field.emptyRate !== 0 ? "?" : ""}`;
                     break;
+                case ValueType.DATE_TIME:
+                    fieldType = `DateTime${field.emptyRate !== 0 ? "?" : ""}`
+                    break;
                 // Add more cases as necessary
             }
             csharpCode += `    public ${fieldType} ${field.fieldName} { get; set; }\n`;

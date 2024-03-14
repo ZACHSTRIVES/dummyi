@@ -14,3 +14,18 @@ export const calculateByteSize = (str: string) => {
 export function hasValue(variable: any): boolean {
     return variable !== null && variable !== undefined;
 }
+
+export function toDateString(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+}
+
+export function toDateTimeString(date: Date): string {
+    const formattedDate = toDateString(date); // Reuse formatDate function
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const seconds = date.getSeconds().toString().padStart(2, '0');
+    return `${formattedDate} ${hours}:${minutes}:${seconds}`;
+}

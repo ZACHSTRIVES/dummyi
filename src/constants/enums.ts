@@ -1,4 +1,3 @@
-
 // export format
 export enum ExportFormatCategory {
     FILE_TYPES = "file_types",
@@ -18,17 +17,18 @@ export enum ExportFormat {
 
 export enum ValueType {
     STRING = "string",
-    TEXT= "text",
+    TEXT = "text",
     ONE_BIT = "1bit",
     INT = "integer",
     BIGINT = "bigint",
     DOUBLE = "double",
     BOOLEAN = "boolean",
     INT_LIST = "int_list",
-    STRING_LIST = "string_list"
+    STRING_LIST = "string_list",
+    DATE_TIME = "date_time"
 }
 
-export enum ExportProcessStage{
+export enum ExportProcessStage {
     PREVIEW = "preview",
     GENERATING = "generating",
     COMPLETED = "completed",
@@ -36,14 +36,20 @@ export enum ExportProcessStage{
 
 // data types
 export enum DataTypeCategory {
-    ALL= "all",
+    ALL = "all",
     BASIC = "basic",
     PERSON = "person",
     NETWORK = "network",
     COMMERCE = "commerce",
+    DATETIME = "datetime"
 }
 
 export enum DataType {
+    IPADDRESS = "ipaddress",
+    BIRTHDAY = "birthday",
+    MONTH = "month",
+    WEEKDAY = "weekday",
+    DATETIME = "datetime",
     URL = "url",
     DOMAINSUFFIX = "domainsuffix",
     DOMAINNAME = "domainname",
@@ -81,18 +87,18 @@ export enum Locales {
     JA_JP = "ja-JP",
 }
 
-export enum ComponentSize{
+export enum ComponentSize {
     SMALL = "small",
     MEDIUM = "medium",
     LARGE = "large",
 }
 
-export enum PreviewType{
+export enum PreviewType {
     TABLE = "table",
     RAW = "raw"
 }
 
-export enum CollectionNodeType{
+export enum CollectionNodeType {
     COLLECTION = "collection",
     SCHEMA = "schema"
 }
@@ -102,7 +108,7 @@ export enum EndOfLineChars {
     CRLF = '\r\n'
 }
 
-export enum Sex{
+export enum Sex {
     ALL = "all",
     MALE = "male",
     FEMALE = "female"

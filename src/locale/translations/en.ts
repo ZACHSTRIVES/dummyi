@@ -85,6 +85,47 @@ export const en = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
+    // ipaddress
+    "dataType.ipaddress": "IP Address",
+    "dataType.ipaddress.types":"Types",
+
+    // birthday
+    "dataType.birthday": "Birthday",
+    "dataType.birthday.mode":"Mode",
+    "dataType.birthday.mode.age":"Age",
+    "dataType.birthday.mode.year":"Year",
+    "dataType.birthday.mode.minAge":"Min. Age",
+    "dataType.birthday.mode.maxAge":"Max. Age",
+    "dataType.birthday.mode.fromYear":"From year",
+    "dataType.birthday.mode.toYear":"To year",
+
+    // month
+    "dataType.month": "Month",
+    "dataType.month.abbreviated": "Abbreviated",
+
+    // weekday
+    "dataType.weekday": "Weekday",
+    "dataType.weekday.abbreviated": "Abbreviated",
+
+    // datetime
+    "dataType.datetime": "DateTime",
+    "dataType.datetime.terms": "Terms",
+    "dataType.datetime.terms.anytime": "Anytime",
+    "dataType.datetime.terms.between": "Between",
+    "dataType.datetime.terms.future": "Future",
+    "dataType.datetime.terms.past": "Past",
+    "dataType.datetime.terms.recent": "Recent past",
+    "dataType.datetime.terms.soon": "Soon",
+    "dataType.datetime.ref": "Reference date",
+    "dataType.datetime.ref.tooltip": "The date to use as reference point",
+    "dataType.datetime.format": "Format",
+    "dataType.datetime.format.text": "Text",
+    "dataType.datetime.format.timestamp": "Timestamp",
+    "dataType.datetime.format.datetime": "DateTime",
+    "dataType.datetime.timeRange": "Range",
+
+    // anytime
+    "dataType.anytime": "Anytime",
 
     // url
     "dataType.url": "Url",
@@ -159,9 +200,6 @@ export const en = {
     "dataType.number.max.errorMessage.empty": "Max. value cannot be empty",
     "dataType.number.max.errorMessage.lessThanMin": "Max. value cannot be less than min. value",
 
-    // dateTime
-    "dataType.dateTime": "Date time",
-
     // boolean
     "dataType.boolean": "Boolean",
     "dataType.boolean.true.label": "Prob of True",
@@ -195,6 +233,7 @@ export const en = {
     "dataType.category.person": "Person",
     "dataType.category.commerce": "Commerce",
     "dataType.category.network": "Network",
+    "dataType.category.datetime": "Datetime",
 
     // -------------------------------------------------------------------------------------------------------------
     // pages

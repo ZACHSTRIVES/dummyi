@@ -63,6 +63,9 @@ export const format = (request: FormatRequest): string => {
             case ValueType.STRING_LIST:
                 fieldType = 'string[]'
                 break;
+            case ValueType.DATE_TIME:
+                fieldType = "Date"
+                break;
         }
         output += `  ${field.fieldName}${field.emptyRate !== 0 ? "?" : ""}: ${fieldType};\n`;
     });

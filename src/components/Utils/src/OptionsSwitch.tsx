@@ -27,7 +27,7 @@ export const OptionsSwitch: React.FunctionComponent<OptionsSwitchProps> = ({...p
             <ErrorTooltip message={errorMessage}>
                 <Switch
                     onChange={onChange}
-                    size={size ? size : 'default'}
+                    size={size ? size : 'large'}
                     checked={value}
                     style={style}
                 />

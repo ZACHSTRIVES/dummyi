@@ -95,18 +95,14 @@ export const NumberGeneratorOptionsComponent: React.FunctionComponent<GeneratorO
     React.useEffect(() => {
         const newErrorMessages = {...errorMessages};
         // min
-        if (isNullOrWhiteSpace(options.min.toString())) {
-            newErrorMessages.min = intl.formatMessage({id: 'dataType.number.min.errorMessage.empty'})
-        } else if (options.min > options.max) {
+        if (options.min > options.max) {
             newErrorMessages.min = intl.formatMessage({id: 'dataType.number.min.errorMessage.greaterThanMax'})
         } else {
             newErrorMessages.min = '';
         }
 
         // max
-        if (isNullOrWhiteSpace(options.max.toString())) {
-            newErrorMessages.max = intl.formatMessage({id: 'dataType.number.max.errorMessage.empty'})
-        } else if (options.max < options.min) {
+       if (options.max < options.min) {
             newErrorMessages.max = intl.formatMessage({id: 'dataType.number.max.errorMessage.lessThanMin'})
         } else {
             newErrorMessages.max = '';

@@ -26,7 +26,20 @@ export function formatValueForCSharp(generateResult: GenerateResult, valueType: 
             return `new List<int> { ${value.join(", ")} }`
         case ValueType.STRING_LIST:
             return `new List<string> { ${value.map(item => `"${item}"`).join(', ')})} }`
+        case ValueType.DATE_TIME:
+            return `DateTime.Parse("${toCSharpDateTimeFormat(value)}")`
         default:
             return 'null'; // Or some other default case
     }
+}
+
+export function toCSharpDateTimeFormat(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份是从0开始的
+    const day = String(date.getDate()).padStart(2, '0');
+
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
 }
