@@ -43,6 +43,7 @@ export enum DataTypeCategory {
 }
 
 export enum DataType {
+    IPADDRESS = "ipaddress",
     URL = "url",
     DOMAINSUFFIX = "domainsuffix",
     DOMAINNAME = "domainname",

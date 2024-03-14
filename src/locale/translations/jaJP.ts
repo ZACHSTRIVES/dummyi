@@ -24,6 +24,10 @@ export const jaJP = {
     // data types
     
     
+    
+    // ipaddress
+    "dataType.ipaddress": "IpAddress",
+
     // url
     "dataType.url": "Url",
 

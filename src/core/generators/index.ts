@@ -1,3 +1,4 @@
+import {IpAddressGenerator} from "@/core/generators/IpAddress";
 import {UrlGenerator} from "@/core/generators/Url";
 import {DomainSuffixGenerator} from "@/core/generators/DomainSuffix";
 import {DomainNameGenerator} from "@/core/generators/DomainName";
@@ -19,6 +20,7 @@ import {CompanyNameGenerator} from "@/core/generators/CompanyName";
 import {DataType} from "@/constants/enums";
 
 export const generators = {
+  [DataType.IPADDRESS]: IpAddressGenerator,
   [DataType.URL]: UrlGenerator,
    [DataType.DOMAINSUFFIX]: DomainSuffixGenerator,
    [DataType.DOMAINNAME]: DomainNameGenerator,

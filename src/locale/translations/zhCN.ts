@@ -61,6 +61,14 @@ export const zhCN = {
     // data types
     
     
+    
+    // ipaddress
+    "dataType.ipaddress": "网络地址",
+    "dataType.ipaddress.type":"类型",
+    "dataType.ipaddress.type.ip": "Ip",
+    "dataType.ipaddress.type.ip4": "Ip4",
+    "dataType.ipaddress.type.ip6": "Ip6",
+
     // url
     "dataType.url": "网址",
     "dataType.url.appendSlash.label":"斜线",
