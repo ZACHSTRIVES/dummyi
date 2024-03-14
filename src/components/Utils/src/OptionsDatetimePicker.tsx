@@ -1,22 +1,23 @@
-import React from 'react';
+import React from "react";
 import {ErrorTooltip, InfoTooltip} from "@/components/Utils";
-import {Input} from "@douyinfe/semi-ui";
-import {isNullOrWhiteSpace} from "@/utils/stringUtils";
 import {useIntl} from "@/locale";
+import {isNullOrWhiteSpace} from "@/utils/stringUtils";
+import {DatePicker} from "@douyinfe/semi-ui";
+import {hasValue} from "@/utils/typeUtils";
 
-export interface OptionsInputProps {
+export interface OptionsDatetimePickerProps {
     label: string | React.ReactNode;
+    type?: "date" | "dateTime" | "dateRange" | "dateTimeRange";
     infoTooltip?: string | React.ReactNode;
     errorMessage?: string;
-    suffix?: string | React.ReactNode;
-    value: string;
+    value: string | number | Date | string[] | number[] | Date[];
     onChange: (value: any) => void;
     style?: React.CSSProperties;
-    required?: boolean; // Add this line for the new required prop
+    required?: boolean;
 }
 
-export const OptionsInput: React.FunctionComponent<OptionsInputProps> = ({...props}) => {
-    const {label, infoTooltip, errorMessage, value, style, suffix, onChange, required} = props;
+export const OptionsDatetimePicker: React.FunctionComponent<OptionsDatetimePickerProps> = ({...props}) => {
+    const {label, type, infoTooltip, errorMessage, value, style, onChange, required} = props;
     const intl = useIntl();
 
     // Add a new useState to manage the validation error message
@@ -24,7 +25,7 @@ export const OptionsInput: React.FunctionComponent<OptionsInputProps> = ({...pro
 
     // Add effect to validate value when it changes or when required status changes
     React.useEffect(() => {
-        if (required && isNullOrWhiteSpace(value)) {
+        if (required && !hasValue(value)) {
             setValidationError(intl.formatMessage({id: 'error.input.isRequired'})); // Set default required error message or use props.errorMessage
         } else {
             setValidationError(undefined); // Clear error message when input is valid
@@ -40,11 +41,12 @@ export const OptionsInput: React.FunctionComponent<OptionsInputProps> = ({...pro
                 </InfoTooltip>}
             </div>
             <ErrorTooltip message={validationError || errorMessage}>
-                <Input
-                    onChange={(value) => onChange(value)}
+                <DatePicker
+                    density="compact"
+                    type={type}
+                    onChange={(date, dateString) => onChange(dateString)}
                     value={value}
                     style={style}
-                    suffix={suffix}
                     validateStatus={!isNullOrWhiteSpace(validationError || errorMessage) ? 'error' : 'default'}
                 />
             </ErrorTooltip>

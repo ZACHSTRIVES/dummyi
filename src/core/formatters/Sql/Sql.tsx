@@ -1,8 +1,7 @@
 import React from "react";
 import {FormatRequest, FormatterConfigComponentInterface} from "@/types/formatter";
 import {OptionsInput, OptionsNumberInput, OptionsSelect, SelectOption} from "@/components/Utils";
-import {FormattedMessage, useIntl} from "@/locale";
-import {isNullOrWhiteSpace} from "@/utils/stringUtils";
+import {FormattedMessage} from "@/locale";
 import {OptionsSwitch} from "@/components/Utils/src/OptionsSwitch";
 import {Divider} from "@douyinfe/semi-ui";
 import {DataField} from "@/types/generator";
@@ -62,13 +61,15 @@ const addCreateTableColumn = (field: DataField, sqlType: SqlType) => {
             fieldType = (sqlType === SqlType.ORACLE || sqlType === SqlType.IBMDB2) ? "CLOB" : "TEXT";
             break;
         case ValueType.ONE_BIT:
-            fieldType = "TINYINT(1)";
-            break;
         case ValueType.BOOLEAN:
             fieldType = "TINYINT(1)";
             break;
         case ValueType.BIGINT:
             fieldType = "BIGINT";
+            break;
+        case ValueType.DATE_TIME: // Add this line
+            // Define default DATETIME format, then override per SQL type if necessary
+            fieldType = "DATETIME";
             break;
         default:
             fieldType = "VARCHAR(255)";
@@ -78,23 +79,29 @@ const addCreateTableColumn = (field: DataField, sqlType: SqlType) => {
     // Apply SQL type-specific modifications
     switch (sqlType) {
         case SqlType.ORACLE:
-            // Oracle-specific adaptations, e.g., use NUMBER instead of INT
+            // Oracle-specific adaptations
             if (fieldType === "INT") {
                 fieldType = "NUMBER";
             } else if (fieldType === "TINYINT(1)") {
                 fieldType = "NUMBER(1)";
+            } else if (fieldType === "DATETIME") { // Add this line
+                fieldType = "TIMESTAMP"; // Or DATE, depending on your needs
             }
             break;
         case SqlType.POSTGRES:
-            // Postgres-specific adaptations, e.g., use BOOLEAN instead of TINYINT(1)
+            // Postgres-specific adaptations
             if (fieldType === "TINYINT(1)") {
                 fieldType = "BOOLEAN";
+            } else if (fieldType === "DATETIME") { // Add this line
+                fieldType = "TIMESTAMP"; // Or TIMESTAMP WITHOUT TIME ZONE, depending on your needs
             }
             break;
         case SqlType.SQLITE:
-            // SQLite uses a more dynamic type system
+            // SQLite adaptations
             if (fieldType === "TINYINT(1)") {
                 fieldType = "INTEGER";
+            } else if (fieldType === "DATETIME") { // Add this line
+                fieldType = "TEXT"; // SQLite uses TEXT for date and time types
             }
             break;
         // Add cases for other SQL types as necessary
@@ -117,7 +124,29 @@ const formatValueForSQL = (value: any, sqlType: SqlType, valueType: ValueType): 
         case ValueType.INT_LIST:
             return `'${value.join(", ")}'`
         case ValueType.STRING_LIST:
-            return `'${value.map(item => `"${item}"`).join(', ')}'`
+            return `'${value.map((item: string): string => `"${item}"`).join(', ')}'`
+        case ValueType.DATE_TIME:
+            let formattedDate: string;
+            // Assuming value is a JavaScript Date object for simplicity
+            const date = (value instanceof Date) ? value : new Date(value);
+
+            switch (sqlType) {
+                case SqlType.ORACLE:
+                    // Oracle format: 'YYYY-MM-DD HH24:MI:SS'
+                    formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
+                    break;
+                case SqlType.POSTGRES:
+                    // PostgreSQL format: 'YYYY-MM-DD HH:MM:SS'
+                    formattedDate = date.toISOString().slice(0, 19).replace('T', ' ');
+                    break;
+                // Add additional cases for different SQL types as needed
+                default:
+                    // Default to ISO format 'YYYY-MM-DD HH:MM:SS'
+                    formattedDate = date.toISOString().slice(0, 19).replace('T', ' ');
+                    break;
+            }
+
+            return `'${formattedDate}'`;
         default:
             return value;
     }
@@ -149,8 +178,6 @@ const generateInsertStatements = (sqlType: SqlType, tableName: string, sortedFie
 
 // Modify the format function to adapt to different SQL dialects
 export const format = (request: FormatRequest): string => {
-    console.log(request)
-
     const {fields, values, config, sortedFieldIds} = request;
     const {type, tableName, batchSize, dropTable, createTable, primaryKey, primaryKeyColumnName} = config;
 
@@ -201,23 +228,11 @@ export const format = (request: FormatRequest): string => {
 
 export const SqlConfigComponent: React.FC<FormatterConfigComponentInterface> = ({...props}) => {
     const {config, onConfigChange} = props;
-    const intl = useIntl();
 
     // action
     const handleValueChange = (field: string, value: any) => {
         onConfigChange({...config, [field]: value})
     }
-
-    const [errorMessages, setErrorMessages] = React.useState({tableName: ''});
-    React.useEffect(() => {
-        const newErrorMessages = {...errorMessages};
-        if (isNullOrWhiteSpace(config.tableName)) {
-            newErrorMessages.tableName = intl.formatMessage({id: 'export.configurator.sql.tableName.required'});
-        } else {
-            newErrorMessages.tableName = '';
-        }
-        setErrorMessages(newErrorMessages);
-    }, [config.tableName]);
 
     return (
         <div>
@@ -239,7 +254,7 @@ export const SqlConfigComponent: React.FC<FormatterConfigComponentInterface> = (
                         handleValueChange('tableName', value)
                     }}
                     style={{width: '150px'}}
-                    errorMessage={errorMessages.tableName}
+                    required
                 />
 
                 <OptionsNumberInput
@@ -287,7 +302,7 @@ export const SqlConfigComponent: React.FC<FormatterConfigComponentInterface> = (
                             handleValueChange('primaryKeyColumnName', value)
                         }}
                         style={{width: '80px'}}
-                        errorMessage={errorMessages.tableName}
+                        required
                     />}
                 </div>
             }

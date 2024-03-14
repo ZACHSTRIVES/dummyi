@@ -4,9 +4,9 @@ export const en = {
     // export
 
     // export category
-    "export.category.fileTypes": "General file types",
-    "export.category.databases" : "Databases",
-    "export.category.programmingLanguages": "Programming languages",
+    "export.category.file_types": "General file types",
+    "export.category.databases": "Databases",
+    "export.category.programming_languages": "Programming languages",
 
     // export format modal
     "export.configurator.modal.title": "Format",
@@ -35,7 +35,7 @@ export const en = {
 
     // csv
     "export.configurator.csv.delimiter": "Delimiter",
-    "export.configurator.csv.delimiter.required" : "Delimiter cannot be empty",
+    "export.configurator.csv.delimiter.required": "Delimiter cannot be empty",
     "export.configurator.csv.includeHeader": "Include header",
     "export.configurator.csv.endLineChar": "End of line characters",
 
@@ -76,25 +76,68 @@ export const en = {
     "export.configurator.csharp.dtoClass": "Create DTO class",
     "export.configurator.csharp.dtoClassName": "Class name",
 
+    // typescript
+    "export.configurator.typescript.declarationType": "Declaration type",
+    "export.configurator.typescript.declarationType.interface.name": "Interface name",
+    "export.configurator.typescript.declarationType.type.name": "Type name",
+    "export.configurator.typescript.variableName": "Variable name",
+
     // -------------------------------------------------------------------------------------------------------------
     // data types
-    
 
     // ipaddress
     "dataType.ipaddress": "IP Address",
     "dataType.ipaddress.types":"Types",
 
+    // birthday
+    "dataType.birthday": "Birthday",
+    "dataType.birthday.mode":"Mode",
+    "dataType.birthday.mode.age":"Age",
+    "dataType.birthday.mode.year":"Year",
+    "dataType.birthday.mode.minAge":"Min. Age",
+    "dataType.birthday.mode.maxAge":"Max. Age",
+    "dataType.birthday.mode.fromYear":"From year",
+    "dataType.birthday.mode.toYear":"To year",
+
+    // month
+    "dataType.month": "Month",
+    "dataType.month.abbreviated": "Abbreviated",
+
+    // weekday
+    "dataType.weekday": "Weekday",
+    "dataType.weekday.abbreviated": "Abbreviated",
+
+    // datetime
+    "dataType.datetime": "DateTime",
+    "dataType.datetime.terms": "Terms",
+    "dataType.datetime.terms.anytime": "Anytime",
+    "dataType.datetime.terms.between": "Between",
+    "dataType.datetime.terms.future": "Future",
+    "dataType.datetime.terms.past": "Past",
+    "dataType.datetime.terms.recent": "Recent past",
+    "dataType.datetime.terms.soon": "Soon",
+    "dataType.datetime.ref": "Reference date",
+    "dataType.datetime.ref.tooltip": "The date to use as reference point",
+    "dataType.datetime.format": "Format",
+    "dataType.datetime.format.text": "Text",
+    "dataType.datetime.format.timestamp": "Timestamp",
+    "dataType.datetime.format.datetime": "DateTime",
+    "dataType.datetime.timeRange": "Range",
+
+    // anytime
+    "dataType.anytime": "Anytime",
+
     // url
     "dataType.url": "Url",
     "dataType.url.appendSlash.label": "Slash",
-    "dataType.url.protocol.label":"Protocol",
+    "dataType.url.protocol.label": "Protocol",
 
     // domainsuffix
     "dataType.domainsuffix": "Domain Suffix",
 
     // domainname
     "dataType.domainname": "Domain Name",
-        
+
     // accountnumber
     "dataType.accountnumber": "Account Number",
     "dataType.accountnumber.length": "Length",
@@ -107,7 +150,7 @@ export const en = {
     "dataType.color": "Color",
     "dataType.color.kind.label": "Kind",
     "dataType.color.format.label": "Format",
-    "dataType.color.format.humanWord":"Human Word",
+    "dataType.color.format.humanWord": "Human Word",
 
     // phone
     "dataType.phone": "Phone Number",
@@ -157,9 +200,6 @@ export const en = {
     "dataType.number.max.errorMessage.empty": "Max. value cannot be empty",
     "dataType.number.max.errorMessage.lessThanMin": "Max. value cannot be less than min. value",
 
-    // dateTime
-    "dataType.dateTime": "Date time",
-
     // boolean
     "dataType.boolean": "Boolean",
     "dataType.boolean.true.label": "Prob of True",
@@ -193,6 +233,7 @@ export const en = {
     "dataType.category.person": "Person",
     "dataType.category.commerce": "Commerce",
     "dataType.category.network": "Network",
+    "dataType.category.datetime": "Datetime",
 
     // -------------------------------------------------------------------------------------------------------------
     // pages
@@ -242,6 +283,7 @@ export const en = {
     "dataFields.type.modal.search.placeholder": "Search data type...",
 
     // error pages
+    "error.input.isRequired": "This field is required",
     "error.404.description": "Page does not exist",
     "error.404.button.text": "Home page",
     "error.general.description": "Oops! An error has occurred!",

@@ -106,7 +106,7 @@ export const ${generatorName}GeneratorDefaultOptions:${generatorName}GeneratorOp
 
 // -------------------------------------------------------------------------------------------------------------
 // generate method
-export const generate = (options: any): GenerateResult => {
+export const generate = (options: ${generatorName}GeneratorOptions): GenerateResult => {
     // TODO: implement your own generate method here
    
     return {
@@ -125,9 +125,9 @@ export const ${generatorName}GeneratorOptionsComponent: React.FunctionComponent<
     
     // TODO: implement your own options component here
     return (
-        <div>
+        <>
             NOT IMPLEMENTED
-        </div>
+        </>
     );
 }`;
 }

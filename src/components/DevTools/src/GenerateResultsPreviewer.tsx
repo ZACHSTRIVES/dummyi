@@ -77,7 +77,7 @@ export const GenerateResultsPreviewer: React.FunctionComponent<GenerateResultsPr
 
     return (
         <div>
-            <Card style={{width: "400px", height: "250px"}}>
+            <Card style={{width: "400px", height: "250px", borderColor: isError ? "red" : null}}>
                 <Space>
                     <Tag size={'small'} type={colorMode === ColorMode.DARK ? 'solid' : 'ghost'}>{formatType}</Tag>
                     {isError && <Tag size={'small'} style={{color: 'red'}}>ERROR</Tag>}

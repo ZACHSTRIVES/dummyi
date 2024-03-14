@@ -1,3 +1,4 @@
+import {TypescriptFormatter} from "@/core/formatters/Typescript";
 import {CSharpFormatter} from "@/core/formatters/CSharp";
 import {SqlFormatter} from "@/core/formatters/Sql";
 import {CsvFormatter} from "@/core/formatters/Csv";
@@ -8,6 +9,7 @@ import {XmlFormatter} from "@/core/formatters/Xml";
 
 
 export const formatters = {
+  [ExportFormat.TYPESCRIPT]: TypescriptFormatter,
   [ExportFormat.CSHARP]: CSharpFormatter,
   [ExportFormat.SQL]: SqlFormatter,
     [ExportFormat.CSV]: CsvFormatter,

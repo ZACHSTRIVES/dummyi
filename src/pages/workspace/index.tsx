@@ -54,7 +54,7 @@ export default function Workspace() {
     return (
         <>
             <Head>
-                <title>{intl.formatMessage({id: "nav.item.workspace"})} - Duymmi</title>
+                <title>Dummyi - Mock Data Generator</title>
             </Head>
 
 
