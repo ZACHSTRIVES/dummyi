@@ -1,3 +1,4 @@
+import {IpAddressGenerator} from "@/core/generators/IpAddress";
 import {BirthdayGenerator} from "@/core/generators/Birthday";
 import {MonthGenerator} from "@/core/generators/Month";
 import {WeekdayGenerator} from "@/core/generators/Weekday";
@@ -23,6 +24,7 @@ import {CompanyNameGenerator} from "@/core/generators/CompanyName";
 import {DataType} from "@/constants/enums";
 
 export const generators = {
+  [DataType.IPADDRESS]: IpAddressGenerator,
   [DataType.BIRTHDAY]: BirthdayGenerator,
   [DataType.MONTH]: MonthGenerator,
   [DataType.WEEKDAY]: WeekdayGenerator,

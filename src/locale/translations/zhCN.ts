@@ -3,9 +3,11 @@ export const zhCN = {
     // export
 
     // export category
+
     "export.category.file_types": "常见格式",
     "export.category.databases": "数据库",
     "export.category.programming_languages": "编程语言",
+
 
     // export format modal
     "export.configurator.modal.title": "生成格式",
@@ -83,7 +85,10 @@ export const zhCN = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
-    
+    // ipaddress
+    "dataType.ipaddress": "IP地址",
+    "dataType.ipaddress.types": "类型",
+
     // birthday
     "dataType.birthday": "生日",
     "dataType.birthday.mode":"模式",

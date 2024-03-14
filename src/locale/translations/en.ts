@@ -85,8 +85,10 @@ export const en = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
+    // ipaddress
+    "dataType.ipaddress": "IP Address",
+    "dataType.ipaddress.types":"Types",
 
-    
     // birthday
     "dataType.birthday": "Birthday",
     "dataType.birthday.mode":"Mode",

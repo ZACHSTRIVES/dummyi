@@ -85,13 +85,9 @@ export const jaJP = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
+    // ipaddress
+    "dataType.ipaddress": "IpAddress",
 
-    
-    
-    
-    
-    
-    
     // birthday
     "dataType.birthday": "Birthday",
 

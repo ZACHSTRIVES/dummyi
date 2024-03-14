@@ -45,6 +45,7 @@ export enum DataTypeCategory {
 }
 
 export enum DataType {
+    IPADDRESS = "ipaddress",
     BIRTHDAY = "birthday",
     MONTH = "month",
     WEEKDAY = "weekday",
