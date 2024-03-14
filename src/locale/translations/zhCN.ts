@@ -83,6 +83,41 @@ export const zhCN = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
+    
+    // birthday
+    "dataType.birthday": "生日",
+    "dataType.birthday.mode":"模式",
+    "dataType.birthday.mode.age":"年龄",
+    "dataType.birthday.mode.year":"出生年份",
+    "dataType.birthday.mode.minAge":"最小年龄",
+    "dataType.birthday.mode.maxAge":"最大年龄",
+    "dataType.birthday.mode.fromYear":"最小年份",
+    "dataType.birthday.mode.toYear":"最大年份",
+
+    // month
+    "dataType.month": "月份",
+    "dataType.month.abbreviated": "缩写",
+
+    // weekday
+    "dataType.weekday": "星期",
+    "dataType.weekday.abbreviated": "缩写",
+
+    // datetime
+    "dataType.datetime": "日期时间",
+    "dataType.datetime.terms": "条件",
+    "dataType.datetime.terms.anytime": "任意时间",
+    "dataType.datetime.terms.between": "区间",
+    "dataType.datetime.terms.future": "未来",
+    "dataType.datetime.terms.past": "过去",
+    "dataType.datetime.terms.recent": "不久之前",
+    "dataType.datetime.terms.soon": "不久之后",
+    "dataType.datetime.ref": "参考日期",
+    "dataType.datetime.ref.tooltip": "用于生成数据的参考日期",
+    "dataType.datetime.format": "格式",
+    "dataType.datetime.format.text": "文本",
+    "dataType.datetime.format.timestamp": "时间戳",
+    "dataType.datetime.format.datetime": "Date对象",
+    "dataType.datetime.timeRange": "区间",
 
     // url
     "dataType.url": "网址",
@@ -157,9 +192,6 @@ export const zhCN = {
     "dataType.number.max.errorMessage.empty": "最大值不能为空",
     "dataType.number.max.errorMessage.lessThanMin": "最大值不能小于最小值",
 
-    // dateTime
-    "dataType.dateTime": "日期时间",
-
     // boolean
     "dataType.boolean": "布尔值",
     "dataType.boolean.true.label": "真值概率",
@@ -193,6 +225,7 @@ export const zhCN = {
     "dataType.category.person": "人物",
     "dataType.category.commerce": "商业",
     "dataType.category.network": "网络",
+    "dataType.category.datetime": "时间",
 
     // -------------------------------------------------------------------------------------------------------------
     // pages

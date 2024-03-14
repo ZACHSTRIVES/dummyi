@@ -23,7 +23,7 @@ export const InputPanel: React.FunctionComponent<InputPanelProps> = () => {
 
             setPanelHeight(containerHeight);
 
-            if (containerWidth > 1000) {
+            if (containerWidth > 900) {
                 setComponentSize(ComponentSize.LARGE);
             } else if (containerWidth > 550) {
                 setComponentSize(ComponentSize.MEDIUM);

@@ -21,7 +21,7 @@ export interface DataTypeSelectModalProps {
 
 export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalProps> = ({...props}) => {
     const intl = useIntl();
-    const {Title} = Typography;
+    const {Title, Text} = Typography;
     const dispatch = useDispatch();
     const [searchText, setSearchText] = React.useState(null);
     const data = useMemo(() => getGeneratorList(searchText, intl), [intl, searchText]);
@@ -34,7 +34,7 @@ export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalPro
 
     // actions
     const handleSelect = (item: Generator) => {
-        dispatch(doChangeDataType(currentTargetDataFieldId,item.type));
+        dispatch(doChangeDataType(currentTargetDataFieldId, item.type));
         onCancel();
     }
 
@@ -106,7 +106,9 @@ export const DataTypeSelectModal: React.FunctionComponent<DataTypeSelectModalPro
                                                         item.exampleLines && item.exampleLines.map((example, index) => (
                                                             <div key={index}
                                                                  className={styles.dataTypeSelectModalCard__example}>
-                                                                {example}
+                                                                <Text ellipsis={{showTooltip: true}} type="tertiary">
+                                                                    {example}
+                                                                </Text>
                                                             </div>
                                                         ))
                                                     }

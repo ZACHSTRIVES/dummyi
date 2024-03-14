@@ -86,6 +86,30 @@ export const jaJP = {
     // data types
 
 
+    
+    
+    
+    
+    
+    
+    // birthday
+    "dataType.birthday": "Birthday",
+
+    // month
+    "dataType.month": "Month",
+
+    // weekday
+    "dataType.weekday": "Weekday",
+
+    // datetimerange
+    "dataType.datetimerange": "DateTimeRange",
+
+    // datetime
+    "dataType.datetime": "DateTime",
+
+    // anytime
+    "dataType.anytime": "Anytime",
+
     // url
     "dataType.url": "URL",
     "dataType.url.appendSlash.label": "スラッシュ",
