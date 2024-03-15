@@ -14,7 +14,7 @@ export enum SeparatorGeneratorFormat {
     NONE_FORMAT = ''
 }
 export interface MacAddressGeneratorOptions {
-   // TODO: add your own option types here 
+   
    format:SeparatorGeneratorFormat;
 
 
@@ -23,14 +23,14 @@ export interface MacAddressGeneratorOptions {
 // -------------------------------------------------------------------------------------------------------------
 // default options
 export const MacAddressGeneratorDefaultOptions:MacAddressGeneratorOptions = {
-    // TODO: add your own default options here
+    
     format : SeparatorGeneratorFormat.COLON_FORMAT,
 }
 
 // -------------------------------------------------------------------------------------------------------------
 // generate method
 export const generate = (options: MacAddressGeneratorOptions): GenerateResult => {
-    // TODO: implement your own generate method here
+    
     const value = faker.internet.mac(options.format);
     return {
         value: value,
@@ -48,7 +48,7 @@ export const MacAddressGeneratorOptionsComponent: React.FunctionComponent<Genera
 
     
     
-    // TODO: implement your own options component here
+    
     return (
         <>
             <OptionsSelect
