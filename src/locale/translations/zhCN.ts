@@ -88,7 +88,7 @@ export const zhCN = {
     
     // macaddress
     "dataType.macaddress": "Mac地址",
-    "dataType.macAddress.format": "分隔符",
+    "dataType.macaddress.format": "分隔符",
     "dataType.macaddress.format.colon":"冒号",
     "dataType.macaddress.format.dash": "连字符",
     "dataType.macaddress.format.space": "引号",
