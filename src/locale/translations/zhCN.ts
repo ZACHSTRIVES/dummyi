@@ -85,6 +85,14 @@ export const zhCN = {
     // -------------------------------------------------------------------------------------------------------------
     // data types
 
+    
+    // macaddress
+    "dataType.macaddress": "Mac地址",
+    "dataType.macaddress.format": "分隔符",
+    "dataType.macaddress.format.colon":"冒号",
+    "dataType.macaddress.format.dash": "连字符",
+    "dataType.macaddress.format.space": "引号",
+
     // ipaddress
     "dataType.ipaddress": "IP地址",
     "dataType.ipaddress.types": "类型",
