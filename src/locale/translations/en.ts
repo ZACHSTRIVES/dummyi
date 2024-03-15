@@ -87,7 +87,7 @@ export const en = {
 
     
     // macaddress
-    "dataType.macaddress": "Mac address",
+    "dataType.macaddress": "Mac Address",
     "dataType.macaddress.format": "Separator",
     "dataType.macaddress.format.colon":"colon",
     "dataType.macaddress.format.dash": "hyphen",
