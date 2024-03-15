@@ -52,10 +52,10 @@ export const MacAddressGeneratorOptionsComponent: React.FunctionComponent<Genera
     return (
         <>
             <OptionsSelect
-                label={<FormattedMessage id='dataType.macAddress.format'/>}
+                label={<FormattedMessage id='dataType.macaddress'/>}
                 selectOptions={SeparatorFormatSelectOptions}
                 value={options.format}
-                onChange={(newFormat) => handleOptionValueChange("format", newFormat)}
+                onChange={(v) => handleOptionValueChange("format", v)}
                 style={{ width: '200px' }}
             />
         </>
@@ -66,27 +66,21 @@ export const SeparatorFormatSelectOptions:SelectOption[] = [
     {
         label:
             <>
-                <Tag type={'light'}
-                     className={style.formatSelectOption}>:</Tag>
-                <FormattedMessage id={`dataType.macaddress.format.colon`}/>
+                :
             </>,
         value: SeparatorGeneratorFormat.COLON_FORMAT
     },
     { 
         label:
             <>
-                <Tag type={'light'}
-                     className={style.formatSelectOption}>-</Tag>
-                <FormattedMessage id={`dataType.macaddress.format.dash`}/>
+                -
             </>, 
         value: SeparatorGeneratorFormat.HYPEN_FORMAT 
     },
     { 
         label:
             <>
-                <Tag type={'light'}
-                     className={style.formatSelectOption}>""</Tag>
-                <FormattedMessage id={`dataType.macaddress.format.space`}/>
+               &quot;&quot;
             </>,  
         value: SeparatorGeneratorFormat.NONE_FORMAT 
     },
