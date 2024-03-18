@@ -25,7 +25,7 @@
     "@uiw/react-codemirror": "^4.21.24",
     "@vercel/analytics": "^1.2.2",
     "autoprefixer": "10.4.16",
-    "emoji-picker-react": "^4.5.3",
+    "emoji-picker-react": "^4.8.0",
     "eslint": "8.47.0",
     "eslint-config-next": "13.5.5",
     "hamburger-react": "^2.5.0",
