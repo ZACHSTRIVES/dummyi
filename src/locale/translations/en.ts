@@ -86,6 +86,11 @@ export const en = {
     // data types
 
     
+    
+    // protocol
+    "dataType.protocol": "Protocol",
+    
+
     // macaddress
     "dataType.macaddress": "Mac Address",
     "dataType.macaddress.format": "Separator",

@@ -86,6 +86,10 @@ export const jaJP = {
     // data types
 
     
+    
+    // protocol
+    "dataType.protocol": "Protocol",
+
     // macaddress
     "dataType.macaddress": "MacAddress",
 

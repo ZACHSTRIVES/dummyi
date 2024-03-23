@@ -1,3 +1,4 @@
+import {ProtocolGenerator} from "@/core/generators/Protocol";
 import {MacAddressGenerator} from "@/core/generators/MacAddress";
 import {IpAddressGenerator} from "@/core/generators/IpAddress";
 import {BirthdayGenerator} from "@/core/generators/Birthday";
@@ -25,6 +26,7 @@ import {CompanyNameGenerator} from "@/core/generators/CompanyName";
 import {DataType} from "@/constants/enums";
 
 export const generators = {
+  [DataType.PROTOCOL]: ProtocolGenerator,
   [DataType.MACADDRESS]: MacAddressGenerator,
   [DataType.IPADDRESS]: IpAddressGenerator,
   [DataType.BIRTHDAY]: BirthdayGenerator,
