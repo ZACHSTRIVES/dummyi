@@ -86,6 +86,11 @@ export const zhCN = {
     // data types
 
     
+    
+    // protocol
+    "dataType.protocol": "网络协议",
+
+
     // macaddress
     "dataType.macaddress": "Mac地址",
     "dataType.macaddress.format": "分隔符",

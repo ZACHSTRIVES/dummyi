@@ -45,6 +45,7 @@ export enum DataTypeCategory {
 }
 
 export enum DataType {
+    PROTOCOL = "protocol",
     MACADDRESS = "macaddress",
     IPADDRESS = "ipaddress",
     BIRTHDAY = "birthday",
