@@ -88,7 +88,7 @@ export const zhCN = {
     
     
     // protocol
-    "dataType.protocol": "协议",
+    "dataType.protocol": "网络协议",
 
 
     // macaddress
