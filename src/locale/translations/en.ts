@@ -88,7 +88,7 @@ export const en = {
     
     
     // protocol
-    "dataType.protocol": "Protocol",
+    "dataType.protocol": "Internet Protocol",
     
 
     // macaddress
